@@ -176,9 +176,10 @@ the definition.
 ## What is NOT claimed
 
 * **Nothing about `ψ(ρ) = −1` in general.** The proposition's proof breaks
-  there, and at order 668 that case provably **does** leave the equivalence
-  class (certs 06 and 08). Whether it always does is not claimed; 668 is the
-  one proven case, and 716, 1676, 1772 stay unclaimed.
+  there, and at orders 668 and 716 that case provably **does** leave the
+  equivalence class (certs 06 and 08; cert 11). Whether it always does is
+  not claimed; 668 and 716 are the proven cases, and 1676, 1772 stay
+  unclaimed.
 * **Gram-forcing at `s ≥ 2` remains a CONJECTURE**, and it is open *up to the
   twist at best*. This certificate is the reason for that qualifier: it
   exhibits the non-house instances that any forcedness statement must

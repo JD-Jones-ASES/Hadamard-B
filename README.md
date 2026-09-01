@@ -71,8 +71,14 @@ separated by the exact 4-profile over all 8 222 179 035 row
 for bin and hit the closed-form second moment to the unit (cert 06).
 As far as this laboratory's search located, the preprint was the first published
 statement of an inequivalence at this order; the bounded priority
-statement is NOTE-B.md §3.4. The corresponding pair at the former
-frontier order 2060 carries **computational evidence of
+statement is NOTE-B.md §3.4. **Order 716 carries at least two** —
+the decoded record and its Lemma-T rebuild, separated in 27 of the
+87 bins of the same exact invariant over all 10 859 143 295 row
+4-subsets (cert 11), so the twist at `ψ(ρ) = −1` provably leaves
+the equivalence class at a second order; that statement is row-side
+only, with no transpose-extended claim at 716. The corresponding
+pair at the former frontier order 2060 carries
+**computational evidence of
 inequivalence — not a proof** (sampled profiles; an exhausted
 block-affine family), stated at exactly that strength.
 
@@ -93,13 +99,13 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The two optional `--full` flags —
-cert 06's and cert 08's — are the only paths that use numpy, and they
+Standard library only, no network. The three optional `--full` flags —
+certs 06, 08 and 11's — are the only paths that use numpy, and they
 recompute the exact 4-profiles from the matrices rebuilt in the run
 rather than auditing the banks (finder-side only, never in the trust
-chain). Both in-repo `--full` runs — cert 08's and cert 06's —
+chain). All three in-repo `--full` runs — certs 08, 06 and 11's —
 covered the `blas` (float32) leg only; the `bits` recomputation has
-not been run in this repository for either cert. Each cert's
+not been run in this repository for any of them. Each cert's
 `NOTES.md` records which legs were run and when.
 
 ```
@@ -115,6 +121,7 @@ python certs/07-2060-evidence/run.py --selftest   # exact-mode acceptance layer
 python certs/08-hall-switch-three-classes/run.py
 python certs/09-1916-conjugation/run.py
 python certs/10-theorem-d-census/run.py
+python certs/11-716-separation/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

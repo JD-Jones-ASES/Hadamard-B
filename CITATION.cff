@@ -9,9 +9,9 @@ abstract: >-
   cells are (0,1), (1,1), and i = s+1 with s odd); the complete
   resolution of the s = 1 border system; machine verification of
   twelve publicly posted matrices through the theorems' hypotheses;
-  and a proof that order 668 carries at least three Hadamard
-  equivalence classes, pairwise separated by the exact 4-profile
-  invariant. Provenance:
+  and proofs that order 668 carries at least three Hadamard
+  equivalence classes and order 716 at least two, separated by the
+  exact 4-profile invariant. Provenance:
   the twelve parameter records are decoded from publicly posted
   matrices and carry no priority claim. AI-generated results with a
   human managing the workflow - produced by Claude Code (Fable 5,
@@ -21,7 +21,7 @@ abstract: >-
   mathematical data carries no license claim over the facts it
   encodes.
 type: software
-version: 0.1.0
+version: 0.2.0
 date-released: 2026-09-01
 url: "https://github.com/JD-Jones-ASES/Hadamard-B"
 repository-code: "https://github.com/JD-Jones-ASES/Hadamard-B"

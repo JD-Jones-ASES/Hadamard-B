@@ -273,8 +273,10 @@ an in-flight artifact of another lane's run.
 * **Nothing about orders 716, 1676 or 1772.** The same construction gives
   Lemma-T `i = 2` rebuilds at those orders, and the corresponding exact
   computation costs roughly `1.4×`, `98×` and `130×` the 668 run
-  (the profile is `Θ(n⁵)` in the pair-vector Gram). It has not been made,
-  so nothing is said.
+  (the profile is `Θ(n⁵)` in the pair-vector Gram). *This* certificate says
+  nothing about them. The `716` computation has since been made and carries
+  its own certificate — cert 11, NOTE-B.md §3.6; `1676` and `1772` have not
+  been made, so nothing is said there.
 * **No claim of novelty of existence at 668.** Order 668 was settled by
   the publicly posted matrix; this certificate is about *how many classes*
   are on the table among the artifacts banked here, not about existence.

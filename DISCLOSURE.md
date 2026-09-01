@@ -6,11 +6,11 @@ coset-border construction; the classification, within the house-Gram
 branch and under `w > 2s`, of its surviving parameters (with `n ≥ 3`
 the cells are `(0,1)`, `(1,1)`, and `i = s+1` with `s` odd); and the
 complete resolution of the `s = 1` border system —
-together with the theorem that order 668 carries at least three
+together with the theorems that order 668 carries at least three
 Hadamard-equivalence classes, pairwise separated by an exactly
-computed invariant; plus the machine
-verification of twelve publicly posted matrices through the theorems'
-hypotheses and eight certified instance matrices.
+computed invariant, and that order 716 carries at least two; plus the
+machine verification of twelve publicly posted matrices through the
+theorems' hypotheses and eight certified instance matrices.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -60,10 +60,10 @@ every run, the default path **audits** the banked profile — the
 file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
-belongs to the optional `--full` paths of certs 06 and 08, which
+belongs to the optional `--full` paths of certs 06, 08 and 11, which
 recompute those profiles from the matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; the two `--full`
+standard library and nothing on the network; the three `--full`
 recomputations use numpy on the finder side only.
 
 Reading the certificates is one route. Rebuilding from the

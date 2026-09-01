@@ -40,7 +40,12 @@ diagonal conjugation of the decoded instance.
   Hadamard-**inequivalent**. That is a separate result with its own
   certificate (the exact 4-profile separation, NOTE-B.md §3.4); *this*
   cert does not prove it and does not depend on it.
-- At **716, 1676 and 1772**, **neither equivalence nor inequivalence is
+- At **716**, likewise: the twisted and decoded matrices are proven
+  Hadamard-**inequivalent** — the exact 4-profile over all
+  `C(716,4)` row 4-subsets, 27 of 87 bins differing (cert 11,
+  NOTE-B.md §3.6). Again a separate result with its own certificate;
+  *this* cert does not prove it and does not depend on it.
+- At **1676 and 1772**, **neither equivalence nor inequivalence is
   claimed**. The separating computation at these orders has not been
   made. A different digest means a different file and nothing more.
 - No novelty of existence is claimed at any of these four orders. They
