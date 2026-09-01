@@ -1,0 +1,72 @@
+{
+ "schema": "gs-frame-params/1",
+ "description": "The Lemma-T i=2 twisted rebuild at order 668: the check_record-format frame record for the SECOND Hadamard matrix of order 668 banked in this repository. Derived independently from data/payload-records.json (the decoded s=1, i=1 record) by the character twist of NOTE-B.md S1.4, together with the s=1/i=2 border system (E, P, col_table) solved in the lab's bordered-GS theorem experiment.",
+ "derivation": {
+  "seeds": "x'_q(g) = psi(g) * x_q(g) with psi the nontrivial character of G = Z_166, psi(g) = +1 if g even, -1 if g odd; x_q are the seeds of the order-668 record in data/payload-records.json, byte-for-byte",
+  "coset_divisors": "[2]: kappa(g) = g mod 2, K = ker(kappa) = 2*Z_166, index i = 2, w = |K| = 83",
+  "psi_rho": "psi(rho) = -1 at rho = 165, so NOTE-B.md S1.4's proposition does NOT collapse this twist to a diagonal conjugation -- this is why the rebuild can and does leave the equivalence class (cert 06)",
+  "border": "E = corner, P = row_table, Q = the 4i x 4s column table; col_table[r][k] = Q[k][r] is the check_record transpose convention. Source: the i=2 border system solved in the lab's twist_report.json for order 668 (H2/H3/H4 all true there, and re-checked from scratch by cert 06)",
+  "unchanged_from_the_decoded_record": [
+   "group",
+   "s",
+   "r_shift",
+   "gs_variant"
+  ]
+ },
+ "order": 668,
+ "group": [
+  166
+ ],
+ "s": 1,
+ "i": 2,
+ "r_shift": [
+  165
+ ],
+ "gs_variant": "standard",
+ "seeds": [
+  "+-++++++++++---++-+++--+-++--+++-+---+-+--+--+--++++-++-+-+-++++-------++----+++---+-++++++++++---++-+++--+-++--+++-+---+-+--+++-++----+--+-+-+-+--+++++++--++++---+++",
+  "-+-++-+++-+++-----+-+++----+++---+-+-++--++++------+---+++++++++--++-++-+-++-+-++-+-+-++-+++-+++-----+++++----+++---+-+-+++++---++++++-+++---------++--+--+-+--+-+--+-",
+  "-+-++++++--+----++-+---+--+-+--+++-+++--+++-+-+-++++---+---+-++---+--+-++--+--+--+--+-++++++--+----++-+---+--+-+--+++-+++-+++-+-+-+----+++-+++-+--+++-++-+--++-++-++-+",
+  "+-++-+++++--++-+---++++-++++--++-+-+--+--++-+-+----++--++++--+---++--+---+--++-----+-++-+++++--++-+---++++-++++--++-+-+--+--+-+-+-++++--++----+--+++--++-+++-++--+++++"
+ ],
+ "coset_divisors": [
+  2
+ ],
+ "corner": [
+  "-+++",
+  "+-++",
+  "++-+",
+  "+++-"
+ ],
+ "row_table": [
+  "+-+-+-+-",
+  "-+-++-+-",
+  "-++--++-",
+  "+--+-++-"
+ ],
+ "col_table": [
+  "+-+-+--+",
+  "-+-++--+",
+  "-++--+-+",
+  "+--+-+-+"
+ ],
+ "coset_sums_sigma": [
+  [
+   11,
+   9
+  ],
+  [
+   3,
+   3
+  ],
+  [
+   3,
+   3
+  ],
+  [
+   7,
+   7
+  ]
+ ],
+ "canonical_sha256": "600849b038e7588d15b64e02794517dd6d95e5d62d505aa7d3d77078392008a3"
+}
