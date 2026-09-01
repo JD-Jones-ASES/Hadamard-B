@@ -35,8 +35,12 @@ house-Gram branch, under the non-degeneracy hypothesis `w > 2s`, the
 parameter bounds are forced; with `n ≥ 3` the only surviving cells
 are the classical `(s,i) = (0,1)` and `(1,1)` and the family
 `i = s+1` with `s` odd, where the corner is forced to be a `4s×4s`
-Hadamard matrix. (That the house Gram is itself forced for `s ≥ 2`
-is a **conjecture** — NOTE-B.md §1.2.) Theorem D: at `s = 1` the
+Hadamard matrix. Theorem E: the house Gram is not itself forced, but
+everything short of that is — every admissible Gram is `4i` times an
+orthogonal projector, and at `i = s+1` it is exactly one of the
+`|Ĝ̄[2]|` real-character twists of the house form, with no others
+(NOTE-B.md §1.2.1; the complete `(3,4)` classification and the
+general-branch cells are cert 12). Theorem D: at `s = 1` the
 `i = 2` border system collapses onto the `i = 1` system (the Gram is
 forced, both tables are doubled 4×4 Hadamard matrices, and the
 coupling is the same 4×4 equation with the twisted coset-sum vector
@@ -122,6 +126,7 @@ python certs/08-hall-switch-three-classes/run.py
 python certs/09-1916-conjugation/run.py
 python certs/10-theorem-d-census/run.py
 python certs/11-716-separation/run.py
+python certs/12-gram-rigidity/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

@@ -1,0 +1,239 @@
+{
+ "schema": "gram34-witnesses/1",
+ "description": "The six (H1)-realizability witnesses for the complete admissible-Gram classification at (s, i) = (3, 4): a +-1 table Q in {+-1}^(16 x 12) with Q Q^T = I_4 (x) M, one for each of the two admissible Grams over Gbar = Z_4 and each of the four over Gbar = Z_2 x Z_2. Rows of Q are indexed k = i*I + c with I in 0..3 the superblock and c in Gbar; columns are the 4s = 12 border columns. Each row is a 12-character sign string.",
+ "cell": {
+  "s": 3,
+  "i": 4,
+  "w_note": "w > 2s assumed; at order 1916 w = 119",
+  "M0": 12,
+  "house_M": [
+   12,
+   -4,
+   -4,
+   -4
+  ],
+  "spectrum": [
+   16,
+   16,
+   16,
+   0
+  ]
+ },
+ "provenance": {
+  "derived": "derived and verified at the source laboratory, 2026-09-01: an exhaustive (H1)-realizability search over Q in {+-1}^(16x12) with two verdict-exact symmetry reductions (column signs; column permutations), reported 6/6 realizable",
+  "what_is_banked": "only the six witnesses. Nothing about the search is trusted here: a witness is self-certifying, and certs/12-gram-rigidity/run.py re-checks every one of the 16x16 inner products of Q Q^T against I_4 (x) M in exact integer arithmetic.",
+  "not_banked": "the number of solutions Q for each M, which the source search did not compute"
+ },
+ "witnesses": [
+  {
+   "group": "Z4",
+   "group_note": "Gbar = Z_4, elements 0..3, group law addition mod 4",
+   "twist": "chi0 (real)",
+   "M": [
+    12,
+    -4,
+    -4,
+    -4
+   ],
+   "spectrum": [
+    16,
+    16,
+    16,
+    0
+   ],
+   "Q": [
+    "++++++++++++",
+    "++++--------",
+    "----++++----",
+    "--------++++",
+    "++--++--++--",
+    "++----++--++",
+    "--++++----++",
+    "--++--++++--",
+    "+-+-+-+-+-+-",
+    "+-+--+-+-+-+",
+    "-+-++-+--+-+",
+    "-+-+-+-++-+-",
+    "+--++--++--+",
+    "+--+-++--++-",
+    "-++-+--+-++-",
+    "-++--++-+--+"
+   ]
+  },
+  {
+   "group": "Z4",
+   "group_note": "Gbar = Z_4, elements 0..3, group law addition mod 4",
+   "twist": "chi2 (real)",
+   "M": [
+    12,
+    4,
+    -4,
+    4
+   ],
+   "spectrum": [
+    16,
+    16,
+    16,
+    0
+   ],
+   "Q": [
+    "++++++++++++",
+    "++++++++----",
+    "++++--------",
+    "++++----++++",
+    "++--++--++--",
+    "++--++----++",
+    "++----++--++",
+    "++----++++--",
+    "+-+-+-+-+-+-",
+    "+-+-+-+--+-+",
+    "+-+--+-+-+-+",
+    "+-+--+-++-+-",
+    "+--++--++--+",
+    "+--++--+-++-",
+    "+--+-++--++-",
+    "+--+-++-+--+"
+   ]
+  },
+  {
+   "group": "Z2xZ2",
+   "group_note": "Gbar = Z_2 x Z_2, elements 0..3 by bit pair, group law index XOR -- the indexing of data/n1916-twist.json",
+   "twist": "chi0=[+,+,+,+]",
+   "M": [
+    12,
+    -4,
+    -4,
+    -4
+   ],
+   "spectrum": [
+    16,
+    16,
+    16,
+    0
+   ],
+   "Q": [
+    "++++++++++++",
+    "++++--------",
+    "----++++----",
+    "--------++++",
+    "++--++--++--",
+    "++----++--++",
+    "--++++----++",
+    "--++--++++--",
+    "+-+-+-+-+-+-",
+    "+-+--+-+-+-+",
+    "-+-++-+--+-+",
+    "-+-+-+-++-+-",
+    "+--++--++--+",
+    "+--+-++--++-",
+    "-++-+--+-++-",
+    "-++--++-+--+"
+   ]
+  },
+  {
+   "group": "Z2xZ2",
+   "group_note": "Gbar = Z_2 x Z_2, elements 0..3 by bit pair, group law index XOR -- the indexing of data/n1916-twist.json",
+   "twist": "chi2=[+,+,-,-]",
+   "M": [
+    12,
+    -4,
+    4,
+    4
+   ],
+   "spectrum": [
+    16,
+    16,
+    16,
+    0
+   ],
+   "Q": [
+    "++++++++++++",
+    "++++--------",
+    "++++++++----",
+    "++++----++++",
+    "++--++--++--",
+    "++----++--++",
+    "++--++----++",
+    "++----++++--",
+    "+-+-+-+-+-+-",
+    "+-+--+-+-+-+",
+    "+-+-+-+--+-+",
+    "+-+--+-++-+-",
+    "+--++--++--+",
+    "+--+-++--++-",
+    "+--++--+-++-",
+    "+--+-++-+--+"
+   ]
+  },
+  {
+   "group": "Z2xZ2",
+   "group_note": "Gbar = Z_2 x Z_2, elements 0..3 by bit pair, group law index XOR -- the indexing of data/n1916-twist.json",
+   "twist": "chi1=[+,-,+,-]",
+   "M": [
+    12,
+    4,
+    -4,
+    4
+   ],
+   "spectrum": [
+    16,
+    16,
+    16,
+    0
+   ],
+   "Q": [
+    "++++++++++++",
+    "++++++++----",
+    "++++--------",
+    "++++----++++",
+    "++--++--++--",
+    "++--++----++",
+    "++----++--++",
+    "++----++++--",
+    "+-+-+-+-+-+-",
+    "+-+-+-+--+-+",
+    "+-+--+-+-+-+",
+    "+-+--+-++-+-",
+    "+--++--++--+",
+    "+--++--+-++-",
+    "+--+-++--++-",
+    "+--+-++-+--+"
+   ]
+  },
+  {
+   "group": "Z2xZ2",
+   "group_note": "Gbar = Z_2 x Z_2, elements 0..3 by bit pair, group law index XOR -- the indexing of data/n1916-twist.json",
+   "twist": "chi3=[+,-,-,+]",
+   "M": [
+    12,
+    4,
+    4,
+    -4
+   ],
+   "spectrum": [
+    16,
+    16,
+    16,
+    0
+   ],
+   "Q": [
+    "++++++++++++",
+    "++++++++----",
+    "++++----++++",
+    "++++--------",
+    "++--++--++--",
+    "++--++----++",
+    "++----++++--",
+    "++----++--++",
+    "+-+-+-+-+-+-",
+    "+-+-+-+--+-+",
+    "+-+--+-++-+-",
+    "+-+--+-+-+-+",
+    "+--++--++--+",
+    "+--++--+-++-",
+    "+--+-++-+--+",
+    "+--+-++--++-"
+   ]
+  }
+ ]
+}

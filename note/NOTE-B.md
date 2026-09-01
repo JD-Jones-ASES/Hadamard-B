@@ -7,9 +7,10 @@ This note is the mathematics of the repository, in three movements:
   Hadamard matrix through a *coset border* of width `4s`; the forced
   parameter classification **within the house-Gram branch, under
   `w > 2s`** (with `n ≥ 3` the surviving cells are `(0,1)`, `(1,1)`
-  and `i = s+1` with `s` odd; that the house Gram is itself forced
-  for `s ≥ 2` is a **conjecture**, §1.2); and the complete
-  resolution of the `s = 1` border system.
+  and `i = s+1` with `s` odd); the **Gram rigidity theorem**, which
+  determines every admissible `M` — at `i = s+1` exactly the
+  real-character twists of the house form, and no others (§1.2.1);
+  and the complete resolution of the `s = 1` border system.
 - **II. The instances** (§2) — twelve publicly posted matrices
   re-verified through the theorem's hypotheses, and eight matrices
   constructed here, every one replayable from `certs/`.
@@ -219,26 +220,219 @@ profile is `Σ PAF(t) = −4` for `t ≠ 0`, and Theorem B **is the
 Wallis–Whiteman/Spence bordered construction** (§4).
 
 **On the choice of `M`.** Theorem A admits in principle other Gram
-matrices `M`. What is known: under `w > 2s`, any admissible `M` is
-PSD, `Ḡ`-invariant, has diagonal `4s` and rank exactly `s`; its
-nonzero eigenvalues sum to `4si`, each is `< 4i+2` (Parseval,
-`μ_χ ≤ N/w`), and for `s ≥ 2` each exceeds `4i−2s+2`, while for
-`s = 1` the single nonzero eigenvalue is exactly `4i`. The house
-value (all nonzero eigenvalues equal to `4i`) is the equality case
-of the averaging bound. (Each claim is a two-line consequence of
-positive semidefiniteness, the Parseval bound, `rank ≤ s` from the
-four orthogonal superblock spans, and the trace; the routine algebra
-is omitted.) At `(s,i) = (1,2)` the genuine index-2 branch has the
-house Gram, and the only other admissible Gram is the degenerate
-index-1 construction written in index-2 coordinates (Theorem D
-below). For `s ≥ 2` forcedness is **open**, and it is
-open *up to a character twist at best*: a character twist `x_q ↦ ψx_q`
+matrices `M`, and §1.2.1 determines all of them: under `w > 2s`
+every admissible `M` is `4i` times an orthogonal projector, and at
+`i = s+1` it is a real-quotient-character twist of the house form,
+the twist family being complete. So "any admissible `M` is house" is
+**false as a literal statement** — a character twist `x_q ↦ ψ x_q`
 with `ψ² = 1`, `ψ|_K = 1` produces valid instances whose Gram is
-non-house (an explicit `N = 1916` witness is banked; §3.3 explains
-why, when `ψ(ρ) = 1`, that witness is a diagonal conjugation of the
-house instance and not a new matrix). Any exhaustive treatment of
-admissible profiles at `i ≥ 4` must therefore quotient by the twist.
-Label for "house `M` is forced when `s ≥ 2`": **CONJECTURE**.
+non-house, and an explicit `N = 1916` witness is banked (§3.3
+explains why, when `ψ(ρ) = 1`, that witness is a diagonal
+conjugation of the house instance and not a new matrix) — but it is
+false in a completely described way. The twists are the whole story,
+known in advance rather than quotiented out on faith. Any exhaustive
+treatment of admissible profiles at `i ≥ 4` must still quotient by
+the twist; what changes is that quotienting now provably loses
+nothing, and that the `(s,i) = (1,2)` picture of Theorem D below —
+the house Gram in the genuine branch, one degenerate alternative —
+is the shape of every cell rather than an accident of the smallest.
+
+#### 1.2.1 Theorem E (Gram rigidity) — PROVEN
+
+Write `M̂(χ) = Σ_{c∈Ḡ} M(c)χ(c)` for `χ` in `Ĝ̄`, the character
+group of `Ḡ` (of order `i`, with values in `μ_e`, `e = exp Ḡ`), and
+`v_χ ∈ ℂ^i` for the vector `v_χ(c) = χ(c)`. For a `Ḡ`-invariant
+`Y[c,c'] = Y(c−c')` with `Y(−c) = Y(c)`, substituting `u = c−c'`,
+
+```
+(Y v_χ)[c] = Σ_{c'} Y(c−c')χ(c') = χ(c)·Σ_u Y(u)χ(−u)
+           = Ŷ(χ̄)·χ(c) = Ŷ(χ)·χ(c),
+```
+
+the last step by `Y(−u) = Y(u)`. So the `i` vectors `v_χ` are an
+eigenbasis and the eigenvalue **multiset** of `Y` is
+`{ Ŷ(χ) : χ ∈ Ĝ̄ }`, all real. Used below without comment.
+
+**Theorem E.** Assume (H1) and (H2), with `s ≥ 1` and `w > 2s`. Put
+`S = { χ ∈ Ĝ̄ : M̂(χ) ≠ 0 }`. Then `s ≤ i`, `|S| = s`, `S` is stable
+under complex conjugation and under the Galois action `χ ↦ χ^k`
+(`k` coprime to `e`), and
+
+```
+       M(c)  =  4 · Σ_{χ ∈ S} χ(c)          for every c ∈ Ḡ,
+```
+
+i.e. `M = 4i·P_S`, the `4i`-multiple of the orthogonal projector
+onto `span{ v_χ : χ ∈ S }`. In particular the eigenvalue multiset of
+every admissible `M` is `{ 0^(i−s), (4i)^s }` — the pinning holds at
+every cell `(s,i)`, not only at `i = s+1`. Neither (H3) nor (H4) is
+used, so this is a statement about the seed-and-column-table layer
+alone.
+
+*Proof.* Five steps: a Parseval transfer, the arithmetic of `M`, the
+rank, the Galois stability of `S`, and an integrality lock.
+
+**(L1) Parseval transfer.** For `x : G → {±1}` and a character `ψ`
+of `G`, using `ψ(g)ψ̄(h) = ψ(g−h)` and substituting `g = h+t`,
+
+```
+|x̂(ψ)|² = Σ_{g,h} x(g)x(h) ψ(g)ψ̄(h) = Σ_{h,t} x(h+t)x(h) ψ(t)
+        = Σ_{t∈G} ψ(t)·PAF_x(t).
+```
+
+Take `ψ = χ∘κ`, sum over the quadruple, and split off `t = 0`, where
+`Σ_q PAF_q(0) = 4n`. By (H2) the rest is `−Σ_{t≠0} χ(κt)M(κt)`; add
+back and subtract the `t = 0` term, and use that each fibre
+`κ^{-1}(c)` has exactly `w` elements, so
+`Σ_{t∈G} χ(κt)M(κt) = w·M̂(χ)`:
+
+```
+       Σ_q |x̂_q(χ∘κ)|²  =  4n + M(0) − w·M̂(χ)  =  N − w·M̂(χ),
+```
+
+using `M(0) = 4s` from (L2) and `N = 4n+4s`. The left side is a sum
+of squared absolute values, hence `≥ 0`:
+
+> **the Parseval window.** `M̂(χ) ≤ N/w = 4i + 4s/w` for **every**
+> `χ ∈ Ĝ̄`, and under `w > 2s` this reads `M̂(χ) < 4i + 2`.
+
+This is the single channel through which the seeds constrain the
+Gram; everything below is the window plus integrality.
+
+**(L2) Arithmetic of `M`.** `M(c−c') = ⟨Q[iI+c], Q[iI+c']⟩` is an
+inner product of two `±1` rows of length `4s`. Hence `M(0) = 4s`,
+`|M(c)| ≤ 4s`, and, with `k` the number of disagreeing coordinates,
+`M(c) = 4s − 2k ∈ 2ℤ`. `M(−c) = M(c)` is symmetry read through
+`Ḡ`-invariance; `M = Q_0 Q_0ᵀ` is PSD; and
+`4·rank M = rank(I₄⊗M) = rank(QQᵀ) = rank Q ≤ 4s` because `Q` has
+`4s` columns, so `rank M ≤ s`. The evenness is what makes the
+argument close, and nothing finer is available: `M(c) mod 4` is not
+determined, since the parity of `k` is free.
+
+**(L3) The rank is exactly `s`, and `s ≤ i`.** Write `r = rank M`,
+so `r ≤ min(s,i)`. `M` is PSD, so `trace M = i·M(0) = 4si` is a sum
+of `r` positive eigenvalues, each `< 4i+2` by (L1). Hence
+`4si < r·(4i+2)`, i.e. `r > 2si/(2i+1)`. Bootstrap twice. *First,*
+`r ≤ i` forces `i > 2si/(2i+1)`, i.e. `2i+1 > 2s`, i.e. **`s ≤ i`**
+— re-proved here without (H3). *Second,* `2si/(2i+1) = s − s/(2i+1)`
+and `s ≤ i` makes `s/(2i+1) < 1`, so `r > s−1`; with `r ≤ s` and
+`r ∈ ℤ`, **`r = s`**. (This is the "rank exactly `s`" of §1.2, and
+"exactly" is not a slip: it needs the trace-versus-window argument,
+not just `rank ≤ s` from the four orthogonal superblock spans.)
+
+**(L4) `S` is Galois-stable.** `|S| = rank M = s` by the dictionary
+and (L3). Let `σ_k ∈ Gal(ℚ(ζ_e)/ℚ)` be `ζ_e ↦ ζ_e^k`. Since
+`M(c) ∈ ℤ`,
+`σ_k(M̂(χ)) = Σ_c M(c)σ_k(χ(c)) = Σ_c M(c)χ(c)^k = M̂(χ^k)`, and
+`σ_k` fixes `0`, so `M̂(χ) = 0 ⟺ M̂(χ^k) = 0`. Complex conjugation
+is `σ_{−1}`.
+
+**(L5) The integrality lock.** Put `M_S(c) := 4·Σ_{χ∈S}χ(c)`.
+Because `σ_k` permutes `S` by (L4), `Σ_{χ∈S}χ(c)` is a
+Galois-invariant algebraic integer, hence a rational integer, so
+`M_S(c) ∈ 4ℤ`; conjugation-stability gives `M_S(−c) = M_S(c)`;
+character orthogonality `Σ_c χ'(c)χ(c) = i·[χ' = χ̄]` gives
+`M̂_S(χ) = 4i·[χ ∈ S]`, so `M_S = 4i·P_S` and `M_S(0) = 4s`. Set
+`Y := M_S − M`, a `Ḡ`-invariant symmetric matrix. Three facts:
+
+1. **`Y` has zero diagonal.** `Y(0) = 4s − 4s = 0`.
+2. **`Y` has even entries.** `M_S(c) ∈ 4ℤ`, `M(c) ∈ 2ℤ`.
+3. **`λ_min(Y) ≥ −4s/w`.** `Ŷ(χ) = M̂_S(χ) − M̂(χ)` vanishes off `S`
+   (both terms do) and equals `4i − M̂(χ) ≥ 4i − (4i + 4s/w)` on
+   `S`, by (L1).
+
+So `C := Y/2` is symmetric with **integer** entries, **zero
+diagonal**, and `λ_min(C) ≥ −2s/w > −1` — that last strict
+inequality being exactly `w > 2s`. But an integer symmetric matrix
+with zero diagonal and a nonzero entry `x = C[a,b]`, `a ≠ b`, has
+`λ_min ≤ −1`: interlace against the principal submatrix
+`[[0,x],[x,0]]`, whose eigenvalues are `±|x|` with `|x| ≥ 1`;
+equivalently `uᵀCu = −|x|` for the unit vector
+`u = (e_a − sgn(x)·e_b)/√2`. Hence `C = 0`, `M = M_S`, and the
+spectrum is `M̂_S`'s. ∎
+
+The proof is sharp in `w`: at `w = 2s` the bound reads
+`λ_min(C) ≥ −1` and the interlacing step is silent. Two hypotheses
+earn their place, and it is worth saying where. Galois-stability is
+not decoration — with `S` merely conjugation-stable, `Σ_{χ∈S}χ(c)`
+would be a real algebraic integer that need not be rational, `Y`
+would not be an integer matrix, and (L5) would collapse. And the
+zero diagonal is free, because `M_S(0) = 4s` and `M(0) = 4s` are
+forced by *different* mechanisms — character orthogonality on one
+side, `±1` rows of length `4s` on the other. A zero-trace integer
+matrix cannot be spectrally small unless it is zero; that is the
+whole theorem.
+
+**Corollary E1 (the twist family is complete at `i = s+1`).**
+Assume in addition `i = s+1`. Then `Ĝ̄ ∖ S = {χ₀}` is a singleton,
+`χ₀² = 1`, and
+
+```
+       M  =  χ₀ · ( (4s+4)·I_i − 4·J_i ),   i.e. M(c) = χ₀(c)·M_house(c).
+```
+
+Conversely every real character of `Ḡ` occurs: the Lemma-T twist of
+§1.4 by `ψ = χ₀∘κ`, with `Q' = D̄Q` and `D̄` diagonal on the row
+index, `D̄[iI+c] = χ₀(c)`, carries any (H1)+(H2) pair to one with
+Gram `χ₀·M`. **The admissible Grams at `i = s+1` are therefore
+exactly the `|Ĝ̄[2]|` real-character twists of the house form, and
+there are no others.**
+
+*Proof.* `|Ĝ̄ ∖ S| = i − s = 1`, and the complement is
+conjugation-stable (Theorem E), so `χ̄₀ = χ₀`: `χ₀` is `±1`-valued
+and `χ₀² = 1`. Then
+`M(c) = 4Σ_{χ≠χ₀}χ(c) = 4(i·[c=0] − χ₀(c)) = χ₀(c)·4(i·[c=0] − 1)`,
+using `χ₀(0) = 1` and `χ₀(c)² = 1`; at `i = s+1` the `c = 0` value
+is `4s` and the rest is `−4χ₀(c)`, which is `χ₀·M_house`. For the
+converse, `PAF_{ψx}(t) = ψ(t)·PAF_x(t)` (Lemma T) turns (H2)'s
+`−M(κt)` into `−χ₀(κt)M(κt)`, and
+
+```
+(Q'Q'ᵀ)[(I,c),(I',c')] = χ₀(c)χ₀(c')·δ_{I,I'}M(c−c')
+                       = δ_{I,I'}·χ₀(c−c')·M(c−c')
+```
+
+because `χ₀` is real — so (H1) transports with the same twisted
+Gram. ∎
+
+A non-real `χ₀` never arises, and the reason is the cleanest way to
+see why the answer had to be a real character: if `χ̄₀ ≠ χ₀` then
+both would lie in the kernel of the real matrix `M`, forcing
+`rank M ≤ i−2 = s−1` against (L3).
+
+**What Corollary E1 does not settle.** It classifies the *Grams*,
+i.e. the (H1)+(H2) layer. Which twists carry a complete bordered
+instance, (H3) and (H4) included, is a different question. When
+`ψ(ρ) = 1` the whole instance transports and manufactures no new
+matrix (§1.4's proposition; at `N = 1916` all four twists occur —
+§3.3 and cert 09, whose four Grams are now known to be the complete
+admissible list at that cell, cert 12). When `ψ(ρ) = −1` nothing
+here decides it. And Theorem E says nothing about assembled
+matrices: not about Hadamard equivalence, not about orders 668 or
+716.
+
+**Corollary E2 (the seeds' aggregate spectrum is two-valued).**
+Under the hypotheses of Theorem E, for every `χ ∈ Ĝ̄`,
+
+```
+   Σ_q |x̂_q(χ∘κ)|²  =  4s    if χ ∈ S      (s characters)
+                    =  N     if χ ∉ S      (i − s characters),
+```
+
+immediately from (L1) with `M̂(χ) ∈ {4i, 0}` and `N − 4iw = 4s`. The
+absolute values are not cosmetic — `Ĝ̄` can hold non-real characters,
+and does at `(3,4)` when `Ḡ = ℤ₄`. For *real* `χ` the four
+`x̂_q(χ∘κ)` are integers with `Σ_q x̂_q² = 4s` on `S`, and since
+`x̂_q(χ∘κ) ≡ n (mod 2)` they are all even when `n` is even — so at
+`(3,4)` exactly three of them are `±2` and one is `0`, a sharp
+checkable constraint on every `(3,4)` record. At `(s,i) = (1,2)`
+this is (D-d)'s `Σ_q δ_q² = 4` (§1.5); in general it pins the
+quadruple's aggregate energy at every "live" lifted character to
+`4s`, with no slack at all.
+
+Label for Theorem E, Corollary E1 and Corollary E2: **PROVEN**
+(paper-grade), with the `(3,4)` classification **MEASURED** and the
+general-branch cells **PROVEN-BY-CERTIFICATE** in cert 12.
 
 ### 1.3 Theorem C (the parameters are forced) — PROVEN
 
@@ -256,6 +450,15 @@ Assume the house form and the non-degeneracy hypothesis `w > 2s`.
 `D2` is stated for `s ≥ 1` only: at `s = 0` the (empty-border) case
 `i = 1 = s+1` is realised with `i` odd, so the parity clause needs
 the border to exist.
+
+`D2` does not, however, need the house branch: it is a corollary of
+Theorem E (§1.2.1). Under (H1)+(H2) and `w > 2s`, at `i = s+1`
+Corollary E1 gives `M v_{χ₀} = 0` for a *real* character `χ₀`, so
+`|Q_Iᵀ v_{χ₀}|² = v_{χ₀}ᵀ M v_{χ₀} = 0` legitimately over `ℝ`, hence
+`Σ_{c∈Ḡ} χ₀(c)·Q[iI+c][r] = 0` — a signed sum of `i` units, which
+vanishes only for `i` even, so `s = i−1` is odd. The house proof
+below is this argument with `χ₀` the trivial character and `v_{χ₀}`
+the all-ones vector.
 
 *Proof of D3.* Off-diagonal of (H3):
 `(E Eᵀ)[r,r'] = −w·(P Pᵀ)[r,r']`. Entries of `P Pᵀ` are sums of `4i`
@@ -297,6 +500,27 @@ three cells survive:
 `w(s+1−i) ≤ s < w/2`, so `s+1−i < 1/2`, so `i ≥ s+1`; with D1,
 `i = s+1`; with D2, `s` odd. ∎
 
+**The house-branch qualifier is necessary.** `D1` (`i ≤ s+1`) is not
+a consequence of (H1)–(H4) alone, and the counterexamples are in the
+repository's own bank. The decoded `(s,i) = (1,1)` record at order
+1676 (`G = ℤ₄₁₈`), re-read on the subgroup `K ≤ G` of index
+`i = 11` — the column table repeated along each coset, the row table
+likewise — satisfies all four hypotheses with `M ≡ 4` on
+`Ḡ = ℤ₁₁`, `w = 38 > 2s`, and `11 > s+1 = 2`. Its Gram is `4J₁₁`,
+which is `4i·P_S` for `S = {1}`, exactly Theorem E's prediction: the
+trivial character is the only Galois-stable singleton of `ℤ̂₁₁`, so
+no other Gram is available there. The indices `11, 19, 22, 38` all
+work at 1676 and `13, 17, 26, 34` at 1772; cert 12 machine-checks
+all eight. What they do not do is produce anything: each re-reading
+leaves `P̃` and `Q̃`, hence the assembled matrix, unchanged — it is
+the `i = 1` instance in `i`-fold coordinates, checked as such in
+cert 12. The *general* statement, that every (H1)–(H4) instance
+with `i > s+1` collapses this way, is proved only at
+`(s,i) = (1,2)`, where it is (D-a′) of §1.5; at general `i` it is
+open. What is proved here is the negative, and it is why Theorem C's
+classification is stated inside the house branch rather than for
+(H1)–(H4).
+
 So `i = s+1` is a theorem for `s ≥ 2`, and at `s = 1` both `i = 1`
 and `i = 2` are legal — and §1.4–§1.5 show they are *the same
 problem*. The twelve records of §2 land as `(0,1)×5`, `(1,1)×4`,
@@ -323,6 +547,11 @@ Let `ψ` be a character of `G` with `ψ² = 1`, `ψ|_K = 1` and
 `ψ² = 1` and `ψ(ρ) = 1`. Hence `C' = D C D`. The border strips are
 constant on `K`-cosets and `ψ` factors through `Ḡ`, so `P̃' = P̃ D`
 and `Q̃' = D Q̃`, while `E' = E`. Therefore `H' = S H S`. ∎
+
+(The hypothesis `ψ² = 1` is not a convenience: at `i = s+1` it is
+**forced by rank** — a non-real kernel character would put its
+conjugate in the kernel of the real matrix `M` too, dropping
+`rank M` below `s` against Theorem E's step (L3). §1.2.1.)
 
 So the twist **never manufactures a new matrix when `ψ(ρ) = 1`**,
 however non-house its Gram. When `ψ(ρ) = −1` the argument breaks:
@@ -358,9 +587,12 @@ the vacuous `n = 2` case is excluded); `K ≤ G` of index `2`;
 and `M` PSD, `det M = 0` gives `M(1) = ±4`. The only admissible
 Grams are `M = 8I₂ − 4J₂` (the house form — the genuine `i = 2`
 branch) and `M = 4J₂` (the degenerate branch: the `i = 1`
-construction written with `i = 2` bookkeeping). So the house-`M`
-question of §1.2 is **closed at `(s,i) = (1,2)`**; it stays open for
-`s ≥ 2`.
+construction written with `i = 2` bookkeeping). This settles
+`(s,i) = (1,2)` by rank alone, for every `w ≥ 2`; Theorem E
+(§1.2.1) reaches the same two Grams — they are the twists of the
+house form by the two real characters of `ℤ₂` — but needs
+`w > 2s = 2`. The two agree wherever both apply, which is a useful
+independent check on each.
 
 **(D-a′) The degenerate branch collapses — and this is exactly what
 that means.** In the branch `M = 4J₂`, (H2) reads `Σ PAF(t) = −4` for
@@ -669,6 +901,14 @@ spectrum as the house form, each verifying green, and each equal to
 proposition doing exactly what it promises: the twist refutes
 Gram-forcing as a literal statement while manufacturing nothing
 new.
+
+The sweep is also exhaustive, which cert 09 could not say on its
+own. By Corollary E1 (§1.2.1) the admissible Grams at
+`(s,i) = (3,4)` over `Ḡ = ℤ₂×ℤ₂` are exactly the four
+real-character twists of the house form; cert 12 enumerates them
+from first principles and finds cert 09's four banked Grams to be
+that list, entry for entry. There is nothing at this cell for the
+sweep to have missed.
 
 ### 3.4 The theorem at order 668 — PROVEN + PROVEN-BY-CERTIFICATE
 
@@ -1064,8 +1304,11 @@ understood.
 | the twelve assembled matrices are Hadamard and match their pinned digests | **PROVEN-BY-CERTIFICATE** (cert 01) |
 | the eight matrices constructed here (certs 02–05) | **PROVEN-BY-CERTIFICATE** |
 | at `(s,i) = (1,2)` the genuine branch's Gram is house (the alternative is the degenerate `i=1` rewriting) | **PROVEN** (Theorem D-a); that the degenerate branch really is the `i = 1` construction — same borders, same matrices — is (D-a′) |
-| `M` house form forced for `s ≥ 2` (up to twist) | **CONJECTURE** |
-| all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance | **PROVEN-BY-CERTIFICATE** (cert 09) |
+| **Theorem E** (Gram rigidity): under (H1)+(H2) with `s ≥ 1` and `w > 2s`, every admissible `M` is `4i·P_S` for a conjugation- and Galois-stable `S ⊆ Ĝ̄` of size `s`, so the spectrum is `{0^(i−s), (4i)^s}` at every cell | **PROVEN** (paper-grade; §1.2.1) |
+| at `i = s+1` under `w > 2s` the admissible Grams are exactly the real-character twists of the house form (Corollary E1) — this is the former "`M` house form forced for `s ≥ 2` (up to twist)", now with the twist family proved complete | **PROVEN** (paper-grade) **+ MEASURED** (the complete `(3,4)` classification, both groups of order 4, all six Grams `(H1)`-realizable; cert 12) |
+| `i ≤ s+1` (Theorem C's D1) fails in the general branch: (H1)–(H4) instances exist at `(s,i) = (1,11)` and beyond, carrying the Gram `4i·P_trivial` as Theorem E predicts | **PROVEN-BY-CERTIFICATE** (eight general-branch witnesses at orders 1676 and 1772; cert 12). That they contain nothing new *in general* is **NOT CLAIMED** — the (D-a′) collapse at general `i` is open |
+| the two-valued Parseval law `Σ_q \|x̂_q(χ∘κ)\|² ∈ {4s, N}` (Corollary E2), generalising (D-d)'s `Σ_q δ_q² = 4` | **PROVEN** |
+| all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance, and the four Grams are the complete admissible list at that cell | **PROVEN-BY-CERTIFICATE** (cert 09) **+ PROVEN** (Corollary E1) **+ MEASURED** (banked set `=` census set; cert 12) |
 | **order 668 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 26/27/27 differing bins, two independent implementations per matrix; cert 06/08) |
 | the three-class theorem under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all six comparisons separate; cert 08) |
 | the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN-BY-CERTIFICATE** (rebuilt firsthand; its Lemma-3 uniqueness reproduced in cert 08 via the `660` bin) |

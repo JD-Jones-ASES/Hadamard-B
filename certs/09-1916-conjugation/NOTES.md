@@ -116,11 +116,11 @@ The house form at `(s, i) = (3, 4)` is `(4s+4)I₄ − 4J₄`, i.e.
 
 **The eigenvalue window does not save it.** `run.py` computes the spectrum of
 each `M` over the (real) characters of `Ḡ`. All four give the **same
-multiset** `{0, 16, 16, 16}` — rank exactly `s = 3`, trace `4si = 48`, nonzero
-eigenvalues inside §1.2's window `(4i−2s+2, 4i+2) = (12, 18)`. `M' = ψ̄·M`
-merely relabels the Fourier coefficients, so **no eigenvalue argument can
-exclude these instances**; a forcedness proof at `s ≥ 2` must quotient by the
-twist, exactly as §1.2 says.
+multiset** `{0, 16, 16, 16}` — rank exactly `s = 3`, trace `4si = 48`, every
+nonzero eigenvalue equal to `4i = 16`, which §1.2.1's Theorem E says is the
+only value available at any cell. `M' = ψ̄·M` merely relabels the Fourier
+coefficients, so **no eigenvalue argument can exclude these instances**; a
+forcedness proof at `s ≥ 2` must quotient by the twist, exactly as §1.2 says.
 
 **[5] The conjugation is verified cell by cell.** `S` is built from the banked
 rule `sgn[j] = +1` for `j < 4s`, `sgn[4s + I·n + g] = ψ̄(κ(g))`. For each of
@@ -180,10 +180,16 @@ the definition.
   equivalence class (certs 06 and 08; cert 11). Whether it always does is
   not claimed; 668 and 716 are the proven cases, and 1676, 1772 stay
   unclaimed.
-* **Gram-forcing at `s ≥ 2` remains a CONJECTURE**, and it is open *up to the
-  twist at best*. This certificate is the reason for that qualifier: it
-  exhibits the non-house instances that any forcedness statement must
-  quotient out. It does **not** show there are no other non-house Grams.
+* **This certificate does not, by itself, show there are no other non-house
+  Grams.** What it does is exhibit the non-house instances that any
+  forcedness statement must quotient out. That those are the *only* ones is
+  Theorem E and its Corollary E1 (`note/NOTE-B.md` §1.2.1), with the
+  complete `(s,i) = (3,4)` classification measured in cert 12. Read
+  together, the four Grams swept here **are** the complete admissible list
+  at this cell over `Ḡ = Z₂ × Z₂`, so this sweep is an exhaustive
+  classification at order 1916 and not merely a sweep of one construction.
+  The `s ≥ 2` Gram-forcing question is closed — up to the twist, and the
+  twist family is now proved complete rather than assumed to be.
 * **No new matrix at 1916 is claimed.** The opposite is proved: all four
   twists give the house matrix up to a diagonal conjugation. Nothing here
   says anything about how many Hadamard equivalence classes order 1916

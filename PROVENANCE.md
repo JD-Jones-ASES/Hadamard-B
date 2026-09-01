@@ -392,3 +392,15 @@ so the ledger stays complete. Each is also SHA-256 pinned in
 | `sep716-exact-bits-twisted.json` | `c385773a7a2bf4506b94752406be787bac3d85b8a9ee18bb23668080c6afe7bc` |
 | `sep716-exact-blas-decoded.json` | `80ee1e151ec1f759d7213d500623603716b9afa6fc382a385ce6970efac35a6b` |
 | `sep716-exact-blas-twisted.json` | `e2076eb890557775edaccda3c9dcbab7e585f5181e0da1bb5914913bf0749b46` |
+
+And one more, banked 2026-09-01 for cert 12: the six `(H1)`-realizability
+witnesses at `(s,i) = (3,4)`, six `±1` tables `Q ∈ {±1}^{16×12}`, derived and
+verified at the source laboratory 2026-09-01 by an exhaustive search with two
+verdict-exact symmetry reductions. Nothing about that search is trusted in
+this repository: a witness certifies itself, and
+`certs/12-gram-rigidity/run.py` re-checks every inner product of `QQᵀ`
+against `I₄ ⊗ M`. The file is SHA-256 pinned in that `run.py`.
+
+| file | sha256 |
+| --- | --- |
+| `gram34-witnesses.json` | `abaf4728e8ba5cd737024b9ab319640c8c634e497884a444b683fb5ee4b93307` |
