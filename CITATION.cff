@@ -17,10 +17,9 @@ abstract: >-
   human managing the workflow - produced by Claude Code (Fable 5,
   Anthropic); see DISCLOSURE.md. The authors field below records the
   repository owner and responsible publisher; the AI/human division of
-  labour is DISCLOSURE.md. The two licenses are assigned by category,
-  not jointly: code is MIT; the note and prose are CC BY-SA 4.0; the
-  banked mathematical data carries no license claim - see
-  LICENSE-DOCS.md.
+  labour is DISCLOSURE.md. The entire repository is MIT; the banked
+  mathematical data carries no license claim over the facts it
+  encodes.
 type: software
 version: 0.1.0
 url: "https://github.com/JD-Jones-ASES/Hadamard-B"
@@ -28,6 +27,4 @@ repository-code: "https://github.com/JD-Jones-ASES/Hadamard-B"
 authors:
   - family-names: "Jones"
     given-names: "JD"
-license:
-  - MIT
-  - CC-BY-SA-4.0
+license: MIT

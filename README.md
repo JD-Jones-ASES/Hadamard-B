@@ -139,10 +139,10 @@ them. Generated matrices are never committed.
 
 The mathematical credit chain is NOTE-B.md §4; the dated provenance
 chain for the public artifacts is [PROVENANCE.md](PROVENANCE.md);
-authorship is [DISCLOSURE.md](DISCLOSURE.md). Code is MIT
-([LICENSE](LICENSE)); the note and prose documentation are
-CC BY-SA 4.0 ([LICENSE-DOCS](LICENSE-DOCS.md)); the banked records
-are mathematical data over which no license is claimed.
+authorship is [DISCLOSURE.md](DISCLOSURE.md). The entire repository
+— code, note, and prose documentation — is MIT ([LICENSE](LICENSE));
+the banked records are mathematical data over which no license is
+claimed.
 
 Companion repositories:
 [Hadamard-T](https://github.com/JD-Jones-ASES/Hadamard-T) (T-matrix
