@@ -148,6 +148,9 @@ Companion repositories:
 [Hadamard-T](https://github.com/JD-Jones-ASES/Hadamard-T) (T-matrix
 witnesses and the Hadamard orders they close),
 [Hadamard-M](https://github.com/JD-Jones-ASES/Hadamard-M) (the
-Miyamoto erratum at order 515 and `H(7796)`), and
+Miyamoto erratum at order 515 and `H(7796)`),
 [Hadamard-formal](https://github.com/JD-Jones-ASES/Hadamard-formal)
-(Lean 4 / Mathlib formalizations; PALOMAR-2026-08-31-000001).
+(Lean 4 / Mathlib formalizations; PALOMAR-2026-08-31-000001), and
+[Hadamard-B-Formal](https://github.com/JD-Jones-ASES/Hadamard-B-Formal)
+(the machine-checked tranche of this repository's §1 —
+Theorem A, the `s ≤ 1` layer, Theorem D; PALOMAR-2026-09-01-000006).
