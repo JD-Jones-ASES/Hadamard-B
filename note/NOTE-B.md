@@ -538,9 +538,15 @@ The character-twisted sibling of the `(3,4)` record at order 1916
 `H_twisted = S · H_house · S` with
 `S = diag(I_{4s}, I_4 ⊗ diag(ψ(g)))` — 952 rows and the same 952
 columns negated, no permutation. All `1916²` cells are
-machine-checked. This is the `ψ(ρ) = 1` case of §1.4's proposition
-doing exactly what it promises: the twist refutes Gram-forcing as a
-literal statement while manufacturing nothing new.
+machine-checked — and not just for the banked character: cert 09
+sweeps the **entire character group** of `Ḡ = ℤ₂×ℤ₂` at this order
+(where `ρ = 0`, so `ψ(ρ) = 1` for every `ψ`), and all three
+nontrivial twists produce non-house Grams with the *same* Fourier
+spectrum as the house form, each verifying green, and each equal to
+`S·H·S` cell for cell. This is the `ψ(ρ) = 1` case of §1.4's
+proposition doing exactly what it promises: the twist refutes
+Gram-forcing as a literal statement while manufacturing nothing
+new.
 
 ### 3.4 The theorem at order 668 — PROVEN
 
@@ -598,11 +604,13 @@ forces — differ. The largest `H`-vs-`H'` bin discrepancy is
 null sampled comparison at `2·10⁷` draws was already in hand and is
 worth very little; the exact computation is what settles it).
 
-On transpose: the separations involving `H` survive adding transpose
-to the group; for `H'` vs `H★` the transpose-extended check is one
-priced run that has not been made, so under the transpose-extended
-relation only "at least two classes" plus that pending pair is
-claimed.
+On transpose: the theorem is **transpose-robust**. Refuting `A ≈ B`
+under the transpose-extended relation needs both `A ≁ B` and
+`A ≁ Bᵀ`, and all six comparisons separate exactly: 26/50, 27/49
+and 27/50 differing bins for the three pairs (cert 08; the
+transposed matrices are genuinely different objects — they populate
+79 bins where the originals populate 80). Order 668 carries at
+least three equivalence classes under either convention.
 
 Consequences. The Lemma-T construction at `ψ(ρ) = −1` genuinely
 leaves the equivalence class at this order, and the Hall switch
@@ -813,7 +821,8 @@ understood.
 | `M` house form forced at `(s,i) = (1,2)` | **PROVEN** (Theorem D-a) |
 | `M` house form forced for `s ≥ 2` (up to twist) | **CONJECTURE** |
 | the 1916 pair is equivalent (explicit witness) | **PROVEN-BY-CERTIFICATE** |
-| **order 668 carries at least three equivalence classes** | **PROVEN** (pairwise exact 4-profiles, 26/27/27 differing bins; two independent implementations, a third agreeing on the decoded record) |
+| **order 668 carries at least three equivalence classes** | **PROVEN** (pairwise exact 4-profiles, 26/27/27 differing bins; two independent implementations per matrix) |
+| the three-class theorem under the transpose-extended relation | **PROVEN** (all six comparisons separate; cert 08) |
 | the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN** (rebuilt firsthand; the omitted uniqueness step proved here) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
 | the 2060 pair is inequivalent | **COMPUTATIONAL-EVIDENCE** (sampled profiles; block-affine family exhausted) |

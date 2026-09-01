@@ -1,0 +1,200 @@
+{
+ "schema": "character-twist-spec/1",
+ "description": "The character twist of the decoded (s,i) = (3,4) bordered Goethals-Seidel record at order 1916.  This is the non-house-Gram witness of note/NOTE-B.md S1.2 and the diagonal conjugation of S3.3, in one file: for every character psibar of Gbar = G/K the substitution below carries the record to another instance of the master theorem whose Gram is psibar . M -- not the house form when psibar is nontrivial -- and every one of those instances is S H S for a diagonal S.  Nothing here is a free parameter: psibar ranges over the character group of Gbar, which the record's own coset_divisors determine, and certs/09-1916-conjugation/run.py re-derives all of it.",
+ "order": 1916,
+ "base": {
+  "source": "data/payload-records.json",
+  "record_order": 1916,
+  "group": [
+   2,
+   2,
+   119
+  ],
+  "group_note": "Z2 x Z2 x Z119 = Z2 x Z2 x Z7 x Z17",
+  "s": 3,
+  "i": 4,
+  "w": 119,
+  "coset_divisors": [
+   2,
+   2,
+   1
+  ],
+  "r_shift": [
+   0,
+   0,
+   0
+  ],
+  "canonical_sha256": "be2073eeaa5399cfe104023829d2c6770b49dd2f07bf6347203f1cbd75577ae9",
+  "gram_M": {
+   "0": 12,
+   "1": -4,
+   "2": -4,
+   "3": -4
+  },
+  "gram_form": "(4s+4) I_i - 4 J_i, the house form"
+ },
+ "character": {
+  "definition": "psi = psibar . kappa, where kappa: G -> Gbar is the coset map of coset_divisors (so ker kappa = K, of index i = 4) and psibar is a character of Gbar.  Gbar = Z2 x Z2 is elementary abelian, so every psibar takes values in {+1,-1}; hence psi^2 = 1 and psi|_K = 1 for all four.",
+  "indexing": "coset index c is mixed-radix over coset_divisors, exactly the indexing kappa uses; Gbar element c is Gbar_elements[c]",
+  "Gbar_elements": [
+   [
+    0,
+    0,
+    0
+   ],
+   [
+    0,
+    1,
+    0
+   ],
+   [
+    1,
+    0,
+    0
+   ],
+   [
+    1,
+    1,
+    0
+   ]
+  ],
+  "all_psibar_values": [
+   [
+    1,
+    1,
+    1,
+    1
+   ],
+   [
+    1,
+    -1,
+    1,
+    -1
+   ],
+   [
+    1,
+    1,
+    -1,
+    -1
+   ],
+   [
+    1,
+    -1,
+    -1,
+    1
+   ]
+  ],
+  "psibar_rule": "chars[t][c] = product over coordinates j of (-1)^(t_j * c_j)",
+  "banked_character_index": 2,
+  "psibar_values": [
+   1,
+   1,
+   -1,
+   -1
+  ],
+  "psibar_note": "the character reading the FIRST coordinate of Gbar -- the one the upstream witness used (skeptic/attack5_nonhouse_M.py, experiments/inequiv/equiv_witness.py)",
+  "index_of_rho": 0,
+  "psi_of_rho": 1,
+  "psi_of_rho_note": "r_shift = [0,0,0], so rho is the identity of G and kappa(rho) = 0; hence psi(rho) = psibar(0) = +1 for EVERY character, and NOTE-B S1.4's proposition applies to all of them"
+ },
+ "substitution": {
+  "seeds": "x'_q(g) = psibar(kappa(g)) * x_q(g)",
+  "row_table": "P'[r][c] = psibar(c mod i) * P[r][c]   (P' = P Dbar)",
+  "col_table": "Q'[k][r] = psibar(k mod i) * Q[k][r]   (Q' = Dbar Q), where Q[i*I + c][r] = col_table[r][i*I + c]",
+  "corner": "E' = E, unchanged",
+  "source": "the same substitution as the lab's skeptic/attack5_nonhouse_M.py and experiments/inequiv/equiv_witness.py",
+  "gram_law": "M'(ebar) = psibar(ebar) * M(ebar)"
+ },
+ "conjugation": {
+  "claim": "H' = S H S",
+  "S": "diag(I_{4s}, I_4 (x) diag(psi(g)))",
+  "S_rule": "sgn[j] = +1 for j < 4s; sgn[4s + I*n + g] = psibar(kappa(g)) for I in 0..3 and g in 0..n-1",
+  "row_permutation": "identity",
+  "column_permutation": "identity",
+  "cells_checked": 3671056
+ },
+ "instances": {
+  "chi0": {
+   "psibar_values": [
+    1,
+    1,
+    1,
+    1
+   ],
+   "canonical_sha256": "be2073eeaa5399cfe104023829d2c6770b49dd2f07bf6347203f1cbd75577ae9",
+   "gram_M": {
+    "0": 12,
+    "1": -4,
+    "2": -4,
+    "3": -4
+   },
+   "gram_is_house": true,
+   "negated_rows": 0,
+   "negated_columns": 0,
+   "differing_cells_vs_house": 0
+  },
+  "chi1": {
+   "psibar_values": [
+    1,
+    -1,
+    1,
+    -1
+   ],
+   "canonical_sha256": "9a746db1676429edd6099d1f73f553fd430933e29de539b7e3b4647bf0adb2c3",
+   "gram_M": {
+    "0": 12,
+    "1": 4,
+    "2": -4,
+    "3": 4
+   },
+   "gram_is_house": false,
+   "negated_rows": 952,
+   "negated_columns": 952,
+   "differing_cells_vs_house": 1835456
+  },
+  "chi2": {
+   "psibar_values": [
+    1,
+    1,
+    -1,
+    -1
+   ],
+   "canonical_sha256": "05d411faed301863d1e068651976f2e0f8e200b495af265ec20bc1bd6597175c",
+   "gram_M": {
+    "0": 12,
+    "1": -4,
+    "2": 4,
+    "3": 4
+   },
+   "gram_is_house": false,
+   "negated_rows": 952,
+   "negated_columns": 952,
+   "differing_cells_vs_house": 1835456
+  },
+  "chi3": {
+   "psibar_values": [
+    1,
+    -1,
+    -1,
+    1
+   ],
+   "canonical_sha256": "a5db39097f566a73f17d047c7fda101a2d393f162ffe50033d1f22ed773a259d",
+   "gram_M": {
+    "0": 12,
+    "1": 4,
+    "2": 4,
+    "3": -4
+   },
+   "gram_is_house": false,
+   "negated_rows": 952,
+   "negated_columns": 952,
+   "differing_cells_vs_house": 1835456
+  }
+ },
+ "pinned": {
+  "house": "be2073eeaa5399cfe104023829d2c6770b49dd2f07bf6347203f1cbd75577ae9",
+  "house_source": "experiments/bordered_gs_theorem/theorem_check_report.json upstream; also cert 01 in this repository",
+  "twisted": "05d411faed301863d1e068651976f2e0f8e200b495af265ec20bc1bd6597175c",
+  "twisted_source": "the upstream skeptic lane's attack 5 (LANE-D-SKEPTIC-REPORT.md) and experiments/inequiv/build_pairs.py"
+ }
+}

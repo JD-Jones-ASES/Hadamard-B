@@ -86,6 +86,8 @@ python certs/04-h76-nonscalar/run.py
 python certs/05-h20-boundary/run.py
 python certs/06-668-separation/run.py
 python certs/07-2060-evidence/run.py
+python certs/08-hall-switch-three-classes/run.py
+python certs/09-1916-conjugation/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

@@ -1,0 +1,110 @@
+{
+ "schema": "hall-switch-spec/1",
+ "description": "The paired Hall switch that turns the decoded (s,i)=(1,1) order-668 record of data/payload-records.json into H*, the second matrix of the anonymous hadamard-668.vercel.app preprint.  Everything needed to rebuild H* deterministically is here: the base record is named, the switch mask is given as index-range DATA derived from the record's own parameters, and the resulting canonical digest is pinned.  Nothing in this file is transcribed from the preprint except the provenance block, the two published digests, and the pinned digest of its four subsets -- all of which certs/08-hall-switch-three-classes/run.py RE-DERIVES from the banked record and compares.",
+ "order": 668,
+ "base": {
+  "source": "data/payload-records.json",
+  "record_order": 668,
+  "group": [
+   166
+  ],
+  "s": 1,
+  "coset_divisors": [
+   1
+  ],
+  "n_group": 166,
+  "canonical_sha256": "bdeb5059d77e2703211082627b60441b8c888c928a55cc6f295e011941a387b0",
+  "note": "the assembled decoded record; cert 01 and cert 06 pin the same digest"
+ },
+ "switch": {
+  "name": "paired Hall switch",
+  "preprint_equation": "eq. (8)",
+  "rule": "H*[r][c] = -H[r][c] for (r,c) in the mask, H*[r][c] = H[r][c] otherwise; the mask is the union of the rectangles listed under mask_rectangles",
+  "index_origin": 0,
+  "derivation": {
+   "note": "no index below is transcribed: each is a closed form in the record's own s and |G|, evaluated by run.py and compared against the values banked here",
+   "border_rows": {
+    "start_expr": "0",
+    "stop_expr": "4*s"
+   },
+   "border_cols": {
+    "start_expr": "0",
+    "stop_expr": "4*s"
+   },
+   "block0_rows": {
+    "start_expr": "4*s",
+    "stop_expr": "4*s + n"
+   },
+   "block0_cols": {
+    "start_expr": "4*s",
+    "stop_expr": "4*s + n"
+   },
+   "s": 1,
+   "n": 166,
+   "meaning": "the border strip P = {rows/cols 0..4s-1} against the FIRST core superblock I = 0 = {rows/cols 4s..4s+n-1}; in the preprint's 1-based numbering P = {1,2,3,4}, C1 = R1 = {5,...,170}"
+  },
+  "mask_rectangles": [
+   {
+    "tag": "border rows x block-0 cols",
+    "row_start": 0,
+    "row_stop": 4,
+    "col_start": 4,
+    "col_stop": 170,
+    "entries": 664
+   },
+   {
+    "tag": "block-0 rows x border cols",
+    "row_start": 4,
+    "row_stop": 170,
+    "col_start": 0,
+    "col_stop": 4,
+    "entries": 664
+   }
+  ],
+  "entries_changed": 1328,
+  "entries_changed_expr": "2 * (4*s) * n",
+  "disjoint": true
+ },
+ "identification": {
+  "note": "the preprint's construction data IS the decoded record's, which is why the switch can be applied to the record banked here; each claim below is re-derived by run.py from data/payload-records.json alone",
+  "X_are_negative_supports_of_the_seeds": "X_k = { g in Z_166 : seed_{k-1}(g) = -1 }, k = 1..4",
+  "X_cardinalities": [
+   82,
+   83,
+   83,
+   83
+  ],
+  "X_canonical_sha256": "ce053a9a34b606214b6a9a77f1691982769809243f7749cc98c52bf8e6f77e80",
+  "X_serialisation": "four lines, each the sorted elements of X_k joined by ',', each line terminated by '\\n'; sha256 of the ASCII bytes",
+  "X_digest_source": "computed from the preprint's section-2 transcription in the lab's scratch/vercel668/build.py, independent of this repository's record",
+  "K_is_the_corner": true,
+  "T_is_the_row_table": true,
+  "S_is_the_col_table_transposed": true
+ },
+ "published_digests": {
+  "format": "one byte per entry, row-major, 0x01 for +1 and 0x00 for -1; 446224 bytes at order 668.  Five readings of the preprint's sentence were tried upstream and exactly this one matches, on BOTH matrices.",
+  "H": "19f435b31eb6561dd97356b761e9b0f174824e42c215c33fbafc20f9b1b20744",
+  "H_star": "08428eb6779986c50ee2997584daa5c87e00520cc1e6f62d7793dc519f85ea45",
+  "byte_length": 446224
+ },
+ "result": {
+  "canonical_sha256": "7f6af1d9e9c80fae52c6f178e298144d209c01f6c103db119e6c12425aa1a722",
+  "canonical_serialisation": "the '+/-' rows newline-joined with a trailing newline -- the digest verify/verify.py reports",
+  "transpose_canonical_sha256": "565a9ca5a9db739f74215474364202a4d35fd691542b18e8ace8bcbb3c190c65",
+  "transpose_note": "(H*)^T, needed for the transpose-extended clause; also rebuilt and pinned by run.py"
+ },
+ "provenance": {
+  "source_url": "https://hadamard-668.vercel.app/",
+  "pdf_url": "https://hadamard-668.vercel.app/hadamard-668.pdf",
+  "title": "Two H-Inequivalent Hadamard Matrices of Order 668",
+  "author": "none stated (the landing page lists no author; the PDF /Author field is empty)",
+  "date_on_page": "August 2026 (no day precision anywhere in page or PDF)",
+  "pdf_creationdate": "D:20260813041406+05'30' = 2026-08-12 22:44:06 UTC",
+  "pdf_producer": "TeX Live 2024, pdfTeX 1.40.26",
+  "pdf_sha256": "ca4850fc88a840c169c492407346f8944efb9a438921d6df93e9f6ac16f01b93",
+  "retrieved": "2026-08-31",
+  "arxiv": "no arXiv posting located",
+  "caveat": "PDF timestamps are forgeable and prove nothing on their own; recorded as evidence, not as fact",
+  "intake": "verified firsthand upstream; the full intake is the lab note intel/hadamard-668-vercel-intake.md"
+ }
+}
