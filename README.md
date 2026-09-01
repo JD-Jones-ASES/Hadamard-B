@@ -1,19 +1,27 @@
 # Hadamard-B
 
-Bordered Goethals–Seidel arrays: an exact characterisation, a parameter
-classification, certified instances, and a proven separation at order
-668. This repository states and proves an *if and only if* theorem for
-extending a Goethals–Seidel array over a finite abelian group `G` to a
-Hadamard matrix through a **coset border** of width `4s` — border
-strips constant on the cosets of a subgroup `K ≤ G` of index `i` —
-classifies the surviving parameters (`i = s+1`, `s` odd, beyond the
-two classical cells), resolves the `s = 1` border system completely,
-and verifies twelve publicly posted matrices through the theorem's
-hypotheses. Its third movement proves that order 668 carries at least
-**three** Hadamard-equivalence classes, pairwise separated by an
-exactly computed invariant. Every claim's certificate replays from
-`certs/`; the few measurements made in the source laboratory rather
-than replayed here are labelled as such where they appear.
+Bordered Goethals–Seidel arrays: an exact characterisation, a
+parameter classification inside the house-Gram branch, certified
+instances, and a proven separation at order 668. This repository
+states and proves an *if and only if* theorem for extending a
+Goethals–Seidel array over a finite abelian group `G` to a Hadamard
+matrix through a **coset border** of width `4s` — border strips
+constant on the cosets of a subgroup `K ≤ G` of index `i` —
+classifies the surviving parameters within that branch under
+`w > 2s` (with `n ≥ 3`: the classical `(0,1)` and `(1,1)`, and
+`i = s+1` with `s` odd), resolves the `s = 1` border system
+completely, and verifies twelve publicly posted matrices through the
+theorem's hypotheses. Its third movement proves that order 668
+carries at least **three** Hadamard-equivalence classes, pairwise
+separated by an exactly computed invariant. Every computational
+claim carries a certificate in `certs/`; the theorems are
+paper-grade proofs in the note, labelled as such. A default run
+rebuilds and verifies the
+matrices and **audits** the banked exact profiles against the
+identities and digests that bind them; the profile **recomputations**
+are the `--full` paths. The few measurements made in the source
+laboratory rather than replayed here are labelled as such where they
+appear.
 
 ## The three movements
 
@@ -22,15 +30,21 @@ Theorem A: the bordered array is Hadamard **iff** four conditions hold
 — a coset-invariant Gram on the column table, a forced two-tier PAF
 profile on the seeds, an orthogonality budget on the corner, and a
 coupling of the border to the Goethals–Seidel array of the *coset
-sums over `G/K`* (the compression lemma). Theorem C: under the
-non-degeneracy hypothesis `w > 2s`, the only surviving parameter
-cells are the classical `(s,i) = (0,1)` and `(1,1)` and the family
+sums over `G/K`* (the compression lemma). Theorem C: within the
+house-Gram branch, under the non-degeneracy hypothesis `w > 2s`, the
+parameter bounds are forced; with `n ≥ 3` the only surviving cells
+are the classical `(s,i) = (0,1)` and `(1,1)` and the family
 `i = s+1` with `s` odd, where the corner is forced to be a `4s×4s`
-Hadamard matrix. Theorem D: at `s = 1` the `i = 2` border system
-collapses onto the `i = 1` system (the Gram is forced, both tables
-are doubled 4×4 Hadamard matrices, and the coupling is the same 4×4
-equation with the twisted coset-sum vector in place of the row sums);
-with the character-twist lemma this makes the `i = 2` **seed
+Hadamard matrix. (That the house Gram is itself forced for `s ≥ 2`
+is a **conjecture** — NOTE-B.md §1.2.) Theorem D: at `s = 1` the
+`i = 2` border system collapses onto the `i = 1` system (the Gram is
+forced, both tables are doubled 4×4 Hadamard matrices, and the
+coupling is the same 4×4 equation with the twisted coset-sum vector
+in place of the row sums); the degenerate alternative is proved to be
+the classical `i = 1` construction rewritten; cert 10 replays the
+`768²` corner census of (D-e) and the compressed-block identities
+that reduction and (D-d) rest on; with the
+character-twist lemma this makes the `i = 2` **seed
 problem** a character-twist reparametrization of the `i = 1` seed
 problem over any group with a unique index-2 subgroup — a bijection
 of search problems, not of matrices (at order 668 the two assembled
@@ -55,9 +69,10 @@ public preprint (rebuilt and verified firsthand) — pairwise
 separated by the exact 4-profile over all 8 222 179 035 row
 4-subsets, computed by independent implementations that agree bin
 for bin and hit the closed-form second moment to the unit (cert 06).
-The preprint was first to publish an inequivalence at this order;
-the priority statement is NOTE-B.md §3.4. The corresponding pair at
-the former frontier order 2060 carries **computational evidence of
+As far as this laboratory's search located, the preprint was the first published
+statement of an inequivalence at this order; the bounded priority
+statement is NOTE-B.md §3.4. The corresponding pair at the former
+frontier order 2060 carries **computational evidence of
 inequivalence — not a proof** (sampled profiles; an exhausted
 block-affine family), stated at exactly that strength.
 
@@ -65,7 +80,8 @@ block-affine family), stated at exactly that strength.
 
 The twelve parameter records were decoded from public seed data
 (the sign-stream posted 2026-08-12; expanded matrices for ten of
-the twelve on GitHub from 2026-08-13 — see
+the twelve in a third-party GitHub repository created and pushed
+2026-08-12 UTC, per its own repository metadata — see
 [PROVENANCE.md](PROVENANCE.md)). **No priority claim of any kind is
 made on the records themselves, on the decode, or on existence at
 those twelve orders**; the decode is provenance, and this repository
@@ -77,9 +93,14 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network; cert 06's optional `--full`
-recomputation is the one flag that uses numpy (finder-side only,
-never in the trust chain).
+Standard library only, no network. The two optional `--full` flags —
+cert 06's and cert 08's — are the only paths that use numpy, and they
+recompute the exact 4-profiles from the matrices rebuilt in the run
+rather than auditing the banks (finder-side only, never in the trust
+chain). Both in-repo `--full` runs — cert 08's and cert 06's —
+covered the `blas` (float32) leg only; the `bits` recomputation has
+not been run in this repository for either cert. Each cert's
+`NOTES.md` records which legs were run and when.
 
 ```
 python verify/verify.py --selftest
@@ -90,8 +111,10 @@ python certs/04-h76-nonscalar/run.py
 python certs/05-h20-boundary/run.py
 python certs/06-668-separation/run.py
 python certs/07-2060-evidence/run.py
+python certs/07-2060-evidence/run.py --selftest   # exact-mode acceptance layer
 python certs/08-hall-switch-three-classes/run.py
 python certs/09-1916-conjugation/run.py
+python certs/10-theorem-d-census/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

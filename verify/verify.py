@@ -13,6 +13,14 @@ File format (auto-detected per line; blank lines and '#' comments ignored):
   compact:   one row per line of '+' and '-' characters
   numeric:   one row per line of whitespace/comma-separated +1/-1 entries
 
+The public API is `check_hadamard(rows)`.  It validates its own input --
+nonempty, square, every entry the Python integer +1 or -1 -- and does not
+rely on the file parser having done so.  Bools are refused explicitly
+(`bool` is a subclass of `int`, so `True` would otherwise pack as +1), and
+so is anything that is not an `int`: floats, strings, and non-`int`
+integer types such as numpy scalars.  Callers holding such values must
+convert them to plain `int` before calling.
+
 Exit codes: 0 = verified Hadamard (or selftest passed), 1 = verification
 failed, 2 = usage/parse error.
 
@@ -73,8 +81,60 @@ def canonical_sha256(rows):
     return hashlib.sha256(text.encode("ascii")).hexdigest()
 
 
+def validate_rows(rows):
+    """Return None if `rows` is a nonempty square matrix of the integers
+    +1 and -1; otherwise a string naming the first violation.
+
+    This is the input contract of `check_hadamard`.  It duplicates, for
+    the direct-API caller, the guarantees `parse_matrix` already gives the
+    CLI: without it, any value other than the integer 1 packs silently as
+    -1, and `check_hadamard([[1, 1], [1, 0]])` returns True.
+
+    Bools are rejected as a type error rather than coerced: `bool` is a
+    subclass of `int`, so a value test alone would accept `True` as +1.
+    Non-`int` types are rejected for the same reason -- `-1.0 == -1` is
+    True in Python, and this file admits no floats.
+    """
+    if not isinstance(rows, (list, tuple)):
+        return "matrix is not a list of rows"
+    n = len(rows)
+    if n == 0:
+        return "empty matrix: no rows"
+    for i, row in enumerate(rows):
+        if not isinstance(row, (list, tuple)):
+            return "row %d is not a list of entries" % i
+        if len(row) != n:
+            return (
+                "row %d has length %d, expected %d (square matrix required)"
+                % (i, len(row), n)
+            )
+        for j, v in enumerate(row):
+            if isinstance(v, bool):
+                return (
+                    "row %d entry %d is %r: bool is not an accepted entry "
+                    "type (entries must be the integers +1 or -1)" % (i, j, v)
+                )
+            if not isinstance(v, int):
+                return (
+                    "row %d entry %d is %r of type %s: entries must be the "
+                    "integers +1 or -1" % (i, j, v, type(v).__name__)
+                )
+            if v != 1 and v != -1:
+                return (
+                    "row %d entry %d is %r: entries must be +1 or -1"
+                    % (i, j, v)
+                )
+    return None
+
+
 def check_hadamard(rows, progress=False):
-    """Return (ok, message, pairs_checked). Exact arithmetic throughout."""
+    """Return (ok, message, pairs_checked). Exact arithmetic throughout.
+
+    The input contract is enforced here, not assumed: see `validate_rows`.
+    """
+    bad_input = validate_rows(rows)
+    if bad_input is not None:
+        return (False, bad_input, 0)
     n = len(rows)
     if n > 2 and n % 4 != 0:
         return (False, "order %d is not 1, 2, or divisible by 4" % n, 0)
@@ -205,6 +265,43 @@ def selftest():
     expect("64x64 all +1", allplus, False)
 
     expect("order 6 all-cases", [[1] * 6 for _ in range(6)], False)
+
+    # Direct-API input contract.  These call check_hadamard(rows) with no
+    # parser in front of it: the CLI's guarantees do not cover this path,
+    # so the API must enforce them itself.  Without validate_rows, a value
+    # test alone accepts every case below.
+    expect("direct-API H2 accepted", [[1, 1], [1, -1]], True)
+    expect("direct-API H4 accepted", _sylvester(4), True)
+    expect("direct-API -H4 accepted",
+           [[-v for v in r] for r in _sylvester(4)], True)
+    expect("direct-API zero entry", [[1, 1], [1, 0]], False)
+    expect("direct-API entry 2", [[1, 1], [1, 2]], False)
+    expect("direct-API float entry -1.0", [[1, 1], [1, -1.0]], False)
+    expect("direct-API all-float matrix", [[1.0, 1.0], [1.0, -1.0]], False)
+    expect("direct-API bool True as +1", [[1, 1], [1, True]], False)
+    expect("direct-API all-bool matrix",
+           [[True, True], [True, False]], False)
+    expect("direct-API str entry", [["+", "+"], ["+", "-"]], False)
+    expect("direct-API non-square 2x3", [[1, 1, 1], [1, -1, 1]], False)
+    expect("direct-API ragged rows", [[1, -1], [1]], False)
+    expect("direct-API empty", [], False)
+    expect("direct-API row not a list", [1, -1], False)
+
+    # A rejection must be a rejection for the stated reason, not an
+    # accidental non-orthogonality verdict.
+    for name, rows_, needle in [
+        ("zero entry", [[1, 1], [1, 0]], "entries must be +1 or -1"),
+        ("float entry", [[1, 1], [1, -1.0]], "of type float"),
+        ("bool entry", [[1, 1], [1, True]], "bool is not an accepted"),
+        ("non-square", [[1, 1, 1], [1, -1, 1]], "square matrix required"),
+        ("empty", [], "empty matrix"),
+    ]:
+        _, msg, _ = check_hadamard(rows_)
+        good = needle in msg
+        print("  selftest reason (%-11s)             -> %s"
+              % (name, "ok" if good else "WRONG REASON: " + msg))
+        if not good:
+            failures.append("reason:" + name)
 
     # Parse rejections
     for bad_text, why in [

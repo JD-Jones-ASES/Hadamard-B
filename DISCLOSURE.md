@@ -2,8 +2,10 @@
 
 The results are a theorem suite for bordered Goethals–Seidel arrays
 over finite abelian groups — an exact (iff) characterisation of the
-coset-border construction, the classification of its surviving
-parameters, and the complete resolution of the `s = 1` border system —
+coset-border construction; the classification, within the house-Gram
+branch and under `w > 2s`, of its surviving parameters (with `n ≥ 3`
+the cells are `(0,1)`, `(1,1)`, and `i = s+1` with `s` odd); and the
+complete resolution of the `s = 1` border system —
 together with the theorem that order 668 carries at least three
 Hadamard-equivalence classes, pairwise separated by an exactly
 computed invariant; plus the machine
@@ -45,23 +47,34 @@ exercises it against known Hadamard matrices, against
 Hadamard-preserving row and column operations, and against
 corruptions it must reject.
 
-Every claim in the note is replayable. Each directory under `certs/`
-rebuilds its objects from the small banked data in `data/`,
+Every computational claim in the note carries a certificate; the
+theorems are proved on paper and labelled **PROVEN (paper-grade)**.
+Each directory under
+`certs/` rebuilds its objects from the small banked data in `data/`,
 re-establishes the defining identities with its own exact-integer
 loops, hands the resulting matrices to the trust chain, and checks
 the canonical SHA-256 in the verdict against the digest pinned in
 that certificate. The large matrices are regenerated, not committed.
+Where a claim rests on an exact 4-profile too large to recompute on
+every run, the default path **audits** the banked profile — the
+file digest, the matrix binding where the bank declares one, the
+forced congruence, the total, the second moment, and agreement
+between two independent implementations — and the word *replay*
+belongs to the optional `--full` paths of certs 06 and 08, which
+recompute those profiles from the matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; cert 06's optional
-`--full` recomputation uses numpy on the finder side only.
+standard library and nothing on the network; the two `--full`
+recomputations use numpy on the finder side only.
 
 Reading the certificates is one route. Rebuilding from the
 definitions in the note is another, and it requires trusting none of
 this. Where a cert's notes cite "the source laboratory" or its
 `experiments/` paths, that laboratory's repository is **private**
-and is not part of the trust chain: every pin quoted from it is
-re-derived here from `data/` at certificate run time, and nothing in
-this repository requires access to it. Independent verification is
+and is not part of the trust chain: every matrix digest quoted from
+it is re-derived here from `data/` at certificate run time, and the
+exact 4-profiles it produced are banked in `data/`, audited on the
+default path and recomputed by `--full`. Nothing in this repository
+requires access to it. Independent verification is
 invited; questions and verification reports are welcome via GitHub
 issues.
 

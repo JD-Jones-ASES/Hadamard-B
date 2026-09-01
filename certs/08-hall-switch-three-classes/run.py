@@ -11,7 +11,7 @@ classes, and it still does when the transpose is added to the group.
   H* are pairwise Hadamard-INEQUIVALENT.  Adding the transpose to the
   group does not merge any of the three pairs either.
 
-  PROOF (finite, exact, replayed by this script).  The multiset
+  PROOF (finite, exact).  The multiset
   {|T4(i,j,k,l)|} over all C(668,4) = 8 222 179 035 row 4-subsets, with
   T4 = sum_c H[i][c]H[j][c]H[k][c]H[l][c], is a Hadamard-equivalence
   invariant (note/NOTE-B.md S3.1, invariant I5).  The three profiles
@@ -22,36 +22,80 @@ classes, and it still does when the transpose is added to the group.
   50 bins for H vs (H')^T, 49 for H vs (H*)^T, 50 for H' vs (H*)^T.  An
   invariant that differs is a separation.  []
 
-  PRIORITY.  The preprint was FIRST to publish that order 668 carries at
-  least two Hadamard equivalence classes, and its first matrix is
-  byte-identical to the record banked here.  See NOTES.md.
+  PRIORITY.  As far as this laboratory's search located, the preprint was
+  first to publish that order 668 carries at least two Hadamard
+  equivalence classes, and its first matrix is byte-identical to the
+  record banked here.  See NOTES.md.
 
-WHAT THIS SCRIPT DOES  (standard library only, seconds)
+WHERE THE PROFILES COME FROM, AND WHAT A DEFAULT RUN ESTABLISHES
+
+  The five C(668,4) enumerations were not run inside this repository.
+  They were run in the source laboratory -- Hadamard-2060,
+  experiments/inequiv/exact_profile.py (upper-triangle route) and
+  experiments/inequiv/exact_profile_big.py (canonical-split route),
+  numpy, three BLAS threads -- and their output is banked in data/.  So
+  the DEFAULT path of this script AUDITS a banked exact computation.  It
+  establishes: that the bank files are byte-for-byte the ones pinned
+  here; that all five matrices rebuild, verify and carry the pinned
+  canonical digests; that each bank which declares a matrix digest
+  declares the digest of the matrix REBUILT IN THIS RUN; that every
+  profile satisfies the forced congruence, total and second-moment
+  identities; and that two independent implementations agree bin for bin
+  on each of the five.  It does NOT establish that a banked histogram was
+  computed from the matrix this script rebuilt -- a self-declared digest
+  is metadata, not a computation.  `--full` is the recomputation: it
+  re-derives all five profiles here, from the rebuilt rows, and compares
+  each to its bank bin for bin.  Say "banked exact computation AUDITED"
+  of a default run; say "replayed" only of a --full run.
+
+WHAT THIS SCRIPT DOES  (default path: standard library only, seconds)
 
   (0) Pins the SHA-256 of every banked file it reads.
   (1) Rebuilds all five matrices -- H, H', H*, (H*)^T, (H')^T -- from the
       banked records and the banked switch mask, re-checking every
       hypothesis of the master theorem on the way for the two records,
       hands each to verify/verify.py (the trust chain), compares the
-      canonical SHA-256 against the digest pinned below, and DELETES the
-      generated matrices.  It also re-derives, from data/payload-
-      records.json alone, the preprint's four subsets X1..X4 (as the
-      negative supports of the four decoded seeds) and its blocks K, T, S
-      (as the record's corner, row_table and col_table^T), and reproduces
-      both SHA-256 digests the preprint publishes for its own matrices.
-  (2) Loads eight banked exact 4-profiles, auditing each in exact integer
-      arithmetic: every populated bin = 4 (mod 8), the counts total
-      C(668,4), and the second moment equals n^3(n-1)(n-2)/24.  Then
-      asserts blas == bits bin for bin on all five matrices -- H, H',
-      H*, (H*)^T and (H')^T -- so every leg of the theorem, the
-      transpose-extended legs included, rests on two independent
-      implementations.
+      canonical SHA-256 against the digest pinned below, RETAINS those
+      in-process digests for the bank-identity check in step (2), and
+      DELETES the generated matrices.  It also re-derives, from
+      data/payload-records.json alone, the preprint's four subsets X1..X4
+      (as the negative supports of the four decoded seeds) and its blocks
+      K, T, S (as the record's corner, row_table and col_table^T), and
+      reproduces both SHA-256 digests the preprint publishes for its own
+      matrices.
+  (2) Loads and AUDITS eight banked exact 4-profiles -- it does not
+      recompute them -- in exact integer arithmetic: every populated bin
+      = 4 (mod 8), the counts total C(668,4), and the second moment
+      equals n^3(n-1)(n-2)/24.  Each declared matrix digest is compared
+      against the digest of the matrix rebuilt in step (1), and every
+      bank that declares none is named out loud.  Then asserts
+      blas == bits bin for bin on all five matrices -- H, H', H*, (H*)^T
+      and (H')^T -- so every leg of the theorem, the transpose-extended
+      legs included, rests on two independent implementations.
   (3) Compares the three matrices pairwise under the standard relation.
   (4) Compares them pairwise under the TRANSPOSE-EXTENDED relation.
   (5) Six controls, all in the standard library -- see NOTES.md.
 
+  --full  RECOMPUTES the exact 4-profile of ALL FIVE matrices here, from
+          the rows rebuilt in step (1), with numpy
+          (certs/06-668-separation/full_recompute.py, imported by path)
+          and compares each fresh profile bin for bin against every
+          banked implementation of that matrix.  Every leg of the theorem
+          -- the transpose-extended legs included -- is then a
+          recomputation rather than an audit.  Default arithmetic is the
+          float32-BLAS path, which is EXACT here: each dot product is a
+          sum of 668 signed units, so every partial sum is an integer of
+          absolute value <= 668, far inside float32's exactly
+          representable integer range of 2^24.  numpy is imported only
+          under this flag; it is finder-side only and is never in the
+          trust chain.  BLAS threads are capped at 3.  Cost: about six
+          minutes per matrix, so about half an hour for the five;
+          `--impl bits` costs roughly five times that, `--impl both` six.
+
 Usage:
   python certs/08-hall-switch-three-classes/run.py
+  python certs/08-hall-switch-three-classes/run.py --full
+  python certs/08-hall-switch-three-classes/run.py --full --impl both
 """
 
 import argparse
@@ -97,13 +141,13 @@ FILE_PINS = {
     "data/sep668-twisted-record.json":
         "fe8154179ba2ebfe097c82e468368cdc8a070548555bb10140949af0560611fb",
     "data/sep668-exact-blas-decoded.json":
-        "22df5ce9fcd6eb307f56981c507bb46b2a18b79861d903349dc13458a6dffcbf",
+        "370fffe6c2f5dc53c09d3b74f8c09dd2bc2a39a1ac2b27fb5167ab4d3559387b",
     "data/sep668-exact-bits-decoded.json":
-        "0bafbf8219d33b9c74786700106aeba3086bbf577ee02bcda43768f35978fdd8",
+        "7bace61441f17b5e95fff433bdc5939da212e2b8735e8738d7ed3078fae456b7",
     "data/sep668-exact-blas-twisted.json":
-        "c4d8db3ba40cf8c5a244607032dab6b66d878b8fe6b98784351f7b8ae70e5a17",
+        "8526b3cfa7938a9af334e23f722b1c215ffd1e318c0c713ecc3da1b91f5b3afe",
     "data/sep668-exact-bits-twisted.json":
-        "91d154d05ccea87a6fa98a02b4fcbf275dc6b4025650116941647216a69faf5a",
+        "f40bbb8c3906d6fc7374e3e04c2b68eaf29393e50b5662f69eee2426ed3f1e9a",
     "data/sep668-hall-switch.json":
         "13efd2402b8394c62c901af4f7cfbec7b2e474832dd3055c6b9e9e220b351c85",
     "data/sep668-hall-exact-blas.json":
@@ -131,6 +175,22 @@ PROFILES = {
 }
 # The twisted-transpose bank carries BOTH implementations in one file.
 TWISTED_T = "data/sep668-twisted-T-exact.json"
+
+HEXDIGITS = set("0123456789abcdef")
+
+
+def is_sha256(v):
+    return (isinstance(v, str) and len(v) == 64
+            and all(c in HEXDIGITS for c in v))
+
+
+def backfilled_from_pin(blob):
+    """True when a bank's own banked_note says its matrix digest was
+    backfilled from the digest this repository already pinned, rather than
+    recorded against the producer's own file.  For those banks the
+    comparison below cannot fail unless the rebuild already failed, and the
+    check label says so instead of implying producer-recorded provenance."""
+    return "backfilled" in str(blob.get("banked_note", ""))
 
 FLIP = str.maketrans("+-", "-+")
 FAIL = []
@@ -162,6 +222,15 @@ def rows_sha256(rows):
     for r in rows:
         h.update((r + "\n").encode("ascii"))
     return h.hexdigest()
+
+
+if hasattr(int, "bit_count"):  # 3.10+
+    def popcount(x):
+        return x.bit_count()
+else:  # 3.9 fallback -- same shape as verify/verify.py's, kept local so
+    # this certificate imports nothing from the trust chain
+    def popcount(x):
+        return bin(x).count("1")
 
 
 # ======================================================================
@@ -276,6 +345,18 @@ def sylvester(k):
                     for y in range(n)) for x in range(n)]
 
 
+def sylvester_profile_forced(n):
+    """The 4-profile of Sylvester H(n) is forced, so --full's smoke test is a
+    positive control with a PREDICTED answer rather than a self-consistent
+    one.  Rows are indexed by F2^k with H[x][y] = (-1)^<x,y>, so
+    T4({a,b,c,d}) = n if a+b+c+d = 0 and 0 otherwise; choosing any three
+    distinct a, b, c forces d = a+b+c outside {a,b,c}, and each 4-subset is
+    counted 4*3*2 = 24 times over ordered triples.
+    """
+    hit = n * (n - 1) * (n - 2) // 24
+    return {0: c_n_4(n) - hit, n: hit}
+
+
 def paley1(q):
     """Paley type I Hadamard matrix of order q+1, q prime = 3 (mod 4)."""
     res = {(x * x) % q for x in range(1, q)}
@@ -303,7 +384,7 @@ def is_hadamard(rows):
         return False
     for i in range(n):
         for j in range(i + 1, n):
-            if (pk[i] ^ pk[j]).bit_count() != n // 2:
+            if popcount(pk[i] ^ pk[j]) != n // 2:
                 return False
     return True
 
@@ -346,7 +427,17 @@ def xor_weight_quadruple(rows, quad):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.parse_args(argv)
+    ap.add_argument("--full", action="store_true",
+                    help="RECOMPUTE the exact 4-profile of all five matrices "
+                         "here with numpy and compare each to its bank bin "
+                         "for bin; without it the banked profiles are "
+                         "audited, not recomputed")
+    ap.add_argument("--impl", choices=("blas", "bits", "both"),
+                    default="blas",
+                    help="which arithmetic path --full recomputes "
+                         "(default blas, about half an hour for the five; "
+                         "bits is roughly five times that)")
+    args = ap.parse_args(argv)
     t_start = time.time()
 
     print("=" * 72)
@@ -356,7 +447,19 @@ def main(argv=None):
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
     os.makedirs(OUT)
+    # The scratch directory holds five ~450 KB generated matrices.  Wrapping
+    # the body means an exception -- in the optional numpy path or anywhere
+    # else -- cannot leave them on disk.
+    try:
+        rc = _body(args, t_start)
+    finally:
+        shutil.rmtree(OUT, ignore_errors=True)
+    print("generated matrices deleted; nothing left in %s   (%.1fs)"
+          % (rel(OUT), time.time() - t_start))
+    return rc
 
+
+def _body(args, t_start):
     # ---------------------------------------------------------- clause 0
     print("\n[0] banked data files, SHA-256 pinned in this script")
     for name, want in sorted(FILE_PINS.items()):
@@ -468,11 +571,17 @@ def main(argv=None):
               "(minority 4, |T4| = 660)" % tag, mino == 4 and t4 == 660,
               "minority %d, |T4| %d" % (mino, t4))
 
+    # The rebuilt rows are wanted again only by --full, which recomputes the
+    # profiles FROM THEM.  On the default path they go now.
+    ROWS = ({"decoded": rows_d, "twisted": rows_t, "hall": rows_h,
+             "hall-T": rows_hT, "twisted-T": rows_tT} if args.full else {})
     del rows_d, rows_t, rows_h, rows_hT, rows_tT, grid, grid2, diffpos
 
     # ---------------------------------------------------------- clause 2
-    print("\n[2] the banked exact 4-profiles, audited in exact integers")
+    print("\n[2] the banked exact 4-profiles, AUDITED in exact integers")
+    print("    (audited, not recomputed: see --full)")
     prof = {}
+    unbound = []
     for (tag, impl), name in sorted(PROFILES.items()):
         with open(os.path.join(ROOT, name), "r", encoding="ascii") as fh:
             blob = json.load(fh)
@@ -487,17 +596,36 @@ def main(argv=None):
         if "second_moment" in blob:
             check("%-9s %-4s  the banked second_moment agrees" % (tag, impl),
                   int(blob["second_moment"]) == m2)
-        if "matrix_canonical_sha256" in blob:
-            check("%-9s %-4s  banked matrix_canonical_sha256 == the matrix "
-                  "this script rebuilt" % (tag, impl),
-                  blob["matrix_canonical_sha256"] == SHA[tag]
-                  and blob.get("matrix_sha256",
-                               SHA[tag]) == SHA[tag])
+        # Matrix identity.  The declared digest is compared against the
+        # digest of the matrix REBUILT IN THIS RUN -- digs[tag], computed
+        # in-process in clause [1] -- not against a static string.  That is
+        # the stronger binding; it still shows only that the bank NAMES this
+        # matrix, never that its histogram was computed from it.
+        # Keyed on PRESENCE, not truthiness: a declared digest that is
+        # empty, null, or not 64 hex digits is a FAILURE.  Only a bank that
+        # declares no digest at all falls to the [NOTE] below.
+        declared = (blob.get("matrix_canonical_sha256")
+                    or blob.get("matrix_sha256"))
+        if "matrix_canonical_sha256" in blob or "matrix_sha256" in blob:
+            check("%-9s %-4s  bank names the matrix rebuilt in THIS run "
+                  "(in-process digest, not a static pin)%s"
+                  % (tag, impl,
+                     " [digest backfilled from this repository's own pin]"
+                     if backfilled_from_pin(blob) else ""),
+                  is_sha256(declared) and declared == digs[tag]
+                  and blob.get("matrix_sha256", digs[tag]) == digs[tag],
+                  (declared[:24] + "...") if is_sha256(declared)
+                  else "declared = %r" % (declared,))
+        else:
+            unbound.append("%s/%s" % (tag, impl))
 
     with open(os.path.join(ROOT, TWISTED_T), "r", encoding="ascii") as fh:
         tt = json.load(fh)
-    check("twisted-T bank names the matrix this script rebuilt",
-          tt["canonical_sha256"] == SHA["twisted-T"])
+    check("twisted-T bank names the matrix rebuilt in THIS run",
+          tt["canonical_sha256"] == digs["twisted-T"])
+    check("twisted-T bank names the SOURCE matrix rebuilt in THIS run",
+          tt.get("source_matrix_canonical_sha256",
+                 digs["twisted"]) == digs["twisted"])
     for impl, blk in sorted(tt["implementations"].items()):
         p = {int(k): int(v) for k, v in blk["profile"].items()}
         prof[("twisted-T", impl)] = p
@@ -507,8 +635,15 @@ def main(argv=None):
               % (impl, len(p), second_moment_want(N)),
               all(k % 8 == 4 for k in p) and tot == c_n_4(N)
               and m2 == second_moment_want(N))
-        check("twisted-T %-4s  banked matrix_sha256 == the rebuilt matrix"
-              % impl, blk["matrix_sha256"] == SHA["twisted-T"])
+        check("twisted-T %-4s  banked matrix_sha256 == the matrix rebuilt in "
+              "THIS run" % impl, blk["matrix_sha256"] == digs["twisted-T"])
+
+    if unbound:
+        print("      [NOTE] no matrix digest is declared by: %s."
+              % ", ".join(unbound))
+        print("             Those banks are bound to the rebuilt matrices by")
+        print("             --full alone; the default path cannot show that")
+        print("             their histograms came from these matrices.")
 
     for tag in ("decoded", "twisted", "hall", "hall-T", "twisted-T"):
         check("%-9s  blas == bits, bin for bin (two independent "
@@ -665,8 +800,73 @@ def main(argv=None):
     print("       At 668 the route is not vacuous: (H*)^T populates 79 bins")
     print("       where H* populates 80.)")
 
+    # ---------------------------------------------------------- clause 6
+    replayed = []
+    if args.full:
+        impls = (("blas", "bits") if args.impl == "both" else (args.impl,))
+        print("\n[6] --full: RECOMPUTING the exact 4-profile of all FIVE")
+        print("    matrices here, from the rows rebuilt in clause [1], with")
+        print("    numpy (%s path%s).  This is the step that earns the word"
+              % (" and ".join(impls), "" if len(impls) == 1 else "s"))
+        print("    'replayed'.")
+        print("    EXACTNESS of the float32 path: T4 is a sum of 668 signed")
+        print("    units, so every partial sum is an integer of absolute")
+        print("    value <= 668 -- far inside float32's exactly")
+        print("    representable integer range 2^24.  No rounding can occur")
+        print("    at these sizes; the BLAS route is exact integer")
+        print("    arithmetic carried in a float register.")
+        for var in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS",
+                    "MKL_NUM_THREADS", "NUMEXPR_NUM_THREADS",
+                    "VECLIB_MAXIMUM_THREADS"):
+            os.environ[var] = "3"           # set BEFORE numpy is imported
+        # The recompute machinery is cert 06's full_recompute.py, imported by
+        # path rather than copied, so the two certificates cannot drift apart.
+        sys.path.insert(0, os.path.join(ROOT, "certs", "06-668-separation"))
+        import full_recompute as FR                          # noqa: E402
+        # Smoke the ported numpy paths BEFORE spending half an hour on them,
+        # on a matrix whose profile is forced (a positive control with a
+        # predicted answer) and big enough that the packed path needs more
+        # than one uint64 word per row.
+        h128 = sylvester(7)
+        want128 = sylvester_profile_forced(128)
+        for impl in impls:
+            got = FR.profile(h128, 128, impl, progress=False)
+            audit(got, 128, "full/H128/%s" % impl)
+            check("[full] Sylvester H(128) %-4s == the forced profile "
+                  "(%d uint64 words/row)" % (impl, (128 + 63) // 64),
+                  got == want128)
+        for tag in ("decoded", "twisted", "hall", "hall-T", "twisted-T"):
+            rows = ROWS[tag]
+            check("[full] %-9s the rows about to be enumerated are the ones "
+                  "verify.py accepted" % tag,
+                  rows_sha256(rows) == digs[tag] == SHA[tag])
+            banked = sorted(i for (t, i) in prof if t == tag)
+            for impl in impls:
+                t0 = time.time()
+                got = FR.profile(rows, N, impl)
+                audit(got, N, "full/%s/%s" % (tag, impl))
+                secs = time.time() - t0
+                for bimpl in banked:
+                    check("[full] %-9s recomputed %-4s == banked %-4s, bin "
+                          "for bin" % (tag, impl, bimpl),
+                          got == prof[(tag, bimpl)],
+                          "%d bins, %.0fs" % (len(got), secs))
+                replayed.append("%s/%s" % (tag, impl))
+            ROWS[tag] = None
+            del rows
+        ROWS.clear()
+    else:
+        print("\n[6] --full not requested: the banked profiles were AUDITED, "
+              "not")
+        print("    recomputed.  Nothing above shows that a banked histogram "
+              "was")
+        print("    computed from the matrices clause [1] rebuilt.  `--full` "
+              "re-derives")
+        print("    all five here with numpy (~30 min); numpy is finder-side "
+              "only and")
+        print("    never in the trust chain.")
+
     # ---------------------------------------------------------- close out
-    shutil.rmtree(OUT, ignore_errors=True)
     print("\n" + "=" * 72)
     if FAIL:
         print("cert 08: FAIL (%d): %s" % (len(FAIL), FAIL))
@@ -682,14 +882,23 @@ def main(argv=None):
           % (len(compare(D, WT)[0]), len(compare(D, ST)[0]),
              len(compare(W, ST)[0])))
     print("         Two independent implementations agree bin for bin on")
-    print("         each recomputed profile; every profile hits the second")
+    print("         each banked profile; every profile hits the second")
     print("         moment %d to the unit." % second_moment_want(N))
+    if replayed:
+        print("         PROFILES: RECOMPUTED in this run from the rebuilt")
+        print("         matrices and matched to the bank bin for bin, all")
+        print("         five (%s)." % ", ".join(replayed))
+    else:
+        print("         PROFILES: banked exact computation AUDITED in this")
+        print("         run, not recomputed.  The five C(668,4) enumerations")
+        print("         ran in the source laboratory (Hadamard-2060,")
+        print("         experiments/inequiv/exact_profile.py and")
+        print("         exact_profile_big.py).  `--full` recomputes them")
+        print("         here and is the replay.")
     print("         PRIORITY: the >= 2 statement is the preprint's; the")
     print("         third class and these separations are this repo's.")
     print("         NOT claimed here: 716, 1676, 1772.")
     print("=" * 72)
-    print("generated matrices deleted; nothing left in %s   (%.1fs)"
-          % (rel(OUT), time.time() - t_start))
     return 0
 
 

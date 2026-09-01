@@ -3,6 +3,8 @@
 **Label: COMPUTATIONAL-EVIDENCE of inequivalence. This is NOT a proof, and
 this certificate does not write it as one.**
 Replay: `python certs/07-2060-evidence/run.py` from the repository root.
+Regression: `python certs/07-2060-evidence/run.py --selftest` — the
+exact-bank acceptance controls, run entirely in memory.
 Standard library only — no numpy anywhere, on any path — about six seconds,
 exit 0.
 
@@ -26,21 +28,23 @@ re-derives both from `data/sep2060-records.json` and compares.
 > **Sampled profiles cannot prove inequivalence; every exact invariant
 > computed agrees; the block-affine family is exhausted.**
 
-That sentence is the whole claim. Unpacked:
+That sentence is the whole claim. Clause by clause:
 
 * **Every exact invariant computed agrees.** `run.py` recomputes `dim W`
   over `F₂` on both matrices and both sides from the rebuilt rows —
   `2059 / 2059` on both — so the clause is *measured here*, not merely
-  cited. Upstream (lab `experiments/inequiv/`, turn 43) the row- and
+  cited. Upstream (lab `experiments/inequiv/`) the row- and
   column-pair collision profiles are empty on both, and the exhaustively
   enumerated strata `|T4| ≥ 2056` are empty on both. `dim V` — which is
   **not** an invariant, see `note/NOTE-B.md` §3.1 trap 1 — happens to
   agree too, `2058` on rows and `2059` on columns for both, and that is
   worth exactly nothing either way.
 * **The sampled `|T4|` 4-profiles differ**, systematically, in a coherent
-  monotone pattern across consecutive bins: row side `max |z| = 7.4496` at
-  `|T4| = 180` with **21** bins over `4σ`, column side `7.0953` at
-  `|T4| = 164` with **13**. The gist is higher at the extreme head, lower
+  monotone pattern across consecutive bins: row side `max |d| = 7.4496` at
+  `|T4| = 180` with **21** bins over `d = 4`, column side `7.0953` at
+  `|T4| = 164` with **13**. `d` is a raw standardized delta, not a
+  calibrated sigma — see *The measurement* below. The gist is higher at the
+  extreme head, lower
   across the middle, and higher again from `|T4| = 132` up — a more peaked,
   heavier-tailed profile, with the deficit and the excess balancing as they
   must.
@@ -59,7 +63,7 @@ C4 below.
 The same statistic, at the same budget, run on the **668** pair, which
 cert 06 *proves* inequivalent by the exact 4-profile:
 
-| pair | impl | side | draws | `max \|z\|` | bins > `4σ` |
+| pair | impl | side | draws | `max \|d\|` | bins > `d = 4` |
 | --- | --- | --- | --- | --- | --- |
 | 668 decoded vs rebuild | A | row | 20 000 000 | **1.77** | **0** |
 | 668 decoded vs rebuild | A | col | 20 000 000 | **1.34** | **0** |
@@ -68,20 +72,50 @@ cert 06 *proves* inequivalent by the exact 4-profile:
 
 The sampler sees **nothing** on a pair that is in fact inequivalent. So a
 null sampled reading proves nothing at all, and a positive one — however
-many sigma — is evidence and not proof. That is the calibration that fixes
+large — is evidence and not proof. That is the calibration that fixes
 this certificate's label, and it is why the 2060 result is written as
-COMPUTATIONAL-EVIDENCE even at `7.4σ`.
+COMPUTATIONAL-EVIDENCE even at `d = 7.4`.
 
-## The measurement
+## The measurement, and what the statistic is not
 
 Per bin `k`, with counts `p` (plain) and `q` (gist) at **equal** sample
-size and `p + q ≥ 200`: the null is that both are distributed around the
-common mean `e = (p+q)/2`, so `Var(p − q) = 2e` and
-`z = |p − q| / √(2e) = |p − q| / √(p+q)`. Bins below the floor are not
-compared. This is the upstream `summarize.py` statistic, restated and
-re-derived in `run.py`.
+size and `p + q ≥ 200`:
 
-| impl | side | draws each | bins compared | `max \|z\|` | at `\|T4\|` | bins > `4σ` |
+```
+d = |p − q| / √(p + q)
+```
+
+This is the upstream `summarize.py` statistic, restated and re-derived in
+`run.py`. It is a **raw standardized delta** — read it as a heuristic
+z-score. It is **not a calibrated sigma**, and three things stand between
+it and one:
+
+* **The denominator is the *unpaired* variance.** It comes from treating
+  `p` and `q` as independent Poisson counts around the common mean
+  `e = (p+q)/2`, so `Var(p − q) = 2e` and `d = |p − q| / √(2e)`.
+* **The design is *paired*.** Upstream, `inv_a.py` draws its 4-subsets
+  from `random.Random(20260831)` and `inv_b.py` from
+  `random.Random(831026)`; in both, the draw stream depends only on the
+  seed and on `n`, which is `2060` for both matrices. **The same sequence
+  of 4-subsets is therefore evaluated on plain and on gist** — the source
+  lab records this as "common seed (so the comparison is paired)"
+  (`intel/inequivalence-2026-08-31.md` §4.4). A paired variance is
+  `Var(p) + Var(q) − 2 Cov(p, q)`, and computing it needs the per-bin
+  **discordance** counts — how many drawn 4-subsets land in bin `k` for
+  one matrix and not the other. Those were never banked, so the paired
+  variance cannot be recovered from this bank and the unpaired
+  denominator is what is reported. Which way the correction runs is not
+  known here: positive concordance would make the true `|z|` *larger*,
+  but that is an argument, not a measurement, and this certificate does
+  not lean on it.
+* **No multiplicity control.** `max |d|` is a maximum over the bins
+  scanned: 28 on each A side, 25 and 24 on the B sides — **105 per-bin
+  comparisons** — not a single pre-registered test.
+
+The bank's JSON field names (`max_abs_z`, `bins_over_4sigma`) are kept as
+written for provenance; the quantity they hold is `d`.
+
+| impl | side | draws each | bins compared | `max \|d\|` | at `\|T4\|` | bins > `d = 4` |
 | --- | --- | --- | --- | --- | --- | --- |
 | A | row | 20 000 000 | 28 | **7.4496** | 180 | **21** |
 | A | col | 20 000 000 | 28 | **7.0953** | 164 | **13** |
@@ -92,8 +126,15 @@ re-derived in `run.py`.
 asserts they reproduce the banked expectations **to the digit**, then
 prints the 34 resolved bins in full.
 
+None of this weakens the label, because the label was never resting on the
+size of `d`: it rests on control **C4**, which shows the same statistic
+reading `1.8` and zero bins on a pair that is *proven* inequivalent. What a
+proper statistical claim would need — banked discordance data or documented
+independent streams, an appropriate test, and multiplicity control — is not
+in hand, and none of it is required for COMPUTATIONAL-EVIDENCE.
+
 **Implementation B does not resolve the separation, and that is stated,
-not hidden.** It is a power difference, not a contradiction: `z` scales as
+not hidden.** It is a power difference, not a contradiction: `d` scales as
 `√N`, and `7.4496 / √(20/3) = 2.89`, which is what B reads. What B *does*
 supply is corroboration of a different kind — see C5.
 
@@ -103,9 +144,10 @@ supply is corroboration of a different kind — see C5.
 | --- | --- | --- |
 | **C1** | the fold guard, on every banked histogram: no negative bin anywhere; every `\|T4\|` bin `≡ 4 (mod 8)` as it must be at `n = 2060`; every total equals its declared sample size | pass, 8 histograms |
 | **C2** | the **signed-`T4` trap**, demonstrated exactly on the `H(28)` Goethals–Seidel control: negate rows `{0, 3, 11}` — an element of the equivalence group, and the matrix is checked to be Hadamard before and after — and the **signed** `T4` profile moves (`{−20: 36, −12: 1152, −4: 9196, 4: 8932, 12: 1140, 20: 19} → {−20: 29, −12: 1136, −4: 9100, 4: 9028, 12: 1156, 20: 26}`) while the folded `\|T4\|` profile `{4: 18128, 12: 2292, 20: 55}` does **not** | signed moves, folded fixed |
-| **C3** | `z` calibration on identical input: a histogram against itself | `max \|z\| = 0`, 0 bins over `4σ` |
+| **C3** | `d` calibration on identical input: a histogram against itself | `max \|d\| = 0`, 0 bins over `d = 4` |
 | **C4** | the blindness calibration (above) | the statistic sees nothing on a proven-inequivalent pair |
-| **C5** | cross-sampler corroboration: for each bin implementation A resolves past `4σ` **in which B has enough mass to read a sign at all** (`≥ 200` draws across the pair — 29 of A's 34 resolved bins), the independent sampler B — different bit packing, different canonicalisation, different RNG, different seed — must agree on the **sign** of the difference | **29 of 29 compared** (18/18 row, 11/11 col); the other 5 resolved bins are silent in B, not disagreements |
+| **C5** | cross-sampler corroboration: for each bin implementation A resolves past `d = 4` **in which B has enough mass to read a sign at all** (`≥ 200` draws across the pair — 29 of A's 34 resolved bins), the independent sampler B — different bit packing, different canonicalisation, different RNG, different seed — must agree on the **sign** of the difference | **29 of 29 compared** (18/18 row, 11/11 col); the other 5 resolved bins are silent in B, not disagreements |
+| **C6** | the exact-bank acceptance controls, `run.py --selftest`: 22 negative controls (no schema, wrong schema version, no matrix binding, a binding to a matrix not rebuilt here, plain/gist bindings swapped, a partial 2-of-4 set, an unknown basename matching the glob, a duplicate basename, a negative count, a zero-count bin, a bin key outside `[0, 2060]`, a bin key not `≡ 4 (mod 8)`, a non-canonical bin key, a wrong declared total, a wrong declared second moment, `blas ≠ bits`, the wrong order, no named producer, a tag contradicting the filename, an unrecognised field, a truncated or non-JSON file, a pin dict covering only 3 of the 4 files) and one positive control | 22 refused for the expected reason, 1 accepted |
 
 C5 is the reason the sampled reading is worth reporting at all: the 2060
 pattern is not one sampler's artefact.
@@ -113,13 +155,13 @@ pattern is not one sampler's artefact.
 ## The fold, and why it is not optional
 
 **Signed `T4` is not a Hadamard-equivalence invariant; only `|T4|` is.**
-The upstream turn-43 bank writes the *signed* histogram under the
+The upstream bank writes the *signed* histogram under the
 innocuous key `<side>_sampled_T4`, and comparing those raw keys
 manufactures a false separation: on a **provably equivalent** pair at order
-1916 the signed statistic reads `7σ` with 20 bins over `4σ`, where the
-folded reading is exactly `0.0` and zero bins — and it is uncalibrated in
-the other direction too, reading `36.6σ` on the 668 pair where the folded
-truth is `1.8σ`.
+1916 the signed statistic reads `d = 7.0` with 20 bins over `d = 4`, where
+the folded reading is exactly `0.0` and zero bins — and it is uncalibrated
+in the other direction too, reading `36.6` on the 668 pair where the folded
+truth is `1.8`.
 
 Every implementation-A histogram in `data/sep2060-sampled-histograms.json`
 and `data/sep668-sampled-histograms.json` has therefore been **folded at
@@ -130,7 +172,7 @@ block (`folded_from_legacy: true`, with the legacy key named), and
 wrote `<side>_sampled_absT4` natively and needed no fold. **No signed
 histogram is banked or compared anywhere in this repository.**
 
-## The upgrade hook
+## The upgrade hook, and the cash-in procedure
 
 The one computation that turns this certificate into a theorem is the
 **exact `|T4|` 4-profile at 2060** — all `C(2060,4)` row 4-subsets, the
@@ -138,24 +180,115 @@ same invariant that settles order 668 in cert 06. It is priced, not
 impossible: ≈ 11–22 core-hours for the pair, the binding constraint being
 memory rather than time (the pair-vector matrix is `2 120 770 × 2060`,
 4.4 GB as `int8`), which a memory-aware enumeration resolves. **A run is
-in progress locally.**
+in progress in the source laboratory**, under the written pre-registration
+`experiments/inequiv/REGISTRATION-2060-exact.md`.
 
-`run.py` is structured to upgrade itself. On every run it looks for
-`data/sep2060-exact-<impl>-<tag>.json` (`impl` ∈ `{blas, bits}`, `tag` ∈
-`{plain, gist}`):
+### The bank is exactly four files
 
-* **present** → EXACT mode: each profile goes through exactly the cert-06
-  audit chain — every bin `≡ n (mod 8)`, total `= C(2060,4)`, second moment
-  `= n³(n−1)(n−2)/24`, and `blas == bits` bin for bin per matrix (a single
-  banked implementation is reported as a **failure**, because D-008 asks
-  for two) — then the profiles are compared and the verdict becomes
-  **PROVEN**. Should the exact profiles come back *identical*, the script
-  does **not** call that equivalence: it withdraws the claim to UNDECIDED
-  and fails, because a matching invariant never proves two matrices are the
-  same.
-* **absent** → SAMPLED-EVIDENCE mode, as documented above.
+The registration fixes the order of runs: `--impl blas` first, on **both**
+matrices; `--impl bits` on both matrices **only if the blas profiles
+differ**, as the independent-arithmetic confirmation, "never as a rubber
+stamp on a null". A PROVEN claim requires that bits confirmation. The
+complete bank is therefore
 
-Nothing else needs to change: bank the files and re-run.
+```
+data/sep2060-exact-blas-plain.json
+data/sep2060-exact-blas-gist.json
+data/sep2060-exact-bits-plain.json
+data/sep2060-exact-bits-gist.json
+```
+
+and **nothing less may upgrade this certificate**.
+
+### Cashing in
+
+```
+python certs/07-2060-evidence/bank_exact.py \
+    --blas-plain <exact_profile_big.py --impl blas output for 2060-plain> \
+    --blas-gist  <... 2060-gist> \
+    --bits-plain <... --impl bits, 2060-plain> \
+    --bits-gist  <... 2060-gist> \
+    [--dry-run]
+python certs/07-2060-evidence/run.py
+```
+
+`bank_exact.py` (stdlib only) rebuilds both matrices, checks each producer
+file's own `matrix_sha256` against the canonical digest of the matrix this
+repository rebuilds, re-derives the totals and the second moment from the
+counts, enforces the registration's two gates — identical `blas` profiles
+means *did not separate* and there is nothing to bank; `blas ≠ bits` in any
+bin is kill criterion 5 — runs the assembled bank through `run.py`'s own
+acceptance predicate, and only then writes. Any refusal writes **nothing**.
+It prints the four SHA-256 digests; pin them in `run.py`'s
+`EXACT_FILE_PINS` (empty until a controlled generation has happened) and
+re-run the cert. **The pin dict is all or nothing**: empty, or exactly the
+four expected basenames. A non-empty dict naming three of the four is a
+hard `pin-coverage` failure, so a mis-paste cannot leave one file silently
+unpinned.
+
+### What `run.py` then does — all or nothing
+
+On every run `run.py` globs `data/sep2060-exact-*.json`.
+
+* **No match** → SAMPLED-EVIDENCE mode, exactly as documented above.
+* **Any match** → EXACT mode, and the bank must be *exactly* the four
+  expected basenames. An unknown name matching the glob, a duplicate, a
+  partial set, a malformed or unbound file, a bad count or key, a wrong
+  total or second moment, or `blas ≠ bits` is a **hard failure, exit 1**.
+  A partial bank is an **error state, not an absence**: the certificate
+  does not fall back to the sampled path while one is present.
+* Accepted files are then audited on the cert-06 chain — every bin
+  `≡ n (mod 8)`, total `= C(2060,4)`, second moment `= n³(n−1)(n−2)/24`,
+  `blas == bits` bin for bin per matrix — no leg of an exact claim rides
+  on a single arithmetic route — the profiles are compared, and the
+  verdict becomes
+  **PROVEN-BY-CERTIFICATE**. Should the exact profiles come back
+  *identical*, the script does **not** call that equivalence: it withdraws
+  the claim to UNDECIDED and fails, because a matching invariant never
+  proves two matrices are the same.
+
+### The bank schema, and the honest limit of the binding
+
+Each file declares `schema: "sep2060-exact-profile/1"` with fields `n`,
+`tag`, `impl`, `matrix_canonical_sha256`, `producer`, `profile`, `total`,
+`second_moment` (and optional producer metadata; unrecognised fields are
+rejected). Every field is type-checked; counts must be positive integers,
+bin keys canonical decimals in `[0, 2060]` congruent to `4 (mod 8)`.
+
+`matrix_canonical_sha256` must equal the digest of the matrix `run.py`
+rebuilt **in that same process** for that tag — the digests are computed in
+clause 1 and deliberately outlive the matrices, so a bank cannot be
+audited against a matrix nobody reconstructed.
+
+**This binds the bank to a declared matrix identity. It is not proof of
+computation.** A file that names the right digest and carries invented
+counts passes every check in this layer — the `--selftest` positive control
+demonstrates exactly that, using the same numbers as the negative controls.
+What rules that out is not the certificate but the provenance of the
+counts: the producer's registered run, `exact_profile_big.py`, whose own
+`matrix_sha256` records the file it actually read and which `bank_exact.py`
+checks at banking time. Say so wherever this bank is cited; do not describe
+the exact mode as a replay.
+
+### The permanent negative regression
+
+`python certs/07-2060-evidence/run.py --selftest` runs the acceptance
+predicate over in-memory banks — no file is read from or written to
+`data/`, and the verdict printer is never reached. Its negative controls
+are two fabricated profiles with no computational relationship to either
+matrix:
+
+```
+plain = {4: 320845991375, 60: 427309705760}
+gist  = {4: 718686062255, 228: 29469634880}
+```
+
+Both have positive integer counts, every bin `≡ 4 (mod 8)`, total
+`C(2060,4) = 748155697135`, and second moment `1543448476598000`. They
+satisfy every numeric identity the certificate checks — which is exactly
+why numeric identities alone were never an acceptance criterion — and they
+are refused for want of schema, of a matrix binding, and of a complete
+four-file set. See control **C6**.
 
 ## Pinned digests
 
@@ -184,6 +317,7 @@ of the public artifact, not because it matters to the mathematics.
 | step | cost |
 | --- | --- |
 | **`run.py` end to end** | **≈ 6.2 s** (36 checks, exit 0) |
+| **`run.py --selftest`** | **≈ 0.4 s** (26 checks, exit 0) |
 | assembling both `2060 × 2060` arrays from the length-515 quadruple | 0.3 s |
 | `verify/verify.py` on each (2 120 770 row pairs, exact integers) | ≈ 1 s each |
 | `dim V` / `dim W`, both sides, per matrix | ≈ 1.4 s |
@@ -209,3 +343,11 @@ the run and are never committed.
   the publicly posted matrix.
 * **Matching invariants are not evidence of equivalence** — see cert 06,
   where every cheap invariant matched on a pair that is inequivalent.
+* **`d` is not a calibrated sigma, and no statistical test is claimed.**
+  The draws are paired, the denominator is the unpaired variance, the
+  discordance data a paired variance needs were not banked, and 105 bins
+  were scanned without multiplicity control.
+* **The exact mode, when it is reached, audits a bank; it does not
+  recompute a profile.** A self-declared matrix digest is not proof of
+  computation. The recompute path is the producer's registered run, in the
+  source laboratory, outside this repository.

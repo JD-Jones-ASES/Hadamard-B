@@ -15,10 +15,17 @@
       these matrices, the row- and column-pair collision profiles and the
       exhaustively enumerated strata |T4| >= 2056, all empty on both);
     * the SAMPLED |T4| 4-profiles differ systematically -- row side
-      max |z| = 7.4 with 21 bins over 4 sigma, column side 7.1 with 13 --
-      reproducibly, in a coherent monotone pattern across consecutive bins,
-      and with the SIGN of every resolved bin difference reproduced by a
-      second, independent sampler with a different RNG and seed;
+      max |d| = 7.4 with 21 bins over d = 4, column side 7.1 with 13,
+      where d = |p - q| / sqrt(p + q) is a RAW STANDARDIZED DELTA (a
+      heuristic z-score under an unpaired Poisson common-mean
+      approximation) and NOT a calibrated sigma: the draws are PAIRED
+      (one common seed, the same 4-subset sequence on both matrices),
+      the denominator is the unpaired variance, the per-bin discordance
+      counts a paired variance would need were not banked, and no
+      multiplicity control is applied across the bins scanned -- yet the
+      pattern is reproducible, coherent and monotone across consecutive
+      bins, and the SIGN of every resolved bin difference is reproduced
+      by a second, independent sampler with a different RNG and seed;
     * the block-affine equivalence family is EXHAUSTED with no solution
       (a bounded negative search: it closes that family and nothing else).
 
@@ -31,11 +38,26 @@
   4-subsets, the same invariant that settles order 668 in cert 06.  It is
   priced, not impossible: about 11-22 core-hours for the pair, the binding
   constraint being memory (the pair-vector matrix is 2 120 770 x 2060).
-  A run is in progress locally.  When its profiles land they are banked as
-  data/sep2060-exact-<impl>-<tag>.json and THIS SCRIPT UPGRADES ITSELF:
-  the exact files are detected automatically, put through exactly the
-  audit chain cert 06 uses, and the verdict becomes PROVEN.  Until then
-  the script falls back to the sampled evidence and says so.
+  A run is in progress in the source lab under a written pre-registration.
+
+  Cashing it in is ALL-OR-NOTHING.  The bank is exactly the four files
+  data/sep2060-exact-{blas,bits}-{plain,gist}.json, each in the versioned
+  schema "sep2060-exact-profile/1" and each naming the canonical SHA-256
+  of the matrix THIS SCRIPT rebuilds for its tag.  Anything else -- an
+  unknown name matching the glob, a duplicate, a partial set, a malformed
+  file, a file bound to the wrong matrix, blas and bits disagreeing -- is
+  a HARD FAILURE (exit 1).  A partial bank is an ERROR STATE, not an
+  absence, and never falls back to the sampled path.  With no such file
+  present at all the honest sampled mode runs, unchanged.  The banking
+  helper is bank_exact.py; the procedure is in NOTES.md.
+
+  WHAT EXACT MODE DOES AND DOES NOT SHOW.  It AUDITS a banked profile and
+  binds it to a DECLARED matrix identity.  A self-declared digest is not
+  proof of computation.  The proof of computation is the producer's
+  registered run.  --selftest exercises exactly that boundary: the
+  fabricated profiles that satisfy every numeric identity are rejected
+  for want of schema and binding, and a well-formed bound bank is
+  accepted -- so the gate is shown to close AND to open.
 
 WHAT THIS SCRIPT DOES  (standard library only, no numpy anywhere, seconds)
 
@@ -47,40 +69,45 @@ WHAT THIS SCRIPT DOES  (standard library only, no numpy anywhere, seconds)
       from the rebuilt rows: an exact invariant that AGREES, recorded so
       the "every exact invariant agrees" clause is measured here and not
       merely cited.
-  (3) Chooses its mode: EXACT if data/sep2060-exact-*.json is present,
-      SAMPLED-EVIDENCE otherwise.
+  (3) Chooses its mode: EXACT if any data/sep2060-exact-*.json is present
+      (and then the bank must be complete and well formed, or the run
+      FAILS), SAMPLED-EVIDENCE if none is.
   (4) SAMPLED mode: loads data/sep2060-sampled-histograms.json, asserts the
       fold guard (no negative bin anywhere -- signed T4 is NOT an
       invariant), validates every total against the declared sample size,
-      recomputes every per-bin z between plain and gist, and asserts that
-      max |z| and the count of bins over 4 sigma reproduce the banked
-      expectations to the digit.
-      EXACT mode: the cert-06 audit chain -- bins = n (mod 8), total =
-      C(2060,4), second moment = n^3(n-1)(n-2)/24, blas == bits bin for
-      bin -- then the profile comparison, and the verdict PROVEN.
+      recomputes every per-bin standardized delta d between plain and gist,
+      and asserts that max |d| and the count of bins with d > 4 reproduce
+      the banked expectations to the digit.
+      EXACT mode: bank acceptance (exactly four expected basenames,
+      versioned schema, every field typed and checked, matrix binding
+      against the digests rebuilt in clause 1) and then the cert-06 audit
+      chain -- bins = n (mod 8), total = C(2060,4), second moment =
+      n^3(n-1)(n-2)/24, blas == bits bin for bin -- then the profile
+      comparison, and the verdict PROVEN-BY-CERTIFICATE.
   (5) Controls:
         C1  the fold guard, stated and checked on every banked histogram;
         C2  the SIGNED-T4 trap, demonstrated EXACTLY on a small Hadamard
             matrix: a legal signed row negation moves the signed T4
             profile and leaves the |T4| profile fixed.  This is why every
             histogram in this repository is folded at measurement;
-        C3  z-statistic calibration: a histogram against itself reads
-            max |z| = 0 with zero bins over 4 sigma;
+        C3  d-statistic calibration: a histogram against itself reads
+            max |d| = 0 with zero bins over d = 4;
         C4  the blindness calibration, and it is the important one.  The
             SAME sampled statistic, at the SAME budget, is run on the 668
             pair -- which cert 06 PROVES inequivalent -- and reads
-            max |z| = 1.8 with ZERO bins over 4 sigma.  A null sampled
+            max |d| = 1.8 with ZERO bins over d = 4.  A null sampled
             reading is therefore worth nothing at all, and a positive one
             is evidence and not proof.  That is the calibration that
             fixes this certificate's label;
         C5  cross-sampler corroboration: for every bin the 20 000 000-draw
-            sampler resolves past 4 sigma, the independent 3 000 000-draw
+            sampler resolves past d = 4, the independent 3 000 000-draw
             sampler must agree on the SIGN of the difference.  Its own
-            max |z| is reported honestly: at its smaller budget it does
+            max |d| is reported honestly: at its smaller budget it does
             NOT resolve the separation, exactly as sqrt(N) predicts.
 
 Usage:
   python certs/07-2060-evidence/run.py
+  python certs/07-2060-evidence/run.py --selftest
 """
 
 import argparse
@@ -161,17 +188,269 @@ def second_moment_want(n):
     return n ** 3 * (n - 1) * (n - 2) // 24
 
 
-def audit(prof, n, where):
+# The two order-2060 identities every exact profile must satisfy -- the
+# cert-06 audit chain -- are checked inside validate_blob() below, which
+# reports WHICH one failed rather than raising a bare AssertionError.
+
+
+# ======================================================================
+# the EXACT bank: what a cash-in must look like before it is believed
+#
+# Exact banking is ALL-OR-NOTHING.  The bank is exactly four files, one
+# per (impl, tag); every field is typed and checked; every file names the
+# canonical digest of the matrix this script rebuilt for its tag.  A file
+# that matches the glob and fails any of this is an ERROR STATE, not an
+# absence: the cert fails closed and does NOT fall back to sampled mode.
+#
+# What this layer establishes: the bank is complete, well formed,
+# internally consistent, arithmetically consistent with the order-2060
+# identities, agreed between two implementations, and DECLARES the matrix
+# this script rebuilt.  What it does NOT establish: that the counts were
+# computed from that matrix.  A self-declared digest is not proof of
+# computation.  The proof of computation is the producer's registered run
+# (NOTES.md, "The cash-in procedure").
+# ======================================================================
+
+SCHEMA = "sep2060-exact-profile/1"
+IMPLS = ("blas", "bits")
+TAGS = ("plain", "gist")
+EXACT_GLOB = "sep2060-exact-*.json"
+
+
+def exact_basename(impl, tag):
+    return "sep2060-exact-%s-%s.json" % (impl, tag)
+
+
+EXPECTED_BANK = dict(((exact_basename(i, t), (i, t))
+                      for i in IMPLS for t in TAGS))
+
+REQUIRED_FIELDS = ("schema", "n", "tag", "impl", "matrix_canonical_sha256",
+                   "producer", "profile", "total", "second_moment")
+OPTIONAL_FIELDS = ("producer_matrix_sha256", "source_file", "banked_utc",
+                   "seconds", "engine", "enumeration", "folded", "q",
+                   "threads", "geom", "peak_rss_mb", "note")
+
+# Filled only after a controlled generation has produced the four files.
+# While it is empty no file digest is pinned; a name present here is
+# checked against the file on disk before the bank is read.  It is
+# all-or-nothing: empty, or exactly the four expected basenames -- see
+# validate_pin_coverage below.
+EXACT_FILE_PINS = {}
+
+HEXDIGITS = set("0123456789abcdef")
+
+
+class BankError(Exception):
+    """A refusal to accept an exact bank.  .reason is a stable code."""
+
+    def __init__(self, reason, detail):
+        Exception.__init__(self, "%s -- %s" % (reason, detail))
+        self.reason = reason
+        self.detail = detail
+
+
+def is_int(x):
+    return isinstance(x, int) and not isinstance(x, bool)
+
+
+def is_sha256(s):
+    return isinstance(s, str) and len(s) == 64 and set(s) <= HEXDIGITS
+
+
+def select_bank(paths):
+    """Exactly the four expected basenames: no unknowns, no duplicates,
+    no partial set.  Returns [(impl, tag, path)] in basename order."""
+    seen = {}
+    for p in paths:
+        b = os.path.basename(p)
+        if b not in EXPECTED_BANK:
+            raise BankError(
+                "unknown-basename",
+                "%s matches %s but is not one of the four expected files "
+                "(%s)" % (b, EXACT_GLOB, ", ".join(sorted(EXPECTED_BANK))))
+        if b in seen:
+            raise BankError("duplicate-basename",
+                            "%s is presented more than once" % b)
+        seen[b] = p
+    missing = sorted(set(EXPECTED_BANK) - set(seen))
+    if missing:
+        raise BankError(
+            "partial-set",
+            "exact banking is all-or-nothing; %d of 4 files present, "
+            "missing %s" % (len(seen), ", ".join(missing)))
+    return [(EXPECTED_BANK[b][0], EXPECTED_BANK[b][1], seen[b])
+            for b in sorted(seen)]
+
+
+def parse_profile(raw, where):
+    """The profile object -> {int bin: int count}, or a refusal."""
+    if not isinstance(raw, dict) or not raw:
+        raise BankError("profile-key",
+                        "%s: profile is not a non-empty object" % where)
+    prof = {}
+    for k, v in raw.items():
+        if not isinstance(k, str):
+            raise BankError("profile-key",
+                            "%s: bin key %r is not a string" % (where, k))
+        try:
+            ik = int(k)
+        except ValueError:
+            raise BankError("profile-key",
+                            "%s: bin key %r is not an integer" % (where, k))
+        if str(ik) != k:
+            raise BankError(
+                "profile-key",
+                "%s: bin key %r is not in canonical decimal form" % (where, k))
+        if ik < 0 or ik > N:
+            raise BankError("profile-key",
+                            "%s: bin |T4| = %d is outside [0, %d]"
+                            % (where, ik, N))
+        if ik % 8 != N % 8:
+            raise BankError("profile-key",
+                            "%s: bin |T4| = %d is not = %d (mod 8)"
+                            % (where, ik, N % 8))
+        if not is_int(v):
+            raise BankError("profile-count",
+                            "%s: the count for bin %d is not an integer"
+                            % (where, ik))
+        if v <= 0:
+            raise BankError(
+                "profile-count",
+                "%s: bin %d has count %d; counts must be positive (no "
+                "negative counts, no zero-count bins)" % (where, ik, v))
+        prof[ik] = v
+    return prof
+
+
+def validate_blob(blob, impl, tag, digest, where):
+    """One bank file, against the schema and against the rebuilt matrix."""
+    if not isinstance(blob, dict):
+        raise BankError("field-type", "%s: top level is not an object" % where)
+    for f in REQUIRED_FIELDS:
+        if f not in blob:
+            raise BankError("field-missing",
+                            "%s: no %r field" % (where, f))
+    extra = sorted(set(blob) - set(REQUIRED_FIELDS) - set(OPTIONAL_FIELDS))
+    if extra:
+        raise BankError("unknown-field",
+                        "%s: unrecognised field(s) %s"
+                        % (where, ", ".join(extra)))
+    if blob["schema"] != SCHEMA:
+        raise BankError("schema", "%s: schema is %r, want %r"
+                        % (where, blob["schema"], SCHEMA))
+    if not is_int(blob["n"]) or blob["n"] != N:
+        raise BankError("n", "%s: n is %r, want %d" % (where, blob["n"], N))
+    if blob["tag"] != tag:
+        raise BankError("tag", "%s: declares tag %r, the filename says %r"
+                        % (where, blob["tag"], tag))
+    if blob["impl"] != impl:
+        raise BankError("impl", "%s: declares impl %r, the filename says %r"
+                        % (where, blob["impl"], impl))
+    if not isinstance(blob["producer"], str) or not blob["producer"].strip():
+        raise BankError("producer",
+                        "%s: producer is not a non-empty string" % where)
+    dec = blob["matrix_canonical_sha256"]
+    if not is_sha256(dec):
+        raise BankError("matrix-binding",
+                        "%s: matrix_canonical_sha256 is not a lowercase "
+                        "hex SHA-256" % where)
+    if not is_sha256(digest):
+        raise BankError("matrix-binding",
+                        "%s: no rebuilt digest is available for tag %r"
+                        % (where, tag))
+    if dec != digest:
+        raise BankError(
+            "matrix-binding",
+            "%s: declares matrix %s..., but the %s matrix rebuilt by this "
+            "script is %s..." % (where, dec[:16], tag, digest[:16]))
+    pm = blob.get("producer_matrix_sha256")
+    if pm is not None and pm != digest:
+        raise BankError(
+            "matrix-binding",
+            "%s: producer_matrix_sha256 %s... != the rebuilt %s matrix %s..."
+            % (where, str(pm)[:16], tag, digest[:16]))
+    prof = parse_profile(blob["profile"], where)
+    if not is_int(blob["total"]) or not is_int(blob["second_moment"]):
+        raise BankError("field-type",
+                        "%s: total / second_moment are not integers" % where)
     tot = sum(prof.values())
-    want = c_n_4(n)
-    assert tot == want, (
-        "%s: profile totals %d, not C(%d,4) = %d" % (where, tot, n, want))
+    if tot != blob["total"]:
+        raise BankError("profile-total",
+                        "%s: declares total %d, the bins sum to %d"
+                        % (where, blob["total"], tot))
+    if tot != c_n_4(N):
+        raise BankError("profile-total",
+                        "%s: total %d, want C(%d,4) = %d"
+                        % (where, tot, N, c_n_4(N)))
     m2 = sum(k * k * v for k, v in prof.items())
-    m2w = second_moment_want(n)
-    assert m2 == m2w, (
-        "%s: second-moment identity FAILED -- sum T4^2 = %d, want %d"
-        % (where, m2, m2w))
-    return tot, m2
+    if m2 != blob["second_moment"]:
+        raise BankError("profile-second-moment",
+                        "%s: declares second moment %d, the bins give %d"
+                        % (where, blob["second_moment"], m2))
+    if m2 != second_moment_want(N):
+        raise BankError("profile-second-moment",
+                        "%s: sum T4^2 = %d, want n^3(n-1)(n-2)/24 = %d"
+                        % (where, m2, second_moment_want(N)))
+    return prof
+
+
+def json_loader(path):
+    """Read one bank file.  A truncated, non-ASCII or syntactically invalid
+    file is a REFUSAL, not a traceback: run_exact handles BankError and
+    prints the remediation, so the read has to fail in that currency."""
+    try:
+        with open(path, "r", encoding="ascii") as fh:
+            return json.load(fh)
+    except (ValueError, OSError) as e:
+        raise BankError("malformed-file",
+                        "%s: unreadable or not well-formed JSON -- %s: %s"
+                        % (os.path.basename(path), type(e).__name__, e))
+
+
+def accept_bank(paths, digests, loader=json_loader):
+    """THE ACCEPTANCE PREDICATE.  Returns {(tag, impl): profile} or raises
+    BankError.  `loader` is injectable so --selftest can exercise this
+    entirely in memory, writing nothing."""
+    prof = {}
+    for impl, tag, path in select_bank(paths):
+        try:
+            blob = loader(path)
+        except BankError:
+            raise
+        except (ValueError, OSError) as e:
+            raise BankError("malformed-file",
+                            "%s: unreadable or not well-formed JSON -- %s: %s"
+                            % (os.path.basename(path), type(e).__name__, e))
+        prof[(tag, impl)] = validate_blob(blob, impl, tag,
+                                          digests.get(tag),
+                                          os.path.basename(path))
+    for tag in TAGS:
+        a, b = prof[(tag, "blas")], prof[(tag, "bits")]
+        if a != b:
+            k = sorted(set(a) | set(b))
+            bad = [x for x in k if a.get(x, 0) != b.get(x, 0)][0]
+            raise BankError(
+                "impl-disagreement",
+                "%s: blas and bits differ at |T4| = %d (%d vs %d) -- "
+                "registration kill criterion 5" % (tag, bad, a.get(bad, 0),
+                                                   b.get(bad, 0)))
+    return prof
+
+
+def validate_pin_coverage(pins):
+    """EXACT_FILE_PINS is all-or-nothing: either empty -- no byte pinning,
+    and the cert says so -- or exactly the four expected basenames.  A dict
+    naming three of the four would print three pin lines, raise no warning,
+    and leave the fourth file unpinned and freely editable."""
+    if not pins:
+        return
+    missing = sorted(set(EXPECTED_BANK) - set(pins))
+    extra = sorted(set(pins) - set(EXPECTED_BANK))
+    if missing or extra:
+        raise BankError("pin-coverage",
+                        "EXACT_FILE_PINS is non-empty but is not exactly the "
+                        "four expected basenames: missing %s, unexpected %s"
+                        % (missing or "none", extra or "none"))
 
 
 # ======================================================================
@@ -316,17 +595,42 @@ def dim_V_W(rows):
 
 
 # ======================================================================
-# the z statistic -- the lab's summarize.py statistic, restated exactly
+# the standardized delta -- the lab's summarize.py statistic, restated
+# exactly, and named for what it is
 # ======================================================================
 
 def z_table(HA, HB, floor=200):
-    """Per-bin z between two histograms of EQUAL sample size.
+    """Per-bin RAW STANDARDIZED DELTA between two histograms of EQUAL
+    sample size:  d = |p - q| / sqrt(p + q).
 
-    For a bin with counts p and q and p + q >= floor, the null is that both
-    are Poisson/binomial around the common mean e = (p+q)/2, so
-    Var(p - q) = 2e and z = |p - q| / sqrt(2e) = |p - q| / sqrt(p + q).
-    Bins with p + q < floor are not compared: the normal approximation is
-    not trustworthy there and the sampler cannot resolve them anyway.
+    Read it as a heuristic z-score, NOT as a calibrated sigma.  The
+    denominator is the UNPAIRED Poisson/common-mean approximation: if both
+    counts were independent and Poisson around e = (p+q)/2 then
+    Var(p - q) = 2e and d = |p - q| / sqrt(2e) = |p - q| / sqrt(p + q).
+
+    THE SAMPLING DESIGN IS NOT THAT.  Upstream (Hadamard-2060,
+    experiments/inequiv/inv_a.py and inv_b.py) each implementation draws
+    its 4-subsets from random.Random(seed) with ONE seed -- 20260831 for A,
+    831026 for B -- and the draw stream depends only on the seed and on n,
+    which is 2060 for both matrices.  The SAME sequence of 4-subsets is
+    therefore evaluated on plain and on gist: the comparison is PAIRED
+    (the source lab records this as "common seed (so the comparison is
+    paired)", intel/inequivalence-2026-08-31.md S4.4).  A paired variance
+    is Var(p) + Var(q) - 2 Cov(p, q), and computing it needs the per-bin
+    DISCORDANCE counts -- how many drawn 4-subsets land in bin k for one
+    matrix and not the other.  Those were not banked, so the paired
+    variance cannot be recovered from this bank and the unpaired
+    denominator is what is reported.
+
+    No multiplicity control is applied.  The scan compares 28 bins on each
+    A side and 25 / 24 on the B sides -- 105 per-bin comparisons -- and the
+    reported max |d| is a maximum over them, not a single pre-registered
+    test.
+
+    This is why the label on this certificate is COMPUTATIONAL-EVIDENCE and
+    why control C4 (not the size of d) is what fixes it.  Bins with
+    p + q < floor are not compared: the normal approximation is not
+    trustworthy there and the sampler cannot resolve them anyway.
     """
     rows = []
     for k in sorted(set(HA) | set(HB)):
@@ -413,7 +717,13 @@ def signed_and_abs_profile(rows):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.parse_args(argv)
+    ap.add_argument("--selftest", action="store_true",
+                    help="exercise the exact-bank acceptance predicate "
+                         "in memory (negative controls and a positive "
+                         "control) and exit; writes nothing")
+    args = ap.parse_args(argv)
+    if args.selftest:
+        return selftest()
     t_start = time.time()
 
     print("=" * 74)
@@ -424,110 +734,135 @@ def main(argv=None):
     if os.path.isdir(OUT):
         shutil.rmtree(OUT)
 
-    # ---------------------------------------------------------- clause 0
-    print("\n[0] banked data files, SHA-256 pinned in this script")
-    for name, want in sorted(FILE_PINS.items()):
-        got = file_sha256(os.path.join(ROOT, name))
-        check("%-40s" % name, got == want, got[:24] + "...")
+    try:
+        # ------------------------------------------------------ clause 0
+        print("\n[0] banked data files, SHA-256 pinned in this script")
+        for name, want in sorted(FILE_PINS.items()):
+            got = file_sha256(os.path.join(ROOT, name))
+            check("%-40s" % name, got == want, got[:24] + "...")
 
-    # ---------------------------------------------------------- clause 1
-    print("\n[1] rebuild both order-2060 matrices, verify, pin")
-    with open(os.path.join(ROOT, "data", "sep2060-records.json"),
-              "r", encoding="ascii") as fh:
-        recs = json.load(fh)
-    t0 = time.time()
-    plain, gist, raw = build_2060(recs)
-    print("      assembled 2 x %d x %d cells from one length-%d quadruple "
-          "in %.1fs" % (N, N, V, time.time() - t0))
-    check("the banked seed reproduces the banked row sums",
-          [sum(1 if ch == "+" else -1 for ch in x) for x in raw]
-          == list(recs["row_sums"]), str(recs["row_sums"]))
-    check("the two arrays are genuinely different matrices", plain != gist,
-          "same seed, different array orientation")
-    verify_rows("plain", plain, SHA_PLAIN)
-    verify_rows("gist", gist, SHA_GIST)
-
-    # ---------------------------------------------------------- clause 2
-    print("\n[2] an EXACT invariant, recomputed here: dim W over F2")
-    dims = {}
-    for tag, rows in (("plain", plain), ("gist", gist)):
+        # ------------------------------------------------------ clause 1
+        print("\n[1] rebuild both order-2060 matrices, verify, pin")
+        with open(os.path.join(ROOT, "data", "sep2060-records.json"),
+                  "r", encoding="ascii") as fh:
+            recs = json.load(fh)
         t0 = time.time()
-        dims[(tag, "row")] = dim_V_W(rows)
-        cols = ["".join(c) for c in zip(*rows)]
-        dims[(tag, "col")] = dim_V_W(cols)
-        del cols
-        print("      %-5s  row (dim V %d, dim W %d)   col (dim V %d, dim W %d)"
-              "   (%.1fs)" % (tag, dims[(tag, "row")][0], dims[(tag, "row")][1],
-                              dims[(tag, "col")][0], dims[(tag, "col")][1],
-                              time.time() - t0))
-    check("dim W (INVARIANT) agrees on both sides -- it does NOT separate",
-          dims[("plain", "row")][1] == dims[("gist", "row")][1]
-          and dims[("plain", "col")][1] == dims[("gist", "col")][1],
-          "row %d, col %d" % (dims[("plain", "row")][1],
-                              dims[("plain", "col")][1]))
-    check("dim V (not an invariant) happens to agree too -- also worthless",
-          dims[("plain", "row")][0] == dims[("gist", "row")][0]
-          and dims[("plain", "col")][0] == dims[("gist", "col")][0],
-          "a matching invariant is never evidence of equivalence")
-    del plain, gist
+        plain, gist, raw = build_2060(recs)
+        print("      assembled 2 x %d x %d cells from one length-%d quadruple "
+              "in %.1fs" % (N, N, V, time.time() - t0))
+        check("the banked seed reproduces the banked row sums",
+              [sum(1 if ch == "+" else -1 for ch in x) for x in raw]
+              == list(recs["row_sums"]), str(recs["row_sums"]))
+        check("the two arrays are genuinely different matrices",
+              plain != gist, "same seed, different array orientation")
+        # The digests OUTLIVE the matrices: exact mode binds every banked
+        # profile to the matrix rebuilt here, so these must not be dropped
+        # with the rows.
+        digests = {"plain": verify_rows("plain", plain, SHA_PLAIN),
+                   "gist": verify_rows("gist", gist, SHA_GIST)}
 
-    # ---------------------------------------------------------- clause 3
-    exact_files = sorted(glob.glob(os.path.join(ROOT, "data",
-                                                "sep2060-exact-*.json")))
-    exact_mode = bool(exact_files)
-    print("\n[3] mode")
-    print("      data/sep2060-exact-*.json: %s"
-          % (", ".join(os.path.basename(f) for f in exact_files)
-             if exact_files else "not present"))
-    print("      -> %s" % ("EXACT (the upgrade has landed)" if exact_mode
-                           else "SAMPLED-EVIDENCE (the honest fallback)"))
+        # ------------------------------------------------------ clause 2
+        print("\n[2] an EXACT invariant, recomputed here: dim W over F2")
+        dims = {}
+        for tag, rows in (("plain", plain), ("gist", gist)):
+            t0 = time.time()
+            dims[(tag, "row")] = dim_V_W(rows)
+            cols = ["".join(c) for c in zip(*rows)]
+            dims[(tag, "col")] = dim_V_W(cols)
+            del cols
+            print("      %-5s  row (dim V %d, dim W %d)   col (dim V %d, "
+                  "dim W %d)   (%.1fs)"
+                  % (tag, dims[(tag, "row")][0], dims[(tag, "row")][1],
+                     dims[(tag, "col")][0], dims[(tag, "col")][1],
+                     time.time() - t0))
+        check("dim W (INVARIANT) agrees on both sides -- it does NOT separate",
+              dims[("plain", "row")][1] == dims[("gist", "row")][1]
+              and dims[("plain", "col")][1] == dims[("gist", "col")][1],
+              "row %d, col %d" % (dims[("plain", "row")][1],
+                                  dims[("plain", "col")][1]))
+        check("dim V (not an invariant) happens to agree too -- also "
+              "worthless",
+              dims[("plain", "row")][0] == dims[("gist", "row")][0]
+              and dims[("plain", "col")][0] == dims[("gist", "col")][0],
+              "a matching invariant is never evidence of equivalence")
+        del plain, gist
 
-    if exact_mode:
-        rc = run_exact(exact_files)
-    else:
-        rc = run_sampled()
+        # ------------------------------------------------------ clause 3
+        exact_files = sorted(glob.glob(os.path.join(ROOT, "data",
+                                                    EXACT_GLOB)))
+        print("\n[3] mode")
+        print("      data/%s: %s"
+              % (EXACT_GLOB, ", ".join(os.path.basename(f)
+                                       for f in exact_files)
+                 if exact_files else "not present"))
+        if exact_files:
+            print("      -> EXACT: a cash-in is present, so it is audited "
+                  "all-or-nothing.")
+            print("         A partial or malformed bank FAILS here; it does "
+                  "not fall back.")
+            rc = run_exact(exact_files, digests)
+        else:
+            print("      -> SAMPLED-EVIDENCE (the honest fallback)")
+            rc = run_sampled()
+    finally:
+        shutil.rmtree(OUT, ignore_errors=True)
 
-    shutil.rmtree(OUT, ignore_errors=True)
     print("\ngenerated matrices deleted; nothing left in %s   (%.1fs total)"
           % (rel(OUT), time.time() - t_start))
     return rc
 
 
 # ---------------------------------------------------------------- EXACT
-def run_exact(exact_files):
-    """The cert-06 audit chain, applied at 2060.  Reached only when the
-    exact profiles have been banked."""
-    print("\n[4] the EXACT 4-profiles, audited in exact integers")
-    prof = {}
-    for path in exact_files:
-        base = os.path.basename(path)[:-len(".json")]     # sep2060-exact-i-t
-        parts = base.split("-")
-        impl, tag = parts[2], "-".join(parts[3:])
-        with open(path, "r", encoding="ascii") as fh:
-            blob = json.load(fh)
-        p = {int(k): int(v) for k, v in blob["profile"].items()}
-        prof[(tag, impl)] = p
-        tot, m2 = audit(p, N, "%s/%s" % (tag, impl))
-        check("%-6s %-4s  %d bins, all |T4| = %d (mod 8)"
-              % (tag, impl, len(p), N % 8), all(k % 8 == N % 8 for k in p))
-        check("%-6s %-4s  total == C(2060,4) == %d" % (tag, impl, c_n_4(N)),
-              tot == c_n_4(N))
-        check("%-6s %-4s  second moment == n^3(n-1)(n-2)/24 == %d"
-              % (tag, impl, second_moment_want(N)), m2 == second_moment_want(N))
-    tags = sorted({t for (t, _i) in prof})
-    for t in tags:
-        impls = sorted(i for (tt, i) in prof if tt == t)
-        if len(impls) >= 2:
-            check("%-6s  %s agree bin for bin" % (t, " == ".join(impls)),
-                  all(prof[(t, impls[0])] == prof[(t, i)] for i in impls[1:]))
-        else:
-            check("%-6s  only one implementation banked (%s) -- D-008 asks "
-                  "for two" % (t, impls[0]), False)
-    if not {"plain", "gist"} <= set(tags):
-        check("both matrices have banked exact profiles", False, str(tags))
+def run_exact(exact_files, digests, loader=json_loader):
+    """Bank acceptance, then the cert-06 audit chain, applied at 2060.
+    Reached only when at least one file matches the exact glob -- and from
+    that point the bank is all-or-nothing: every refusal below is a hard
+    FAIL, never a fall-back to the sampled path."""
+    print("\n[4] the EXACT 4-profiles: bank acceptance, then the audit chain")
+
+    try:
+        validate_pin_coverage(EXACT_FILE_PINS)
+        if EXACT_FILE_PINS:
+            for path in exact_files:
+                base = os.path.basename(path)
+                if base in EXACT_FILE_PINS and os.path.exists(path):
+                    got = file_sha256(path)
+                    check("%-34s sha256 == pin" % base,
+                          got == EXACT_FILE_PINS[base], got[:24] + "...")
+        prof = accept_bank(exact_files, digests, loader)
+    except BankError as e:
+        check("the exact bank is complete, well formed and bound to the "
+              "rebuilt matrices", False, "%s -- %s" % (e.reason, e.detail))
+        print("\n      Exact banking is ALL-OR-NOTHING.  A partial or")
+        print("      malformed exact bank is an ERROR STATE, not an absence:")
+        print("      this certificate does NOT fall back to the sampled path")
+        print("      while one is present.  Either remove every")
+        print("      data/%s to return to the honest sampled" % EXACT_GLOB)
+        print("      mode, or re-bank all four files with")
+        print("      certs/07-2060-evidence/bank_exact.py.")
+        print("\n" + "=" * 74)
+        print("cert 07: FAIL (%d): %s" % (len(FAIL), FAIL))
+        print("=" * 74)
         return 1
-    A = prof[("plain", sorted(i for (t, i) in prof if t == "plain")[0])]
-    B = prof[("gist", sorted(i for (t, i) in prof if t == "gist")[0])]
+
+    check("the exact bank is exactly the four expected files, schema %s, "
+          "every field checked" % SCHEMA, True,
+          ", ".join(sorted(EXPECTED_BANK)))
+    for tag in TAGS:
+        for impl in IMPLS:
+            p = prof[(tag, impl)]
+            check("%-5s %-4s  %3d bins, all |T4| = %d (mod 8), total == "
+                  "C(2060,4), second moment == %d"
+                  % (tag, impl, len(p), N % 8, second_moment_want(N)), True)
+        check("%-5s       blas == bits, bin for bin (two independent "
+              "implementations)" % tag, True,
+              "%d bins" % len(prof[(tag, "blas")]))
+        check("%-5s       every banked file names the matrix rebuilt in "
+              "clause 1" % tag, True, digests[tag][:24] + "...")
+
+    # blas is the registered primary; bits agreed with it bin for bin above.
+    A = prof[("plain", "blas")]
+    B = prof[("gist", "blas")]
     ks = sorted(set(A) | set(B))
     diff = [(k, A.get(k, 0), B.get(k, 0)) for k in ks
             if A.get(k, 0) != B.get(k, 0)]
@@ -542,7 +877,15 @@ def run_exact(exact_files):
         print("VERDICT: 2060-plain and 2060-gist are Hadamard-INEQUIVALENT.")
         print("         Separating invariant: the exact |T4| 4-profile over")
         print("         all C(2060,4) = %d row 4-subsets." % c_n_4(N))
-        print("         LABEL: PROVEN.")
+        print("         LABEL: PROVEN-BY-CERTIFICATE.")
+        print()
+        print("         SCOPE OF THIS CERTIFICATE.  It AUDITS a banked exact")
+        print("         profile and binds it to the matrix rebuilt here by a")
+        print("         DECLARED digest.  It does not recompute the profile,")
+        print("         and a self-declared digest is not proof of")
+        print("         computation.  The recompute path is the producer's")
+        print("         registered run -- see NOTES.md, 'The cash-in")
+        print("         procedure'.")
     elif not diff:
         print("The exact 4-profiles are IDENTICAL.  That is NOT equivalence:")
         print("a matching invariant never proves two matrices are the same.")
@@ -595,8 +938,19 @@ def run_sampled():
 
     # the measurement
     print("\n[5] plain vs gist, per side, per implementation")
+    print("      the statistic is d = |p - q| / sqrt(p + q): a RAW")
+    print("      STANDARDIZED DELTA, a heuristic z-score under an UNPAIRED")
+    print("      Poisson common-mean approximation.  It is not a calibrated")
+    print("      sigma.  The design is PAIRED -- one seed per implementation")
+    print("      (A %s, B %s) and a draw stream that depends only on the seed"
+          % (prov["impl_A"]["rng_seed"], prov["impl_B"]["rng_seed"]))
+    print("      and on n, so the SAME 4-subsets are evaluated on both")
+    print("      matrices -- and the per-bin discordance counts a paired")
+    print("      variance would need were not banked.  No multiplicity")
+    print("      control is applied across the bins scanned.  What fixes the")
+    print("      label of this certificate is control C4, not the size of d.")
     print("      %-4s %-4s %10s %8s %9s %8s %14s"
-          % ("impl", "side", "draws", "bins", "max|z|", "at |T4|", ">4sigma"))
+          % ("impl", "side", "draws", "bins", "max|d|", "at |T4|", "d > 4"))
     tabs = {}
     for impl in ("A", "B"):
         for side in ("row", "col"):
@@ -607,20 +961,20 @@ def run_sampled():
             e = exp["%s/%s" % (impl, side)]
             print("      %-4s %-4s %10d %8d %9.4f %8s %14d"
                   % (impl, side, e["samples_each"], ncmp, mz, at, big))
-            check("      %s/%s reproduces the banked max|z| to the digit"
+            check("      %s/%s reproduces the banked max|d| to the digit"
                   % (impl, side), round(mz, 6) == e["max_abs_z"]
                   and at == e["max_abs_z_at_T4"],
-                  "banked %.6f at |T4|=%s" % (e["max_abs_z"],
-                                              e["max_abs_z_at_T4"]))
-            check("      %s/%s reproduces the banked count of >4sigma bins"
+                  "banked %.6f at |T4|=%s (the bank's field is named "
+                  "max_abs_z)" % (e["max_abs_z"], e["max_abs_z_at_T4"]))
+            check("      %s/%s reproduces the banked count of bins with d > 4"
                   % (impl, side), big == e["bins_over_4sigma"],
                   "banked %d" % e["bins_over_4sigma"])
             check("      %s/%s reproduces the banked bin count compared"
                   % (impl, side), ncmp == e["bins_compared"])
 
-    print("\n      the bins implementation A resolves past 4 sigma")
+    print("\n      the bins implementation A resolves past d = 4")
     print("      %-4s %6s %12s %12s %10s %8s"
-          % ("side", "|T4|", "plain", "gist", "delta", "z"))
+          % ("side", "|T4|", "plain", "gist", "delta", "d"))
     for side in ("row", "col"):
         for k, p, q, z in tabs[("A", side)]:
             if z > 4:
@@ -646,9 +1000,9 @@ def run_sampled():
           ab0 == ab1, "%s" % {k: ab0[k] for k in sorted(ab0)})
 
     # C3 -- calibration on identical data
-    print("\n  C3 -- z calibration: a histogram against itself")
+    print("\n  C3 -- d calibration: a histogram against itself")
     mz, _at, big, _n = summarise(z_table(H["A/plain/row"], H["A/plain/row"]))
-    check("C3  max|z| = 0 and zero bins over 4 sigma on identical input",
+    check("C3  max|d| = 0 and zero bins with d > 4 on identical input",
           mz == 0.0 and big == 0)
 
     # C4 -- the blindness calibration
@@ -667,15 +1021,16 @@ def run_sampled():
             e = b6["expected"]["%s/%s" % (impl, side)]
             ok = (round(mz, 6) == e["max_abs_z"]
                   and big == e["bins_over_4sigma"] and ncmp == e["bins_compared"])
-            print("        %s/%-4s  %d draws  max|z| = %.2f at |T4| = %s  "
-                  ">4sigma = %d" % (impl, side, e["samples_each"], mz, at, big))
+            print("        %s/%-4s  %d draws  max|d| = %.2f at |T4| = %s  "
+                  "bins d > 4 = %d"
+                  % (impl, side, e["samples_each"], mz, at, big))
             if not ok:
                 check("C4  668 %s/%s reproduces its bank" % (impl, side), False)
             if big:
                 blind = False
     check("C4  the sampled statistic sees NOTHING on a pair that is in fact "
           "inequivalent", blind,
-          "zero bins over 4 sigma anywhere -> a NULL sampled reading proves "
+          "zero bins with d > 4 anywhere -> a NULL sampled reading proves "
           "nothing, and a positive one is evidence, never proof")
 
     # C5 -- cross-sampler corroboration
@@ -701,7 +1056,7 @@ def run_sampled():
               "mass; sign agrees on %d" % (side, sum(1 for t in tabs[("A", side)]
                                                      if t[3] > 4), cmpd, ag))
         print("             B's own reading at its 6.7x smaller budget: "
-              "max|z| = %.2f, %d bins over 4 sigma" % (mzB, bigB))
+              "max|d| = %.2f, %d bins with d > 4" % (mzB, bigB))
     check("C5  two independent samplers, different RNGs and seeds, agree on "
           "the SIGN of the difference in %d of the %d bins A resolves -- the "
           "ones B has enough mass in at its 6.7x smaller budget"
@@ -711,7 +1066,7 @@ def run_sampled():
                                                   tot_res - tot_cmp))
     check("C5  the smaller sampler does NOT resolve the separation, and that "
           "is reported, not hidden", True,
-          "z scales as sqrt(N): 7.45 / sqrt(20/3) = %.2f, which is what B "
+          "d scales as sqrt(N): 7.45 / sqrt(20/3) = %.2f, which is what B "
           "reads" % (7.449633 / math.sqrt(20.0 / 3.0)))
 
     # ------------------------------------------------------------ verdict
@@ -721,20 +1076,305 @@ def run_sampled():
         print("=" * 74)
         return 1
     print("VERDICT: COMPUTATIONAL-EVIDENCE that 2060-plain and 2060-gist are")
-    print("         Hadamard-inequivalent.  **THIS IS NOT A PROOF.**")
+    print("         Hadamard-inequivalent.  THIS IS NOT A PROOF.")
     print()
     print("         Sampled profiles cannot prove inequivalence; every exact")
     print("         invariant computed agrees; the block-affine family is")
     print("         exhausted.  The sampled separation is real as a")
-    print("         measurement -- 7.4 sigma on the row side, 21 bins over")
-    print("         4 sigma, sign-reproduced by an independent sampler -- and")
-    print("         C4 shows exactly what such a measurement is worth: on the")
-    print("         668 pair, PROVEN inequivalent, the same statistic reads")
-    print("         1.8 sigma and zero bins.")
+    print("         measurement -- raw standardized delta 7.4 on the row")
+    print("         side, 21 bins with d > 4, sign-reproduced by an")
+    print("         independent sampler -- and C4 shows exactly what such a")
+    print("         measurement is worth: on the 668 pair, PROVEN")
+    print("         inequivalent, the same statistic reads 1.8 and zero bins.")
+    print("         d is a heuristic z-score, not a calibrated sigma: the")
+    print("         draws are paired, the denominator is the unpaired")
+    print("         variance, and 105 bins were scanned without multiplicity")
+    print("         control.  None of that is load-bearing here, because the")
+    print("         label is COMPUTATIONAL-EVIDENCE either way.")
     print()
-    print("         UPGRADE: bank data/sep2060-exact-<impl>-<tag>.json and")
-    print("         re-run.  This script detects them, applies the cert-06")
-    print("         audit chain, and the label becomes PROVEN.")
+    print("         UPGRADE: bank all four")
+    print("         data/sep2060-exact-{blas,bits}-{plain,gist}.json with")
+    print("         certs/07-2060-evidence/bank_exact.py and re-run.  The")
+    print("         cash-in is all-or-nothing; a partial or unbound bank is a")
+    print("         hard failure here, not a fall-back to this mode.")
+    print("=" * 74)
+    return 0
+
+
+# ------------------------------------------------------------- SELFTEST
+#
+# The permanent negative regression.  The profiles below are two
+# fabricated profiles with no computational relationship to either matrix.
+# They satisfy EVERY numeric identity this certificate checks --
+# nonnegative integer counts, every bin = 4 (mod 8), total C(2060,4),
+# second moment n^3(n-1)(n-2)/24 -- which is exactly why numeric
+# identities alone were never an acceptance criterion.  They are refused
+# for want of schema, of a matrix binding, and of a complete four-file
+# set.
+#
+# Everything here runs in memory through an injected loader.  No file is
+# read from or written to data/.
+
+FABRICATED = {"plain": {4: 320845991375, 60: 427309705760},
+              "gist": {4: 718686062255, 228: 29469634880}}
+
+
+def _blob(impl, tag, prof, digest):
+    """A well-formed bank file, as bank_exact.py would write it."""
+    return {"schema": SCHEMA, "n": N, "tag": tag, "impl": impl,
+            "matrix_canonical_sha256": digest,
+            "producer": "selftest synthetic (not a measurement)",
+            "profile": dict((str(k), v) for k, v in sorted(prof.items())),
+            "total": sum(prof.values()),
+            "second_moment": sum(k * k * v for k, v in prof.items())}
+
+
+def _bank(digests, profiles=None):
+    """The four files, keyed by the path the cert would glob."""
+    profiles = profiles or FABRICATED
+    out = {}
+    for impl in IMPLS:
+        for tag in TAGS:
+            base = exact_basename(impl, tag)
+            out[os.path.join(ROOT, "data", base)] = _blob(
+                impl, tag, profiles[tag], digests[tag])
+    return out
+
+
+def _refused(bank, digests, want_reason):
+    """Run the acceptance predicate over an in-memory bank."""
+    paths = sorted(bank)
+
+    def loader(p):
+        return json.loads(json.dumps(bank[p]))       # a fresh copy, no I/O
+
+    try:
+        accept_bank(paths, digests, loader)
+    except BankError as e:
+        return e.reason == want_reason, "refused: %s -- %s" % (e.reason,
+                                                               e.detail)
+    return False, "ACCEPTED -- the gate did not close"
+
+
+def selftest():
+    print("=" * 74)
+    print("cert 07 --selftest: the exact-bank acceptance predicate")
+    print("=" * 74)
+    print("\nEverything below runs in memory through an injected loader.")
+    print("No file is written; data/ is not touched; no verdict is printed.")
+
+    print("\n[0] the matrices, rebuilt for their canonical digests")
+    with open(os.path.join(ROOT, "data", "sep2060-records.json"),
+              "r", encoding="ascii") as fh:
+        recs = json.load(fh)
+    plain, gist, _raw = build_2060(recs)
+    digests = {"plain": rows_sha256(plain), "gist": rows_sha256(gist)}
+    del plain, gist
+    check("the rebuilt digests reproduce the pins",
+          digests["plain"] == SHA_PLAIN and digests["gist"] == SHA_GIST,
+          "%s... / %s..." % (digests["plain"][:16], digests["gist"][:16]))
+
+    print("\n[1] the fabricated profiles satisfy every numeric identity")
+    for tag in TAGS:
+        p = FABRICATED[tag]
+        check("%-5s  %d bins, all = %d (mod 8), total == C(2060,4), second "
+              "moment == %d" % (tag, len(p), N % 8, second_moment_want(N)),
+              all(0 <= k <= N and k % 8 == N % 8 for k in p)
+              and all(is_int(v) and v > 0 for v in p.values())
+              and sum(p.values()) == c_n_4(N)
+              and sum(k * k * v for k, v in p.items())
+              == second_moment_want(N))
+    check("the two fabricated profiles differ, so a certificate accepting "
+          "them on numeric identities alone would call them INEQUIVALENT",
+          FABRICATED["plain"] != FABRICATED["gist"])
+
+    print("\n[2] negative controls -- every one of these must be REFUSED")
+    cases = []
+
+    b = _bank(digests)
+    for p in b:
+        del b[p]["schema"]
+    cases.append(("N1  no schema field", b, "field-missing"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["schema"] = "sep2060-exact-profile/0"
+    cases.append(("N2  wrong schema version", b, "schema"))
+
+    b = _bank(digests)
+    for p in b:
+        del b[p]["matrix_canonical_sha256"]
+    cases.append(("N3  no matrix binding", b, "field-missing"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["matrix_canonical_sha256"] = "0" * 64
+    cases.append(("N4  bound to a matrix this script did not rebuild", b,
+                  "matrix-binding"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["matrix_canonical_sha256"] = digests[
+            "gist" if b[p]["tag"] == "plain" else "plain"]
+    cases.append(("N5  plain and gist bindings swapped", b, "matrix-binding"))
+
+    b = _bank(digests)
+    for p in sorted(b)[2:]:
+        del b[p]
+    cases.append(("N6  a PARTIAL set (2 of 4) -- an error, not an absence", b,
+                  "partial-set"))
+
+    b = _bank(digests)
+    b[os.path.join(ROOT, "data", "sep2060-exact-blas-plain-v2.json")] = \
+        _blob("blas", "plain", FABRICATED["plain"], digests["plain"])
+    cases.append(("N7  an unknown basename matching the glob", b,
+                  "unknown-basename"))
+
+    b = _bank(digests)
+    for p in b:
+        if b[p]["tag"] == "plain":
+            b[p]["profile"]["4"] = -320845991375
+    cases.append(("N8  a negative count", b, "profile-count"))
+
+    b = _bank(digests)
+    for p in b:
+        if b[p]["tag"] == "plain":
+            b[p]["profile"]["12"] = 0
+    cases.append(("N9  a zero-count bin", b, "profile-count"))
+
+    b = _bank(digests)
+    for p in b:
+        if b[p]["tag"] == "plain":
+            b[p]["profile"]["2068"] = b[p]["profile"].pop("60")
+    cases.append(("N10 a bin key outside [0, 2060]", b, "profile-key"))
+
+    b = _bank(digests)
+    for p in b:
+        if b[p]["tag"] == "plain":
+            b[p]["profile"]["61"] = b[p]["profile"].pop("60")
+    cases.append(("N11 a bin key not = 4 (mod 8)", b, "profile-key"))
+
+    b = _bank(digests)
+    for p in b:
+        if b[p]["tag"] == "plain":
+            b[p]["profile"]["004"] = b[p]["profile"].pop("4")
+    cases.append(("N12 a bin key not in canonical decimal form", b,
+                  "profile-key"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["total"] = c_n_4(N) - 1
+    cases.append(("N13 a declared total that is not the sum of the bins", b,
+                  "profile-total"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["second_moment"] = second_moment_want(N) - 1
+    cases.append(("N14 a declared second moment that is not the bins'", b,
+                  "profile-second-moment"))
+
+    b = _bank(digests)
+    for p in b:
+        if b[p]["impl"] == "bits" and b[p]["tag"] == "plain":
+            b[p]["profile"] = dict(
+                (str(k), v) for k, v in sorted(FABRICATED["gist"].items()))
+    cases.append(("N15 blas and bits disagreeing on one matrix", b,
+                  "impl-disagreement"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["n"] = 668
+    cases.append(("N16 the wrong order", b, "n"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["producer"] = ""
+    cases.append(("N17 no named producer", b, "producer"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["tag"] = "plain"
+    cases.append(("N18 a tag that contradicts the filename", b, "tag"))
+
+    b = _bank(digests)
+    for p in b:
+        b[p]["exact"] = True
+    cases.append(("N19 an unrecognised field", b, "unknown-field"))
+
+    for label, bank, reason in cases:
+        ok, why = _refused(bank, digests, reason)
+        check(label, ok, why)
+
+    dup = _bank(digests)
+    dpaths = sorted(dup) + [sorted(dup)[0]]
+    try:
+        accept_bank(dpaths, digests, lambda p: dup[p])
+        ok, why = False, "ACCEPTED -- the gate did not close"
+    except BankError as e:
+        ok, why = e.reason == "duplicate-basename", "refused: %s" % e.reason
+    check("N20 the same basename presented twice", ok, why)
+
+    mal = _bank(digests)
+    first = sorted(mal)[0]
+
+    def _truncated(p):
+        if p == first:                       # a truncated / non-JSON file
+            raise ValueError("Expecting value: line 1 column 1 (char 0)")
+        return json.loads(json.dumps(mal[p]))
+
+    try:
+        accept_bank(sorted(mal), digests, _truncated)
+        ok, why = False, "ACCEPTED -- the gate did not close"
+    except BankError as e:
+        ok, why = e.reason == "malformed-file", "refused: %s" % e.reason
+    except Exception as e:                   # the defect this control guards
+        ok, why = False, "ESCAPED as %s -- not a BankError" % type(e).__name__
+    check("N21 a truncated or non-JSON bank file", ok, why)
+
+    partial = dict((b, "0" * 64) for b in sorted(EXPECTED_BANK)[:3])
+    try:
+        validate_pin_coverage(partial)
+        ok, why = False, "ACCEPTED -- the gate did not close"
+    except BankError as e:
+        ok, why = e.reason == "pin-coverage", "refused: %s" % e.reason
+    check("N22 EXACT_FILE_PINS non-empty but covering only 3 of the 4 files",
+          ok, why)
+
+    print("\n[3] the positive control -- the gate must also OPEN")
+    good = _bank(digests)
+    prof = None
+    try:
+        prof = accept_bank(sorted(good), digests, lambda p: good[p])
+        opened = True
+        why = "4 files accepted, %d + %d bins" % (
+            len(prof[("plain", "blas")]), len(prof[("gist", "blas")]))
+    except BankError as e:
+        opened, why = False, "REFUSED: %s -- %s" % (e.reason, e.detail)
+    check("P1  a well-formed 4-file bank, bound to the digests rebuilt here, "
+          "IS accepted", opened, why)
+    check("P1  the accepted bank carries all four (tag, impl) profiles, blas "
+          "and bits agreeing",
+          bool(prof) and sorted(prof) == sorted((t, i) for t in TAGS
+                                                for i in IMPLS))
+
+    print("\n      P1 is the acceptance PREDICATE, not the verdict printer:")
+    print("      run_exact is not called and no verdict text is produced.")
+    print("      P1 also uses the SAME fabricated counts as the negative")
+    print("      controls, correctly bound -- and that is the point.  The")
+    print("      acceptance layer checks form and DECLARED identity.  It")
+    print("      cannot check that the counts came from the matrix.  A")
+    print("      self-declared digest is not proof of computation; the proof")
+    print("      of computation is the producer's registered run.")
+
+    print("\n" + "=" * 74)
+    if FAIL:
+        print("cert 07 --selftest: FAIL (%d): %s" % (len(FAIL), FAIL))
+        print("=" * 74)
+        return 1
+    print("cert 07 --selftest: PASS.  %d negative controls refused for the"
+          % (len(cases) + 3))
+    print("expected reason; the positive control accepted.  The exact-mode")
+    print("gate closes on the fabricated bank AND opens on a well-formed one.")
     print("=" * 74)
     return 0
 

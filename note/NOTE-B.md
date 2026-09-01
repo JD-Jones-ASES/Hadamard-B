@@ -5,8 +5,11 @@ This note is the mathematics of the repository, in three movements:
 - **I. The theorems** (§1) — an exact characterisation of when a
   Goethals–Seidel array over a finite abelian group extends to a
   Hadamard matrix through a *coset border* of width `4s`; the forced
-  parameter classification; and the complete resolution of the
-  `s = 1` border system.
+  parameter classification **within the house-Gram branch, under
+  `w > 2s`** (with `n ≥ 3` the surviving cells are `(0,1)`, `(1,1)`
+  and `i = s+1` with `s` odd; that the house Gram is itself forced
+  for `s ≥ 2` is a **conjecture**, §1.2); and the complete
+  resolution of the `s = 1` border system.
 - **II. The instances** (§2) — twelve publicly posted matrices
   re-verified through the theorem's hypotheses, and eight matrices
   constructed here, every one replayable from `certs/`.
@@ -357,6 +360,63 @@ construction written with `i = 2` bookkeeping). So the house-`M`
 question of §1.2 is **closed at `(s,i) = (1,2)`**; it stays open for
 `s ≥ 2`.
 
+**(D-a′) The degenerate branch collapses — and this is exactly what
+that means.** In the branch `M = 4J₂`, (H2) reads `Σ PAF(t) = −4` for
+**every** `t ≠ 0`: both tiers coalesce, and the profile is the `i = 1`
+profile. The claim is stronger than that, and is about the border, not
+only the seeds. Write `P₁[r][J] = P[r][2J]` and `Q₁[I] = Q[2I]`.
+
+- ***`Q` pairs up.*** `(QQᵀ)[2I, 2I+1] = M(1) = +4` and the rows of `Q`
+  are `±1` of length `4`, so `Q[2I+1] = Q[2I] = Q₁[I]`; the
+  cross-superblock zeros then make `Q₁` a 4×4 Hadamard matrix. (This is
+  (D-b) with the sign reversed: `+4` forces equality where `−4` forces
+  negation.)
+- ***The compressed blocks.*** Read Lemma 3's three cases on `Ḡ = ℤ₂`:
+  a developed block of `Ĉ` contributes `δ_q`, a reflected or
+  transposed-reflected one contributes `εδ_q` — which is the `ε` in
+  `d`. So at every block position `(I,J)`, for all `c, c′`,
+
+  ```
+  Ĉ[(I,1),(J,c′)] − Ĉ[(I,0),(J,c′)] = −(−1)^{c′}·Λ(d)[I][J]
+  Ĉ[(I,c),(J,0)] + Ĉ[(I,c),(J,1)]  =              Λ(r)[I][J]
+  ```
+
+  — the (D-d) table differenced, and the same table summed. Both sides
+  are linear in the eight coset sums, so both are identities of `ℤ[σ]`
+  (cert 10 checks them on an interpolation grid, for `ε = ±1`).
+- ***`P` pairs up.*** By the first item `E Qᵀ` has `col(2I+1) = col(2I)`,
+  so by (H4) `P Ĉᵀ` must too; by the second item that difference is
+  `−Λ(d)·b_r` with `b_{rJ} = P[r][2J] − P[r][2J+1]`. The Fourier
+  identity of D4's proof, at the character trivial on `K` and
+  nontrivial on `G`, reads `Σ_q δ_q² = Σ̄(0) − Σ̄(1)`; the degenerate
+  profile gives `Σ̄(0) = 4n − 4(w−1)` and `Σ̄(1) = −4w`, so
+  `Σ_q δ_q² = 4n + 4 = N`, and `ε² = 1` gives `Σ_q d_q² = N` too. Hence
+  `Λ(d)Λ(d)ᵀ = N·I₄` is nonsingular, `b_r = 0`, and
+  **`P[r][2J+1] = P[r][2J]`** — again a theorem, not a choice. (Exact
+  mirror of (D-c): there `Σ_q δ_q² = 4` while `Σ_q r_q² = N`, and it is
+  `Λ(r)` that is inverted, killing the *sum* instead of the
+  difference.)
+- ***So the strips are constant on all of `G`.***
+  `P̃[r,(J,h)] = P₁[r][J]` and `Q̃[(I,g),c] = Q₁[I][c]`, with no
+  dependence on `h` or `g` — which *is* the `i = 1` ansatz, on
+  `(G, K′ = G)`. The hypotheses transport termwise: (H2) is the `i = 1`
+  profile; `Q₁Q₁ᵀ = 4I₄` is (H1) with `M₁ = (4)`; `P Pᵀ = 2·P₁P₁ᵀ`
+  turns (H3) into `EEᵀ + n·P₁P₁ᵀ = N·I₄`; and (H4) read at `c = 0`,
+  with the row-sum identity above, becomes `E Q₁ᵀ + P₁Λ(r)ᵀ = 0`, i.e.
+  `E = −¼·P₁·Λ(r)ᵀ·Q₁` — the `i = 1` border equation, with the row-sum
+  vector `r` where the genuine branch has `d`. (The `c = 1` component
+  is the same equation: the two rows of a block of `Ĉ` have equal row
+  sums.) Conversely, doubling any `i = 1` border gives (H1)–(H4) with
+  `M = 4J₂`.
+
+Doubling is therefore a **bijection** between the `(s,i) = (1,1)`
+borders on `(G, ρ)` and the degenerate-branch `(s,i) = (1,2)` borders
+on `(G, K, ρ)` for the same seeds, and it does not move the assembled
+matrix: `H` and `H₁` are equal entry for entry. The degenerate branch
+contains no seed quadruple, no border and no matrix that the classical
+`s = 1, i = 1` construction does not already contain; `K` is invisible
+in its data. ∎
+
 **(D-b)** In the genuine branch, `M(1) = −4` forces
 `Q[2I+1] = −Q[2I]`; writing `u_I = Q[2I]`, cross-superblock
 orthogonality makes `U = (u_0;…;u_3)` a 4×4 Hadamard matrix — `Q` is
@@ -392,30 +452,49 @@ comprise eight even vectors `±2e_j` and sixteen odd vectors
 24; but **seed-derived data is always even** — each coset sum
 satisfies `σ_q(c) ≡ w (mod 2)`, so `δ_q = σ_q(0) − σ_q(1) ∈ 2ℤ` —
 so the realizable vectors are exactly `d = ±2e_j`. Every one of the
-24 abstract arguments admits a border (MEASURED: exhaustively, over
-all `768²` ordered pairs of 4×4 Hadamard `(p,U)`, every `±2e_j`
-admits exactly `½` of the pairs and every odd vector exactly `¾`;
-mechanism: an orthogonal basis of `{±1}⁴` is one of the two
-weight-parity cosets of `F₂³`, and `E` is `±1` iff the row-classes
-of `p·Λ(d)ᵀ/2` and the column-classes of `U` are the different
-coset); for genuine `i = 2` data only the `±2e_j` half of that
-census is in play. And the `i = 1` universal border
-transports verbatim: with `P[r][2J+c] = (−1)^c·P₁[r][J]`,
-`Q[2I] = Q₁[I]`, `Q[2I+1] = −Q₁[I]`, `E = E₁`, an `i = 1` border is
-a valid `i = 2` border whenever `d = (2,0,0,0)`.
+24 abstract arguments admits a border — **PROVEN-BY-CERTIFICATE**, by
+the complete census of cert 10 over all `768²` ordered pairs of 4×4
+Hadamard `(p,U)`: every `±2e_j` admits exactly `½` of the pairs
+(`294 912`) and every odd vector exactly `¾` (`442 368`).
+*Mechanism.* The four rows of a 4×4 Hadamard matrix lie in one of the
+two weight-parity cosets of `{±1}⁴ ≅ F₂⁴` (the even-weight subgroup
+`F₂³` and its complement), and so do its four columns; write
+`W = p·Λ(d)ᵀ/2`, integral with `W Wᵀ = 4I₄` (from `Λ(d)ᵀΛ(d) = 4I₄`
+and `p pᵀ = 4I₄`), so its rows have square norm 4. Either every row of
+`W` is a sign vector, all of one class, and then `E` is `±1` iff that
+class differs from the column class of `U` — exactly half the `U`; or
+every row is a spike `±2e_k`, and then every `U` is admitted. For
+`d = ±2e_j` only the first case occurs (`½`); for odd `d` the 768 `p`
+split `384/384` between the two cases, giving `½·½ + ½·1 = ¾`. (The
+spike case is the second half of the mechanism, and it is what
+separates `¾` from `½`.) For genuine `i = 2` data only the `±2e_j`
+part of that census is in play. Borders transport across the
+doubling: with `P[r][2J+c] = (−1)^c·P₁[r][J]`, `Q[2I] = Q₁[I]`,
+`Q[2I+1] = −Q₁[I]`, `E = E₁`, an `i = 1` border for seeds with
+row-sum vector `r` is a valid `i = 2` border exactly when `d = r`,
+since the transported system reads `P₁Λ(d)ᵀ = P₁Λ(r)ᵀ` and `Λ` is
+injective with `P₁` invertible. The four `(s,i) = (1,1)` records
+here all have `r = (2,0,0,0)`, so their transports land at
+`d = (2,0,0,0)`.
 
 **One sentence:** *at `s = 1` the `i = 1` and `i = 2` border systems
 are the same 4×4 system `E Uᵀ + p Λ(·)ᵀ = 0`; only the argument
 changes, from the row-sum vector `r` to the twisted vector `d`.*
 
 Theorem D is stated for the standard orientation only, and its
-sufficiency direction inherits from Theorem A. Every clause is
-machine-validated on the four `i = 2` instances of §2, and the
-theorem is *gated*: a brand-new `s = 1, i = 2` instance on the
-non-cyclic group `G = ℤ₂×ℤ₂×ℤ₃` (the `ε = +1` branch, which the
-four instances do not exercise) was built from scratch and verifies
-green — `H(52)`, cert 03. Label: PROVEN (paper-grade) + MEASURED
-(4/4 clauses) + PROVEN-BY-CERTIFICATE (the gate).
+sufficiency direction inherits from Theorem A. Clauses (D-b)/(D-c)
+are machine-validated on the four `i = 2` instances of §2 (cert 02),
+and all four clauses (D-a)–(D-d) on the `H(52)` gate instance
+(cert 03); all four §2 instances have the house Gram, so none of them
+exercises (D-a′) — whose content is precisely that its branch holds
+nothing new to exercise. The theorem is *gated*: a new
+`s = 1, i = 2` instance on the non-cyclic group `G = ℤ₂×ℤ₂×ℤ₃` (the
+`ε = +1` branch, which the four instances do not exercise) was built
+from scratch and verifies green — `H(52)`, cert 03. Label: PROVEN
+(paper-grade) + MEASURED ((D-b)/(D-c) on the four `i = 2` instances,
+cert 02; all four clauses on the gate instance, cert 03) +
+PROVEN-BY-CERTIFICATE (the gate, cert 03; the `768²` census of (D-e)
+and the compressed-block identities of (D-a′)/(D-d), cert 10).
 
 ### 1.6 Corollary (the index-2 collapse) — PROVEN
 
@@ -444,19 +523,24 @@ the binding constraint is the character trivial on `K` but not on
 
 ## 2. Movement II — the instances
 
-Everything in this section is replayable: each cert directory under
-`certs/` rebuilds its matrices from the small banked data in
-`data/`, re-checks the theorem hypotheses in exact stdlib integer
+Everything in this section is replayed in the strict sense — nothing
+here is audited from a bank. Each cert directory under `certs/`
+rebuilds its matrices from the small banked data in `data/`,
+re-checks the theorem hypotheses in exact stdlib integer
 arithmetic, hands every matrix to `verify/verify.py` (the trust
 chain), and compares the canonical SHA-256 against the digest pinned
 in its `NOTES.md`. Large matrices are regenerated, never committed.
+(Movement III is where the word needs care: the exact 4-profiles
+there are **audited** on the default path and **recomputed** only
+under `--full`. §3.4 says which is which.)
 
-### 2.1 The twelve public records — PROVEN-BY-CERTIFICATE (replay)
+### 2.1 The twelve public records — PROVEN-BY-CERTIFICATE (full replay)
 
 Seed data encoding twelve Hadamard matrices at orders 668, 716,
 892, 1132, 1244, 1388, 1436, 1676, 1772, 1916, 1948 and 1964 was
 posted publicly on 2026-08-12 (the sign-stream); expanded matrices
-for ten of the twelve appeared on GitHub from 2026-08-13 (see
+for ten of the twelve appeared in a third-party GitHub repository
+created and pushed the same day, 2026-08-12 UTC (see
 `PROVENANCE.md`). The parameter records banked in
 `data/payload-records.json` — group, seeds, reflection, coset
 divisors, and border tables — were **decoded here from those public
@@ -526,11 +610,12 @@ For rows `i ≠ j` let `u_ij[c] = H[i][c]·H[j][c]`, and for a 4-subset
   > **Trap 2 (documented, measured).** The *signed* `T4` histogram is
   > **not** an invariant — only `|T4|` is. Measured on a provably
   > equivalent pair at order 1916, the signed histogram manufactures
-  > a `7σ` false separation (20 bins over `4σ`); folded, the same
-  > data reads exactly zero. The signed statistic is uncalibrated in
-  > both directions (it also reads `36.6σ` on the 668 pair where the
-  > folded truth is `1.8σ`). Every histogram in this repository is
-  > folded at measurement.
+  > a false separation at `d = 7` (20 bins with `d > 4`; `d` is the
+  > raw standardized delta of §3.5); folded, the same data reads
+  > exactly zero. The signed statistic is uncalibrated in both
+  > directions (it also reads `d = 36.6` on the 668 pair where the
+  > folded truth is `d = 1.8`). Every histogram in this repository
+  > is folded at measurement.
 - **I6 — `p`-rank**, `p` an odd prime dividing `n` (all four factors
   of an equivalence are invertible over `F_p`).
 
@@ -557,9 +642,11 @@ made for the full histogram — cheaper invariants can and do resolve
 *other* pairs. The point is pair-specific: on the 668 pair below,
 *every* cheap invariant — I1–I4, I6, `dim W`, the dual
 weight enumerator — returns identical values (the source
-laboratory's measurements; cert 06 replays the `F₂`-rank pair and
-the full profile chain), and `2·10⁷` samples of I5 cannot tell the
-pair apart (`max |z| = 1.8`); only the exact 4-profile separates. Matching invariants are never evidence of
+laboratory's measurements; cert 06 recomputes the `F₂`-rank pair
+here and audits the banked exact profiles, which `--full`
+recomputes), and `2·10⁷` samples of I5 cannot tell the
+pair apart (`max d = 1.8`, the raw standardized delta of §3.5); only
+the exact 4-profile separates. Matching invariants are never evidence of
 equivalence, and this pair is the proof.
 
 ### 3.3 Order 1916: the twist that is not a new matrix — PROVEN-BY-CERTIFICATE
@@ -585,7 +672,16 @@ new.
 "different profiles ⟹ inequivalent" are paper proofs; the three
 exact profiles and six transpose comparisons are certified machine
 computations — certs 06 and 08. The composite label reflects that
-split.)*
+split. Where those computations ran matters, so it is stated here:
+the `C(668,4)` enumerations were made in the source laboratory and
+banked. A default run of cert 06 or 08 **audits** those banks — the
+file digests, the declared matrix identity against the matrix
+rebuilt in that same run, the forced congruence, the total, the
+second moment, and bin-for-bin agreement of two independent
+implementations — and the `--full` flag **recomputes** the profiles
+here from the rebuilt rows. Cert 08's `--full` has been run to
+completion inside the repository, and cert 06's on its `blas` leg;
+each cert's `NOTES.md` records which legs ran and when.)*
 
 > **Theorem.** Order 668 carries at least **three** Hadamard
 > equivalence classes. They are exhibited by the decoded `(1,1)`
@@ -609,8 +705,9 @@ Hadamard equivalence classes, and it precedes this repository
 either way. Its
 `H` is **byte-identical to the decoded record banked here** — an
 independent decode of the same public data, border included, which
-corroborates ours and confirms that neither party owns the
-construction data. Its second matrix `H★` is a 1,328-entry paired
+corroborates ours and confirms that neither party originated the
+construction data independently of the public posting; neither claims
+priority over it. Its second matrix `H★` is a 1,328-entry paired
 Hall switch of `H`, rebuilt here from its published data and
 verified (both its SHA-256 digests reproduce). Its separating
 statistic `Φ_M` — the correlation profile of a distinguished type-1
@@ -686,17 +783,32 @@ The formerly-open order 2060 carries two candidate classes among
 public+banked artifacts: the publicly posted matrix and the plain
 GS-array realisation over the same decoded seed (the `×104`
 character twist relates the two seeds). Every exact invariant we
-computed agrees between them. The **sampled** 4-profiles differ: at
-`2·10⁷` paired draws the difference resolves at `max |z| = 7.4`
-(row side, 21 bins over `4σ`) and `7.1` (column side, 13 bins), in a
-coherent monotone pattern across consecutive bins — more peaked,
-heavier-tailed — whose deficits and excesses balance as they must.
-The independent second sampler, at `3·10⁶` draws, does not by itself
-reach `4σ` (as `√N` scaling predicts); its corroboration is sign
-agreement on 29 of the 34 bins the first sampler resolves — the 29
-where the second has enough mass to compare. The calibration
+computed agrees between them. The **sampled** 4-profiles differ.
+
+*What the statistic is.* Per bin, with counts `p` and `q` at equal
+sample size and `p + q ≥ 200`, the reported quantity is the **raw
+standardized delta** `d = |p − q| / √(p + q)` — the deviate of a
+Poisson common-mean approximation. It is a heuristic z-score, **not
+a calibrated sigma**, and this note does not treat it as one. The
+draws *are* paired: one seeded 4-subset stream, depending only on
+the seed and on `n`, is evaluated on both matrices. The denominator,
+however, is the *unpaired* variance, and the per-bin discordance
+counts a paired variance needs were never banked, so the correction
+is not recoverable from this repository's data. `105` per-bin
+comparisons were scanned across the two samplers' row and column
+sides, with **no multiplicity control**. Cert 07's `NOTES.md` gives
+the full accounting.
+
+At `2·10⁷` paired draws the difference resolves at `max d = 7.4`
+(row side, 21 bins with `d > 4`) and `7.1` (column side, 13 bins),
+in a coherent monotone pattern across consecutive bins — more
+peaked, heavier-tailed — whose deficits and excesses balance as they
+must. The independent second sampler, at `3·10⁶` draws, does not by
+itself reach `d = 4` (as `√N` scaling predicts); its corroboration
+is sign agreement on 29 of the 34 bins the first sampler resolves —
+the 29 where the second has enough mass to compare. The calibration
 that keeps this honest: the same sampled statistic reads null
-(`max |z| ≤ 2.2`, zero bins over `4σ`) on the 668 pair that §3.4
+(`max d ≤ 2.2`, zero bins with `d > 4`) on the 668 pair that §3.4
 **proves** inequivalent. No equivalence exists in the block-affine
 family (BOUNDED-NEGATIVE-SEARCH: exhaustive over that family, silent
 beyond it). Label: **COMPUTATIONAL-EVIDENCE of inequivalence — not a
@@ -838,8 +950,10 @@ mistaken for the object below.
 Ours are: the border whose **strips are constant on the cosets of a
 proper subgroup** `K ≤ G` of index `i ≥ 2` (realised at
 `s = 3, 5, 7`), on a single four-block Goethals–Seidel core; the
-**iff** (Theorem A); the **classification** (Theorem C: `i = s+1`,
-`s` odd, under `w > 2s`); Theorem D and the index-2 collapse; the
+**iff** (Theorem A); the **classification** (Theorem C: in the
+house-Gram branch, under `w > 2s`, and with `n ≥ 3` for the three
+cells — `i = s+1`, `s` odd, beyond `(0,1)` and `(1,1)`); Theorem D
+and the index-2 collapse; the
 twist propositions; and the separation theorem of §3.4. The
 `s ≤ 1` layer is classical as credited above, and the parameter
 records instantiating `s = 3, 5, 7` are the announcing team's
@@ -870,8 +984,9 @@ verifies one supplied matrix. Neither states the general
 construction theorem or the classification; a formalised Theorem
 A/B remains a distinct object, planned separately. The anonymous
 vercel-668 preprint (§3.4) independently decoded the same record,
-border included, and was first to publish an inequivalence at the
-order; its priority is stated in §3.4. Public s=1 readings of the
+border included, and is — as far as our search located — the first
+published statement of an inequivalence at the order; the bounded
+priority statement is §3.4. Public s=1 readings of the
 same data (independent posts of 2026-08-31) are noted in
 `PROVENANCE.md` as corroboration that the construction is broadly
 understood.
@@ -882,13 +997,13 @@ understood.
 
 | claim | label |
 | --- | --- |
-| Theorem A (iff); Theorem B; Lemmas 1–3; Theorem C + classification | **PROVEN** (paper-grade; not machine-checked) |
-| Theorem D (D-a … D-e); the index-2 collapse corollary | **PROVEN** (paper-grade) + **MEASURED** (every clause machine-validated 4/4) |
+| Theorem A (iff); Theorem B; Lemmas 1–3; Theorem C + the classification — within the house-Gram branch, under `w > 2s`, and with `n ≥ 3` for the three surviving cells | **PROVEN** (paper-grade; not machine-checked) |
+| Theorem D (D-a, D-a′, D-b … D-e); the index-2 collapse corollary | **PROVEN** (paper-grade) + **MEASURED** ((D-b)/(D-c) machine-validated on the four `i = 2` instances, cert 02; all four clauses (D-a)–(D-d) on the `H(52)` gate, cert 03) + **PROVEN-BY-CERTIFICATE** (the `768²` census of (D-e), and the compressed-block identities (D-a′)/(D-d) rest on; cert 10) |
 | Lemma T; the `ψ(ρ)=1` conjugation proposition | **PROVEN** |
 | the twelve public records satisfy every hypothesis | **MEASURED** (cert 01, 12/12) |
 | the twelve assembled matrices are Hadamard and match their pinned digests | **PROVEN-BY-CERTIFICATE** (cert 01) |
 | the eight matrices constructed here (certs 02–05) | **PROVEN-BY-CERTIFICATE** |
-| at `(s,i) = (1,2)` the genuine branch's Gram is house (the alternative is the degenerate `i=1` rewriting) | **PROVEN** (Theorem D-a) |
+| at `(s,i) = (1,2)` the genuine branch's Gram is house (the alternative is the degenerate `i=1` rewriting) | **PROVEN** (Theorem D-a); that the degenerate branch really is the `i = 1` construction — same borders, same matrices — is (D-a′) |
 | `M` house form forced for `s ≥ 2` (up to twist) | **CONJECTURE** |
 | all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance | **PROVEN-BY-CERTIFICATE** (cert 09) |
 | **order 668 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 26/27/27 differing bins, two independent implementations per matrix; cert 06/08) |

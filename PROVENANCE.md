@@ -1,13 +1,20 @@
 # PROVENANCE — the dated chain for everything sourced from outside
 
-Two bodies of external material enter this repository: the twelve
-publicly posted Hadamard matrices verified in movement II, and the
-publicly posted matrix of order 2060 used in movement III. Both chains
-are given below with their dates, their retrieval, and the digests that
-pin them. Nothing else here comes from outside; what is this
-laboratory's own is stated at the end.
+Three bodies of external material enter this repository: the twelve
+publicly posted Hadamard matrices verified in movement II (the
+announcement's sign-stream tape and its decoder, the third-party
+GitHub decode, and the relayed zip of twelve CSVs); the publicly
+posted matrix of order 2060 used in movement III; and the anonymous
+order-668 inequivalence preprint at `hadamard-668.vercel.app`, whose
+published Hall-switch data is banked in `data/sep668-hall-switch.json`
+and rebuilt by cert 08 — its chain is under *Independent public
+corroboration* below. Each chain is given with its dates, its
+retrieval, and the digests that pin it. Nothing else here comes from
+outside; what is this laboratory's own is stated at the end.
 
-File digests are recorded at freeze.
+**Dates in this document are UTC**, retrieval dates included; a
+timestamp quoted from a source keeps that source's own zone and is
+marked where that zone is not UTC. File digests are recorded at freeze.
 
 ## The twelve public records
 
@@ -21,7 +28,7 @@ posts and no paper:
 | post | what it is |
 | --- | --- |
 | `https://x.com/__alpoge__/status/2087504785952182273` | the payload. `created_at` **Wed Aug 12 11:41:39 +0000 2026**; body is pure `+`/`-`, 23,828 characters, `display_text_range = [0, 23828]`, no prose at all. Read firsthand through the fxtwitter API mirror on **2026-08-16** and again through `og:description` on **2026-08-31**. |
-| `https://x.com/__alpoge__/status/2087504788938510427` | the decoder: an obfuscated POSIX-shell program, 6,130 bytes, that reads the first post as an input tape. The program itself was extracted and read firsthand (SHA-256 `cf0ac77c3c6329d7d904466c18e653229521913ed19f2535322a9c5abc986f05`); **the status URL is recorded from a relayed station's script, not fetched from X by this laboratory** — the 2026-08-16 sweep could not enumerate the author's timeline. |
+| `https://x.com/__alpoge__/status/2087504788938510427` | the decoder: an obfuscated POSIX-shell program, 6,130 bytes, that reads the first post as an input tape. The program itself was extracted and read firsthand (SHA-256 `cf0ac77c3c6329d7d904466c18e653229521913ed19f2535322a9c5abc986f05`); the post itself was read firsthand through the fxtwitter API mirror on **2026-09-01** — author `__alpoge__`, `created_at` **Wed Aug 12 11:41:40 +0000 2026**, its text opening with the sed-substitution decoder that matches the extracted script. X's own oEmbed endpoint returned HTTP 402 to this laboratory, so no oEmbed retrieval is claimed; the pinned full-script digest remains the stronger content bind. |
 | `https://x.com/__alpoge__/status/2087504790435840207` | the credits, verbatim and entire: *"weekend fun w @tehwalris, Saul Reynolds-Haertle, and of course claude:)) i only claim bad suggestions!!"* (`@tehwalris` = Philippe Voinov). Read firsthand through `og:description` on **2026-08-31**. |
 
 **What was disclosed: data and a decoding grammar. No method.** No
@@ -32,18 +39,21 @@ corroboration* below). The public record of the event, as read on
 (edited 2026-08-12) credits Philippe Voinov, Saul Reynolds-Haertle,
 Claude and Alpöge and states that no further details of the
 construction were provided; OEIS A007299's 2026 history line lists the
-same twelve orders; and the earliest public reading of the second post
-— that it expands the tape through a Goethals–Seidel construction, and
-which twelve orders it covers — is a third-party post,
-`https://x.com/adi_baradwaj/status/2087620459185819903`
-(2026-08-12 19:21 UTC).
+same twelve orders; and an early public prose description of what the
+second post does — that it expands the tape through a Goethals–Seidel
+construction, and which twelve orders it covers — is a third-party
+post, `https://x.com/adi_baradwaj/status/2087620459185819903`
+(2026-08-12 19:21 UTC). It is *not* claimed to be the earliest public
+reading: the third-party GitHub decode below, which already held the
+decoder and its expanded outputs, was created and pushed the same day
+at 17:28–17:35 UTC.
 
 ### The public artifacts, and how they are pinned
 
 | artifact | retrieved | pin |
 | --- | --- | --- |
 | **the tape** — the 23,828-character sign stream of the payload post | fetched through the fxtwitter API mirror **2026-08-16**, re-fetched and banked **2026-08-28** | normalised sign stream, SHA-256 `5b5fe8fa42f0d6a8b4e4c9926726d82a6aab8e1070c1ae4d1b430c1277e58db4`, length 23,828. This digest is carried in `data/payload-records.json` (`tape_sha256`). |
-| **the expanded matrices** — `github.com/foocker/Hadamard668`, a third-party public decode created **2026-08-13**, the day after the announcement | cloned read-only **2026-08-28** | its `answer.md` normalises to the same tape digest. It held ten complete matrices; its H(1948) stopped at **603 complete rows plus a 305-entry partial row — 1,174,949 of 3,794,704 entries, 30.96 % of that matrix** — and it held no H(1964) at all. Its decoder script was **never executed**; its outputs were used as data only. |
+| **the expanded matrices** — `github.com/foocker/Hadamard668`, a third-party public decode created and pushed **2026-08-12 UTC**, hours after the announcement (repository metadata read through the GitHub API on 2026-09-01: `created_at` `2026-08-12T17:28:39Z`, `pushed_at` `2026-08-12T17:35:13Z`, its commit `f951552a…` dated `2026-08-12T17:35:01Z`, subject "Add Hadamard matrix, decoder, and visualizations". Those are creation and push times; the repository's own metadata does not establish when it became visible to any particular reader, and no such claim is made) | cloned read-only **2026-08-28**; metadata re-read **2026-09-01** | its `answer.md` normalises to the same tape digest. It held ten complete matrices; its H(1948) stopped at **603 complete rows plus a 305-entry partial row — 1,174,949 of 3,794,704 entries, 30.96 % of that matrix** — and it held no H(1964) at all. Its decoder script was **never executed**; its outputs were used as data only. |
 | **a zip of twelve CSVs**, circulated as the announcement matrices | received by relay and verified **2026-08-31** | 4,873,392 bytes, SHA-256 `503a4352f282a3d0141a1814b4f89036961524934670a5603ec33a95ea6f179d`; twelve entries, all `open_hadamard/hadamard_<N>.csv`, internal mtimes all `2026-08-12 05:58:58`. That it was posted by Sumeet Motwani (`@sumeetrm`) on Google Drive as Alpöge's matrices is **REPORTED-FROM-SECONDARY-SOURCE**; no source URL is recorded here. Nothing in this repository rests on that attribution. |
 
 The three copies agree. All twelve matrices of the zip verify green in
@@ -72,7 +82,8 @@ all four orders.
 The decode was performed here, from the public artifacts, through this
 laboratory's own standard-library code; the segmentation grammar is the
 announcement's own second post, read firsthand as above. **No
-third-party method disclosure was used — none exists.** The
+third-party method disclosure was used, and none was located in the
+sources enumerated here as of 2026-08-31.** The
 correctness of the decode is not asserted, it is replayed: each cert
 rebuilds its matrices from these records and hands them to
 `verify/verify.py`. No generated matrix is committed; the certificates
@@ -126,8 +137,11 @@ Neither the gist nor the post discloses a construction method. The
 artifact was located and downloaded directly from the gist URL and
 verified firsthand; nothing in this repository depends on the post.
 
-**Credit for the order-2060 matrix is Schneider's, and he published its
-construction first.** `github.com/schneiderlo/hadamard-2060` (created
+**Credit for the order-2060 matrix is Schneider's: he is the public
+source and publisher of the artifact, and his own repository later
+gave a producer-side construction for it.** No universal firstness and
+no sole mathematical authorship is asserted here.
+`github.com/schneiderlo/hadamard-2060` (created
 **2026-08-25T23:38:42Z**, last push 2026-08-27T13:40:24Z) gives the
 Cooper–Wallis route `T(103) ⊗ W(5) → H(2060)` from the producer's own
 side; its explicit matrix file (SHA-256
@@ -179,12 +193,16 @@ date and are re-checked at release.
   paired Hall switch of `H`, rebuilt and verified here (both its
   published digests reproduce). The priority statement it carries, and
   what remains this laboratory's, are in NOTE-B.md §3.4.
-- **The `s = 1` layer is being read publicly.** On 2026-08-31 a third
-  party (Tavis Rudd, `@tavisrudd`) posted, quote-tweeting the
+- **The `s = 1` layer is being read publicly.** On **2026-08-30** a
+  third party (Tavis Rudd, `@tavisrudd`) posted, quote-tweeting the
   announcement, the `s = 1` bordered Goethals–Seidel lemma with the row
   sums and the `Σ PAF ≡ −4` profile at the 668 instance
   (`x.com/tavisrudd/status/2093926416492732579`, read firsthand via
-  `og:description`). That lemma is classical — Wallis–Whiteman 1972, with
+  `og:description` on **2026-08-31** — the retrieval date; the post's
+  publication time is `2026-08-30T04:58:55Z`, decoded on 2026-09-01
+  from the status id's snowflake timestamp, the formula validated
+  against the announcement payload post's known `created_at`). That
+  lemma is classical — Wallis–Whiteman 1972, with
   Spence 1975 the even sibling (NOTE-B.md §4) — and the post is recorded
   here as independent corroboration of the `s = 1` reading of the public
   payload, not as a source.
@@ -241,3 +259,14 @@ To be executed at the public flip, and the date filled in above.
       version cited here.
 - [ ] **Digests.** Record the `data/` file digests and pin them in this
       document, replacing the placeholder line at the top.
+- [ ] **Cert 07's exact-file pins.** If the registered order-2060 exact
+      bank has landed, populate `EXACT_FILE_PINS` in
+      `certs/07-2060-evidence/run.py` from the digests
+      `bank_exact.py` prints, and re-run the cert. All four, or none:
+      a non-empty pin dict that does not name exactly the four expected
+      basenames is a hard `pin-coverage` failure. If it has not
+      landed, leave the pins empty and the certificate in its sampled
+      mode — a partial bank is a hard failure, never a fallback.
+- [ ] **`CITATION.cff`.** Set `date-released` to the flip date. It is
+      deliberately absent while the repository is private, so that the
+      metadata does not describe a release that has not occurred.

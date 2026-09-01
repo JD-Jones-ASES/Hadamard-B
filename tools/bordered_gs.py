@@ -63,8 +63,16 @@ USAGE
                               --out <scratch dir>
                               [--only 668,716] [--no-verify]
 
-Exit code 0 iff every record passed every hypothesis, the compression
-lemma cross-check, and (unless --no-verify) verify.py returned HADAMARD.
+--only takes a comma-separated list of orders.  Every requested order
+must be present in the record set: a request naming an order the bank
+does not hold is a hard failure naming the missing orders, not a quiet
+run over whatever did match.  Likewise a selection of zero records is a
+failure, not a vacuous pass.
+
+Exit code 0 iff at least one record was selected and every selected
+record passed every hypothesis, the compression lemma cross-check, and
+(unless --no-verify) verify.py returned HADAMARD.  Exit code 2 is a
+usage/selection error (bad or unsatisfiable --only, empty record set).
 """
 
 import argparse
@@ -213,7 +221,7 @@ def check_record(rec, verbose=True):
 
     # The assembly below is the house ("standard") orientation ONLY.  A
     # record declaring any other gs_variant must be refused, not silently
-    # assembled wrong (turn-42 skeptic item 6; D-049.1 scope clause).
+    # assembled wrong: this checker implements the standard orientation only.
     variant = rec.get("gs_variant", "standard")
     rep["gs_variant"] = variant
     if variant != "standard":
@@ -508,8 +516,42 @@ def main(argv=None):
         bank = json.load(fh)
     recs = bank["orders"] if "orders" in bank else [bank]
     if args.only:
-        want = {int(x) for x in args.only.split(",")}
+        want = set()
+        for tok in args.only.split(","):
+            tok = tok.strip()
+            if not tok:
+                continue
+            try:
+                want.add(int(tok))
+            except ValueError:
+                print("ERROR: --only: %r is not an order" % (tok,))
+                print("ALL OK: False")
+                return 2
+        if not want:
+            print("ERROR: --only was given but names no orders")
+            print("ALL OK: False")
+            return 2
+        have = {int(r["order"]) for r in recs}
+        missing = sorted(want - have)
         recs = [r for r in recs if int(r["order"]) in want]
+        if missing:
+            print("ERROR: --only requested %d order(s) absent from %s: %s"
+                  % (len(missing), args.params,
+                     ", ".join(str(m) for m in missing)))
+            print("       matched %d of %d requested; present orders: %s"
+                  % (len(want) - len(missing), len(want),
+                     ", ".join(str(o) for o in sorted(have))))
+            print("ALL OK: False")
+            return 2
+
+    # An empty selection must never report success: nothing was checked.
+    # (With --only this is already caught above, since every requested
+    # order must be present; this catches an empty record set.)
+    if not recs:
+        print("ERROR: no records selected from %s -- nothing was checked"
+              % args.params)
+        print("ALL OK: False")
+        return 2
 
     os.makedirs(args.out, exist_ok=True)
     results = []

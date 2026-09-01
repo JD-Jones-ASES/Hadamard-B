@@ -1,12 +1,22 @@
 #!/usr/bin/env python3
 """full_recompute.py -- the exact |T4| 4-profile, recomputed with numpy.
 
-NOT IN THE TRUST CHAIN, AND NOT ON THE DEFAULT PATH.  cert 06's `run.py`
-imports this module only under `--full`; nothing else in the repository
-touches it, and no claim rests on it that is not already established by
-the banked profiles the default path audits.  numpy is finder-side only.
+NOT IN THE TRUST CHAIN, AND NOT ON ANY DEFAULT PATH.  Two certificates
+import this module, each only under its own `--full` flag: cert 06 (which
+owns the file) and cert 08, which inserts this directory on `sys.path`
+rather than keeping a second copy, so the two cannot drift apart.
+Nothing else in the repository touches it.  numpy is finder-side only.
 The trust chain for the matrices themselves is `verify/verify.py`, which
 is standard library and exact-integer throughout.
+
+WHAT `--full` ADDS.  The default path of both certificates AUDITS banked
+histograms: it pins the bank files, re-derives the matrices, and puts each
+profile through the forced congruence, total and second-moment identities.
+No audit shows that a banked histogram was computed FROM the matrix the
+certificate rebuilt.  This module is what closes that gap: it recomputes
+the histogram from the rebuilt rows, in this repository, so the comparison
+against the bank is bin-for-bin between a fresh computation and a stored
+one.
 
 THE COMPUTATION.  For rows i != j write u_ij[c] = H[i][c]*H[j][c], and let
 U be the C(n,2) x n sign matrix of those pair vectors.  For a 4-subset
@@ -24,19 +34,23 @@ divide by three.
 TWO INDEPENDENT ARITHMETIC PATHS, which must agree bin for bin:
 
   impl='blas'  float32 U U^T in row blocks, np.bincount.  This is EXACT:
-               every entry is an integer of absolute value <= n < 2^24,
-               and every partial sum of +-1 terms is likewise an exact
-               integer below 2^24, which float32 represents exactly, so
-               no rounding can occur at these sizes.
+               each dot product is a sum of n signed units, so every
+               entry and every partial sum is an integer of absolute
+               value <= n < 2^24, and float32 represents every integer
+               below 2^24 exactly.  No rounding can occur at these sizes;
+               the route is exact integer arithmetic carried in a float
+               register.
   impl='bits'  pure integer path: rows packed into uint64 words,
                |T4| = |n - 2*popcount(u_P xor u_Q)|, accumulated word by
                word.  Shares no arithmetic with the BLAS path.
 
 Ported from the lab's experiments/inequiv/exact_profile.py (Hadamard-2060),
-which is where the banked profiles in data/ were produced; `run.py` compares
-what this module returns against those banks bin for bin.
+which -- with its memory-aware sibling exact_profile_big.py -- is where the
+banked profiles in data/ were produced, OUTSIDE this repository.  Both
+certificates compare what this module returns against those banks bin for
+bin.
 
-Cost at n = 668 on a desktop with three BLAS threads: about 280 s for
+Cost at n = 668 on a desktop with three BLAS threads: about 280-400 s for
 'blas' and about 1 480 s for 'bits', per matrix.
 """
 

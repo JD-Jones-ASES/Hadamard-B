@@ -4,8 +4,9 @@ title: "Hadamard-B: bordered Goethals-Seidel arrays - characterisation, classifi
 abstract: >-
   An exact (iff) characterisation of extending a Goethals-Seidel array
   over a finite abelian group to a Hadamard matrix through a coset
-  border of width 4s; the classification of surviving parameters
-  (i = s+1, s odd, beyond the classical s <= 1 cells); the complete
+  border of width 4s; within the house-Gram branch and under w > 2s,
+  the classification of the surviving parameters (with n >= 3 the
+  cells are (0,1), (1,1), and i = s+1 with s odd); the complete
   resolution of the s = 1 border system; machine verification of
   twelve publicly posted matrices through the theorems' hypotheses;
   and a proof that order 668 carries at least three Hadamard
@@ -14,10 +15,14 @@ abstract: >-
   the twelve parameter records are decoded from publicly posted
   matrices and carry no priority claim. AI-generated results with a
   human managing the workflow - produced by Claude Code (Fable 5,
-  Anthropic); see DISCLOSURE.md.
+  Anthropic); see DISCLOSURE.md. The authors field below records the
+  repository owner and responsible publisher; the AI/human division of
+  labour is DISCLOSURE.md. The two licenses are assigned by category,
+  not jointly: code is MIT; the note and prose are CC BY-SA 4.0; the
+  banked mathematical data carries no license claim - see
+  LICENSE-DOCS.md.
 type: software
 version: 0.1.0
-date-released: 2026-08-31
 url: "https://github.com/JD-Jones-ASES/Hadamard-B"
 repository-code: "https://github.com/JD-Jones-ASES/Hadamard-B"
 authors:

@@ -1,5 +1,7 @@
 {
  "matrix": "H_668-twisted.txt",
+ "matrix_canonical_sha256": "600849b038e7588d15b64e02794517dd6d95e5d62d505aa7d3d77078392008a3",
+ "banked_note": "matrix_canonical_sha256 and banked_note were backfilled 2026-09-01 from the canonical digest this repository pins for the Lemma-T i = 2 rebuild at order 668 (certs 02, 06); no numeric field below was touched",
  "n": 668,
  "impl": "bits",
  "seconds": 1465.0,

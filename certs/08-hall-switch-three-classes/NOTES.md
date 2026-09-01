@@ -1,8 +1,11 @@
 # cert 08 — order 668 carries at least three Hadamard equivalence classes
 
-**Label: PROVEN.** Replay: `python certs/08-hall-switch-three-classes/run.py`
-from the repository root. Standard library only, about 1.4 s, 106 checks,
-exit 0.
+**Label: PROVEN.** Default run:
+`python certs/08-hall-switch-three-classes/run.py` from the repository root.
+Standard library only, about 1.4 s, 111 checks, exit 0. That run **audits a
+banked exact computation**; the word *replay* belongs to `--full`, which
+recomputes all five profiles here. The trust boundary is set out in full
+below.
 
 ---
 
@@ -31,16 +34,89 @@ exit 0.
 refutation; the exact profiles of `(H')ᵀ` and `(H★)ᵀ` supply them — **50**,
 **49** and **50** differing bins. An invariant that differs is a separation. ∎
 
+## The trust boundary — what a default run does and does not establish
+
+The five `C(668,4)` enumerations **were not run inside this repository.** They
+ran in the source laboratory — `Hadamard-2060`,
+`experiments/inequiv/exact_profile.py` (the upper-triangle route) and
+`experiments/inequiv/exact_profile_big.py` (the canonical-split route), numpy,
+three BLAS threads, `$0`, no VM — and their output was banked into nine JSON
+files holding ten profiles: this certificate's five
+(`sep668-hall-exact-{blas,bits}`, `sep668-hall-T-exact-{blas,bits}`, and
+`sep668-twisted-T-exact`, which carries both implementations) and cert 06's
+four. Which producer ran for which bank is recorded in each bank's own
+`engine`, `enumeration` and `arithmetic` fields and repeated in the Runtimes
+table below.
+
+**A default `run.py` establishes:**
+
+* the eleven bank files are byte-for-byte the ones pinned in `run.py`;
+* all five matrices — `H`, `H'`, `H★`, `(H★)ᵀ`, `(H')ᵀ` — rebuild from banked
+  parameters, pass `verify/verify.py`, and carry the pinned canonical
+  digests, each computed **in-process**;
+* the preprint's `X₁…X₄`, its eq. (6) blocks and both of its published
+  digests reproduce from `data/payload-records.json` alone;
+* every bank that declares a matrix digest declares the digest of the matrix
+  **rebuilt in this run** — the comparison is against the in-process digest,
+  not against a static string;
+* every profile satisfies the forced identities (bins `≡ 4 (mod 8)`, total
+  `C(668,4)`, second moment `n³(n−1)(n−2)/24` to the unit), and two
+  independent implementations agree bin for bin on all five matrices.
+
+**A default run does not establish that a banked histogram was computed from
+the matrix `run.py` rebuilt.** A `matrix_canonical_sha256` field is a
+declaration, not a proof of computation. All ten profiles now carry one —
+the four cert-06 banks had theirs backfilled 2026-09-01 from digests this
+repository already pinned, recorded in each bank's `banked_note` — so every
+bank is bound to a matrix rebuilt in this run; a bank declaring none would
+still be named in a `[NOTE]` line rather than passed over in silence.
+
+**`--full` is what closes the gap.** `python
+certs/08-hall-switch-three-classes/run.py --full` recomputes the exact
+4-profile of **all five** matrices here, from the rows clause [1] verified,
+and compares each fresh profile against **both** banked implementations of
+that matrix bin for bin. Every leg of the theorem — the transpose-extended
+legs included — then rests on a computation made inside this repository. The
+machinery is cert 06's `full_recompute.py`, imported by `sys.path` insert
+rather than copied, so the two certificates cannot drift apart. Default
+arithmetic is the float32-BLAS route, which is **exact** here: `T4` is a sum
+of 668 signed units, so every partial sum is an integer of absolute value
+`≤ 668`, far inside float32's exactly representable integer range `2²⁴` — no
+rounding can occur at these sizes. numpy is imported only under this flag, is
+finder-side only, and is never in the trust chain; BLAS threads are capped at
+three.
+
+**It has been run.** On 2026-08-31, `--full` completed on this desktop in
+**1 932.5 s** (32 min) — 123 checks, no failures, exit 0 — and every one of
+the five fresh profiles matched **both** of its banked implementations bin for
+bin: `decoded` 80 bins/355 s, `twisted` 80/355, `H★` 80/382, `(H★)ᵀ` 79/480,
+`(H')ᵀ` 79/359. That was this repository's first in-repo regeneration of all
+five banks. `--impl bits` costs roughly five times as much and `--impl both`
+six; neither has been run at 668 inside this repository.
+
+One thing `--full` does **not** reproduce: the banks for `H★`, `(H★)ᵀ` and
+`(H')ᵀ` were produced by two *different enumerations* (upper-triangle
+with `/3`, and the canonical-split bijection). `full_recompute.py` runs the
+upper-triangle enumeration on both of its arithmetic paths, so a `--full` run
+re-establishes the numbers from the rebuilt matrices; the enumeration
+diversity remains a property of the banks, checked on the default path by
+`blas == bits`.
+
+Read the default verdict as *banked exact computation audited*; read `--full`
+as the replay.
+
 ## Priority — stated first, and conceded cleanly
 
 An **anonymous preprint** hosted at `hadamard-668.vercel.app`
 (*Two H-Inequivalent Hadamard Matrices of Order 668*; no author on the page,
 empty `/Author` in the PDF; "August 2026" on the page; PDF `CreationDate`
 `D:20260813041406+05'30'` = 2026-08-12 22:44 UTC; retrieved and verified
-firsthand 2026-08-31; PDF SHA-256 `ca4850fc…`) was **first to publish that
+firsthand 2026-08-31; PDF SHA-256 `ca4850fc…`) is, **as far as this
+laboratory's search located, the first publication of the statement that
 order 668 carries at least two Hadamard equivalence classes.** That statement
 is theirs. No date archaeology changes it and none is attempted; PDF
-timestamps are forgeable and are recorded here as evidence, not as fact.
+timestamps establish compilation, not first public availability, and are
+recorded here as evidence, not as fact.
 
 Three things that verification established, and that `run.py` re-derives:
 
@@ -49,8 +125,9 @@ Three things that verification established, and that `run.py` re-derives:
   seeds, element for element; their `K`, `T`, `S` are the record's `corner`,
   `row_table` and `col_table`ᵀ. So an outside party independently recovered
   the same `s = 1` border from Alpöge's public artifacts. That **corroborates
-  this repository's decode** and it means neither party owns the construction
-  data — it is Alpöge's.
+  this repository's decode**, and it means neither party originated the
+  construction data independently of the public posting; it is the announcing
+  team's content, and neither party claims priority over it.
 * **Both SHA-256 digests they publish reproduce**, from an independent build,
   once the ambiguous sentence "row-major bytes, encoding +1 by 1 and −1 by 0"
   is pinned to *one byte per entry, `0x01`/`0x00`, 446 224 bytes*. Five
@@ -65,7 +142,8 @@ it, and the three pairwise exact-profile separations, standard and
 transpose-extended. What is the preprint's: the "≥ 2 classes" statement, and
 the matrix `H★`.
 
-**Their method is weaker than the one used here, and measurably so.** Their
+**Their statistic is blind where the full profile is not, and measurably
+so.** Their
 separating statistic `Φ_M` is a canonical *slice* of the `|T4|` 4-profile (the
 4-subsets with exactly one row in the distinguished border quadruple). It is a
 genuine invariant — its invariance uses the preprint's own **Lemma 3**
@@ -115,14 +193,23 @@ own `(s, |G|)`; the two must agree. Then:
 | **C2** | the switch is applied twice | the canonical digest of `H` comes back — it is an involution |
 | **C3** | the border quadruple `P = {1,2,3,4}` is checked type-1 (minority 4, `\|T4\| = 660`) in `H`, `H'` and `H★` | holds in all three — the hypothesis the preprint's own Lemma 3 needs |
 
-**[2] Eight banked profiles are audited in exact integers**, plus the two in
-the twisted-transpose bank. Per profile: every populated bin is `≡ 4 (mod 8)`;
-the counts total `C(668,4)`; and the second moment equals
-`n³(n−1)(n−2)/24 = 5 517 193 410 096` — the closed form proved in
-`note/NOTE-B.md` §3.1, a 13-digit number hit to the unit and tuned for by
-nothing. Where a banked `second_moment` or `matrix_sha256` field is present it
-is checked too, and the `matrix_sha256` fields bind the profiles to the
-matrices `run.py` just rebuilt.
+**[2] Eight banked profiles are audited — not recomputed — in exact
+integers**, plus the two in the twisted-transpose bank. Per profile: every
+populated bin is `≡ 4 (mod 8)`; the counts total `C(668,4)`; and the second
+moment equals `n³(n−1)(n−2)/24 = 5 517 193 410 096` — the closed form proved
+in `note/NOTE-B.md` §3.1, a 13-digit number hit to the unit and tuned for by
+nothing. Where a banked `second_moment` field is present it is checked too.
+Where a banked `matrix_canonical_sha256` or `matrix_sha256` field is present
+it is compared against the digest of the matrix **rebuilt in this run**,
+computed in-process in clause [1], rather than against the static pin at the
+top of the script. Comparing against the in-process digest rather than the
+static pin leaves no place for a stale constant to hide. All ten profiles
+declare such a digest — the four cert-06 profiles had theirs backfilled
+2026-09-01, and the check label says so where that is the case — and
+`run.py` prints a `[NOTE]` for any bank that declares none. A field that is
+present but empty or malformed is a hard failure, not a missing binding.
+A declared digest says the bank *names* this matrix. It does not say
+the histogram was computed from it; only `--full` does that.
 
 **[3] Two independent implementations agree bin for bin**, on **all five**
 matrices — `H`, `H'`, `H★`, `(H★)ᵀ` and `(H')ᵀ`. So every leg of the theorem,
@@ -148,6 +235,14 @@ also use **different enumerations** — the upper-triangle-with-`/3` route
 C7 exists because clause 4 rests on transposed profiles. At 668 the route is
 not vacuous: `(H★)ᵀ` populates **79** bins where `H★` populates 80 — bin 644
 is present in `H★` and empty in `(H★)ᵀ` — and `(H')ᵀ` likewise populates 79.
+
+**[6] `--full` — the replay, off by default.** All five profiles recomputed
+here from the rebuilt rows and compared against both banked implementations
+bin for bin — run 2026-08-31, all ten comparisons exact; see *The trust
+boundary* above. `run.py` first re-derives the canonical digest of the rows it
+is about to enumerate, so the recomputation is demonstrably on the matrix
+`verify.py` accepted, and smoke-tests the ported numpy path against the
+**forced** profile of Sylvester `H(128)` before spending the half hour.
 
 ## The separation, under the standard relation
 
@@ -225,10 +320,10 @@ row-major, 446 224 bytes), reproduced by `run.py`:
 | `data/sep668-hall-T-exact-bits.json` | `48fdb26f8b1ee5135ed278ec866e204c1ab47df168c043fabff8699c0f4fd8bb` |
 | `data/sep668-twisted-T-exact.json` | `38355274ec61d33fcd96e24255e4a7b02874150cd914fdfb928d28cee751fc4a` |
 | `data/sep668-twisted-record.json` | `fe8154179ba2ebfe097c82e468368cdc8a070548555bb10140949af0560611fb` |
-| `data/sep668-exact-blas-decoded.json` | `22df5ce9fcd6eb307f56981c507bb46b2a18b79861d903349dc13458a6dffcbf` |
-| `data/sep668-exact-bits-decoded.json` | `0bafbf8219d33b9c74786700106aeba3086bbf577ee02bcda43768f35978fdd8` |
-| `data/sep668-exact-blas-twisted.json` | `c4d8db3ba40cf8c5a244607032dab6b66d878b8fe6b98784351f7b8ae70e5a17` |
-| `data/sep668-exact-bits-twisted.json` | `91d154d05ccea87a6fa98a02b4fcbf275dc6b4025650116941647216a69faf5a` |
+| `data/sep668-exact-blas-decoded.json` | `370fffe6c2f5dc53c09d3b74f8c09dd2bc2a39a1ac2b27fb5167ab4d3559387b` |
+| `data/sep668-exact-bits-decoded.json` | `7bace61441f17b5e95fff433bdc5939da212e2b8735e8738d7ed3078fae456b7` |
+| `data/sep668-exact-blas-twisted.json` | `8526b3cfa7938a9af334e23f722b1c215ffd1e318c0c713ecc3da1b91f5b3afe` |
+| `data/sep668-exact-bits-twisted.json` | `f40bbb8c3906d6fc7374e3e04c2b68eaf29393e50b5662f69eee2426ed3f1e9a` |
 
 `data/payload-records.json` is not file-pinned here, on purpose: it is shared
 with certs 01 and 06, and the binding pin on it is the canonical digest of the
@@ -251,7 +346,9 @@ implementations in one file, under `implementations.bits` and
 
 | step | cost |
 | --- | --- |
-| **`run.py`, end to end** | **≈ 1.4 s** (106 checks, exit 0) |
+| **`run.py`, default path, end to end** | **≈ 1.4 s** (111 checks, exit 0) |
+| **`run.py --full`, all five recomputed (`blas`)** | **1 932.5 s** (123 checks, exit 0; measured 2026-08-31) |
+| `--full`, per matrix | 355 s, 355 s, 382 s, 480 s, 359 s |
 | rebuild + hypothesis re-check + `verify.py`, per 668 matrix | ≈ 0.15 s |
 | producing `data/sep668-hall-exact-blas.json` | 365.0 s, upper-triangle route |
 | producing `data/sep668-hall-exact-bits.json` | 168.8 s, canonical split, 70.8 MB peak |
@@ -263,10 +360,19 @@ implementations in one file, under `implementations.bits` and
 All profile runs: single desktop process, `OMP_NUM_THREADS = 3`, no VM, `$0`.
 The profile producers are numpy and therefore **finder-side only** — they are
 never in the trust chain, which is `verify/verify.py` and stdlib integers. The
-seconds above are the values the runs recorded in the JSONs themselves.
+seconds on the `producing …` rows are the values those upstream runs recorded
+in the JSONs themselves; the `--full` rows are wall-clock from the in-repo run
+of 2026-08-31, on a desktop that was also carrying another 3-thread job. That
+run's check count is what it printed on the day; the 2026-09-01 digest
+backfill added four checks to every path, so a fresh run reports four more.
 
 ## What is NOT claimed
 
+* **The default run does not claim to have recomputed anything.** The five
+  `C(668,4)` enumerations ran upstream, in `Hadamard-2060`'s
+  `experiments/inequiv/exact_profile.py` and `exact_profile_big.py`; the
+  default path audits their banked output and checks the declared matrix
+  digests against the matrices it rebuilt. Only `--full` recomputes.
 * **Nothing about orders 716, 1676 or 1772.** The same constructions exist
   there and the corresponding exact computation costs roughly `1.4×`, `98×`
   and `130×` the 668 run. It has not been made, so nothing is said.

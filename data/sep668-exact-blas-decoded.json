@@ -1,5 +1,7 @@
 {
  "matrix": "H_668-decoded.txt",
+ "matrix_canonical_sha256": "bdeb5059d77e2703211082627b60441b8c888c928a55cc6f295e011941a387b0",
+ "banked_note": "matrix_canonical_sha256 and banked_note were backfilled 2026-09-01 from the canonical digest this repository pins for the decoded (1,1) record at order 668 (certs 01, 02, 06); no numeric field below was touched",
  "n": 668,
  "impl": "blas",
  "seconds": 276.4,
