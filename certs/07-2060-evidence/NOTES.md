@@ -179,9 +179,21 @@ The one computation that turns this certificate into a theorem is the
 same invariant that settles order 668 in cert 06. It is priced, not
 impossible: ≈ 11–22 core-hours for the pair, the binding constraint being
 memory rather than time (the pair-vector matrix is `2 120 770 × 2060`,
-4.4 GB as `int8`), which a memory-aware enumeration resolves. **A run is
-in progress in the source laboratory**, under the written pre-registration
+4.4 GB as `int8`), which a memory-aware enumeration resolves. The run is
+under the written pre-registration
 `experiments/inequiv/REGISTRATION-2060-exact.md`.
+
+**Status as of 2026-09-01.** The registered `blas` pair has **completed**,
+and it **separates the two matrices**: 146 of the 147 union bins differ,
+the supports themselves differ — 145 bins against 133 — and the totals and
+second moments come out exact on both. Under the registration that result
+is what licenses the second leg, so the `bits` confirmation pair is now
+running under the same pre-registration. **Nothing is banked here yet.**
+The exact bank lands in this repository only as the complete four-file set
+named below, and this certificate refuses anything less: until all four
+arrive, `EXACT_FILE_PINS` stays empty and the certificate stays in
+SAMPLED-EVIDENCE mode. A separating `blas` pair is not a claim; it is the
+first of two legs.
 
 ### The bank is exactly four files
 

@@ -14,7 +14,9 @@ outside; what is this laboratory's own is stated at the end.
 
 **Dates in this document are UTC**, retrieval dates included; a
 timestamp quoted from a source keeps that source's own zone and is
-marked where that zone is not UTC. File digests are recorded at freeze.
+marked where that zone is not UTC. The SHA-256 digest of every file in
+`data/` is recorded at *Frozen data digests (2026-09-01)*, the last
+section of this document.
 
 ## The twelve public records
 
@@ -53,7 +55,7 @@ at 17:28–17:35 UTC.
 | artifact | retrieved | pin |
 | --- | --- | --- |
 | **the tape** — the 23,828-character sign stream of the payload post | fetched through the fxtwitter API mirror **2026-08-16**, re-fetched and banked **2026-08-28** | normalised sign stream, SHA-256 `5b5fe8fa42f0d6a8b4e4c9926726d82a6aab8e1070c1ae4d1b430c1277e58db4`, length 23,828. This digest is carried in `data/payload-records.json` (`tape_sha256`). |
-| **the expanded matrices** — `github.com/foocker/Hadamard668`, a third-party public decode created and pushed **2026-08-12 UTC**, hours after the announcement (repository metadata read through the GitHub API on 2026-09-01: `created_at` `2026-08-12T17:28:39Z`, `pushed_at` `2026-08-12T17:35:13Z`, its commit `f951552a…` dated `2026-08-12T17:35:01Z`, subject "Add Hadamard matrix, decoder, and visualizations". Those are creation and push times; the repository's own metadata does not establish when it became visible to any particular reader, and no such claim is made) | cloned read-only **2026-08-28**; metadata re-read **2026-09-01** | its `answer.md` normalises to the same tape digest. It held ten complete matrices; its H(1948) stopped at **603 complete rows plus a 305-entry partial row — 1,174,949 of 3,794,704 entries, 30.96 % of that matrix** — and it held no H(1964) at all. Its decoder script was **never executed**; its outputs were used as data only. |
+| **the expanded matrices** — `github.com/foocker/Hadamard668`, a third-party public decode created and pushed **2026-08-12 UTC**, hours after the announcement (repository metadata read through the GitHub API on 2026-09-01: `created_at` `2026-08-12T17:28:39Z`, `pushed_at` `2026-08-12T17:35:13Z`, still exactly two commits, its head `f951552a…` dated `2026-08-12T17:35:01Z`, subject "Add Hadamard matrix, decoder, and visualizations". Those are creation and push times; the repository's own metadata does not establish when it became visible to any particular reader, and no such claim is made) | cloned read-only **2026-08-28**; metadata re-read **2026-09-01** | its `answer.md` normalises to the same tape digest. It held ten complete matrices; its H(1948) stopped at **603 complete rows plus a 305-entry partial row — 1,174,949 of 3,794,704 entries, 30.96 % of that matrix** — and it held no H(1964) at all. Its decoder script was **never executed**; its outputs were used as data only. |
 | **a zip of twelve CSVs**, circulated as the announcement matrices | received by relay and verified **2026-08-31** | 4,873,392 bytes, SHA-256 `503a4352f282a3d0141a1814b4f89036961524934670a5603ec33a95ea6f179d`; twelve entries, all `open_hadamard/hadamard_<N>.csv`, internal mtimes all `2026-08-12 05:58:58`. That it was posted by Sumeet Motwani (`@sumeetrm`) on Google Drive as Alpöge's matrices is **REPORTED-FROM-SECONDARY-SOURCE**; no source URL is recorded here. Nothing in this repository rests on that attribution. |
 
 The three copies agree. All twelve matrices of the zip verify green in
@@ -83,7 +85,9 @@ The decode was performed here, from the public artifacts, through this
 laboratory's own standard-library code; the segmentation grammar is the
 announcement's own second post, read firsthand as above. **No
 third-party method disclosure was used, and none was located in the
-sources enumerated here as of 2026-08-31.** The
+sources enumerated here as of 2026-09-01** — the re-sweep of that date
+found no bordered or coset-border Goethals–Seidel characterisation
+anywhere public. The
 correctness of the decode is not asserted, it is replayed: each cert
 rebuilds its matrices from these records and hands them to
 `verify/verify.py`. No generated matrix is committed; the certificates
@@ -101,7 +105,8 @@ further.) No novelty of existence is claimed at any of the twelve
 orders. That those
 orders were open before 2026-08-12 is not proven here either: it is
 REPORTED-FROM-AUDITED-TABLE, from Table 4 of Cati–Pasechnik,
-arXiv:[2411.18897](https://arxiv.org/abs/2411.18897)v2 (2025-08-30).
+arXiv:[2411.18897](https://arxiv.org/abs/2411.18897)v2 (2025-08-30) —
+re-checked 2026-09-01 and still at v2, no v3.
 What this repository adds at these orders is verification against the
 theorems' hypotheses (NOTE-B.md §2.1, cert 01).
 
@@ -117,6 +122,10 @@ description "Hadamard matrix of order 2060", created
 **2026-08-23T02:33:38Z**, retrieved **2026-08-29**. No gist revision sha
 was recorded at retrieval; the payload digest is what binds the file. Re-read
 through the GitHub API on 2026-08-31: unchanged since 2026-08-23T02:33:42Z.
+Re-read again **2026-09-01**: the gist history still holds a single revision
+(`00784a83…`, committed 2026-08-23T02:33:38Z) and `updated_at` is still
+2026-08-23T02:33:42Z, so the bytes are the bytes that were digested and the
+payload pin below stands unre-fetched.
 
 | quantity | value |
 | --- | --- |
@@ -147,7 +156,10 @@ Cooper–Wallis route `T(103) ⊗ W(5) → H(2060)` from the producer's own
 side; its explicit matrix file (SHA-256
 `8c81090db76e2b503561ba82598b514e0c2e39940a3703783c5b1b2c6b80a37a`)
 parses to the canonical digest `c7a145d8…` above — measured 2026-08-31,
-the repo and the gist are one object. This laboratory decoded that
+the repo and the gist are one object. Re-read **2026-09-01**: `main` is still
+the banked commit `9d4fdce…` (last push still 2026-08-27T13:40:24Z) and the
+matrix file's git blob sha is identical at `HEAD` and at that commit, so the
+`8c81090d…` pin holds. This laboratory decoded that
 matrix's structure independently from the banked artifact alone, and was
 not first to state it publicly; no firstness is claimed. The plain array
 is a genuinely different matrix, but a derivative of the public seed, not
@@ -156,17 +168,24 @@ COMPUTATIONAL-EVIDENCE and nowhere stronger (NOTE-B.md §3.5).
 
 ## Independent public corroboration
 
-Dated observations of the public record, all made **2026-08-31** by a
-sweep lane of this laboratory (arXiv API author sweep; GitHub API and raw
-sources; the Palomar registry's CC0 feed). They are reported as of that
-date and are re-checked at release.
+Dated observations of the public record, first made **2026-08-31** by a
+sweep lane of this laboratory and **re-run in full at the public flip on
+2026-09-01** (arXiv API author sweep; GitHub API and raw sources; the
+Palomar registry's CC0 feed). Each bullet carries its own read dates.
 
-- **No preprint.** An arXiv author sweep for Alpöge, Voinov and
-  Reynolds-Haertle returns zero Hadamard papers. As of 2026-08-31 there
-  is no arXiv preprint of the announcement, and its only public statement
-  is the X posts. This is corroborated from a second direction: the
-  provenance files of both downstream Lean repositories cite the X posts
-  as `type: "web post"` and nothing else.
+- **No preprint.** Re-run **2026-09-01**, against the arXiv API: author
+  sweeps for Alpöge, Voinov and Reynolds-Haertle; `all:"Hadamard matrix"`
+  against the orders 668, 1948 and 1964; a `ti:"Hadamard matrix"` sweep;
+  and the newest `cat:math.CO` items. The author sweeps return **zero
+  Hadamard papers**; the order sweep returns two entries, neither the
+  announcement; the title and category sweeps surface nothing on these
+  orders after 2026-08-26. **There is still no arXiv preprint of the
+  announcement**, and its only public statement is the X posts. This is
+  corroborated from a second direction: the provenance files of both
+  downstream Lean repositories still **cite no source but the X posts for
+  the matrix data**, `type: "web post"`. (Ramos's file additionally lists
+  Hadamard 1893 as `uses-as-background`; that is background, not matrix
+  data, and no other file cites anything further.)
 - **`schneiderlo/hadamard-2060`** (GitHub, created 2026-08-25) addresses
   **order 2060 only**. It says nothing about the twelve orders.
 - **Two independent public Lean formalizations of a single H(668)**,
@@ -181,31 +200,63 @@ date and are re-checked at release.
   its input as "compact bordered block-circulant data" publicly posted on
   2026-08-12. (The quoted fragment is pinned in this laboratory's record;
   the surrounding wording is reported from the 2026-08-31 read.)
+  Both re-read **2026-09-01** and both unchanged since the banked reads:
+  Paul-Lez created 2026-08-14T10:50:28Z, last push still 2026-08-17T12:38:03Z;
+  Ramos created 2026-08-28T14:03:24Z, last push still 2026-08-28T14:11:22Z.
+  Both public, Apache-2.0, neither archived.
+- **A third formalization is asserted but not publicly verifiable.**
+  Ramos's `formalization.yaml` carries a *related formalizations* entry —
+  `github.com/Arthur742Ramos/isabelle-afp-monorepo`, `relationship:
+  "independent"` — whose note describes an Isabelle/HOL project holding "an
+  earlier kernel-checked formalization of the same supplied certificate".
+  **That repository returns HTTP 404 to an unauthenticated read on
+  2026-09-01** and does not appear in that account's public repository
+  listing. The existence, the content and the word *earlier* are therefore
+  **asserted by that file and not publicly verifiable**; nothing here rests
+  on them. The statement above stands as written — the claimed work is not
+  public, and it is Isabelle, not Lean.
 - **An anonymous inequivalence preprint at order 668.** The page
-  `hadamard-668.vercel.app` hosts "Two H-inequivalent Hadamard Matrices
-  of Order 668" — no author on the page, an empty PDF `/Author` field,
+  `hadamard-668.vercel.app` hosts "Two H-inequivalent Hadamard matrices
+  of order 668" (the title as the page renders it) — no author on the
+  page, an empty PDF `/Author` field,
   and a PDF `CreationDate` of 2026-08-13 04:14 UTC+05:30 (2026-08-12
   22:44 UTC), which is a compilation timestamp and not by itself
   evidence of when the page became public; it was public when retrieved
-  and verified firsthand on 2026-08-31. Its `H` is byte-identical to
+  and verified firsthand on 2026-08-31, and still up when re-retrieved
+  **2026-09-01**, title and separation statement unchanged. Its `H` is byte-identical to
   the decoded 668 record banked here (an independent decode of the same
   public data, border included); its second matrix is a 1,328-entry
   paired Hall switch of `H`, rebuilt and verified here (both its
   published digests reproduce). The priority statement it carries, and
   what remains this laboratory's, are in NOTE-B.md §3.4.
 - **The `s = 1` layer is being read publicly.** On **2026-08-30** a
-  third party (Tavis Rudd, `@tavisrudd`) posted, quote-tweeting the
-  announcement, the `s = 1` bordered Goethals–Seidel lemma with the row
-  sums and the `Σ PAF ≡ −4` profile at the 668 instance
-  (`x.com/tavisrudd/status/2093926416492732579`, read firsthand via
-  `og:description` on **2026-08-31** — the retrieval date; the post's
-  publication time is `2026-08-30T04:58:55Z`, decoded on 2026-09-01
-  from the status id's snowflake timestamp, the formula validated
-  against the announcement payload post's known `created_at`). That
-  lemma is classical — Wallis–Whiteman 1972, with
-  Spence 1975 the even sibling (NOTE-B.md §4) — and the post is recorded
-  here as independent corroboration of the `s = 1` reading of the public
-  payload, not as a source.
+  third party (Tavis Rudd, `@tavisrudd`) posted the `s = 1` bordered
+  Goethals–Seidel lemma with the row sums and the `Σ PAF ≡ −4` profile at
+  the 668 instance (`x.com/tavisrudd/status/2093926416492732579`, read
+  firsthand via `og:description` on **2026-08-31** and again through the
+  fxtwitter API mirror on **2026-09-01**, which returns author
+  `tavisrudd` and `created_at` **Sun Aug 30 04:58:55 +0000 2026** —
+  matching the publication time `2026-08-30T04:58:55Z` decoded
+  independently from the status id's snowflake timestamp). The payload
+  read on 2026-09-01 shows the post as a **reply within his own thread**
+  (`replying_to_status` `2093925739250978920`) and carries **no quote
+  field**; what the thread root does or does not quote was not verified,
+  and no relation to the announcement post is asserted here. That lemma
+  is classical — Wallis–Whiteman 1972, with Spence 1975 the even sibling
+  (NOTE-B.md §4) — and the post is recorded here as independent
+  corroboration of the `s = 1` reading of the public payload, not as a
+  source.
+- **A fourth third-party public redistribution of the twelve orders.**
+  `github.com/bbeartheancient/hoa64` (public; `created_at`
+  `2026-08-13T03:39:26Z`, last push `2026-08-16T01:42:05Z`, located by the
+  **2026-09-01** re-sweep) is a Hadamard construction and search toolchain
+  whose README records verifying H(668) as a genuine Hadamard matrix and
+  ingesting the twelve orders as gzipped CSVs. It states **no bordered
+  variant, no characterisation, and no new-order or inequivalence claim** —
+  it lists Goethals–Seidel only as a difference-family method. It is
+  recorded here as further corroboration that the payload was broadly
+  decoded within days of the announcement, and as no scoop of anything
+  claimed in this repository.
 
 ## What is this laboratory's own
 
@@ -223,50 +274,106 @@ Authorship and the division of labour are in
 the single hedged novelty statement and the exact list of sources that
 bounds it, is NOTE-B.md §4.
 
-## Release re-check (____-__-__)
+## Release re-check (2026-09-01 — executed at the public flip)
 
-To be executed at the public flip, and the date filled in above.
+Executed on the day the repository was made public. Each item carries the
+result of its own run.
 
-- [ ] **Present-tense internal state.** Refresh the dated,
-      in-progress wording in `certs/06-668-separation/NOTES.md` and
-      `certs/07-2060-evidence/NOTES.md` (the local 2060 run, the
-      un-executed `--full`, the "in-flight" third engine): each item
-      is either completed and restated as done, or restated as a
-      dated historical fact. Fill the file-digest line in this
-      file's redistribution section.
-- [ ] **No-preprint statement.** Re-run the arXiv author sweep (Alpöge,
-      Voinov, Reynolds-Haertle; also a title/abstract sweep for the
-      twelve orders). Re-date the statement, or retract it if a preprint
-      has appeared, and re-check the two Lean repositories' provenance
-      files still cite the X posts as their only source.
-- [ ] **The gist.** Re-read
-      `gist.github.com/schneiderlo/b866a2ff2fcd93934f0db54cfa4069d0`
-      through the GitHub API: created/updated timestamps, and the payload
-      digest still `c7a145d8…00f7`. Re-check the last push of
-      `schneiderlo/hadamard-2060` and that its matrix still parses to the
-      same canonical digest.
-- [ ] **Palomar registry.** Re-sweep for Hadamard entries
-      (`browse/index.json` → per-day pages → each entry record; keyword-scan
-      the full record text, not titles). Send a browser user-agent — the
-      default `urllib` agent gets HTTP 403 and the sweep then silently
-      returns nothing. Re-state the entry count and the entries.
-- [ ] **Corroboration items.** Re-date each bullet above: creation and
-      last-push dates of the two Lean repositories and their scope lines;
-      any new public decode of the payload; any new public statement of
-      the bordered form.
-- [ ] **Table-relative claims.** If any claim citing Cati–Pasechnik
-      ships, re-check arXiv:2411.18897 is still at v2 (2025-08-30), the
-      version cited here.
-- [ ] **Digests.** Record the `data/` file digests and pin them in this
-      document, replacing the placeholder line at the top.
-- [ ] **Cert 07's exact-file pins.** If the registered order-2060 exact
-      bank has landed, populate `EXACT_FILE_PINS` in
-      `certs/07-2060-evidence/run.py` from the digests
-      `bank_exact.py` prints, and re-run the cert. All four, or none:
-      a non-empty pin dict that does not name exactly the four expected
-      basenames is a hard `pin-coverage` failure. If it has not
-      landed, leave the pins empty and the certificate in its sampled
-      mode — a partial bank is a hard failure, never a fallback.
-- [ ] **`CITATION.cff`.** Set `date-released` to the flip date. It is
-      deliberately absent while the repository is private, so that the
-      metadata does not describe a release that has not occurred.
+**The flip itself.** Both repositories were verified **publicly reachable by
+unauthenticated HTTP GET on 2026-09-01**: anonymous reads of
+`api.github.com/repos/JD-Jones-ASES/Hadamard-B` and
+`.../Hadamard-B-Formal` return their metadata, and the pinned commit
+`35665af5bc97bf3811bf971e39051727fcc99d10` resolves anonymously. The
+server-side visibility field reads `"public"` (`private: false`) on both.
+This document's edits ride on the commit made after those reads.
+
+- [x] **Present-tense internal state.** 2026-09-01: the 2060 exact wording in
+      `certs/07-2060-evidence/NOTES.md` is restated as dated fact — the
+      registered `blas` pair completed and separates. A grep of both NOTES
+      for in-progress wording leaves one hit,
+      `certs/06-668-separation/NOTES.md`'s "in-flight artifact of another
+      lane's run", which is a standing reason for citing rather than banking
+      that third engine, not a stale state; left as written. The `--full`
+      run and the third engine were already restated as done on 2026-08-31.
+      The file-digest line now points at the digest section below.
+- [x] **No-preprint statement.** 2026-09-01: arXiv API author sweeps
+      (Alpöge, Voinov, Reynolds-Haertle), `all:"Hadamard matrix"` against
+      668/1948/1964, a `ti:"Hadamard matrix"` sweep, and the newest
+      `cat:math.CO` items — **no preprint**; the statement is re-dated, not
+      retracted. Both Lean provenance files still cite the X posts as their
+      only matrix-data source; the "and nothing else" phrasing was too
+      strong and has been narrowed.
+- [x] **The gist.** 2026-09-01: gist `b866a2ff…` re-read through the GitHub
+      API — one revision only, `created_at` 2026-08-23T02:33:38Z,
+      `updated_at` 2026-08-23T02:33:42Z, both unchanged, so the payload pin
+      `c7a145d8…00f7` stands. `schneiderlo/hadamard-2060`'s last push is
+      still 2026-08-27T13:40:24Z, `main` is still `9d4fdce…`, and the matrix
+      file's blob sha is identical at `HEAD` and at the banked commit.
+- [x] **Palomar registry.** 2026-09-01: `browse/index.json` reads 144
+      entries over 159 versions and 18 days. Title-and-repository scan of
+      2026-08-27 → 2026-09-01, plus a **full-record keyword scan of every
+      one of the 26 entries dated 2026-08-30 → 2026-09-01** (each entry's
+      own `entries/PALOMAR-…-v1.json` fetched and scanned for *hadamard,
+      goethals, seidel, 668, 2060, 2092, sign stream, bordered*). The
+      full-record scan of the earlier days was run 2026-08-31. **One hit,
+      this laboratory's own**: PALOMAR-2026-08-31-000001,
+      `JD-Jones-ASES/Hadamard-formal`. No Hadamard entry exists beyond the
+      three already known — PALOMAR-2026-08-17-000002
+      (`Paul-Lez/hadamard-668-comparator`), PALOMAR-2026-08-29-000009
+      (`Arthur742Ramos/hadamard-668-lean`), PALOMAR-2026-08-31-000001.
+      Hadamard-B itself is not registered.
+- [x] **Corroboration items.** 2026-09-01: both Lean repositories re-dated
+      and unchanged since the banked reads; the vercel preprint still up,
+      its title corrected to the page's own casing; the Tavis Rudd post
+      re-read and the unsupported "quote-tweeting" relation removed; two
+      bullets added — the asserted, non-public Isabelle formalization, and
+      `bbeartheancient/hoa64`, a fourth third-party public redistribution.
+      No new public decode carrying a method, and no new public statement
+      of the bordered form.
+- [x] **Table-relative claims.** 2026-09-01: arXiv:2411.18897 re-checked —
+      still v2 (`[v1]` 2024-11-28, `[v2]` 2025-08-30), no v3. The citation
+      holds as written.
+- [x] **Digests.** 2026-09-01: every file in `data/` digested at the frozen
+      tree and recorded in *Frozen data digests* below; the placeholder
+      line at the top of this document now points there.
+- [ ] **Cert 07's exact-file pins.** Pending: the 2060 exact bank lands only
+      after the bits confirmation pair completes, in progress under
+      `experiments/inequiv/REGISTRATION-2060-exact.md`. `EXACT_FILE_PINS`
+      stays empty and the certificate stays in its sampled mode, which is
+      the correct state for a bank that has not landed — a partial bank is
+      a hard failure, never a fallback.
+- [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
+      flip date. Version left at 0.1.0.
+
+## Frozen data digests (2026-09-01)
+
+Every file in `data/`, SHA-256, computed with the standard library over a
+clean working tree at commit `35665af5bc97bf3811bf971e39051727fcc99d10` —
+the commit that was pushed at the public flip. These are the twenty files
+this repository redistributes; no matrix is among them.
+
+| file | sha256 |
+| --- | --- |
+| `h20-boundary.json` | `716610543b79ab9e1c9f1adb142c114544e70e58d370500130b83c17a18cf254` |
+| `h52-gate.json` | `ef60c4ff9f245eec5ba7f035e5968152836207fcd9235a0b1851150d2fb1d170` |
+| `h76-nonscalar.json` | `500ba1d22787407183d91cc303a80cfc14d250a5fe2f2d5c0d665553ffc7b8bf` |
+| `n1916-twist.json` | `1a3f92228074f69a7ead11d66371d18dfb39aeb2d17155f3b7fc9782b7b8d51b` |
+| `payload-records.json` | `9afbf60efed82e97ffe229e0059f06dfa7849a2ac2434c52a6ada09559738afb` |
+| `sep2060-records.json` | `1c9742fe485f5cc7232c2e876d322ca0094270bc40e537d16da422c0a13202bc` |
+| `sep2060-sampled-histograms.json` | `586d9fe51a4c24448dd44efbe1e3e60a3ec0c83167e263fb008f538efe2ecdc8` |
+| `sep668-exact-bits-decoded.json` | `7bace61441f17b5e95fff433bdc5939da212e2b8735e8738d7ed3078fae456b7` |
+| `sep668-exact-bits-twisted.json` | `f40bbb8c3906d6fc7374e3e04c2b68eaf29393e50b5662f69eee2426ed3f1e9a` |
+| `sep668-exact-blas-decoded.json` | `370fffe6c2f5dc53c09d3b74f8c09dd2bc2a39a1ac2b27fb5167ab4d3559387b` |
+| `sep668-exact-blas-twisted.json` | `8526b3cfa7938a9af334e23f722b1c215ffd1e318c0c713ecc3da1b91f5b3afe` |
+| `sep668-hall-T-exact-bits.json` | `48fdb26f8b1ee5135ed278ec866e204c1ab47df168c043fabff8699c0f4fd8bb` |
+| `sep668-hall-T-exact-blas.json` | `151fb5d6e70cf56d6a1c2aa124a597a837bca0ecf5d64958b43a34c05383e0db` |
+| `sep668-hall-exact-bits.json` | `a6f703b499d98995f6446a1aed671284c47e99cfe869f3ce8dc8b5fd9394accb` |
+| `sep668-hall-exact-blas.json` | `35e716ecb43bb6190d5dd6f4160e0bc2bed4f61a3aacf07a36ff9d190810c154` |
+| `sep668-hall-switch.json` | `13efd2402b8394c62c901af4f7cfbec7b2e474832dd3055c6b9e9e220b351c85` |
+| `sep668-sampled-histograms.json` | `a21973871c0ad80a8a3b95e057066ae72710194a3638ce3228c647ce502804a6` |
+| `sep668-twisted-T-exact.json` | `38355274ec61d33fcd96e24255e4a7b02874150cd914fdfb928d28cee751fc4a` |
+| `sep668-twisted-record.json` | `fe8154179ba2ebfe097c82e468368cdc8a070548555bb10140949af0560611fb` |
+| `twisted-i2-records.json` | `aafa83e070d2dc59da80aec1bcb6457b6bfcb8d7bcc758f20d9344047bfcb079` |
+
+`payload-records.json`'s digest is the same `9afbf60e…` quoted in *What this
+repository redistributes* above, at the same 29,138 bytes.

@@ -22,6 +22,7 @@ abstract: >-
   encodes.
 type: software
 version: 0.1.0
+date-released: 2026-09-01
 url: "https://github.com/JD-Jones-ASES/Hadamard-B"
 repository-code: "https://github.com/JD-Jones-ASES/Hadamard-B"
 authors:
