@@ -8,7 +8,7 @@ together with the theorem that order 668 carries at least three
 Hadamard-equivalence classes, pairwise separated by an exactly
 computed invariant; plus the machine
 verification of twelve publicly posted matrices through the theorems'
-hypotheses and five certified instance matrices.
+hypotheses and eight certified instance matrices.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -57,17 +57,23 @@ standard library and nothing on the network; cert 06's optional
 
 Reading the certificates is one route. Rebuilding from the
 definitions in the note is another, and it requires trusting none of
-this. Independent verification is invited; questions and
-verification reports are welcome via GitHub issues.
+this. Where a cert's notes cite "the source laboratory" or its
+`experiments/` paths, that laboratory's repository is **private**
+and is not part of the trust chain: every pin quoted from it is
+re-derived here from `data/` at certificate run time, and nothing in
+this repository requires access to it. Independent verification is
+invited; questions and verification reports are welcome via GitHub
+issues.
 
 ## Credit for external mathematics
 
 The full credit chain, with the exact sources read firsthand and the
 one bounded novelty statement, is `note/NOTE-B.md` §4; the dated
 provenance chain for the public artifacts is `PROVENANCE.md`. In
-brief: the twelve verified matrices are the announcing team's
-(posted publicly 2026-08-12); the order-2060 artifact is Schneider's;
-the classical spine is Goethals–Seidel (1970), Wallis–Whiteman
-(1972), and Spence (1975); the compression device is
+brief: the twelve verified matrices are the announcing team's (seed
+data posted publicly 2026-08-12); the order-2060 artifact is
+Schneider's; the classical spine is Goethals–Seidel (1970),
+Wallis–Whiteman (1972), and Spence (1975); the compression device is
 Đoković–Kotsireas's. No priority claim of any kind is made on the
-public records or on anything derived from them.
+public records themselves, on the decode, or on existence at those
+orders.

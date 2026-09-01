@@ -43,7 +43,7 @@ arithmetic, reusing the building blocks of `tools/bordered_gs.py`
 | | checked as |
 | --- | --- |
 | **(H1)** | `Q Qᵀ = I₄ ⊗ M` — all cross-superblock blocks of `Q Qᵀ` vanish; the four diagonal blocks agree; the common block `M` is `Ḡ`-invariant (`M[c,c'] = M(c−c')`) and symmetric (`M(e) = M(−e)`). **`M` is measured, not assumed**, and reported. |
-| **(H2)** | `Σ_q PAF_q(t) = 4n·δ_{t,0} − M(κ(t))` for every `t`, using the `M` measured in (H1) — not the house value. |
+| **(H2)** | `Σ_q PAF_q(t) = 4n·δ_{t,0} − M(κ(t))` for every `t ≠ 0`, using the `M` measured in (H1) — not the house value. |
 | **(H3)** | `E Eᵀ + w·P Pᵀ = N·I_{4s}`. |
 | **(H4)** | `E Qᵀ + P Ĉᵀ = 0`, with `Ĉ = GS(σ₀,…,σ₃; κ(ρ))` the Goethals–Seidel array of the coset sums over `Ḡ`. |
 

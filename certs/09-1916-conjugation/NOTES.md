@@ -85,7 +85,8 @@ witness used.
 **[3] Each twist is checked in the GENERAL form.** `tools/bordered_gs.py`'s
 `check_record` hard-codes the **house** two-tier PAF profile, so it cannot be
 used on a non-house instance. `run.py` therefore re-implements H1–H4 with an
-**arbitrary** Gram — labelled as `note/NOTE-B.md` labels them:
+**arbitrary** Gram — labelled as `tools/bordered_gs.py` labels them (see its
+`LABEL MAPPING` block; `note/NOTE-B.md`'s Theorem A permutes these labels):
 
 | | general form checked here |
 | --- | --- |

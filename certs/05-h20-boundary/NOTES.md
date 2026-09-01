@@ -1,4 +1,4 @@
-# cert 05 — the hypothesis boundary `w ≤ 2s`, at order 20
+# cert 05 — the hypothesis boundary `w = 2s`, at order 20
 
 ## What the two instances are
 
@@ -45,6 +45,16 @@ everything the twelve decoded records exercise:
 > `w > 2s` is therefore **sufficient but not necessary** for D3's
 > conclusion: crossing the boundary costs the *proof*, not — here — the
 > *statement*.
+
+**What Theorem D already gives, and what is added here.** `note/NOTE-B.md`
+§1.5 **(D-c)** already **proves** that in the genuine `i = 2` branch (house
+Gram `M = 8I₂ − 4J₂`), in the standard orientation, `p` is `4×4` Hadamard and
+`E` is Hadamard for every `w ≥ 2` — the `±`-row-doubling turns `w` into `2w`,
+which is sharper than D3's `w > 2s`. **T1 lies inside that branch**, so its
+measured `E Eᵀ = 4I₄` is not a surprise; it is Theorem D. The exhaustive check
+below is the strengthening of that, not a substitute for it: it assumes
+**(H3) alone** — no (H1), (H2), (H4) and no branch hypothesis — and T2 carries
+the **transpose-negated** orientation, which (D-c) does not cover.
 
 **This is the documented edge of Theorem C, and nothing more.** No
 counterexample to Theorem A, to Theorem C, or to D3 is claimed; none was

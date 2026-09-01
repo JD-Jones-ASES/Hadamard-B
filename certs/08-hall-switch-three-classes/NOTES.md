@@ -1,7 +1,7 @@
 # cert 08 — order 668 carries at least three Hadamard equivalence classes
 
 **Label: PROVEN.** Replay: `python certs/08-hall-switch-three-classes/run.py`
-from the repository root. Standard library only, about 1.4 s, 101 checks,
+from the repository root. Standard library only, about 1.4 s, 106 checks,
 exit 0.
 
 ---
@@ -68,9 +68,12 @@ the matrix `H★`.
 **Their method is weaker than the one used here, and measurably so.** Their
 separating statistic `Φ_M` is a canonical *slice* of the `|T4|` 4-profile (the
 4-subsets with exactly one row in the distinguished border quadruple). It is a
-genuine invariant — its invariance rests on a uniqueness step the preprint
-does not state, proved independently upstream — but it is **bin-for-bin
-identical on `H` and `H'`**, a pair this certificate proves inequivalent. A
+genuine invariant — its invariance uses the preprint's own **Lemma 3**
+(uniqueness of the distinguished quadruple), stated and exactly computed
+there; this certificate independently reproduces that computation from the
+exact profile's `660` bin (control C3 below) — but on this order it is
+**bin-for-bin identical on `H` and `H'`**, a pair this certificate proves
+inequivalent. A
 published cheap invariant returning "no separation" on a true separation is
 the working reason this repository pays for the full `Θ(n⁴)` computation. That
 measurement is upstream (`intel/hadamard-668-vercel-intake.md` §4.3), is
@@ -81,13 +84,15 @@ measurement is upstream (`intel/hadamard-668-vercel-intake.md` §4.3), is
 
 `run.py` runs all of the following before it prints a verdict.
 
-**[0] The bank is pinned.** Ten banked files, each SHA-256 compared in code.
+**[0] The bank is pinned.** Eleven banked files, each SHA-256 compared in code.
 Five are shared read-only with cert 06 and carry cert 06's values unchanged.
 
 **[1] Five matrices are rebuilt, not assumed.** Both records go through
 `tools/bordered_gs.py`'s `check_record`, which re-checks **every hypothesis of
 the master theorem** — H0 shape, H1 the two-tier PAF profile, H2 the
-corner/row-table budget, H3 the column-table Gram, H4 the coupling, the
+corner/row-table budget, H3 the column-table Gram, H4 the coupling (that
+module's numbering; see its `LABEL MAPPING` block, which is a permutation of
+`note/NOTE-B.md` Theorem A's), the
 derived D1/D3/D5 and the Σ̄ law, and the compression-lemma cross-check — and
 only then assembles. `H★` is then built by negating the mask, and `(H★)ᵀ` and
 `(H')ᵀ` by transposition. **All five** go to `verify/verify.py`, the trust
@@ -110,7 +115,7 @@ own `(s, |G|)`; the two must agree. Then:
 | **C2** | the switch is applied twice | the canonical digest of `H` comes back — it is an involution |
 | **C3** | the border quadruple `P = {1,2,3,4}` is checked type-1 (minority 4, `\|T4\| = 660`) in `H`, `H'` and `H★` | holds in all three — the hypothesis the preprint's own Lemma 3 needs |
 
-**[2] Seven banked profiles are audited in exact integers**, plus the two in
+**[2] Eight banked profiles are audited in exact integers**, plus the two in
 the twisted-transpose bank. Per profile: every populated bin is `≡ 4 (mod 8)`;
 the counts total `C(668,4)`; and the second moment equals
 `n³(n−1)(n−2)/24 = 5 517 193 410 096` — the closed form proved in
@@ -119,13 +124,17 @@ nothing. Where a banked `second_moment` or `matrix_sha256` field is present it
 is checked too, and the `matrix_sha256` fields bind the profiles to the
 matrices `run.py` just rebuilt.
 
-**[3] Two independent implementations agree bin for bin**, on `H`, `H'`, `H★`
-and `(H')ᵀ`. `blas` is a float32 Gram of the pair-vector matrix (exact at
-these sizes: every entry and partial sum is an integer below `2²⁴`); `bits`
-packs rows into `uint64` words and uses
-`|T4| = |n − 2·popcount(u_P ⊕ u_Q)|`. For `H★` and `(H')ᵀ` the two also use
-**different enumerations** — the upper-triangle-with-`/3` route and the
-canonical-split bijection — so nothing but the answer is shared.
+**[3] Two independent implementations agree bin for bin**, on **all five**
+matrices — `H`, `H'`, `H★`, `(H★)ᵀ` and `(H')ᵀ`. So every leg of the theorem,
+the transpose-extended legs included, rests on two implementations; no
+comparison in this certificate rides on a single arithmetic route. `blas` is a
+float32 Gram of the pair-vector matrix (exact at these sizes: every entry and
+partial sum is an integer below `2²⁴`); `bits` packs rows into `uint64` words
+and uses `|T4| = |n − 2·popcount(u_P ⊕ u_Q)|`. On `H★` and `(H★)ᵀ` the two
+also use **different enumerations** — the upper-triangle-with-`/3` route
+(`exact_profile.py`) against the canonical-split bijection
+(`exact_profile_big.py`) — so there nothing but the answer is shared; on
+`(H')ᵀ` both run the canonical split and differ in arithmetic alone.
 
 **[4] Controls.**
 
@@ -183,12 +192,6 @@ So the three-class theorem is **transpose-robust**: all three pairs stay
 apart. `run.py` also checks the redundant crossings that must hold if the
 above do — `(H')ᵀ` vs `H★` (49) and `H'` vs `(H★)ᵀ` (50).
 
-`note/NOTE-B.md` §3.4 currently says the pending transpose-extended check is
-`H'` vs `H★`. That is not where the gap was: `H'` vs `(H★)ᵀ` was already in
-hand upstream, and the one missing profile was `(H')ᵀ`. It has now been
-computed, and **every** pair closes. §3.4's transpose paragraph is out of date
-in the desk's favour and can be strengthened.
-
 ## Pinned digests
 
 **Matrices** (canonical SHA-256 of the `+/-` serialisation — the digest
@@ -219,6 +222,7 @@ row-major, 446 224 bytes), reproduced by `run.py`:
 | `data/sep668-hall-exact-blas.json` | `35e716ecb43bb6190d5dd6f4160e0bc2bed4f61a3aacf07a36ff9d190810c154` |
 | `data/sep668-hall-exact-bits.json` | `a6f703b499d98995f6446a1aed671284c47e99cfe869f3ce8dc8b5fd9394accb` |
 | `data/sep668-hall-T-exact-blas.json` | `151fb5d6e70cf56d6a1c2aa124a597a837bca0ecf5d64958b43a34c05383e0db` |
+| `data/sep668-hall-T-exact-bits.json` | `48fdb26f8b1ee5135ed278ec866e204c1ab47df168c043fabff8699c0f4fd8bb` |
 | `data/sep668-twisted-T-exact.json` | `38355274ec61d33fcd96e24255e4a7b02874150cd914fdfb928d28cee751fc4a` |
 | `data/sep668-twisted-record.json` | `fe8154179ba2ebfe097c82e468368cdc8a070548555bb10140949af0560611fb` |
 | `data/sep668-exact-blas-decoded.json` | `22df5ce9fcd6eb307f56981c507bb46b2a18b79861d903349dc13458a6dffcbf` |
@@ -230,7 +234,7 @@ row-major, 446 224 bytes), reproduced by `run.py`:
 with certs 01 and 06, and the binding pin on it is the canonical digest of the
 matrix it produces, which is checked above.
 
-The three `*-exact-*.json` files banked by this certificate carry a
+The four `*-exact-*.json` files banked by this certificate carry a
 `banked_note` field naming the header fields added at banking time —
 `schema`, `description`, `matrix`, `matrix_canonical_sha256`,
 `producer_filename`, `engine`, `enumeration`, `arithmetic`. **Every numeric
@@ -247,11 +251,12 @@ implementations in one file, under `implementations.bits` and
 
 | step | cost |
 | --- | --- |
-| **`run.py`, end to end** | **≈ 1.4 s** (101 checks, exit 0) |
+| **`run.py`, end to end** | **≈ 1.4 s** (106 checks, exit 0) |
 | rebuild + hypothesis re-check + `verify.py`, per 668 matrix | ≈ 0.15 s |
 | producing `data/sep668-hall-exact-blas.json` | 365.0 s, upper-triangle route |
 | producing `data/sep668-hall-exact-bits.json` | 168.8 s, canonical split, 70.8 MB peak |
 | producing `data/sep668-hall-T-exact-blas.json` | 327.5 s, upper-triangle route |
+| producing `data/sep668-hall-T-exact-bits.json` | 204.4 s, canonical split, 70.7 MB peak |
 | producing `data/sep668-twisted-T-exact.json`, `bits` | 206.8 s, 70.9 MB peak |
 | producing `data/sep668-twisted-T-exact.json`, `blas` | 106.1 s, 409.6 MB peak |
 

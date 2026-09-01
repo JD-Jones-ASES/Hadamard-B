@@ -51,7 +51,9 @@ Two warnings from §3.1 that this certificate honours mechanically:
 **[1] Both matrices are rebuilt, not assumed.** Each record goes through
 `tools/bordered_gs.py`'s `check_record`, which re-checks **every hypothesis
 of the master theorem** — H0 shape, H1 the two-tier PAF profile, H2 the
-corner/row-table budget, H3 the column-table Gram, H4 the coupling, the
+corner/row-table budget, H3 the column-table Gram, H4 the coupling (that
+module's numbering; see its `LABEL MAPPING` block, which is a permutation of
+`note/NOTE-B.md` Theorem A's), the
 derived D1/D3/D5 and the Σ̄ law, and the compression-lemma cross-check of
 the assembled core against the `G/K` Goethals–Seidel array — and only then
 assembles. Each assembled matrix is handed to `verify/verify.py`, the trust
@@ -202,3 +204,7 @@ an in-flight artifact of another lane's run.
   the dual weight enumerator, and `2·10⁷` sampled 4-subsets — returned
   *identical* values on a pair that is in fact inequivalent. Read every
   "agrees" in this repository as "did not separate", never as "the same".
+  Of that list only `dim V`/`dim W` and the sampled comparison are replayed
+  by `run.py`; the I1/I2 collision profiles, the I4 extreme strata,
+  `rank₁₆₇`, the dual weight enumerator and the block-affine exhaustion are
+  **MEASURED upstream, not replayed here**.

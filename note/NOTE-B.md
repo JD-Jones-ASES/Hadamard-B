@@ -8,7 +8,7 @@ This note is the mathematics of the repository, in three movements:
   parameter classification; and the complete resolution of the
   `s = 1` border system.
 - **II. The instances** (§2) — twelve publicly posted matrices
-  re-verified through the theorem's hypotheses, and five matrices
+  re-verified through the theorem's hypotheses, and eight matrices
   constructed here, every one replayable from `certs/`.
 - **III. Existence plus separation** (§3) — a proof that order 668
   carries at least **three** Hadamard equivalence classes, pairwise
@@ -45,9 +45,10 @@ For `x : G → {±1}`, `PAF_x(t) = Σ_{u∈G} x(u)x(u+t)`; note
 `X[g,h] = x(h−g)`. **Reflection.** `R = R_ρ` is the permutation matrix
 `R[k,h] = [k+h = ρ]`; `R = Rᵀ`, `R² = I`. Then `(XR)[g,h] = x(ρ−g−h)`
 and `(XᵀR)[g,h] = x(g+h−ρ)`. On `G = ℤ_n`, `ρ = −1` gives the
-classical back-diagonal and `ρ = 0` is group inversion. When `|G|` is
-even, `ρ` is **not** removable by relabelling (a shift `g ↦ g+α` sends
-`ρ ↦ ρ−2α` and `2` is not invertible).
+classical back-diagonal and `ρ = 0` is group inversion. A shift
+`g ↦ g+α` sends `ρ ↦ ρ−2α`, so the invariant is the class
+`[ρ] ∈ G/2G`: `ρ` can be normalised to `0` exactly when `ρ ∈ 2G` —
+automatic for odd `|G|`, and not guaranteed when `|G|` is even.
 
 **The core.** `C = GS(x_0,x_1,x_2,x_3; ρ)` is the `4G × 4G` array
 
@@ -62,9 +63,11 @@ We call this orientation *standard* — a convention of this
 repository, not of the literature; negating the six transposed
 blocks gives the other valid orientation (used, e.g., by SageMath).
 The proofs below are orientation-symmetric, but **every theorem in
-this note is stated, and every checker in this repository assembles,
-the standard orientation only**; the analogues for the other
-orientation are routine and are not derived here.
+this note is stated, and every primary trust-chain assembly in this
+repository uses, the standard orientation only** (cert 05
+additionally carries an alternate-orientation control instance); the
+analogues for the other orientation are routine and are not derived
+here.
 
 **The border ansatz.** Given a corner `E ∈ {±1}^{4s×4s}`, a row table
 `P ∈ {±1}^{4s×4i}` and a column table `Q ∈ {±1}^{4i×4s}`, set
@@ -87,7 +90,8 @@ coset structure of a proper subgroup — is the object of study here.
 - **(H1)** there is a symmetric, `Ḡ`-invariant `i×i` integer matrix
   `M` (i.e. `M[c,c'] = M(c−c')` for `M : Ḡ → ℤ`) with
   `Q Qᵀ = I_4 ⊗ M`, and
-- **(H2)** `Σ PAF(t) = 4n·δ_{t,0} − M(κ(t))` for all `t ≠ 0`, and
+- **(H2)** `Σ PAF(t) = −M(κ(t))` for all `t ≠ 0` (at `t = 0` the
+  sum is `4n` automatically), and
 - **(H3)** `E Eᵀ + w·P Pᵀ = N·I_{4s}`, and
 - **(H4)** `E Qᵀ + P Ĉᵀ = 0`, where `Ĉ = GS(σ_0,σ_1,σ_2,σ_3; κ(ρ))`
   is the Goethals–Seidel array of the **coset sums over the quotient
@@ -105,8 +109,8 @@ a `4s×4i` condition rather than a `4s×4n` one.
 (a) `XY = YX` (convolution over an abelian group);
 (b) `X Yᵀ = Yᵀ X`, and `X Xᵀ = Xᵀ X = dev(PAF_x∘(−))`, i.e.
 `(X Xᵀ)[g,h] = PAF_x(g−h)`;
-(c) `X R Yᵀ = Y R Xᵀ` (both equal `f(g+h)` with
-`f(t) = Σ_u x(t−u)y(u)`);
+(c) `X R Yᵀ = Y R Xᵀ` (both equal `f(ρ−g−h)` with
+`f(t) = Σ_u x(u)y(t−u)`);
 (d) `X R Y = Yᵀ R Xᵀ` (both equal `Σ_u x(ρ−g−h+u)y(u)`).
 Each is a one-line change of summation variable; (c) and (d) are
 where `R` being the *reflection* `k+h = ρ` (rather than an arbitrary
@@ -118,10 +122,11 @@ involution) is used. ∎
 *Proof.* Diagonal blocks: `R Rᵀ = I` collapses every reversed block,
 and `XᵀX = XXᵀ` (Lemma 1b) makes all four diagonal blocks equal
 `Σ_q X_q X_qᵀ = Σ`. Off-diagonal blocks: each is a sum of four
-products which pair up as `−A R Bᵀ + B R Aᵀ` (zero by 1c),
-`CD − DC` (zero by 1a), `B Cᵀ − Cᵀ B` (zero by 1b),
-`−A R D + Dᵀ R Aᵀ` (zero by 1d) — one such pair for each of the six
-off-diagonal block positions. Nothing but Lemma 1 is used, so **no
+products which cancel in pairs of the four displayed types —
+`−A R Bᵀ + B R Aᵀ` (zero by 1c), `CD − DC` (zero by 1a),
+`B Cᵀ − Cᵀ B` (zero by 1b), `−A R D + Dᵀ R Aᵀ` (zero by 1d) — two
+such cancelling pairs for each of the six off-diagonal block
+positions above the diagonal. Nothing but Lemma 1 is used, so **no
 hypothesis on the seeds enters**: Lemma 2 holds for arbitrary
 sequences. ∎
 
@@ -177,11 +182,14 @@ Requiring `N δ_{I,I'} δ_{g,g'}`:
 The left side depends on `g,g'` only through their cosets and the
 right side only through `g−g'`, and every `t` in the coset
 `κ(g)−κ(g')` is realised; so the two conditions are jointly
-equivalent to (H1)+(H2). This also shows the **two-tier shape of the
-profile is forced by the ansatz**: constant on `K∖{0}` because the
-diagonal of a `±1` Gram is constant, and constant on each other coset
-because `Q Qᵀ` cannot see anything finer than a coset. This is the
-sentence the whole construction turns on.
+equivalent to (H1)+(H2). This also shows what the ansatz forces on
+the profile: the value `−4s` on `K∖{0}` (the diagonal of a `±1` Gram
+is constant), and off the origin the aggregate PAF **factors through
+`G/K`** (`Q Qᵀ` cannot see anything finer than a coset). In the
+house branch all nonzero quotient classes coalesce to the common
+value `+4`, giving the two-tier profile of Theorem B; a general
+admissible `M` may distinguish nonzero classes. This is the sentence
+the whole construction turns on.
 
 **Top-right.** `(E Q̃ᵀ)[r,(I,g)] = (E Qᵀ)[r, iI+κg]`, and by Lemma 3
 `(P̃ Cᵀ)[r,(I,g)] = (P Ĉᵀ)[r, iI+κg]`. Vanishing is exactly **(H4)**.
@@ -208,11 +216,18 @@ Wallis–Whiteman/Spence bordered construction** (§4).
 
 **On the choice of `M`.** Theorem A admits in principle other Gram
 matrices `M`. What is known: under `w > 2s`, any admissible `M` is
-PSD, `Ḡ`-invariant, has diagonal `4s` and rank exactly `s`, and its
-nonzero eigenvalues lie in `(4i−2s+2, 4i+2)` and sum to `4si`; the
-house value (all equal to `4i`) is the equality case of that
-averaging bound. At `(s,i) = (1,2)` the house form **is** forced
-(Theorem D below). For `s ≥ 2` forcedness is **open**, and it is
+PSD, `Ḡ`-invariant, has diagonal `4s` and rank exactly `s`; its
+nonzero eigenvalues sum to `4si`, each is `< 4i+2` (Parseval,
+`μ_χ ≤ N/w`), and for `s ≥ 2` each exceeds `4i−2s+2`, while for
+`s = 1` the single nonzero eigenvalue is exactly `4i`. The house
+value (all nonzero eigenvalues equal to `4i`) is the equality case
+of the averaging bound. (Each claim is a two-line consequence of
+positive semidefiniteness, the Parseval bound, `rank ≤ s` from the
+four orthogonal superblock spans, and the trace; the routine algebra
+is omitted.) At `(s,i) = (1,2)` the genuine index-2 branch has the
+house Gram, and the only other admissible Gram is the degenerate
+index-1 construction written in index-2 coordinates (Theorem D
+below). For `s ≥ 2` forcedness is **open**, and it is
 open *up to a character twist at best*: a character twist `x_q ↦ ψx_q`
 with `ψ² = 1`, `ψ|_K = 1` produces valid instances whose Gram is
 non-house (an explicit `N = 1916` witness is banked; §3.3 explains
@@ -319,7 +334,8 @@ case, and the sibling orders 716, 1676, 1772 remain unclaimed.
 
 ### 1.5 Theorem D (the `s = 1, i = 2` border system, resolved) — PROVEN
 
-Setting: `G` abelian of even order `n`; `K ≤ G` of index `2`;
+Setting: `G` abelian of even order `n ≥ 4` (equivalently `w ≥ 2`;
+the vacuous `n = 2` case is excluded); `K ≤ G` of index `2`;
 `w = n/2`; `s = 1`; `v = n+1`; `N = 4v`; `κ : G → ℤ₂`;
 `ε = +1` if `κ(ρ)=0` else `−1`;
 `r_q = σ_q(0) + σ_q(1)`, `δ_q = σ_q(0) − σ_q(1)`,
@@ -370,13 +386,20 @@ whole border reduces to: *choose 4×4 Hadamard `p, U` such that
 
 **(D-e) Transport.** A fixed `(p, U, E)` pins `d` uniquely (`Λ` is
 injective) — the exact analogue of the `i = 1` template pinning the
-row-sum vector. Every admissible `d` (all 24 with `Σd² = 4`) admits
-a border: exhaustively, over all `768²` ordered pairs of 4×4
-Hadamard `(p,U)`, every `±2e_j` admits exactly `½` of the pairs and
-every `(±1,±1,±1,±1)` exactly `¾` (mechanism: an orthogonal basis of
-`{±1}⁴` is one of the two weight-parity cosets of `F₂³`, and `E` is
-`±1` iff the row-classes of `p·Λ(d)ᵀ/2` and the column-classes of
-`U` are the different coset). And the `i = 1` universal border
+row-sum vector. The integral vectors `y ∈ ℤ⁴` with `Σ y_q² = 4`
+comprise eight even vectors `±2e_j` and sixteen odd vectors
+`(±1,±1,±1,±1)`, and the border equation can be evaluated on all
+24; but **seed-derived data is always even** — each coset sum
+satisfies `σ_q(c) ≡ w (mod 2)`, so `δ_q = σ_q(0) − σ_q(1) ∈ 2ℤ` —
+so the realizable vectors are exactly `d = ±2e_j`. Every one of the
+24 abstract arguments admits a border (MEASURED: exhaustively, over
+all `768²` ordered pairs of 4×4 Hadamard `(p,U)`, every `±2e_j`
+admits exactly `½` of the pairs and every odd vector exactly `¾`;
+mechanism: an orthogonal basis of `{±1}⁴` is one of the two
+weight-parity cosets of `F₂³`, and `E` is `±1` iff the row-classes
+of `p·Λ(d)ᵀ/2` and the column-classes of `U` are the different
+coset); for genuine `i = 2` data only the `±2e_j` half of that
+census is in play. And the `i = 1` universal border
 transports verbatim: with `P[r][2J+c] = (−1)^c·P₁[r][J]`,
 `Q[2I] = Q₁[I]`, `Q[2I+1] = −Q₁[I]`, `E = E₁`, an `i = 1` border is
 a valid `i = 2` border whenever `d = (2,0,0,0)`.
@@ -407,9 +430,12 @@ problems are one problem, and any exhaustive statement proved on one
 side transports to the other.
 
 (With Theorem D this closes the `s = 1` layer completely: the
-`i = 2` cell is a relabelling of `i = 1` whenever the index-2
-subgroup is unique, and its border system is the `i = 1` system in
-different coordinates. The underlying Parseval mechanism is that the
+`i = 2` **seed problem** is a character-twist reparametrization of
+the `i = 1` seed problem whenever the index-2 subgroup is unique,
+and its border system is the `i = 1` system in different
+coordinates. The bijection is of seed problems, not of matrices —
+it does **not** imply the assembled Hadamard matrices are
+equivalent, and at order 668 §3.4 proves they are not. The underlying Parseval mechanism is that the
 trivial character's constraint is tight at `i = 1` while at `i = 2`
 the binding constraint is the character trivial on `K` but not on
 `G`, which contributes `Σ_q δ_q² = 4n − 4(s+1)w + 4s`.)
@@ -427,15 +453,17 @@ in its `NOTES.md`. Large matrices are regenerated, never committed.
 
 ### 2.1 The twelve public records — PROVEN-BY-CERTIFICATE (replay)
 
-Twelve Hadamard matrices at orders 668, 716, 892, 1132, 1244, 1388,
-1436, 1676, 1772, 1916, 1948 and 1964 were posted publicly on
-2026-08-12 (the sign-stream; expanded matrices on GitHub from
-2026-08-13; see `PROVENANCE.md`). The parameter records banked in
+Seed data encoding twelve Hadamard matrices at orders 668, 716,
+892, 1132, 1244, 1388, 1436, 1676, 1772, 1916, 1948 and 1964 was
+posted publicly on 2026-08-12 (the sign-stream); expanded matrices
+for ten of the twelve appeared on GitHub from 2026-08-13 (see
+`PROVENANCE.md`). The parameter records banked in
 `data/payload-records.json` — group, seeds, reflection, coset
 divisors, and border tables — were **decoded here from those public
 artifacts**; they are the posting team's mathematical content, not
-ours, and no priority of any kind is claimed over them or over
-anything derived from them. What this repository adds at these
+ours, and no priority of any kind is claimed on the records
+themselves, on the decode, or on existence at these twelve orders.
+What this repository adds at these
 orders is the verification: cert 01 checks every hypothesis
 (H1)–(H4) and every derived law of Theorem C literally on each
 record, assembles the matrix, verifies it, and matches the canonical
@@ -522,14 +550,16 @@ in cert 06 asserts it programmatically.
 ### 3.2 Why the second moment is not an accident — the cheap-invariant wall
 
 Any invariant statistic must be even in the row signs and even in
-the column signs; degree-2 statistics die by orthogonality, and
-every aggregate degree-4 statistic collapses to a function of `n`
-(the lemma above is the clean form). The first statistic with
-resolution is the 4-profile histogram itself, at `Θ(n⁴)`. On the 668
-pair below, *every* cheap invariant — I1–I4, I6, `dim W`, the dual
-weight enumerator — returns identical values, and `2·10⁷` samples of
-I5 cannot tell the pair apart (`max |z| = 1.8`); only the exact
-4-profile separates. Matching invariants are never evidence of
+the column signs, and degree-2 statistics die by orthogonality; the
+second-moment lemma shows why one natural aggregate of the
+4-profile is forced by `n` alone. No universal minimality claim is
+made for the full histogram — cheaper invariants can and do resolve
+*other* pairs. The point is pair-specific: on the 668 pair below,
+*every* cheap invariant — I1–I4, I6, `dim W`, the dual
+weight enumerator — returns identical values (the source
+laboratory's measurements; cert 06 replays the `F₂`-rank pair and
+the full profile chain), and `2·10⁷` samples of I5 cannot tell the
+pair apart (`max |z| = 1.8`); only the exact 4-profile separates. Matching invariants are never evidence of
 equivalence, and this pair is the proof.
 
 ### 3.3 Order 1916: the twist that is not a new matrix — PROVEN-BY-CERTIFICATE
@@ -549,7 +579,13 @@ proposition doing exactly what it promises: the twist refutes
 Gram-forcing as a literal statement while manufacturing nothing
 new.
 
-### 3.4 The theorem at order 668 — PROVEN
+### 3.4 The theorem at order 668 — PROVEN + PROVEN-BY-CERTIFICATE
+
+*(The invariance of the folded 4-profile and the implication
+"different profiles ⟹ inequivalent" are paper proofs; the three
+exact profiles and six transpose comparisons are certified machine
+computations — certs 06 and 08. The composite label reflects that
+split.)*
 
 > **Theorem.** Order 668 carries at least **three** Hadamard
 > equivalence classes. They are exhibited by the decoded `(1,1)`
@@ -559,8 +595,8 @@ new.
 > 26 (`H` vs `H'`), 27 (`H` vs `H★`) and 27 (`H'` vs `H★`) of their
 > 80 bins — and the theorem holds under the transpose-extended
 > relation as well: all six comparisons separate (against the
-> transposes: 50, 49 and 50 bins; the transposed profiles populate
-> 79 bins).
+> transposes: 50, 49 and 50 bins; both transposed profiles computed
+> here populate 79 bins).
 
 **Priority, stated first.** An anonymous preprint (hosted at
 hadamard-668.vercel.app; its PDF `CreationDate` field reads
@@ -578,14 +614,15 @@ construction data. Its second matrix `H★` is a 1,328-entry paired
 Hall switch of `H`, rebuilt here from its published data and
 verified (both its SHA-256 digests reproduce). Its separating
 statistic `Φ_M` — the correlation profile of a distinguished type-1
-quadruple — is sound, but its invariance rests on a uniqueness step
-the preprint omits: the distinguished quadruple must be unique, and
-it is, because a distinguished 4-subset is exactly one achieving
-`|T4| = 660` and the exact profile's `660` bin has count **1** on
-every matrix here — a fact cert 08 checks directly. Granted that,
-`Φ_M` is strictly weaker
-than the full 4-profile: `Φ_M` is **bin-for-bin identical on `H`
-and `H'`**, a pair §3.4 proves inequivalent. The "at least two
+quadruple — is sound: its invariance uses the uniqueness of that
+quadruple, stated and exactly computed in the preprint as its
+Lemma 3, and this repository independently reproduces and certifies
+that computation (a distinguished 4-subset is exactly one achieving
+`|T4| = 660`, and the exact profile's `660` bin has count **1** on
+every matrix here — cert 08 checks it directly). On this order,
+however, `Φ_M` is blind where the full 4-profile is not: it is
+**bin-for-bin identical on `H` and `H'`**, a pair §3.4 proves
+inequivalent. The "at least two
 classes" statement is the preprint's; the third class, the Lemma-T
 construction that produces it, and the pairwise exact-profile
 separations are this repository's.
@@ -597,7 +634,9 @@ matrix, and a packed-`uint64` popcount path; opposite bit packings;
 both validated bin-for-bin against straight `O(C(n,4))` stdlib
 enumeration on five small control matrices), with a third
 (canonical-split) implementation agreeing bin-for-bin on the
-decoded record. All three matrices populate the **same 80 bins** —
+decoded record (a source-laboratory run, cited in cert 06's notes
+rather than banked). All three matrices populate the **same 80
+bins** —
 the support does not separate them, and neither does the extreme
 tail (top bins agree exactly). **The bulk separates them** — for
 `H` vs `H'`, 26 of the 80 bin counts differ, e.g.
@@ -618,10 +657,17 @@ worth very little; the exact computation is what settles it).
 
 On transpose: the theorem is **transpose-robust**. Refuting `A ≈ B`
 under the transpose-extended relation needs both `A ≁ B` and
-`A ≁ Bᵀ`, and all six comparisons separate exactly: 26/50, 27/49
-and 27/50 differing bins for the three pairs (cert 08; the
-transposed matrices are genuinely different objects — they populate
-79 bins where the originals populate 80). Order 668 carries at
+`A ≁ Bᵀ`, and all six comparisons separate exactly (cert 08):
+
+```
+H  vs H'  : 26 bins      H  vs (H')ᵀ : 50 bins
+H  vs H★  : 27 bins      H  vs (H★)ᵀ : 49 bins
+H' vs H★  : 27 bins      H' vs (H★)ᵀ : 50 bins
+```
+
+(the transposes are genuinely different objects — both transposed
+profiles computed here populate 79 bins where the originals populate
+80). Order 668 carries at
 least three equivalence classes under either convention.
 
 Consequences. The Lemma-T construction at `ψ(ρ) = −1` genuinely
@@ -647,7 +693,8 @@ coherent monotone pattern across consecutive bins — more peaked,
 heavier-tailed — whose deficits and excesses balance as they must.
 The independent second sampler, at `3·10⁶` draws, does not by itself
 reach `4σ` (as `√N` scaling predicts); its corroboration is sign
-agreement on all 29 bins the first sampler resolves. The calibration
+agreement on 29 of the 34 bins the first sampler resolves — the 29
+where the second has enough mass to compare. The calibration
 that keeps this honest: the same sampled statistic reads null
 (`max |z| ≤ 2.2`, zero bins over `4σ`) on the 668 pair that §3.4
 **proves** inequivalent. No equivalence exists in the block-affine
@@ -711,7 +758,8 @@ sibling on a two-block core is older still: **Blatt–Szekeres 1969**
 (Canad. J. Math. 21, 1319–1322 — read in full; received May 1968)
 states it over *any* abelian group of order `2m+1`, needed there
 precisely because their order-52 difference sets live in `ℤ₅×ℤ₅`
-and, by their machine search, in no cyclic group of that order — and
+(group order 25) and, by their machine search, in no cyclic group
+of order 25 — and
 closes "there seems to be no obvious generalization of this
 construction"; it reappears as Wallis–Street–Wallis Thm 4.4 (p. 321)
 and Wallis–Whiteman Lemma 15. (The WSW book's own reference list
@@ -747,14 +795,15 @@ The profile `4nδ₀ − 4s[K∖0] + 4[∉K]` says exactly that the four base
 blocks form a `(G, K, {k_i}, λ, μ)`-**divisible difference family**
 in the sense of Momihara–Yamada (arXiv:1212.3021, Def. 1.1) — we use
 their language, not new terminology. Their Theorem 4.1 is also the
-closest prior *coset-structured* border we located anywhere: border
+closest prior *coset-structured* border in the sources enumerated
+here: border
 rows constant on cosets of a subgroup `N` — around a **two-block**
 core, with width tied to `2|N|` by the construction, targeting
 symmetric Hadamard matrices of order `n²`, and with no converse
 (their Problem 4.3 asks for what a characterisation would provide).
 More broadly, coset structure imposed on the **blocks** of a family
 is thoroughly classical (cyclotomic classes; multiplier-invariant
-blocks); every border strip in every source we read, that one
+blocks); every border strip in the sources enumerated here, that one
 exception aside, is constant on the whole group.
 
 **Classification prior art.** Đoković–Kotsireas (arXiv:1802.00556)
@@ -767,7 +816,13 @@ Seberry–Yamada 1992 (cover to cover; its §8 M-structure borders are
 width one *per plug-in block*, Miyamoto's mechanism, not a border
 around the assembled array), Seberry–Yamada 2020 (§3.6, §5.10.1–4,
 and Appendix A complete from the A.1 heading — every construction
-key table A.1–A.15 plus Table A.17 as captured), Georgiou–Koukouvinos–
+key table A.1–A.15 plus Table A.17 as captured), the *Handbook of
+Discrete and Combinatorial Mathematics* (Rosen et al., 2nd ed. 2018;
+Chapter 12 read in full with a machine-verified sweep of all 1,615
+pages — its only bordered construction is the width-1 Paley border,
+p. 902; note its §12.1–12.3 are the Colbourn–Dinitz editors'
+self-declared *condensation* of their 2007 Handbook, so this read
+does not discharge that item), Georgiou–Koukouvinos–
 Seberry 2002 (in full; the word "border" does not occur in it), and
 the Cati–Pasechnik database (whose bordered entries are Paley I/II,
 Spence's Theorem 2.1, and the Blatt–Szekeres attribution above) —
@@ -806,11 +861,14 @@ Craigen–Kharaghani Handbook chapter (V.1, 2007).
 The twelve records derive from the announcement of 2026-08-12 and
 its public artifacts (`PROVENANCE.md` carries the pinned chain); the
 order-2060 artifact is Schneider's. Two independent Lean
-formalizations of a single `H(668)` from the same public data exist
-(the comparator of Paul-Lez, registered 2026-08-17, and
-Ramos–Hulak–de Queiroz, 2026-08-28); both verify one supplied
-matrix, and neither states a construction theorem — a formalised
-Theorem A/B would be a different class of object. The anonymous
+formalizations of a single `H(668)` from the same public data exist:
+the comparator of Paul-Lez (registered 2026-08-17), whose
+`Challenge.lean` independently exhibits the bordered structure at
+668 — circulants, a width-4 border, per-block-constant strips, the
+same 4×4 corner — and Ramos–Hulak–de Queiroz (2026-08-28), which
+verifies one supplied matrix. Neither states the general
+construction theorem or the classification; a formalised Theorem
+A/B remains a distinct object, planned separately. The anonymous
 vercel-668 preprint (§3.4) independently decoded the same record,
 border included, and was first to publish an inequivalence at the
 order; its priority is stated in §3.4. Public s=1 readings of the
@@ -829,13 +887,13 @@ understood.
 | Lemma T; the `ψ(ρ)=1` conjugation proposition | **PROVEN** |
 | the twelve public records satisfy every hypothesis | **MEASURED** (cert 01, 12/12) |
 | the twelve assembled matrices are Hadamard and match their pinned digests | **PROVEN-BY-CERTIFICATE** (cert 01) |
-| the five matrices constructed here (certs 02–05) | **PROVEN-BY-CERTIFICATE** |
-| `M` house form forced at `(s,i) = (1,2)` | **PROVEN** (Theorem D-a) |
+| the eight matrices constructed here (certs 02–05) | **PROVEN-BY-CERTIFICATE** |
+| at `(s,i) = (1,2)` the genuine branch's Gram is house (the alternative is the degenerate `i=1` rewriting) | **PROVEN** (Theorem D-a) |
 | `M` house form forced for `s ≥ 2` (up to twist) | **CONJECTURE** |
-| the 1916 pair is equivalent (explicit witness) | **PROVEN-BY-CERTIFICATE** |
-| **order 668 carries at least three equivalence classes** | **PROVEN** (pairwise exact 4-profiles, 26/27/27 differing bins; two independent implementations per matrix) |
-| the three-class theorem under the transpose-extended relation | **PROVEN** (all six comparisons separate; cert 08) |
-| the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN** (rebuilt firsthand; the omitted uniqueness step checked in cert 08 via the `660` bin) |
+| all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance | **PROVEN-BY-CERTIFICATE** (cert 09) |
+| **order 668 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 26/27/27 differing bins, two independent implementations per matrix; cert 06/08) |
+| the three-class theorem under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all six comparisons separate; cert 08) |
+| the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN-BY-CERTIFICATE** (rebuilt firsthand; its Lemma-3 uniqueness reproduced in cert 08 via the `660` bin) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
-| the 2060 pair is inequivalent | **COMPUTATIONAL-EVIDENCE** (sampled profiles; block-affine family exhausted) |
+| evidence that the 2060 pair is inequivalent | **COMPUTATIONAL-EVIDENCE** (sampled profiles; block-affine family exhausted) |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

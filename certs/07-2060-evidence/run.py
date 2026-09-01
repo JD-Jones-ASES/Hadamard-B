@@ -680,7 +680,7 @@ def run_sampled():
 
     # C5 -- cross-sampler corroboration
     print("\n  C5 -- cross-sampler corroboration on the 2060 pair")
-    tot_ag, tot_cmp = 0, 0
+    tot_ag, tot_cmp, tot_res = 0, 0, 0
     for side in ("row", "col"):
         Bp, Bg = H["B/plain/%s" % side], H["B/gist/%s" % side]
         ag = cmpd = 0
@@ -695,6 +695,7 @@ def run_sampled():
                 ag += 1
         tot_ag += ag
         tot_cmp += cmpd
+        tot_res += sum(1 for t in tabs[("A", side)] if t[3] > 4)
         mzB, _a, bigB, _n = summarise(tabs[("B", side)])
         print("        %s: of the %d bins A resolves, B has %d with enough "
               "mass; sign agrees on %d" % (side, sum(1 for t in tabs[("A", side)]
@@ -702,8 +703,12 @@ def run_sampled():
         print("             B's own reading at its 6.7x smaller budget: "
               "max|z| = %.2f, %d bins over 4 sigma" % (mzB, bigB))
     check("C5  two independent samplers, different RNGs and seeds, agree on "
-          "the SIGN of every resolved bin", tot_ag == tot_cmp and tot_cmp > 20,
-          "%d of %d  (p = 2^-%d under the null)" % (tot_ag, tot_cmp, tot_cmp))
+          "the SIGN of the difference in %d of the %d bins A resolves -- the "
+          "ones B has enough mass in at its 6.7x smaller budget"
+          % (tot_cmp, tot_res), tot_ag == tot_cmp and tot_cmp > 20,
+          "%d of %d agree; the other %d resolved bins are NOT compared -- "
+          "they are silent, not disagreements" % (tot_ag, tot_cmp,
+                                                  tot_res - tot_cmp))
     check("C5  the smaller sampler does NOT resolve the separation, and that "
           "is reported, not hidden", True,
           "z scales as sqrt(N): 7.45 / sqrt(20/3) = %.2f, which is what B "

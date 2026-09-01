@@ -48,9 +48,8 @@ which twelve orders it covers — is a third-party post,
 
 The three copies agree. All twelve matrices of the zip verify green in
 the trust chain and are **entry-identical** to the matrices this
-laboratory rebuilt from tape bytes — including the 2,619,755 entries of
-H(1948) that were never public and all 3,857,296 entries of H(1964),
-which had no public copy anywhere.
+laboratory rebuilt from tape bytes — including the parts of H(1948)
+and all of H(1964) that are absent from the GitHub copy.
 
 ### What this repository redistributes
 
@@ -83,8 +82,12 @@ rebuild them and delete them.
 
 **The twelve records are the announcing team's mathematical content.**
 The decode is provenance, not an achievement, and **no priority claim of
-any kind is made on the records or on anything derived from them.** No
-novelty of existence is claimed at any of the twelve orders. That those
+any kind is made on the records themselves, on the decode, or on
+existence at the twelve orders.** (What this laboratory built *from*
+the records — the theorems, the constructed instances, the
+separations — is claimed exactly as NOTE-B.md §4.2 states, and no
+further.) No novelty of existence is claimed at any of the twelve
+orders. That those
 orders were open before 2026-08-12 is not proven here either: it is
 REPORTED-FROM-AUDITED-TABLE, from Table 4 of Cati–Pasechnik,
 arXiv:[2411.18897](https://arxiv.org/abs/2411.18897)v2 (2025-08-30).
@@ -206,6 +209,13 @@ bounds it, is NOTE-B.md §4.
 
 To be executed at the public flip, and the date filled in above.
 
+- [ ] **Present-tense internal state.** Refresh the dated,
+      in-progress wording in `certs/06-668-separation/NOTES.md` and
+      `certs/07-2060-evidence/NOTES.md` (the local 2060 run, the
+      un-executed `--full`, the "in-flight" third engine): each item
+      is either completed and restated as done, or restated as a
+      dated historical fact. Fill the file-digest line in this
+      file's redistribution section.
 - [ ] **No-preprint statement.** Re-run the arXiv author sweep (Alpöge,
       Voinov, Reynolds-Haertle; also a title/abstract sweep for the
       twelve orders). Re-date the statement, or retract it if a preprint

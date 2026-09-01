@@ -7,7 +7,10 @@
 > (Theorem B) — H0 (shape), H1 (the two-tier PAF profile), H2 (the
 > corner/row-table orthogonality budget), H3 (the coset-invariant
 > column-table Gram), H4 (the coupling to the Goethals–Seidel array of
-> the coset sums) — and **every derived law** of Theorem C — D1, D2,
+> the coset sums), these four numbered as `tools/bordered_gs.py`
+> numbers them (see its `LABEL MAPPING` block; the note's (H1)–(H4)
+> are a permutation of the same four conditions) — and **every
+> derived law** of Theorem C — D1, D2,
 > D3, D5, the Σ̄ law, and the compression-lemma cross-check — and they
 > **assemble to Hadamard matrices whose canonical SHA-256 digests are
 > the twelve pinned below**. The twelve land on exactly the cells

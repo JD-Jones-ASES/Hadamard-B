@@ -6,7 +6,9 @@
 > `s = 1, i = 1` record is a valid **`s = 1, i = 2`** bordered
 > Goethals–Seidel instance: the twisted seeds satisfy the two-tier PAF
 > profile with `K` the index-2 subgroup, the banked border `(E, P, Q)`
-> satisfies H2, H3 and H4, the border has exactly the shape Theorem D
+> satisfies H2, H3 and H4 (tools numbering; see
+> `tools/bordered_gs.py`'s `LABEL MAPPING`), the border has exactly
+> the shape Theorem D
 > forces (`Q[2I+1] = −Q[2I]`, `P[r][2J+1] = −P[r][2J]`, `E` and `p`
 > Hadamard), and the assembly is a Hadamard matrix whose canonical
 > SHA-256 is the digest pinned below. **Each is a different artifact

@@ -39,10 +39,13 @@ WHAT THIS SCRIPT DOES  (standard library only, seconds)
       negative supports of the four decoded seeds) and its blocks K, T, S
       (as the record's corner, row_table and col_table^T), and reproduces
       both SHA-256 digests the preprint publishes for its own matrices.
-  (2) Loads seven banked exact 4-profiles, auditing each in exact integer
+  (2) Loads eight banked exact 4-profiles, auditing each in exact integer
       arithmetic: every populated bin = 4 (mod 8), the counts total
       C(668,4), and the second moment equals n^3(n-1)(n-2)/24.  Then
-      asserts blas == bits bin for bin on H* and on (H')^T.
+      asserts blas == bits bin for bin on all five matrices -- H, H',
+      H*, (H*)^T and (H')^T -- so every leg of the theorem, the
+      transpose-extended legs included, rests on two independent
+      implementations.
   (3) Compares the three matrices pairwise under the standard relation.
   (4) Compares them pairwise under the TRANSPOSE-EXTENDED relation.
   (5) Six controls, all in the standard library -- see NOTES.md.
@@ -109,11 +112,13 @@ FILE_PINS = {
         "a6f703b499d98995f6446a1aed671284c47e99cfe869f3ce8dc8b5fd9394accb",
     "data/sep668-hall-T-exact-blas.json":
         "151fb5d6e70cf56d6a1c2aa124a597a837bca0ecf5d64958b43a34c05383e0db",
+    "data/sep668-hall-T-exact-bits.json":
+        "48fdb26f8b1ee5135ed278ec866e204c1ab47df168c043fabff8699c0f4fd8bb",
     "data/sep668-twisted-T-exact.json":
         "38355274ec61d33fcd96e24255e4a7b02874150cd914fdfb928d28cee751fc4a",
 }
 
-# The seven banked profiles, keyed (matrix tag, implementation).
+# The eight banked profiles, keyed (matrix tag, implementation).
 PROFILES = {
     ("decoded", "blas"): "data/sep668-exact-blas-decoded.json",
     ("decoded", "bits"): "data/sep668-exact-bits-decoded.json",
@@ -122,6 +127,7 @@ PROFILES = {
     ("hall", "blas"): "data/sep668-hall-exact-blas.json",
     ("hall", "bits"): "data/sep668-hall-exact-bits.json",
     ("hall-T", "blas"): "data/sep668-hall-T-exact-blas.json",
+    ("hall-T", "bits"): "data/sep668-hall-T-exact-bits.json",
 }
 # The twisted-transpose bank carries BOTH implementations in one file.
 TWISTED_T = "data/sep668-twisted-T-exact.json"
@@ -504,7 +510,7 @@ def main(argv=None):
         check("twisted-T %-4s  banked matrix_sha256 == the rebuilt matrix"
               % impl, blk["matrix_sha256"] == SHA["twisted-T"])
 
-    for tag in ("decoded", "twisted", "hall", "twisted-T"):
+    for tag in ("decoded", "twisted", "hall", "hall-T", "twisted-T"):
         check("%-9s  blas == bits, bin for bin (two independent "
               "implementations)" % tag,
               prof[(tag, "blas")] == prof[(tag, "bits")],

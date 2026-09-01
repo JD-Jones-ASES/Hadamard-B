@@ -10,11 +10,16 @@ For each of the twelve parameter records banked in
 
   1. runs `tools/bordered_gs.py::check_record`, which checks the
      hypotheses (H0/H1/H2/H3/H4) of Theorem A in its house form
-     (Theorem B) and the derived laws of Theorem C (D1, D3, D4, D5, the
-     Sigma-bar law) in exact stdlib integer arithmetic;
-  2. asserts, here, that the record lands on one of the three cells of
-     the Theorem C classification, and that the twelve cells match the
-     census stated in NOTE-B.md 2.1;
+     (Theorem B) and the derived laws of Theorem C (D1, D3, D5, the
+     Sigma-bar law, and D4 where it is non-vacuous, i.e. i >= 2) in
+     exact stdlib integer arithmetic;
+  2. re-asserts the derived laws HERE, arithmetically, rather than only
+     reading them off that report -- D1 and D5 on every record, D2 where
+     s >= 1, and D3's forcing, the Sigma-bar law and the compression-
+     lemma cross-check where s > 0 (for s = 0 the border is empty and
+     those clauses are vacuous); and asserts that the record lands on
+     one of the three cells of the Theorem C classification, and that
+     the twelve cells match the census stated in NOTE-B.md 2.1;
   3. assembles the matrix and hands the file to `verify/verify.py`, the
      repository's trust chain;
   4. compares the canonical SHA-256 the trust chain reports against the

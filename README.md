@@ -11,7 +11,9 @@ two classical cells), resolves the `s = 1` border system completely,
 and verifies twelve publicly posted matrices through the theorem's
 hypotheses. Its third movement proves that order 668 carries at least
 **three** Hadamard-equivalence classes, pairwise separated by an
-exactly computed invariant. Everything replays from `certs/`.
+exactly computed invariant. Every claim's certificate replays from
+`certs/`; the few measurements made in the source laboratory rather
+than replayed here are labelled as such where they appear.
 
 ## The three movements
 
@@ -28,9 +30,11 @@ Hadamard matrix. Theorem D: at `s = 1` the `i = 2` border system
 collapses onto the `i = 1` system (the Gram is forced, both tables
 are doubled 4×4 Hadamard matrices, and the coupling is the same 4×4
 equation with the twisted coset-sum vector in place of the row sums);
-with the character-twist lemma this makes the `i = 2` problem a
-relabelling of the `i = 1` problem over any group with a unique
-index-2 subgroup.
+with the character-twist lemma this makes the `i = 2` **seed
+problem** a character-twist reparametrization of the `i = 1` seed
+problem over any group with a unique index-2 subgroup — a bijection
+of search problems, not of matrices (at order 668 the two assembled
+matrices are provably inequivalent).
 
 **II. The instances** (§2). The twelve public records at orders 668,
 716, 892, 1132, 1244, 1388, 1436, 1676, 1772, 1916, 1948, 1964
@@ -53,19 +57,19 @@ separated by the exact 4-profile over all 8 222 179 035 row
 for bin and hit the closed-form second moment to the unit (cert 06).
 The preprint was first to publish an inequivalence at this order;
 the priority statement is NOTE-B.md §3.4. The corresponding pair at
-the former frontier order 2060 is inequivalent on **computational
-evidence only** (sampled profiles; an exhausted block-affine
-family), stated at exactly that strength.
+the former frontier order 2060 carries **computational evidence of
+inequivalence — not a proof** (sampled profiles; an exhausted
+block-affine family), stated at exactly that strength.
 
 ## Priority posture
 
-The twelve parameter records were decoded from publicly posted
-matrices (the sign-stream posted publicly 2026-08-12; expanded
-matrices on GitHub from 2026-08-13 — see
+The twelve parameter records were decoded from public seed data
+(the sign-stream posted 2026-08-12; expanded matrices for ten of
+the twelve on GitHub from 2026-08-13 — see
 [PROVENANCE.md](PROVENANCE.md)). **No priority claim of any kind is
-made on the records or on anything derived from them**; the decode is
-provenance, and this repository leads with the theorems the instances
-instantiate. The `s ≤ 1` layers of the construction are classical
+made on the records themselves, on the decode, or on existence at
+those twelve orders**; the decode is provenance, and this repository
+leads with the theorems the instances instantiate. The `s ≤ 1` layers of the construction are classical
 (Goethals–Seidel 1970; Wallis–Whiteman 1972; Spence 1975 — credits in
 NOTE-B.md §4). The repository's single hedged novelty statement, with
 the exact list of sources it is bounded by, is NOTE-B.md §4.

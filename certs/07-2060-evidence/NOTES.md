@@ -105,7 +105,7 @@ supply is corroboration of a different kind — see C5.
 | **C2** | the **signed-`T4` trap**, demonstrated exactly on the `H(28)` Goethals–Seidel control: negate rows `{0, 3, 11}` — an element of the equivalence group, and the matrix is checked to be Hadamard before and after — and the **signed** `T4` profile moves (`{−20: 36, −12: 1152, −4: 9196, 4: 8932, 12: 1140, 20: 19} → {−20: 29, −12: 1136, −4: 9100, 4: 9028, 12: 1156, 20: 26}`) while the folded `\|T4\|` profile `{4: 18128, 12: 2292, 20: 55}` does **not** | signed moves, folded fixed |
 | **C3** | `z` calibration on identical input: a histogram against itself | `max \|z\| = 0`, 0 bins over `4σ` |
 | **C4** | the blindness calibration (above) | the statistic sees nothing on a proven-inequivalent pair |
-| **C5** | cross-sampler corroboration: for every bin implementation A resolves past `4σ`, the independent sampler B — different bit packing, different canonicalisation, different RNG, different seed — must agree on the **sign** of the difference | **29 of 29** (18/18 row, 11/11 col); `p = 2⁻²⁹` under the null |
+| **C5** | cross-sampler corroboration: for each bin implementation A resolves past `4σ` **in which B has enough mass to read a sign at all** (`≥ 200` draws across the pair — 29 of A's 34 resolved bins), the independent sampler B — different bit packing, different canonicalisation, different RNG, different seed — must agree on the **sign** of the difference | **29 of 29 compared** (18/18 row, 11/11 col); the other 5 resolved bins are silent in B, not disagreements |
 
 C5 is the reason the sampled reading is worth reporting at all: the 2060
 pattern is not one sampler's artefact.

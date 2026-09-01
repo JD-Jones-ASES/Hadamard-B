@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-"""check_theorem.py -- an INDEPENDENT mechanical test of the bordered
-Goethals-Seidel master theorem (Lane D, turn 42).
+"""bordered_gs.py -- this repository's shared checker for the bordered
+Goethals-Seidel master theorem, used by certs 01, 02, 04, 06, 08 and 09.
 
 Stdlib only.  Exact integer arithmetic only.  No numpy, no floats.
 
-This file is deliberately a SECOND implementation.  It does not import,
-read, or copy `experiments/pr0023/general_frame.py`; it builds the four
+PROVENANCE.  This file is ported from the source laboratory's
+deliberately INDEPENDENT second implementation of the theorem, and the
+two-implementation pedigree is the point of it: there it did not import,
+read, or copy that laboratory's own replay builder.  It builds the four
 group-developed blocks as explicit matrices and assembles the displayed
 4x4 block array by literal matrix operations (column reversal along the
 reflection permutation, transposition, negation), the way the theorem
@@ -56,10 +58,10 @@ G/K Goethals-Seidel array predicted by the compression lemma.
 
 USAGE
 =====
-  python check_theorem.py --params <alpoge_full_decode.json>
-                          --verify <verify/verify.py>
-                          --out <scratch dir>
-                          [--only 668,716] [--no-verify]
+  python tools/bordered_gs.py --params data/payload-records.json
+                              --verify verify/verify.py
+                              --out <scratch dir>
+                              [--only 668,716] [--no-verify]
 
 Exit code 0 iff every record passed every hypothesis, the compression
 lemma cross-check, and (unless --no-verify) verify.py returned HADAMARD.
