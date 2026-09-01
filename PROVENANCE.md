@@ -164,6 +164,18 @@ date and are re-checked at release.
   its input as "compact bordered block-circulant data" publicly posted on
   2026-08-12. (The quoted fragment is pinned in this laboratory's record;
   the surrounding wording is reported from the 2026-08-31 read.)
+- **An anonymous inequivalence preprint at order 668.** The page
+  `hadamard-668.vercel.app` hosts "Two H-inequivalent Hadamard Matrices
+  of Order 668" — no author on the page, an empty PDF `/Author` field,
+  and a PDF `CreationDate` of 2026-08-13 04:14 UTC+05:30 (2026-08-12
+  22:44 UTC), which is a compilation timestamp and not by itself
+  evidence of when the page became public; it was public when retrieved
+  and verified firsthand on 2026-08-31. Its `H` is byte-identical to
+  the decoded 668 record banked here (an independent decode of the same
+  public data, border included); its second matrix is a 1,328-entry
+  paired Hall switch of `H`, rebuilt and verified here (both its
+  published digests reproduce). The priority statement it carries, and
+  what remains this laboratory's, are in NOTE-B.md §3.4.
 - **The `s = 1` layer is being read publicly.** On 2026-08-31 a third
   party (Tavis Rudd, `@tavisrudd`) posted, quote-tweeting the
   announcement, the `s = 1` bordered Goethals–Seidel lemma with the row

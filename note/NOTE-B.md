@@ -58,7 +58,8 @@ even, `ρ` is **not** removable by relabelling (a shift `g ↦ g+α` sends
        [ -DR    CᵀR  -BᵀR     A   ]
 ```
 
-We call this orientation *standard*; negating the six transposed
+We call this orientation *standard* — a convention of this
+repository, not of the literature; negating the six transposed
 blocks gives the other valid orientation (used, e.g., by SageMath).
 The proofs below are orientation-symmetric, but **every theorem in
 this note is stated, and every checker in this repository assembles,
@@ -218,7 +219,7 @@ non-house (an explicit `N = 1916` witness is banked; §3.3 explains
 why, when `ψ(ρ) = 1`, that witness is a diagonal conjugation of the
 house instance and not a new matrix). Any exhaustive treatment of
 admissible profiles at `i ≥ 4` must therefore quotient by the twist.
-Label of "`M` house is forced, `s ≥ 2`": **CONJECTURE**.
+Label for "house `M` is forced when `s ≥ 2`": **CONJECTURE**.
 
 ### 1.3 Theorem C (the parameters are forced) — PROVEN
 
@@ -449,7 +450,7 @@ of sizes 12, 20, 28 respectively, as D3 forces.
 | --- | --- | --- |
 | 02 | `H(668)`, `H(716)`, `H(1676)`, `H(1772)` in the `i = 2` frame | Lemma T (§1.4): the four `s=1` records twisted and re-bordered at `i = 2`; each verifies green and is a different artifact from the decoded one. At 668 the stronger statement is §3.4's theorem. |
 | 03 | `H(52)` on `G = ℤ₂×ℤ₂×ℤ₃` | Theorem D's gate: a from-scratch `s=1, i=2` instance on a non-cyclic group, `ε = +1` branch. |
-| 04 | `H(76)` on a non-cyclic group | a bordered-GS instance on non-cyclic `G` whose seed quadruple is invariant under a **non-scalar multiplier subgroup** of `Aut(G)` (order 2, 12 orbits, re-derived from scratch in the cert) — built as a search gate. Its Theorem-A Gram is the house form; "M" here names the multiplier group, not the Gram. |
+| 04 | `H(76)` on a non-cyclic group | a bordered-GS instance on non-cyclic `G` whose seed quadruple is invariant under a **non-scalar multiplier subgroup `Γ ≤ Aut(G)`** (order 2, 12 orbits, re-derived from scratch in the cert) — built as a search gate. Its Theorem-A Gram is the house form; the lab record's name "M" for `Γ` is a letter collision with the Gram and is not used here. |
 | 05 | two `H(20)` instances | the hypothesis boundary `w = 2s`: D3's *hypothesis* fails, yet its *conclusion* holds — both corners are Hadamard, and the cert proves exhaustively that **no** non-Hadamard corner exists at `(s,i,w) = (1,2,2)`, so `w > 2s` is sufficient but not necessary there. The pair also exercises an arbitrary subgroup `K` (the diagonal of `ℤ₂×ℤ₂`, not a coordinate kernel) and both array orientations. |
 
 No novelty of existence is claimed for any order in this table —
@@ -556,13 +557,20 @@ new.
 > paired-Hall-switch matrix `H★` of the public preprint discussed
 > below: the three exact 4-profiles are pairwise different, in
 > 26 (`H` vs `H'`), 27 (`H` vs `H★`) and 27 (`H'` vs `H★`) of their
-> 80 bins.
+> 80 bins — and the theorem holds under the transpose-extended
+> relation as well: all six comparisons separate (against the
+> transposes: 50, 49 and 50 bins; the transposed profiles populate
+> 79 bins).
 
 **Priority, stated first.** An anonymous preprint (hosted at
-hadamard-668.vercel.app; its PDF metadata dates its compilation to
-2026-08-12/13, the day of the announcement it cites; retrieved and
-verified firsthand 2026-08-31) was first to state publicly that
-order 668 carries at least two Hadamard equivalence classes. Its
+hadamard-668.vercel.app; its PDF `CreationDate` field reads
+2026-08-13 04:14 UTC+05:30, i.e. 2026-08-12 22:44 UTC — a
+compilation timestamp, which is not by itself evidence of when the
+page became public; it was public when retrieved and verified
+firsthand on 2026-08-31) is, as far as our search located, the
+first published statement that order 668 carries at least two
+Hadamard equivalence classes, and it precedes this repository
+either way. Its
 `H` is **byte-identical to the decoded record banked here** — an
 independent decode of the same public data, border included, which
 corroborates ours and confirms that neither party owns the
@@ -570,8 +578,12 @@ construction data. Its second matrix `H★` is a 1,328-entry paired
 Hall switch of `H`, rebuilt here from its published data and
 verified (both its SHA-256 digests reproduce). Its separating
 statistic `Φ_M` — the correlation profile of a distinguished type-1
-quadruple — is sound (its invariance rests on a uniqueness step the
-preprint omits, which we proved independently), but strictly weaker
+quadruple — is sound, but its invariance rests on a uniqueness step
+the preprint omits: the distinguished quadruple must be unique, and
+it is, because a distinguished 4-subset is exactly one achieving
+`|T4| = 660` and the exact profile's `660` bin has count **1** on
+every matrix here — a fact cert 08 checks directly. Granted that,
+`Φ_M` is strictly weaker
 than the full 4-profile: `Φ_M` is **bin-for-bin identical on `H`
 and `H'`**, a pair §3.4 proves inequivalent. The "at least two
 classes" statement is the preprint's; the third class, the Lemma-T
@@ -823,7 +835,7 @@ understood.
 | the 1916 pair is equivalent (explicit witness) | **PROVEN-BY-CERTIFICATE** |
 | **order 668 carries at least three equivalence classes** | **PROVEN** (pairwise exact 4-profiles, 26/27/27 differing bins; two independent implementations per matrix) |
 | the three-class theorem under the transpose-extended relation | **PROVEN** (all six comparisons separate; cert 08) |
-| the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN** (rebuilt firsthand; the omitted uniqueness step proved here) |
+| the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN** (rebuilt firsthand; the omitted uniqueness step checked in cert 08 via the `660` bin) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
 | the 2060 pair is inequivalent | **COMPUTATIONAL-EVIDENCE** (sampled profiles; block-affine family exhausted) |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |
