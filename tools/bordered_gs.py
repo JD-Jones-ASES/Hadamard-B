@@ -14,6 +14,20 @@ the *data convention* by which a seed string is indexed by a group
 element (mixed-radix, row-major), which is a property of the decoded
 tape, not of an implementation.
 
+LABEL MAPPING (read before quoting report keys)
+===============================================
+This module's H-numbering predates note/NOTE-B.md and is PERMUTED
+relative to Theorem A there:
+
+  this module          NOTE-B.md Theorem A
+  H1 (PAF profile)  =  (H2)
+  H2 (corner/row)   =  (H3)
+  H3 (column Gram)  =  (H1)
+  H4 (coupling)     =  (H4)
+
+The four conditions are identical; only the labels differ. Report
+keys carry THIS module's numbering.
+
 WHAT IS TESTED
 ==============
 For each parameter record (G, s, rho, K, seeds, E, P, Q) it checks the

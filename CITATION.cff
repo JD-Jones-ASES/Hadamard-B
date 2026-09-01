@@ -1,0 +1,24 @@
+cff-version: 1.2.0
+message: "If you use these results, cite them via this metadata."
+title: "Hadamard-B: bordered Goethals-Seidel arrays - characterisation, classification, and three equivalence classes at order 668"
+abstract: >-
+  An exact (iff) characterisation of extending a Goethals-Seidel array
+  over a finite abelian group to a Hadamard matrix through a coset
+  border of width 4s; the classification of surviving parameters
+  (i = s+1, s odd, beyond the classical s <= 1 cells); the complete
+  resolution of the s = 1 border system; machine verification of
+  twelve publicly posted matrices through the theorems' hypotheses;
+  and a proof that order 668 carries at least three Hadamard
+  equivalence classes, pairwise separated by the exact 4-profile
+  invariant. Provenance:
+  the twelve parameter records are decoded from publicly posted
+  matrices and carry no priority claim. AI-generated results with a
+  human managing the workflow - produced by Claude Code (Fable 5,
+  Anthropic); see DISCLOSURE.md.
+version: 0.1.0
+date-released: 2026-08-31
+url: "https://github.com/JD-Jones-ASES/Hadamard-B"
+authors:
+  - family-names: "Jones"
+    given-names: "JD"
+license: MIT

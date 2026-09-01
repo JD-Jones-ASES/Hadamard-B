@@ -1,0 +1,85 @@
+{
+ "schema": "bordered-gs-record/1",
+ "description": "the pr0036 structural gate: a bordered Goethals-Seidel instance on the non-cyclic group Z2 x Z3 x Z3 whose seeds are constant on the orbits of a NON-SCALAR multiplier subgroup M <= Aut(G)",
+ "record": {
+  "order": 76,
+  "group": [
+   2,
+   3,
+   3
+  ],
+  "s": 1,
+  "r_shift": [
+   0,
+   0,
+   0
+  ],
+  "gs_variant": "standard",
+  "seeds": [
+   "+-+-+-+-+--+--++++",
+   "++-+++-+-+---+---+",
+   "++-+-------+-+++++",
+   "+---++-++----++-++"
+  ],
+  "coset_divisors": [
+   1,
+   1,
+   1
+  ],
+  "corner": [
+   "-++-",
+   "+-+-",
+   "++--",
+   "----"
+  ],
+  "row_table": [
+   "---+",
+   "--+-",
+   "-+--",
+   "+---"
+  ],
+  "col_table": [
+   "+--+",
+   "+-+-",
+   "++--",
+   "----"
+  ]
+ },
+ "pinned_sha256": "05ad9852f64ad2c48634105e26cf35ccb9dd2ea708caa1ce6b8ab6ca1bdb5e70",
+ "multiplier": {
+  "note": "M <= Aut(G) is the MULTIPLIER group the seeds are invariant under.  It is NOT the Theorem-A Gram matrix M of H1; see NOTES.md.  An automorphism is banked as a matrix A with alpha(t)_a = sum_b A[a][b]*t[b] mod factors[a].",
+  "order": 2,
+  "orbits_on_G": 12,
+  "scalar": false,
+  "generators": [
+   [
+    [
+     1,
+     0,
+     0
+    ],
+    [
+     0,
+     0,
+     1
+    ],
+    [
+     0,
+     1,
+     0
+    ]
+   ]
+  ]
+ },
+ "gram_M_measured": [
+  [
+   4
+  ]
+ ],
+ "provenance": {
+  "record": "lab Hadamard-2060 experiments/pr0036/params_gate_2x3x3_M2.json (verbatim, minus its provenance stub)",
+  "matrix": "lab Hadamard-2060 experiments/pr0036/H76_gate_2x3x3_M2.txt; this repository re-verified that file firsthand with verify/verify.py and reproduced it row for row from the record above",
+  "registration": "lab Hadamard-2060 experiments/pr0036/REGISTRATION.md, gate G2 (\"THE STRUCTURAL GATE\"), and gate_small.json (M_order 2, orbits 12, scalar false, screen SURVIVES, search HIT in 0.166 s, 2 restarts, 2860 iterations)",
+  "multiplier_generator": "recovered here from the banked seeds: the full stabiliser of the seed quadruple inside Aut(G) is exactly {id, this generator}"
+ }
+}

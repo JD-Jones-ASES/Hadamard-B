@@ -1,0 +1,108 @@
+{
+ "schema": "bordered-gs-record-arbitrary-K/1",
+ "description": "the two order-20 instances at the hypothesis boundary w = 2s.  K is the DIAGONAL subgroup of Z2 x Z2, which is not a coordinate-divisor kernel, so these records cannot be expressed in the tools/bordered_gs.py record format; col_rows is the 4i x 4s matrix Q written out row by row (NOT the transposed col_table of that format), and orientation 'transpose-negated' is the variant the house checker refuses.",
+ "instances": [
+  {
+   "label": "T1-diagK-w2s",
+   "order": 20,
+   "s": 1,
+   "i": 2,
+   "w": 2,
+   "group": [
+    2,
+    2
+   ],
+   "K_generators": [
+    [
+     1,
+     1
+    ]
+   ],
+   "orientation": "standard",
+   "r_shift": [
+    1,
+    1
+   ],
+   "seeds": [
+    "--++",
+    "-+-+",
+    "+---",
+    "----"
+   ],
+   "corner": [
+    "----",
+    "++--",
+    "+-+-",
+    "-++-"
+   ],
+   "row_table": [
+    "-++--++-",
+    "+-+--+-+",
+    "+--+-++-",
+    "+-+-+-+-"
+   ],
+   "col_rows": [
+    "+---",
+    "-+++",
+    "--+-",
+    "++-+",
+    "+++-",
+    "---+",
+    "+-++",
+    "-+--"
+   ],
+   "pinned_sha256": "50eecc761e12b76944b301b7aaeb03a61cb6b88cfc52c67caaacf20eef0e6c9b"
+  },
+  {
+   "label": "T2-flipped",
+   "order": 20,
+   "s": 1,
+   "i": 2,
+   "w": 2,
+   "group": [
+    2,
+    2
+   ],
+   "K_generators": [
+    [
+     1,
+     1
+    ]
+   ],
+   "orientation": "transpose-negated",
+   "r_shift": [
+    0,
+    0
+   ],
+   "seeds": [
+    "+-+-",
+    "++--",
+    "+---",
+    "----"
+   ],
+   "corner": [
+    "+---",
+    "-+--",
+    "--+-",
+    "+++-"
+   ],
+   "row_table": [
+    "+--+-+-+",
+    "-++--+-+",
+    "+-+--++-",
+    "+-+-+--+"
+   ],
+   "col_rows": [
+    "----",
+    "++++",
+    "++--",
+    "--++",
+    "+-+-",
+    "-+-+",
+    "-++-",
+    "+--+"
+   ],
+   "pinned_sha256": "f279337f4c2376dfaff2f5ec82cec21a055a1888008c1972763c0f6721066caf"
+  }
+ ]
+}

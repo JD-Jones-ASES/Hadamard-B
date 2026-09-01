@@ -1,0 +1,54 @@
+{
+ "schema": "bordered-gs-record/1",
+ "description": "the Theorem-D gate: a from-scratch s=1, i=2 instance on the non-cyclic group Z2 x Z2 x Z3, epsilon = +1 branch",
+ "record": {
+  "order": 52,
+  "group": [
+   2,
+   2,
+   3
+  ],
+  "s": 1,
+  "r_shift": [
+   0,
+   0,
+   0
+  ],
+  "gs_variant": "standard",
+  "seeds": [
+   "--+++--+-+--",
+   "--+--+++----",
+   "+--+--++----",
+   "-+-+--++----"
+  ],
+  "coset_divisors": [
+   2,
+   1,
+   1
+  ],
+  "corner": [
+   "---+",
+   "--+-",
+   "-+--",
+   "+---"
+  ],
+  "row_table": [
+   "-++-+--+",
+   "+--++--+",
+   "+-+--+-+",
+   "-+-+-+-+"
+  ],
+  "col_table": [
+   "+-+-+--+",
+   "-+-++--+",
+   "-++--+-+",
+   "+--+-+-+"
+  ],
+  "pinned_sha256": "e2c3e48b0fc65f5283e833096824b4fec651d8c57694ae45b3842c23c87ad7ca",
+  "provenance": {
+   "source": "lab Hadamard-2060 experiments/pr0038/gate.json (field \"params\")",
+   "pre_registration": "experiments/pr0038/GATE_REGISTRATION.md, flushed to disk 2026-08-31T20:53:28Z, before the gate search ran; the gate result gate.json was written 2026-08-31T21:09:30Z",
+   "search": "exhaustive meet-in-the-middle over the raw 2^48 seed space of G = Z2 x Z2 x Z3, shell-restricted by the forced condition sum_q delta_q^2 = 4 (Theorem D); border E = -(1/4) p Lambda(d)^T U over all 768x768 pairs of 4x4 Hadamard (p, U)"
+  }
+ }
+}

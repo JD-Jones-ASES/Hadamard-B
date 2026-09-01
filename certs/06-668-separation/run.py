@@ -35,11 +35,15 @@ WHAT THIS SCRIPT DOES  (default path: standard library only, ~seconds)
       differing bins, differences summing to zero.  Prints the divergent
       bins and the verdict.
   (4) Runs four controls, all in the standard library:
-        C1  the full |T4| profile of Sylvester H(8), Sylvester H(16) and
-            Paley H(20), each computed TWICE -- by straight O(C(n,4))
-            enumeration over the +-1 rows, and by the pair-vector /
-            Gram-triangle route the banked profiles use -- and required
-            to agree bin for bin;
+        C1  the full |T4| profile of five small Hadamard matrices --
+            Sylvester H(8) and H(16), Paley H(20), and two plain
+            Goethals-Seidel arrays H(28) and H(36) built by this
+            repository's own assembler at the degenerate s = 0 layer,
+            whose profiles have three and four populated bins so the
+            agreement is not vacuous -- each computed TWICE, by straight
+            O(C(n,4)) enumeration over the +-1 rows and by the
+            pair-vector / Gram-triangle route the banked profiles use,
+            and required to agree bin for bin;
         C2  a NEGATIVE control: a banked profile is corrupted in a
             total-preserving way and the second-moment assert must fire;
         C3  the dim-V trap, on Sylvester H(16) under a deterministically
@@ -269,6 +273,21 @@ def sylvester(k):
                     for y in range(n)) for x in range(n)]
 
 
+def sylvester_profile_forced(n):
+    """The 4-profile of Sylvester H(n) is forced, so it is a control with a
+    PREDICTED answer rather than merely a self-consistent one.
+
+    Rows are indexed by F2^k with H[x][y] = (-1)^<x,y>, so
+    T4({a,b,c,d}) = sum_y (-1)^<a+b+c+d, y> = n if a+b+c+d = 0 and 0
+    otherwise.  Choosing any three distinct a, b, c forces d = a+b+c, and
+    d is automatically outside {a,b,c} (d = a would force b = c), so the
+    4-subsets summing to zero are counted n(n-1)(n-2) times over ordered
+    triples and each 4-subset supplies 4*3*2 = 24 of them.
+    """
+    hit = n * (n - 1) * (n - 2) // 24
+    return {0: c_n_4(n) - hit, n: hit}
+
+
 def paley1(q):
     """Paley type I Hadamard matrix of order q+1, q prime = 3 (mod 4)."""
     res = {(x * x) % q for x in range(1, q)}
@@ -287,6 +306,33 @@ def paley1(q):
         for j in range(1, n):
             M[i][j] = 1 if i == j else chi(i - j)
     return ["".join("+" if v == 1 else "-" for v in row) for row in M]
+
+
+# Four +-1 sequences of length v with sum_q PAF_q(g) = 4v*[g = 0] -- the
+# classical Goethals-Seidel condition, i.e. the degenerate s = 0 layer of
+# this repository's master theorem.  Found by exhaustive search over
+# {+,-}^v offline; the PAF condition is RE-VERIFIED below, never assumed,
+# and the assembled matrix is put through the same C0 Hadamard check as
+# every other control.  These two give profiles with three and four
+# populated bins, which Sylvester and Paley matrices do not.
+GS_CONTROLS = [
+    (7, ["+------", "+++----", "++--+--", "+-+-+--"]),            # -> H(28)
+    (9, ["++-------", "++-+-----", "++-+-+---", "++--+-+--"]),    # -> H(36)
+]
+
+
+def gs_control(v, seqs):
+    """Assemble the plain GS array over Z_v; returns (rows, paf_ok)."""
+    xs = [BGS.signs(s) for s in seqs]
+    paf_ok = True
+    for g in range(v):
+        tot = sum(x[h] * x[(h + g) % v] for x in xs for h in range(v))
+        if tot != (4 * v if g == 0 else 0):
+            paf_ok = False
+    G = BGS.AbelianGroup([v])
+    rows = BGS.assemble(G, xs, G.sub_table(), G.idx((v - 1,)),
+                        0, 1, [0] * v, None, None, None)
+    return rows, paf_ok
 
 
 def is_hadamard(rows):
@@ -378,8 +424,8 @@ def main(argv=None):
                     help="recompute both 668 exact profiles with numpy "
                          "(about an hour) and compare to the bank")
     args = ap.parse_args(argv)
+    t_start = time.time()
 
-    print(__doc__.splitlines()[1].strip() or "")
     print("=" * 72)
     print("cert 06 -- order 668: two Hadamard matrices, one invariant, "
           "two classes")
@@ -489,9 +535,15 @@ def main(argv=None):
     print("\n[4] controls")
 
     print("\n  C1 -- full |T4| profiles of small Hadamard matrices, two ways")
-    for rows, name in ((sylvester(3), "Sylvester H(8)"),
-                       (sylvester(4), "Sylvester H(16)"),
-                       (paley1(19), "Paley H(20)")):
+    controls = [(sylvester(3), "Sylvester H(8)"),
+                (sylvester(4), "Sylvester H(16)"),
+                (paley1(19), "Paley H(20)")]
+    for v, seqs in GS_CONTROLS:
+        rows, paf_ok = gs_control(v, seqs)
+        check("C0  %-16s GS condition sum_q PAF_q(g) = 4v*[g=0]"
+              % ("GS H(%d)" % (4 * v)), paf_ok, "v = %d" % v)
+        controls.append((rows, "GS H(%d)" % (4 * v)))
+    for rows, name in controls:
         n = len(rows)
         check("C0  %-16s is in fact Hadamard" % name, is_hadamard(rows))
         t0 = time.time()
@@ -511,6 +563,10 @@ def main(argv=None):
         check("C1  %-16s |T4| = n (mod 8) on every populated bin" % name,
               all(k % 8 == n % 8 for k in p1),
               "n mod 8 = %d" % (n % 8))
+        if name.startswith("Sylvester"):
+            check("C1  %-16s matches the FORCED Sylvester profile" % name,
+                  p1 == sylvester_profile_forced(n),
+                  "predicted %s" % sylvester_profile_forced(n))
 
     print("\n  C2 -- negative control: the second-moment assert must FIRE")
     victim = dict(prof[("decoded", "blas")])
@@ -556,6 +612,19 @@ def main(argv=None):
             os.environ[var] = "3"           # set BEFORE numpy is imported
         sys.path.insert(0, HERE)
         import full_recompute as FR                          # noqa: E402
+        # Smoke the ported numpy paths BEFORE spending an hour on them, on a
+        # matrix whose profile is forced (so this is a positive control with
+        # a predicted answer) and big enough that the packed path needs more
+        # than one uint64 word per row -- which the n <= 36 controls above
+        # cannot exercise.
+        h128 = sylvester(7)
+        want128 = sylvester_profile_forced(128)
+        for impl in ("blas", "bits"):
+            got = FR.profile(h128, 128, impl, progress=False)
+            audit(got, 128, "full/H128/%s" % impl)
+            check("[full] Sylvester H(128) %-4s == the forced profile "
+                  "(%d uint64 words/row)" % (impl, (128 + 63) // 64),
+                  got == want128)
         for tag, rec, want in (("decoded", dec_rec, SHA_DECODED),
                                ("twisted", tw_rec, SHA_TWISTED)):
             _rep, rows = BGS.check_record(rec)
@@ -590,7 +659,8 @@ def main(argv=None):
     print("         to the unit.  LABEL: PROVEN.")
     print("         NOT claimed here: 716, 1676, 1772.")
     print("=" * 72)
-    print("generated matrices deleted; nothing left in", rel(OUT))
+    print("generated matrices deleted; nothing left in %s   (%.1fs)"
+          % (rel(OUT), time.time() - t_start))
     return 0
 
 

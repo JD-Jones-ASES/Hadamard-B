@@ -10,8 +10,8 @@ classifies the surviving parameters (`i = s+1`, `s` odd, beyond the
 two classical cells), resolves the `s = 1` border system completely,
 and verifies twelve publicly posted matrices through the theorem's
 hypotheses. Its third movement proves that order 668 carries at least
-two Hadamard-equivalence classes, separated by an exactly computed
-invariant. Everything replays from `certs/`.
+**three** Hadamard-equivalence classes, pairwise separated by an
+exactly computed invariant. Everything replays from `certs/`.
 
 ## The three movements
 
@@ -39,19 +39,23 @@ classification (cert 01, 12/12 green, digests machine-compared
 against the banked replay). Constructed here: four matrices in the
 twisted `i = 2` frame at orders 668, 716, 1676, 1772 (cert 02); a
 from-scratch `H(52)` on a non-cyclic group gating Theorem D
-(cert 03); an `H(76)` on a non-cyclic group with non-scalar Gram
-(cert 04); and two `H(20)` instances at the hypothesis boundary
-`w ≤ 2s` (cert 05). No novelty of existence is claimed at any of
-these orders.
+(cert 03); an `H(76)` on a non-cyclic group with a non-scalar
+multiplier subgroup (cert 04); and two `H(20)` instances at the
+hypothesis boundary `w = 2s` (cert 05). No novelty of existence is
+claimed at any of these orders.
 
-**III. Existence plus separation** (§3). **The two Hadamard matrices
-of order 668 banked here are Hadamard-inequivalent** — proven by the
-exact 4-profile over all 8 222 179 035 row 4-subsets, computed by two
-independent implementations that agree bin for bin and hit the
-closed-form second moment to the unit (cert 06). The corresponding
-pair at the former frontier order 2060 is inequivalent on
-**computational evidence only** (sampled profiles, two seeds; an
-exhausted block-affine family), stated at exactly that strength.
+**III. Existence plus separation** (§3). **Order 668 carries at
+least three Hadamard-equivalence classes** — the decoded record, the
+Lemma-T rebuild constructed here, and the Hall-switch matrix of a
+public preprint (rebuilt and verified firsthand) — pairwise
+separated by the exact 4-profile over all 8 222 179 035 row
+4-subsets, computed by independent implementations that agree bin
+for bin and hit the closed-form second moment to the unit (cert 06).
+The preprint was first to publish an inequivalence at this order;
+the priority statement is NOTE-B.md §3.4. The corresponding pair at
+the former frontier order 2060 is inequivalent on **computational
+evidence only** (sampled profiles; an exhausted block-affine
+family), stated at exactly that strength.
 
 ## Priority posture
 

@@ -4,9 +4,9 @@ The results are a theorem suite for bordered Goethals–Seidel arrays
 over finite abelian groups — an exact (iff) characterisation of the
 coset-border construction, the classification of its surviving
 parameters, and the complete resolution of the `s = 1` border system —
-together with the theorem that order 668 carries two
-Hadamard-inequivalent matrices among the artifacts banked here,
-separated by an exactly computed invariant; plus the machine
+together with the theorem that order 668 carries at least three
+Hadamard-equivalence classes, pairwise separated by an exactly
+computed invariant; plus the machine
 verification of twelve publicly posted matrices through the theorems'
 hypotheses and five certified instance matrices.
 

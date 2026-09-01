@@ -10,10 +10,11 @@ This note is the mathematics of the repository, in three movements:
 - **II. The instances** (§2) — twelve publicly posted matrices
   re-verified through the theorem's hypotheses, and five matrices
   constructed here, every one replayable from `certs/`.
-- **III. Existence plus separation** (§3) — at order 668, two
-  Hadamard matrices that are **provably inequivalent**, separated by
-  an exactly computed invariant; and the invariant theory that makes
-  the separation honest, including two documented traps.
+- **III. Existence plus separation** (§3) — a proof that order 668
+  carries at least **three** Hadamard equivalence classes, pairwise
+  separated by an exactly computed invariant; and the invariant
+  theory that makes the separation honest, including two documented
+  traps and one sound-but-blind published statistic.
 
 Every claim carries one of the honesty labels **PROVEN**,
 **PROVEN-BY-CERTIFICATE** (an explicit artifact plus a green run of
@@ -389,7 +390,7 @@ machine-validated on the four `i = 2` instances of §2, and the
 theorem is *gated*: a brand-new `s = 1, i = 2` instance on the
 non-cyclic group `G = ℤ₂×ℤ₂×ℤ₃` (the `ε = +1` branch, which the
 four instances do not exercise) was built from scratch and verifies
-green — `H(52)`, cert 04. Label: PROVEN (paper-grade) + MEASURED
+green — `H(52)`, cert 03. Label: PROVEN (paper-grade) + MEASURED
 (4/4 clauses) + PROVEN-BY-CERTIFICATE (the gate).
 
 ### 1.6 Corollary (the index-2 collapse) — PROVEN
@@ -448,8 +449,8 @@ of sizes 12, 20, 28 respectively, as D3 forces.
 | --- | --- | --- |
 | 02 | `H(668)`, `H(716)`, `H(1676)`, `H(1772)` in the `i = 2` frame | Lemma T (§1.4): the four `s=1` records twisted and re-bordered at `i = 2`; each verifies green and is a different artifact from the decoded one. At 668 the stronger statement is §3.4's theorem. |
 | 03 | `H(52)` on `G = ℤ₂×ℤ₂×ℤ₃` | Theorem D's gate: a from-scratch `s=1, i=2` instance on a non-cyclic group, `ε = +1` branch. |
-| 04 | `H(76)` on a non-cyclic group | a bordered-GS instance on non-cyclic `G` with non-scalar `M`, built as a search gate; the first such the lab located anywhere. |
-| 05 | two `H(20)` instances | the hypothesis boundary: bordered instances outside `w > 2s`, where D3's forcing fails and the corner need not be Hadamard — kept as the documented edge of Theorem C. |
+| 04 | `H(76)` on a non-cyclic group | a bordered-GS instance on non-cyclic `G` whose seed quadruple is invariant under a **non-scalar multiplier subgroup** of `Aut(G)` (order 2, 12 orbits, re-derived from scratch in the cert) — built as a search gate. Its Theorem-A Gram is the house form; "M" here names the multiplier group, not the Gram. |
+| 05 | two `H(20)` instances | the hypothesis boundary `w = 2s`: D3's *hypothesis* fails, yet its *conclusion* holds — both corners are Hadamard, and the cert proves exhaustively that **no** non-Hadamard corner exists at `(s,i,w) = (1,2,2)`, so `w > 2s` is sufficient but not necessary there. The pair also exercises an arbitrary subgroup `K` (the diagonal of `ℤ₂×ℤ₂`, not a coordinate kernel) and both array orientations. |
 
 No novelty of existence is claimed for any order in this table —
 every order here is long settled. The artifacts instantiate the
@@ -543,40 +544,75 @@ literal statement while manufacturing nothing new.
 
 ### 3.4 The theorem at order 668 — PROVEN
 
-> **Theorem.** The two Hadamard matrices of order 668 banked here —
-> the decoded `(1,1)` record and its Lemma-T `i = 2` rebuild — are
-> Hadamard-**inequivalent**.
+> **Theorem.** Order 668 carries at least **three** Hadamard
+> equivalence classes. They are exhibited by the decoded `(1,1)`
+> record `H`, its Lemma-T `i = 2` rebuild `H'` (cert 02), and the
+> paired-Hall-switch matrix `H★` of the public preprint discussed
+> below: the three exact 4-profiles are pairwise different, in
+> 26 (`H` vs `H'`), 27 (`H` vs `H★`) and 27 (`H'` vs `H★`) of their
+> 80 bins.
+
+**Priority, stated first.** An anonymous preprint (hosted at
+hadamard-668.vercel.app; its PDF metadata dates its compilation to
+2026-08-12/13, the day of the announcement it cites; retrieved and
+verified firsthand 2026-08-31) was first to state publicly that
+order 668 carries at least two Hadamard equivalence classes. Its
+`H` is **byte-identical to the decoded record banked here** — an
+independent decode of the same public data, border included, which
+corroborates ours and confirms that neither party owns the
+construction data. Its second matrix `H★` is a 1,328-entry paired
+Hall switch of `H`, rebuilt here from its published data and
+verified (both its SHA-256 digests reproduce). Its separating
+statistic `Φ_M` — the correlation profile of a distinguished type-1
+quadruple — is sound (its invariance rests on a uniqueness step the
+preprint omits, which we proved independently), but strictly weaker
+than the full 4-profile: `Φ_M` is **bin-for-bin identical on `H`
+and `H'`**, a pair §3.4 proves inequivalent. The "at least two
+classes" statement is the preprint's; the third class, the Lemma-T
+construction that produces it, and the pairwise exact-profile
+separations are this repository's.
 
 The separating computation is the exact 4-profile: all
 `C(668,4) = 8 222 179 035` 4-subsets, on each matrix, by two
 independent implementations (a float32 BLAS Gram of the pair-vector
 matrix, and a packed-`uint64` popcount path; opposite bit packings;
 both validated bin-for-bin against straight `O(C(n,4))` stdlib
-enumeration on five small control matrices). Both matrices populate
-the **same 80 bins** — the support does not separate them, and
-neither does the extreme tail (top bins agree exactly). **The bulk
-separates them: 26 of the 80 bin counts differ**, e.g.
+enumeration on five small control matrices), with a third
+(canonical-split) implementation agreeing bin-for-bin on the
+decoded record. All three matrices populate the **same 80 bins** —
+the support does not separate them, and neither does the extreme
+tail (top bins agree exactly). **The bulk separates them** — for
+`H` vs `H'`, 26 of the 80 bin counts differ, e.g.
 
 | `\|T4\|` | 4 | 12 | 20 | 28 | 36 | 44 | 52 | 60 |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
 | decoded | 2 073 064 058 | 1 852 054 148 | 1 491 070 735 | 1 091 442 371 | 732 009 734 | 452 971 620 | 260 220 030 | 139 599 212 |
 | rebuilt | 2 073 109 602 | 1 852 009 274 | 1 491 079 303 | 1 091 478 493 | 731 928 178 | 452 961 444 | 260 257 738 | 139 618 428 |
 
-Both profiles total `C(668,4)` exactly, the differences sum to zero,
-and both hit the second-moment identity `5 517 193 410 096` to the
-unit; the first moment — which nothing forces — differs. The largest
-bin discrepancy is `1.1·10⁻⁴` of its bin, invisible to any sample of
-practical size (a null sampled comparison at `2·10⁷` draws was
-already in hand and is worth very little; the exact computation is
-what settles it). The separation also survives adding transpose to
-the group.
+and the `H★` comparisons differ in 27 bins against each. All three
+profiles total `C(668,4)` exactly, every pairwise difference vector
+sums to zero, and all three hit the second-moment identity
+`5 517 193 410 096` to the unit; the first moments — which nothing
+forces — differ. The largest `H`-vs-`H'` bin discrepancy is
+`1.1·10⁻⁴` of its bin, invisible to any sample of practical size (a
+null sampled comparison at `2·10⁷` draws was already in hand and is
+worth very little; the exact computation is what settles it).
 
-Consequences. Order 668 carries at least two Hadamard equivalence
-classes among the artifacts banked here; the Lemma-T construction at
-`ψ(ρ) = −1` genuinely leaves the equivalence class at this order.
-The corresponding statement at 716, 1676 and 1772 is **not claimed**
-(the same computation costs ≈1.4×, ≈98× and ≈130× the 668 run and
-has not been made).
+On transpose: the separations involving `H` survive adding transpose
+to the group; for `H'` vs `H★` the transpose-extended check is one
+priced run that has not been made, so under the transpose-extended
+relation only "at least two classes" plus that pending pair is
+claimed.
+
+Consequences. The Lemma-T construction at `ψ(ρ) = −1` genuinely
+leaves the equivalence class at this order, and the Hall switch
+leaves both. The corresponding statements at 716, 1676 and 1772 are
+**not claimed** (the same computation costs ≈1.4×, ≈98× and ≈130×
+the 668 run and has not been made). The `Φ_M` blindness above is
+recorded beside the two traps of §3.1 as the working reason this
+repository pays for the full `Θ(n⁴)` invariant: every cheaper
+statistic tested — including a sound published one — fails to see at
+least one true separation at this order.
 
 ### 3.5 The pair at order 2060 — COMPUTATIONAL-EVIDENCE
 
@@ -584,13 +620,19 @@ The formerly-open order 2060 carries two candidate classes among
 public+banked artifacts: the publicly posted matrix and the plain
 GS-array realisation over the same decoded seed (the `×104`
 character twist relates the two seeds). Every exact invariant we
-computed agrees between them; the **sampled** 4-profiles differ
-systematically and reproducibly (two seeds, both sides, `4–7σ` in a
-coherent monotone pattern across consecutive bins; the shape
-difference — more peaked, heavier-tailed — balances as it must), and
-no equivalence exists in the block-affine family
-(BOUNDED-NEGATIVE-SEARCH: exhaustive over that family, silent beyond
-it). Label: **COMPUTATIONAL-EVIDENCE of inequivalence — not a
+computed agrees between them. The **sampled** 4-profiles differ: at
+`2·10⁷` paired draws the difference resolves at `max |z| = 7.4`
+(row side, 21 bins over `4σ`) and `7.1` (column side, 13 bins), in a
+coherent monotone pattern across consecutive bins — more peaked,
+heavier-tailed — whose deficits and excesses balance as they must.
+The independent second sampler, at `3·10⁶` draws, does not by itself
+reach `4σ` (as `√N` scaling predicts); its corroboration is sign
+agreement on all 29 bins the first sampler resolves. The calibration
+that keeps this honest: the same sampled statistic reads null
+(`max |z| ≤ 2.2`, zero bins over `4σ`) on the 668 pair that §3.4
+**proves** inequivalent. No equivalence exists in the block-affine
+family (BOUNDED-NEGATIVE-SEARCH: exhaustive over that family, silent
+beyond it). Label: **COMPUTATIONAL-EVIDENCE of inequivalence — not a
 proof**, and this note does not write it as one. The exact 4-profile
 at 2060 is priced (≈11–22 core-hours, memory-aware enumeration) and
 is the named upgrade path.
@@ -599,8 +641,162 @@ is the named upgrade path.
 
 ## 4. Prior art and credit
 
-*[SECTION FINALIZED AFTER SOURCE ADJUDICATION — placeholder pending
-the firsthand-read lanes of 2026-08-31; see intel in the lab repo.]*
+Every credit below was fixed by a firsthand read of the named source
+(the full reading trail, with per-source verdicts, is in the lab
+record of 2026-08-31). Where a fact is attributed by a source we did
+not read, that is said explicitly.
+
+### 4.1 The classical spine
+
+**The four-block array.** The Goethals–Seidel array — four
+group-developed blocks with a back-diagonal reflection — is
+**Goethals–Seidel 1970** (*A skew Hadamard matrix of order 36*,
+J. Austral. Math. Soc. 11, 343–344), the reference every firsthand
+source we read gives for it (Wallis–Whiteman 1972 ref [4];
+Wallis–Street–Wallis 1972 ref [45]; Spence 1975 (CJM) ref [3];
+Georgiou–Koukouvinos–Seberry 2002 ref [40]). Their 1967 paper
+(*Orthogonal matrices with zero diagonal*, Canad. J. Math. 19,
+1001–1010 — read in full) contains the two-block normal form only
+(Thm 2.3, p. 1004, necessary direction, Paley matrices; the paper
+numbers two theorems "3.4" — cite it by page), and width-one borders
+only.
+
+**The general-abelian setting is Wallis–Whiteman's.** *Some classes
+of Hadamard matrices with constant diagonal* (Bull. Austral. Math.
+Soc. 7 (1972) 233–249 — read in full) builds the type-1/type-2
+incidence calculus over any additive abelian group (Lemmas 2–9,
+Corollaries 4/6/10) precisely to carry the array there: Theorem 11
+(p. 242) is the unbordered array over general abelian `G`, and our
+Lemma 1 is that calculus in developed-matrix form. Nothing about the
+abelian setting is claimed here.
+
+**The `s = 1` border is classical, three times over.** Width-4
+border strips, constant on the whole group, around the four-block
+core: **Wallis–Whiteman 1972, Theorem 12** (p. 243; odd `|G|`, from
+`4-{2m+1; m; 2(m−1)}` SDS), restated with the border blocks written
+out in **Wallis–Street–Wallis 1972** (LNM 292 — Part 4 read in
+full), Thm 4.17 p. 334 and Thm 8.44 pp. 393–394, where the identity
+`4 = Σ(2kᵢ−v)²` (p. 393) already pins the feeding SDS block sizes at
+this width; and **Spence 1975** (*Hadamard matrices from relative
+difference sets*, JCTA 19, 287–300 — read in full), Theorem 2.1
+(p. 289), the even-`|G| = 2v` cyclic sibling with blocks from
+Elliott–Butson relative difference sets, which Spence himself
+introduces as "similar to one of Wallis and Whiteman". (Spence wrote
+three related papers; the other two — *Skew-Hadamard matrices of the
+Goethals-Seidel type*, CJM 27 (1975), and *Skew Hadamard matrices of
+order 2(q+1)*, Discrete Math. 18 (1977) — are unbordered and are not
+the paper meant here. His `s` in JCTA Thm 3.2 is a 2-power doubling
+parameter, unrelated to our border half-width `s`.) The width-2
+sibling on a two-block core is older still: **Blatt–Szekeres 1969**
+(Canad. J. Math. 21, 1319–1322 — read in full; received May 1968)
+states it over *any* abelian group of order `2m+1`, needed there
+precisely because their order-52 difference sets live in `ℤ₅×ℤ₅`
+and, by their machine search, in no cyclic group of that order — and
+closes "there seems to be no obvious generalization of this
+construction"; it reappears as Wallis–Street–Wallis Thm 4.4 (p. 321)
+and Wallis–Whiteman Lemma 15. (The WSW book's own reference list
+misdates Blatt–Szekeres to CJM 22 (1970); the paper is 21 (1969).) Modern sources treat the `s=1`
+array as standard: Momihara–Xiang (arXiv:1801.08776 — read in full)
+reprint both bordered arrays, crediting exactly Wallis–Street–Wallis
+Thm 4.4 and Wallis–Whiteman 1972.
+
+**The one prior width-parameterised border.** Wallis–Street–Wallis
+1972, **Lemma 7.8** (p. 361), borders an `H[4t,4,t]` Hadamard-array
+core with strips of width `4t`. Its width parameter is the array
+repetition number `t`, not a subgroup index; its strips are constant
+on all of `G`; it forces symmetric generating sets (so it cannot
+preserve skewness); and it comes with no characterisation and no
+classification — the book itself lists both the array parameter
+(Question 5, p. 444) and the bordered family's feeding sets
+(Question 16, p. 445) as open problems.
+
+**Compression is Đoković–Kotsireas's.** The device behind our
+Lemma 3 and the Σ̄ law — summing a sequence over the cosets of a
+subgroup and the induced PAF identity — is their *compression*:
+arXiv:1302.0571 (Def. 3, Thm 3; cyclic) and, at full abelian
+generality, arXiv:1801.07627 (§7, Lemma 3 and Thm 4 — a paper whose
+§10 already treats Goethals–Seidel quadruples over abelian groups).
+The technique's own genealogy is "subgroup contraction"
+(cf. Lumsden–Kotsireas–Bright, arXiv:2408.15611, and the difference-
+set literature they cite). What is ours in Lemma 3 is only the
+matrix-level bookkeeping that the compressed core is again a
+Goethals–Seidel array over `G/K`, reflection included.
+
+**The two-tier profile is a divisible-difference-family condition.**
+The profile `4nδ₀ − 4s[K∖0] + 4[∉K]` says exactly that the four base
+blocks form a `(G, K, {k_i}, λ, μ)`-**divisible difference family**
+in the sense of Momihara–Yamada (arXiv:1212.3021, Def. 1.1) — we use
+their language, not new terminology. Their Theorem 4.1 is also the
+closest prior *coset-structured* border we located anywhere: border
+rows constant on cosets of a subgroup `N` — around a **two-block**
+core, with width tied to `2|N|` by the construction, targeting
+symmetric Hadamard matrices of order `n²`, and with no converse
+(their Problem 4.3 asks for what a characterisation would provide).
+More broadly, coset structure imposed on the **blocks** of a family
+is thoroughly classical (cyclotomic classes; multiplier-invariant
+blocks); every border strip in every source we read, that one
+exception aside, is constant on the whole group.
+
+**Classification prior art.** Đoković–Kotsireas (arXiv:1802.00556)
+*classify* Goethals–Seidel difference families — cyclic, unbordered,
+by symmetry type of the blocks, exhaustively for odd `v < 50`, with
+an iff on parameter sets (their Prop. 3) — an axis orthogonal to
+Theorem C, which classifies border width against subgroup index and
+is uniform in `v`. The surveys read in full or at stated coverage —
+Seberry–Yamada 1992 (cover to cover; its §8 M-structure borders are
+width one *per plug-in block*, Miyamoto's mechanism, not a border
+around the assembled array), Seberry–Yamada 2020 (§3.6, §5.10.1–4,
+and Appendix A complete from the A.1 heading — every construction
+key table A.1–A.15 plus Table A.17 as captured), Georgiou–Koukouvinos–
+Seberry 2002 (in full; the word "border" does not occur in it), and
+the Cati–Pasechnik database (whose bordered entries are Paley I/II,
+Spence's Theorem 2.1, and the Blatt–Szekeres attribution above) —
+contain no parameterised border width, no characterisation, and no
+such classification. Wallis–Whiteman's Theorem 16 (a wide
+conference-matrix Kronecker border) and Spence's Figure 2 (a width-8
+border tracking an eight-block doubled core, entries constant on the
+whole group) are different devices, named here so they are not
+mistaken for the object below.
+
+### 4.2 What is claimed, and the one hedged sentence
+
+Ours are: the border whose **strips are constant on the cosets of a
+proper subgroup** `K ≤ G` of index `i ≥ 2` (realised at
+`s = 3, 5, 7`), on a single four-block Goethals–Seidel core; the
+**iff** (Theorem A); the **classification** (Theorem C: `i = s+1`,
+`s` odd, under `w > 2s`); Theorem D and the index-2 collapse; the
+twist propositions; and the separation theorem of §3.4. The
+`s ≤ 1` layer is classical as credited above, and the parameter
+records instantiating `s = 3, 5, 7` are the announcing team's
+(§2.1, `PROVENANCE.md`) — the theorems are ours, the instances at
+those parameters are not claimed as new objects.
+
+The novelty statement, exactly once and bounded: **in the sources
+enumerated in §4.1, each read firsthand at the stated coverage, we
+did not locate the coset-constant border form with `i ≥ 2`, the
+if-and-only-if characterisation, or the width-against-index
+classification; this closes those sources and nothing more.** The
+nearest prior objects located — Wallis–Street–Wallis Lemma 7.8 and
+Momihara–Yamada Theorem 4.1 — are distinguished above. One named
+source could not be obtained and stays outside the enumeration: the
+Craigen–Kharaghani Handbook chapter (V.1, 2007).
+
+### 4.3 The public record around the instances
+
+The twelve records derive from the announcement of 2026-08-12 and
+its public artifacts (`PROVENANCE.md` carries the pinned chain); the
+order-2060 artifact is Schneider's. Two independent Lean
+formalizations of a single `H(668)` from the same public data exist
+(the comparator of Paul-Lez, registered 2026-08-17, and
+Ramos–Hulak–de Queiroz, 2026-08-28); both verify one supplied
+matrix, and neither states a construction theorem — a formalised
+Theorem A/B would be a different class of object. The anonymous
+vercel-668 preprint (§3.4) independently decoded the same record,
+border included, and was first to publish an inequivalence at the
+order; its priority is stated in §3.4. Public s=1 readings of the
+same data (independent posts of 2026-08-31) are noted in
+`PROVENANCE.md` as corroboration that the construction is broadly
+understood.
 
 ---
 
@@ -617,6 +813,8 @@ the firsthand-read lanes of 2026-08-31; see intel in the lab repo.]*
 | `M` house form forced at `(s,i) = (1,2)` | **PROVEN** (Theorem D-a) |
 | `M` house form forced for `s ≥ 2` (up to twist) | **CONJECTURE** |
 | the 1916 pair is equivalent (explicit witness) | **PROVEN-BY-CERTIFICATE** |
-| **the 668 pair is inequivalent** | **PROVEN** (exact 4-profile, two independent implementations; a third implementation exists in the lab record) |
+| **order 668 carries at least three equivalence classes** | **PROVEN** (pairwise exact 4-profiles, 26/27/27 differing bins; two independent implementations, a third agreeing on the decoded record) |
+| the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN** (rebuilt firsthand; the omitted uniqueness step proved here) |
+| `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
 | the 2060 pair is inequivalent | **COMPUTATIONAL-EVIDENCE** (sampled profiles; block-affine family exhausted) |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |
