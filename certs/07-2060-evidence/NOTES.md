@@ -1,7 +1,10 @@
 # cert 07 — order 2060: two arrays from one seed, at their honest label
 
-**Label: COMPUTATIONAL-EVIDENCE of inequivalence. This is NOT a proof, and
-this certificate does not write it as one.**
+**Label (2026-09-02): PROVEN + PROVEN-BY-CERTIFICATE — the two order-2060
+matrices are Hadamard-inequivalent.** The exact four-file bank is present
+and pinned; `run.py` runs in EXACT mode. The sampled statistic documented
+below was the certificate's original content and is kept as history at its
+own label, COMPUTATIONAL-EVIDENCE; it was never written as a proof.
 Replay: `python certs/07-2060-evidence/run.py` from the repository root.
 Regression: `python certs/07-2060-evidence/run.py --selftest` — the
 exact-bank acceptance controls, run entirely in memory.
@@ -183,17 +186,18 @@ memory rather than time (the pair-vector matrix is `2 120 770 × 2060`,
 under the written pre-registration
 `experiments/inequiv/REGISTRATION-2060-exact.md`.
 
-**Status as of 2026-09-01.** The registered `blas` pair has **completed**,
-and it **separates the two matrices**: 146 of the 147 union bins differ,
-the supports themselves differ — 145 bins against 133 — and the totals and
-second moments come out exact on both. Under the registration that result
-is what licenses the second leg, so the `bits` confirmation pair is now
-running under the same pre-registration. **Nothing is banked here yet.**
-The exact bank lands in this repository only as the complete four-file set
-named below, and this certificate refuses anything less: until all four
-arrive, `EXACT_FILE_PINS` stays empty and the certificate stays in
-SAMPLED-EVIDENCE mode. A separating `blas` pair is not a claim; it is the
-first of two legs.
+**Status as of 2026-09-02: BANKED.** The registered `blas` pair completed
+2026-09-01 (~08:51 UTC) and **separates the two matrices**: 146 of the 147
+union bins differ, the supports themselves differ — 145 bins against 133 —
+and the totals and second moments come out exact on both. Under the
+registration that licensed the second leg; the `bits` confirmation pair
+completed 2026-09-02 (~03:34 UTC; the gist leg resumed bit-identically from
+its checkpoint after a machine reboot, as the registration's recovery drill
+prescribes) and **reproduces the `blas` profiles bin for bin on both
+matrices**. `bank_exact.py` ran its dry run (all gates passed) and then
+wrote the four files below; their digests are pinned in `EXACT_FILE_PINS`;
+`run.py` now runs in EXACT mode. Kill criterion 5 (`blas ≠ bits` in any bin)
+did not fire.
 
 ### The bank is exactly four files
 
@@ -309,6 +313,16 @@ four-file set. See control **C6**.
 | `data/sep2060-records.json` | `1c9742fe485f5cc7232c2e876d322ca0094270bc40e537d16da422c0a13202bc` |
 | `data/sep2060-sampled-histograms.json` | `586d9fe51a4c24448dd44efbe1e3e60a3ec0c83167e263fb008f538efe2ecdc8` |
 | `data/sep668-sampled-histograms.json` | `a21973871c0ad80a8a3b95e057066ae72710194a3638ce3228c647ce502804a6` |
+| `data/sep2060-exact-blas-plain.json` | `5428aeac7b570fff55975c2b737fae9e8d0b717ec511735b68893e609a0037d8` |
+| `data/sep2060-exact-blas-gist.json` | `a20b9a63cd3d93046c251b5c19aabeeac412b8f7933bbafa82d0210320e3aef0` |
+| `data/sep2060-exact-bits-plain.json` | `e6c3af94712d0ba5cf3a3047796ccd474970036fec211b41a5579b7ff892ca49` |
+| `data/sep2060-exact-bits-gist.json` | `9d8cc4b55c297c7e948df3e7639613a0580fc3e54af9eb12399bc010337f8a93` |
+
+The four exact-bank files (banked 2026-09-02 by `bank_exact.py`, schema
+`sep2060-exact-profile/1`) each carry the producer's `matrix_sha256`
+binding to the canonical digest of the matrix this repository rebuilds
+(`510f89b7…` plain, `c7a145d8…` gist), the full `|T4|` histogram, and the
+implementation tag. They are the same four digests pinned in `run.py`.
 
 `data/sep2060-records.json` carries the four normalised length-515 seed
 strings, the normalising shifts, the row sums, the twist multiplier

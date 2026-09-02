@@ -1,4 +1,4 @@
-# NOTE-B — Bordered Goethals–Seidel arrays: theorems, instances, and separations at orders 668 and 716
+# NOTE-B — Bordered Goethals–Seidel arrays: theorems, instances, and separations at orders 668, 716 and 2060
 
 This note is the mathematics of the repository, in three movements:
 
@@ -16,8 +16,8 @@ This note is the mathematics of the repository, in three movements:
   constructed here, every one replayable from `certs/`.
 - **III. Existence plus separation** (§3) — a proof that order 668
   carries at least **three** Hadamard equivalence classes and that
-  order 716 carries at least **two**, separated by an exactly
-  computed invariant; and the invariant theory that makes the
+  orders 716 and 2060 each carry at least **two**, separated by an
+  exactly computed invariant; and the invariant theory that makes the
   separations honest, including two documented traps and one
   sound-but-blind published statistic.
 
@@ -1025,13 +1025,39 @@ repository pays for the full `Θ(n⁴)` invariant: every cheaper
 statistic tested — including a sound published one — fails to see at
 least one true separation at this order.
 
-### 3.5 The pair at order 2060 — COMPUTATIONAL-EVIDENCE
+### 3.5 The theorem at order 2060 — PROVEN + PROVEN-BY-CERTIFICATE
 
-The formerly-open order 2060 carries two candidate classes among
-public+banked artifacts: the publicly posted matrix and the plain
-GS-array realisation over the same decoded seed (the `×104`
-character twist relates the two seeds). Every exact invariant we
-computed agrees between them. The **sampled** 4-profiles differ.
+The formerly-open order 2060 carries two classes among public+banked
+artifacts: the publicly posted matrix and the plain GS-array
+realisation over the same decoded seed (the `×104` character twist
+relates the two seeds). Every cheap exact invariant we computed
+agrees between them; the exact 4-profile does not.
+
+**Theorem.** The two matrices are Hadamard-inequivalent; order 2060
+carries at least two Hadamard equivalence classes. *Proof.* `|T4|`
+is an equivalence invariant (§3.1, I4). The exact folded 4-profiles
+over all `C(2060,4) = 748 155 697 135` row 4-subsets, computed under
+the pre-registration `REGISTRATION-2060-exact.md` (flushed before
+the first run), **differ in 146 of the 147 union bins and in their
+supports — 145 bins for the plain matrix against 133 for the posted
+one**; totals and the second-moment identity `Σ T4² = n³(n−1)(n−2)/24`
+hold exactly on both, and the two arithmetics (`blas` float32
+accumulation of integers below `2²⁴`; `bits` pure-integer popcount)
+agree bin for bin on each matrix. ∎ Certificate: cert 07 in EXACT
+mode, whose four-file bank (`data/sep2060-exact-{blas,bits}-{plain,
+gist}.json`, schema `sep2060-exact-profile/1`, each bound to its
+matrix's canonical digest) is pinned byte-for-byte in `run.py` and
+was accepted through the fail-closed predicate whose 22 negative
+controls the certificate replays on every run. The largest bin
+deficit is `≈ 6.2·10⁸` at `|T4| = 4` (0.6 % of that bin) — three orders
+of magnitude above anything the sampled statistic below could
+resolve, which is why the sampled section is retained as the record
+of how the question was first asked. Runs: blas pair 9.5 h wall at 3
+threads (2026-09-01), bits pair 22.4 h + a bit-identical resume from
+checkpoint after a machine reboot (2026-09-02).
+
+*The sampled statistic, kept as history.* The **sampled** 4-profiles
+differed first.
 
 *What the statistic is.* Per bin, with counts `p` and `q` at equal
 sample size and `p + q ≥ 200`, the reported quantity is the **raw
@@ -1059,10 +1085,12 @@ that keeps this honest: the same sampled statistic reads null
 (`max d ≤ 2.2`, zero bins with `d > 4`) on the 668 pair that §3.4
 **proves** inequivalent. No equivalence exists in the block-affine
 family (BOUNDED-NEGATIVE-SEARCH: exhaustive over that family, silent
-beyond it). Label: **COMPUTATIONAL-EVIDENCE of inequivalence — not a
-proof**, and this note does not write it as one. The exact 4-profile
-at 2060 is priced (≈11–22 core-hours, memory-aware enumeration) and
-is the named upgrade path.
+beyond it). The sampled statistic alone was labelled
+**COMPUTATIONAL-EVIDENCE of inequivalence — not a proof**, and this
+note never wrote it as one; the exact 4-profile above, the named
+upgrade path, has now been run and is the proof. Label for §3.5:
+**PROVEN + PROVEN-BY-CERTIFICATE** (cert 07, exact mode). Row-side
+only: no transpose-extended statement is made at 2060.
 
 ### 3.6 The theorem at order 716 — PROVEN + PROVEN-BY-CERTIFICATE
 
@@ -1314,5 +1342,5 @@ understood.
 | the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN-BY-CERTIFICATE** (rebuilt firsthand; its Lemma-3 uniqueness reproduced in cert 08 via the `660` bin) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
 | **order 716 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 27 of 87 differing bins, two independent implementations per matrix; cert 11). Row-side only: no transpose-extended statement is made at 716 |
-| evidence that the 2060 pair is inequivalent | **COMPUTATIONAL-EVIDENCE** (sampled profiles; block-affine family exhausted) |
+| **order 2060 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 146 of 147 differing bins, supports 145 vs 133, two independent implementations per matrix; cert 07 exact mode). Row-side only. The earlier sampled statistic remains recorded as COMPUTATIONAL-EVIDENCE |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

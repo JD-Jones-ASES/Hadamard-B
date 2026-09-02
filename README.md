@@ -80,11 +80,14 @@ the decoded record and its Lemma-T rebuild, separated in 27 of the
 87 bins of the same exact invariant over all 10 859 143 295 row
 4-subsets (cert 11), so the twist at `ψ(ρ) = −1` provably leaves
 the equivalence class at a second order; that statement is row-side
-only, with no transpose-extended claim at 716. The corresponding
-pair at the former frontier order 2060 carries
-**computational evidence of
-inequivalence — not a proof** (sampled profiles; an exhausted
-block-affine family), stated at exactly that strength.
+only, with no transpose-extended claim at 716. **Order 2060 carries at
+least two** — the publicly posted matrix and the plain GS-array
+realisation of the same decoded seed, separated in 146 of the 147
+bins of the same exact invariant over all 748 155 697 135 row
+4-subsets, with two independent arithmetics agreeing bin for bin
+(cert 07, exact mode, banked 2026-09-02); row-side only. The sampled
+statistic that first suggested it stays in the record at its own
+label, computational evidence.
 
 ## Priority posture
 

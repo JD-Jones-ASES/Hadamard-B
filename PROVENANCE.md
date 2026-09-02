@@ -336,12 +336,17 @@ This document's edits ride on the commit made after those reads.
 - [x] **Digests.** 2026-09-01: every file in `data/` digested at the frozen
       tree and recorded in *Frozen data digests* below; the placeholder
       line at the top of this document now points there.
-- [ ] **Cert 07's exact-file pins.** Pending: the 2060 exact bank lands only
-      after the bits confirmation pair completes, in progress under
-      `experiments/inequiv/REGISTRATION-2060-exact.md`. `EXACT_FILE_PINS`
-      stays empty and the certificate stays in its sampled mode, which is
-      the correct state for a bank that has not landed — a partial bank is
-      a hard failure, never a fallback.
+- [x] **Cert 07's exact-file pins.** 2026-09-02: the bits confirmation pair
+      completed under `experiments/inequiv/REGISTRATION-2060-exact.md` and
+      reproduced the separating `blas` profiles bin for bin; `bank_exact.py`
+      wrote the four-file bank and its digests are pinned in
+      `EXACT_FILE_PINS`; cert 07 runs in EXACT mode. Post-flip data files
+      (not in the frozen table below, which is the flip tree):
+      `sep2060-exact-blas-plain.json` `5428aeac…0037d8`,
+      `sep2060-exact-blas-gist.json` `a20b9a63…e3aef0`,
+      `sep2060-exact-bits-plain.json` `e6c3af94…92ca49`,
+      `sep2060-exact-bits-gist.json` `9d8cc4b5…7f8a93` (full digests in
+      `certs/07-2060-evidence/NOTES.md`).
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

@@ -235,7 +235,18 @@ OPTIONAL_FIELDS = ("producer_matrix_sha256", "source_file", "banked_utc",
 # checked against the file on disk before the bank is read.  It is
 # all-or-nothing: empty, or exactly the four expected basenames -- see
 # validate_pin_coverage below.
-EXACT_FILE_PINS = {}
+EXACT_FILE_PINS = {
+    # banked 2026-09-02 by bank_exact.py after the registered blas + bits pair
+    # completed and passed every gate (blas separates 146/147; blas == bits)
+    "sep2060-exact-blas-plain.json":
+        "5428aeac7b570fff55975c2b737fae9e8d0b717ec511735b68893e609a0037d8",
+    "sep2060-exact-blas-gist.json":
+        "a20b9a63cd3d93046c251b5c19aabeeac412b8f7933bbafa82d0210320e3aef0",
+    "sep2060-exact-bits-plain.json":
+        "e6c3af94712d0ba5cf3a3047796ccd474970036fec211b41a5579b7ff892ca49",
+    "sep2060-exact-bits-gist.json":
+        "9d8cc4b55c297c7e948df3e7639613a0580fc3e54af9eb12399bc010337f8a93",
+}
 
 HEXDIGITS = set("0123456789abcdef")
 
