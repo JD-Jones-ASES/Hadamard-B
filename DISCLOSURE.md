@@ -6,11 +6,13 @@ coset-border construction; the classification, within the house-Gram
 branch and under `w > 2s`, of its surviving parameters (with `n ≥ 3`
 the cells are `(0,1)`, `(1,1)`, and `i = s+1` with `s` odd); and the
 complete resolution of the `s = 1` border system —
-together with the theorems that order 668 carries at least three
-Hadamard-equivalence classes, pairwise separated by an exactly
-computed invariant, and that order 716 carries at least two; plus the
-machine verification of twelve publicly posted matrices through the
-theorems' hypotheses and eight certified instance matrices.
+together with the theorems that order 668 carries at least four
+Hadamard-equivalence classes and that order 716 carries at least
+three, pairwise separated by an exactly computed invariant (the
+fourth class at 668, and every statement at 716, row-side only);
+plus the machine verification of twelve publicly posted matrices
+through the theorems' hypotheses and eight certified instance
+matrices.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages

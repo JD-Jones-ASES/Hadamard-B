@@ -15,8 +15,9 @@ This note is the mathematics of the repository, in three movements:
   re-verified through the theorem's hypotheses, and eight matrices
   constructed here, every one replayable from `certs/`.
 - **III. Existence plus separation** (§3) — a proof that order 668
-  carries at least **four** Hadamard equivalence classes and that
-  orders 716 and 2060 each carry at least **two**, separated by an
+  carries at least **four** Hadamard equivalence classes, that order
+  716 carries at least **three**, and that order 2060 carries at
+  least **two**, separated by an
   exactly computed invariant; and the invariant theory that makes the
   separations honest, including two documented traps and one
   sound-but-blind published statistic.
@@ -813,8 +814,11 @@ assemblies agree byte for byte.)
 permutation matrices and `D` diagonal `±1`. Transpose is **not** in
 the group; the invariants below are computed on both sides (rows and
 columns) wherever a transpose-extended statement is made, and where
-transpose changes a verdict it is called out. §3.6 is the one place
-where only the row side was computed, and it says so.
+transpose changes a verdict it is called out. Transpose-extended
+statements are made only for the first three classes at 668 (§3.4,
+cert 08); the fourth class at 668 (§3.4, cert 13), order 2060
+(§3.5) and order 716 (§3.6, certs 11 and 14) are row-side only, and
+each says so.
 
 ### 3.1 The invariants
 
@@ -962,8 +966,9 @@ transport. Two lessons the theorem states rather than suggests: the
 GS orientation, a "convention" in §1.0, is **not a gauge for Hadamard
 equivalence** at 668; and every bordered GS record found at any order
 comes with a second candidate class for free, by negating twelve
-blocks. Nothing is claimed about 716, 1676, 1772, nor that four is the
-count.
+blocks. Nothing is claimed about 1676 or 1772, nor that four is the
+count; the same switch at 716 has since been computed and is §3.6
+(cert 14, 2026-09-02).
 
 **Priority, stated first.** An anonymous preprint (hosted at
 hadamard-668.vercel.app; its PDF `CreationDate` field reads
@@ -1123,20 +1128,46 @@ only: no transpose-extended statement is made at 2060.
 
 *(The same split as §3.4: the invariance of the folded 4-profile
 and the implication "different profiles ⟹ inequivalent" are paper
-proofs; the four exact profiles are certified machine computations
-— cert 11. Where they ran matters, so it is stated here: the
-`C(716,4)` enumeration was made in the source laboratory on
-2026-09-01 under a pre-registration flushed before the matrices
-were built, and banked. A default run of cert 11 **audits** those
-banks; `--full` recomputes the profiles here from the rebuilt rows,
-by a third arithmetic route. Cert 11's `NOTES.md` records which
-legs ran.)*
+proofs; the six exact profiles are certified machine computations
+— certs 11 and 14. Where they ran matters, so it is stated here:
+the `C(716,4)` enumerations were made in the source laboratory on
+2026-09-01 (the pair) and 2026-09-02 (`H″`), each under a
+pre-registration flushed before the matrices were built, and
+banked. A default run of cert 11 or 14 **audits** those banks;
+`--full` recomputes the profiles here from the rebuilt rows, by a
+third arithmetic route. Each cert's `NOTES.md` records which legs
+ran.)*
 
 > **Theorem.** Order 716 carries at least **two** Hadamard
 > equivalence classes, exhibited by the decoded `(1,1)` record and
 > its Lemma-T `i = 2` rebuild (cert 02): the two exact 4-profiles
 > populate the **same 87 bins** and **27 of the 87 bin counts
 > differ**.
+
+> **Theorem (the third class, 2026-09-02; cert 14).** Let `H″` be
+> the decoded record `H` with its **twelve off-diagonal core blocks
+> negated** and the border unchanged. Then `H″` is Hadamard, and it
+> is inequivalent to each of `H` and `H'`: its exact 4-profile
+> differs from theirs in **27** and **25** of the 87 bins (two
+> arithmetics, bin for bin; totals and second moment exact; run
+> under the pre-registration `REGISTRATION-716-orientation.md`,
+> flushed first). **Order 716 therefore carries at least three
+> Hadamard equivalence classes.** Row-side only, as everything else
+> at this order.
+
+*What `H″` is.* `S·H″·S`, with `S = diag(I₄, diag(1,−1,−1,−1)⊗I_n)`
+and `n = 178`, is the same seeds and border assembled in the
+**alternate Goethals–Seidel orientation** (§1.0: the six transposed
+blocks negated) with the border strips signed by superblock
+(`P[a][J]·(−1)^[J≠0]`, `Q[I]·(−1)^[I≠0]`) — an identity of sign
+patterns, checked cell by cell in cert 14, as at 668 (§3.4). So the
+GS orientation, a "convention" in §1.0, is **not a gauge for
+Hadamard equivalence** at 716 either, and the `ψ(ρ) = −1` twist and
+the orientation switch land in different classes here as they do at
+668. That is **two orders with the same verdict and no general
+statement**: nothing is claimed at 1676 or 1772, nothing under the
+transpose-extended relation at 716, and nothing to the effect that
+three is the count.
 
 The separating computation is the exact 4-profile over all
 `C(716,4) = 10 859 143 295` row 4-subsets, on each matrix, by two
@@ -1368,6 +1399,6 @@ understood.
 | the three-class theorem under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all six comparisons separate; cert 08) |
 | the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN-BY-CERTIFICATE** (rebuilt firsthand; its Lemma-3 uniqueness reproduced in cert 08 via the `660` bin) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
-| **order 716 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 27 of 87 differing bins, two independent implementations per matrix; cert 11). Row-side only: no transpose-extended statement is made at 716 |
+| **order 716 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 27 of 87 differing bins, cert 11; the orientation switch `H″` against them 27 and 25, cert 14; two independent implementations per matrix). Row-side only: no transpose-extended statement is made at 716 |
 | **order 2060 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 146 of 147 differing bins, supports 145 vs 133, two independent implementations per matrix; cert 07 exact mode). Row-side only. The earlier sampled statistic remains recorded as COMPUTATIONAL-EVIDENCE |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

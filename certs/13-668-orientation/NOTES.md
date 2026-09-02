@@ -158,9 +158,11 @@ than the exact profile could have found this.
 * The default run recomputes nothing; only `--full` binds the `H″` bank to
   the matrix by computation.
 * Nothing under the transpose-extended relation for `H″`.
-* Nothing about the orientation switch at 716, 1676 or 1772 — the same
-  construction exists there and the same computation costs about 1.3×, 98×
-  and 130× this one; not made, so not said.
+* Nothing about the orientation switch at 1676 or 1772 — the same
+  construction exists there and the same computation costs about 98× and
+  130× this one; not made, so not said. (The 716 instance, ≈1.4× this one,
+  *has* since been made — cert 14, 2026-09-02 — but nothing in this
+  certificate depends on it.)
 * No claim that four is the number of classes at 668, and no priority claim
   of any kind: order 668 is settled by the publicly posted matrix; this
   certificate counts classes among artifacts banked here.
