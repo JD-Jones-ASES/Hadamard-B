@@ -17,9 +17,14 @@ matrices. Added 2026-09-02: the rigidity theorem sharpened to
 `w > s` with its boundary classified; the border-kit structure
 theorem, whose exhaustive `(3,4)` census makes that cell one-layer
 — at order 2092 a seed quadruple *is* the matrix, the border never
-the obstruction; and the first four certified instances in the
+the obstruction; the first four certified instances in the
 even-`s` branch, at the cell `(s,i) = (2,4)`, where a second
-exhaustive census shows the border never obstructs either.
+exhaustive census shows the border never obstructs either; and the
+decoded 668 record proved inequivalent to its own transpose (49 of
+80 bins), so those four matrices and their four transposes are
+pairwise inequivalent — eight classes exhibited at 668 under plain
+Hadamard equivalence, the transpose-extended count unchanged at
+four, which is the count this disclosure and the abstract quote.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -69,10 +74,10 @@ every run, the default path **audits** the banked profile — the
 file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
-belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14
-and 15, which recompute those profiles from the matrices rebuilt in the same run.
+belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14,
+15 and 19, which recompute those profiles from the matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; those six `--full`
+standard library and nothing on the network; those seven `--full`
 recomputations use numpy on the finder side only, and they are the
 only numpy anywhere in the repository. Cert 17's `--full` is
 standard-library like the rest of it, and has been run here: the

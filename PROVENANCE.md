@@ -392,6 +392,25 @@ This document's edits ride on the commit made after those reads.
 
       The seventeen comparison banks are certs 06, 08, 11, 13 and 14's,
       reused unchanged and re-pinned by digest.
+- [x] **Cert 19 banks.** 2026-09-02: the exact 4-profile of `Hᵀ` at 668 — the
+      transpose of the decoded record — produced **at the desk** (three
+      threads; 90.2 s `blas`, 169.4 s `bits`) under
+      `experiments/pr0042/REGISTRATION.md`, **Amendment 2**, flushed ~18:17
+      UTC (commit `48e5e47`), before the matrix it governs was built; its
+      result paragraph is dated 18:27Z. The matrix was built by transposing
+      the cert-01 record rebuilt through `tools/bordered_gs.py`, and passed
+      this repository's `verify/verify.py` before the run. Matrix `Hᵀ` at
+      668, canonical digest `7a25f3f7…62edb25`, re-derived in-run by
+      `certs/19-668-transpose-eight-classes/run.py`. Bank files (full digests
+      pinned in that `run.py` and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep668-decoded-T-exact-blas.json` | `fb6917010cbd9147312c3908a407bcd86252d22bbf343ae3434f182b71e302f5` |
+      | `sep668-decoded-T-exact-bits.json` | `eff70d552abfe6a85327243a6cbb75d81d36589ab87806c890e5545ea9ef57a5` |
+
+      The thirteen comparison banks are certs 06, 08, 13 and 15's, reused
+      unchanged and re-pinned by digest.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

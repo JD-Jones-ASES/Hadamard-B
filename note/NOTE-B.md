@@ -1339,14 +1339,15 @@ sweep to have missed.
 ### 3.4 The theorem at order 668 — PROVEN + PROVEN-BY-CERTIFICATE
 
 *(The invariance of the folded 4-profile and the implication
-"different profiles ⟹ inequivalent" are paper proofs; the seven
-exact profiles — four matrices and three transposes — and the
-twelve comparisons the transpose-extended statement needs are
-certified machine computations, certs 06, 08, 13 and 15. The
+"different profiles ⟹ inequivalent" are paper proofs; the eight
+exact profiles — four matrices and their four transposes — the
+twelve comparisons the transpose-extended statement needs and the
+28 the eight-matrix statement needs are certified machine
+computations, certs 06, 08, 13, 15 and 19. The
 composite label reflects that split. Where those computations ran
 matters, so it is stated here: the `C(668,4)` enumerations were made
-in the source laboratory and banked. A default run of cert 06, 08,
-13 or 15 **audits** those banks — the
+in the source laboratory and at the desk, and banked. A default run
+of cert 06, 08, 13, 15 or 19 **audits** those banks — the
 file digests, the declared matrix identity against the matrix
 rebuilt in that same run, the forced congruence, the total, the
 second moment, and bin-for-bin agreement of two independent
@@ -1470,11 +1471,36 @@ H' vs H″  : 27 bins      H' vs (H″)ᵀ  : 50 bins
 H★ vs H″  : 26 bins      H★ vs (H″)ᵀ  : 49 bins
 ```
 
-(the transposes are genuinely different objects — all three
+(the transposes are genuinely different objects — all four
 transposed profiles computed here populate 79 bins where the
 originals populate 80, each losing the same bin, `|T4| = 644`).
 Order 668 carries at least **four** equivalence classes under either
 convention.
+
+> **Theorem (the record and its own transpose, 2026-09-02; cert 19).**
+> `H` is **not** equivalent to `Hᵀ`: their exact profiles differ in
+> **49** of the 80 bins. Consequently the eight matrices `H, H', H★,
+> H″` and their four transposes are **pairwise** inequivalent — all 28
+> comparisons separate, the closest pair by 24 bins — so **order 668
+> carries at least eight Hadamard equivalence classes under plain
+> Hadamard equivalence.** Under the transpose-extended relation the
+> count is **unchanged**: exactly **four** classes among those eight,
+> since `X ≈ Xᵀ` holds by definition and the twelve refutations above
+> already separate the four. The house counts four.
+
+Eight is a lower bound from the artifacts in hand, not a count of the
+classes at 668, and four transposes are not four constructions: the
+eight matrices come from four objects and one involution. What makes
+the comparison a real question rather than a restatement is that the
+transpose is **not** in the equivalence group, so `profile(Hᵀ)` is the
+same invariant computed on a different matrix; that the bordered GS
+family is closed under transposition — so `Hᵀ` is another record of
+the same family — is source-laboratory intel, cited in cert 19's notes
+and neither proved nor relied on here. Nothing general follows: a
+Sylvester matrix is symmetric, and cert 19 measures Paley `H(20)`'s
+profile agreeing with its transpose's — agreement being a failure to
+separate, never a proof of equivalence. What is settled is one matrix
+at one order.
 
 Consequences. The Lemma-T construction at `ψ(ρ) = −1` genuinely
 leaves the equivalence class at this order, and the Hall switch
@@ -1853,6 +1879,7 @@ understood.
 | all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance, and the four Grams are the complete admissible list at that cell | **PROVEN-BY-CERTIFICATE** (cert 09) **+ PROVEN** (Corollary E1) **+ MEASURED** (banked set `=` census set; cert 12) |
 | **order 668 carries at least four equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H`, `H'`, `H★` pairwise 26/27/27 differing bins, cert 06/08; the orientation switch `H″` against them 27/27/26, cert 13; two independent implementations per matrix) |
 | the **four**-class theorem at 668 under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all twelve comparisons separate: the first three pairs in cert 08, the three pairs with `H″` from the new `(H″)ᵀ` profile — 50/50/49 bins — in cert 15) |
+| `H ≁ Hᵀ` at 668 (49 of 80 bins), and hence **order 668 carries at least eight equivalence classes** under plain Hadamard equivalence — the four matrices and their four transposes, pairwise separated | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (all 28 comparisons separate, 24–50 bins, two independent implementations per matrix, from the `Hᵀ` profile banked 2026-09-02; cert 19). Under the transpose-extended relation the count is **unchanged at four** — `X ≈ Xᵀ` by definition — and the house counts four. Eight is a lower bound, and four transposes are not four constructions |
 | the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN-BY-CERTIFICATE** (rebuilt firsthand; its Lemma-3 uniqueness reproduced in cert 08 via the `660` bin) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
 | **order 716 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 27 of 87 differing bins, cert 11; the orientation switch `H″` against them 27 and 25, cert 14; two independent implementations per matrix) |

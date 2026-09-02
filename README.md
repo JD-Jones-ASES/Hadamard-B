@@ -99,7 +99,13 @@ separated by the exact 4-profile over all 8 222 179 035 row
 4-subsets, computed by independent implementations that agree bin
 for bin and hit the closed-form second moment to the unit (certs 06,
 08, 13), and all four classes stay apart when the **transpose** is
-added to the group (cert 15, 2026-09-02).
+added to the group (cert 15, 2026-09-02). The decoded record is
+moreover **not equivalent to its own transpose** — 49 of the 80 bins
+differ — so those four matrices and their four transposes are
+pairwise inequivalent, all 28 comparisons separating: **eight**
+classes are exhibited at 668 under plain Hadamard equivalence, while
+the transpose-extended count stays **four**, a matrix and its
+transpose being one class there by definition (cert 19, 2026-09-02).
 As far as this laboratory's search located, the preprint was the first published
 statement of an inequivalence at this order; the bounded priority
 statement is NOTE-B.md §3.4. **Order 716 carries at least three** —
@@ -138,21 +144,21 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The six `--full` flags of certs 06,
-08, 11, 13, 14 and 15 are the only paths anywhere in the repository that
-use numpy, and they recompute the exact 4-profiles from the matrices
+Standard library only, no network. The seven `--full` flags of certs 06,
+08, 11, 13, 14, 15 and 19 are the only paths anywhere in the repository
+that use numpy, and they recompute the exact 4-profiles from the matrices
 rebuilt in the run rather than auditing the banks (finder-side only,
 never in the trust chain). Cert 16's `--wide` and cert 17's `--full`
 are wider runs of the same standard-library code, not a different
 arithmetic; cert 17's `--full` (the 16 384-class kit census) **has** been
 run in this repository — 2026-09-02, 5 min 28 s, 16 384 / 16 384, census
 digest matching the pin — and its `NOTES.md` records the run.
-The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14 and
-15's — covered the `blas` (float32) leg only; the `bits` recomputation has
-not been run in this repository for any of them. Cert 14's leg has been run
-here once (400 s) and cert 15's once (287 s), each matching both banked
-implementations bin for bin. Each cert's `NOTES.md` records which legs
-were run and when.
+The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14, 15
+and 19's — covered the `blas` (float32) leg only; the `bits` recomputation
+has not been run in this repository for any of them. Cert 14's leg has been
+run here once (400 s), cert 15's once (287 s) and cert 19's once (282 s),
+each matching both banked implementations bin for bin. Each cert's
+`NOTES.md` records which legs were run and when.
 
 ```
 python verify/verify.py --selftest
@@ -177,6 +183,7 @@ python certs/16-theorem-eprime-boundary/run.py --wide
 python certs/17-border-kits-34/run.py
 python certs/17-border-kits-34/run.py --full
 python certs/18-cell24-instances/run.py
+python certs/19-668-transpose-eight-classes/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only
