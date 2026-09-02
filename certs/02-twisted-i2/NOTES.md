@@ -45,9 +45,15 @@ diagonal conjugation of the decoded instance.
   `C(716,4)` row 4-subsets, 27 of 87 bins differing (cert 11,
   NOTE-B.md §3.6). Again a separate result with its own certificate;
   *this* cert does not prove it and does not depend on it.
-- At **1676 and 1772**, **neither equivalence nor inequivalence is
-  claimed**. The separating computation at these orders has not been
-  made. A different digest means a different file and nothing more.
+- At **1676**, likewise: the twisted and decoded matrices are proven
+  Hadamard-**inequivalent** — the exact 4-profile over all
+  `C(1676,4)` row 4-subsets, 68 of 142 bins differing (cert 20,
+  2026-09-02, NOTE-B.md §3.7), row-side only. A separate result with
+  its own certificate; *this* cert does not prove it and does not
+  depend on it, even though cert 20 rebuilds from this record.
+- At **1772**, **neither equivalence nor inequivalence is claimed**.
+  The separating computation at that order has not been made. A
+  different digest means a different file and nothing more.
 - No novelty of existence is claimed at any of these four orders. They
   are long settled; the artifacts exist to instantiate Lemma T.
 

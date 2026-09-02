@@ -12,10 +12,11 @@ classifies the surviving parameters within that branch under
 `i = s+1` with `s` odd), resolves the `s = 1` border system
 completely, and verifies twelve publicly posted matrices through the
 theorem's hypotheses. Its third movement proves that order 668
-carries at least **four** Hadamard-equivalence classes and order
-716 at least **three**, pairwise separated by an exactly computed
-invariant and holding with the transpose added to the group (only
-the order-2060 statement is row-side only). Every computational
+carries at least **four** Hadamard-equivalence classes and orders
+716 and 1676 at least **three** each, pairwise separated by an
+exactly computed invariant; the 668 and 716 statements hold with the
+transpose added to the group, while the 1676 and 2060 statements are
+row-side only and say so. Every computational
 claim carries a certificate in `certs/`; the theorems are
 paper-grade proofs in the note, labelled as such. A default run
 rebuilds and verifies the
@@ -118,7 +119,18 @@ the twist at `ψ(ρ) = −1` provably leaves the equivalence class at a
 second order, and the orientation switch leaves both classes at a
 second order too; the three transposed profiles have since been
 computed, so the three-class statement holds under the
-transpose-extended relation as well (cert 15). **Order 2060 carries at
+transpose-extended relation as well (cert 15). **Order 1676 carries
+at least three** as well — the same three constructions, the decoded
+record, its Lemma-T rebuild and the orientation switch — pairwise
+separated in 68, 70 and 66 of the 142 bins of the same exact
+invariant over all 327 588 749 775 row 4-subsets, in two arithmetics
+that agree bin for bin (cert 20, 2026-09-02); so the twist at
+`ψ(ρ) = −1` provably leaves the equivalence class at a **third**
+order, and the orientation switch leaves both classes at a third
+order too. That statement is **row-side only**: the transposed
+profiles at 1676 are a separate, pending leg of the same campaign,
+and nothing there is claimed under the transpose-extended relation.
+**Order 2060 carries at
 least two** — the publicly posted matrix and the plain GS-array
 realisation of the same decoded seed, separated in 146 of the 147
 bins of the same exact invariant over all 748 155 697 135 row
@@ -144,8 +156,8 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The seven `--full` flags of certs 06,
-08, 11, 13, 14, 15 and 19 are the only paths anywhere in the repository
+Standard library only, no network. The eight `--full` flags of certs 06,
+08, 11, 13, 14, 15, 19 and 20 are the only paths anywhere in the repository
 that use numpy, and they recompute the exact 4-profiles from the matrices
 rebuilt in the run rather than auditing the banks (finder-side only,
 never in the trust chain). Cert 16's `--wide` and cert 17's `--full`
@@ -157,8 +169,13 @@ The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14, 15
 and 19's — covered the `blas` (float32) leg only; the `bits` recomputation
 has not been run in this repository for any of them. Cert 14's leg has been
 run here once (400 s), cert 15's once (287 s) and cert 19's once (282 s),
-each matching both banked implementations bin for bin. Each cert's
-`NOTES.md` records which legs were run and when.
+each matching both banked implementations bin for bin. **Cert 20's `--full`
+has not been run at all**: at order 1676 one leg is of order 6–7 hours
+(52× cert 14's 716 leg on the source laboratory's measured sub-`n⁵`
+scaling; 70× and ≈ 7.8 h on the `Θ(n⁵)` law used elsewhere here) and
+the `blas` route wants about 9.4 GB, so the flag is offered and priced and
+that certificate's verdict is an audit. Each cert's `NOTES.md` records
+which legs were run and when.
 
 ```
 python verify/verify.py --selftest
@@ -184,6 +201,7 @@ python certs/17-border-kits-34/run.py
 python certs/17-border-kits-34/run.py --full
 python certs/18-cell24-instances/run.py
 python certs/19-668-transpose-eight-classes/run.py
+python certs/20-1676-three-classes/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

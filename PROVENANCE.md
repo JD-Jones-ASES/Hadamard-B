@@ -411,6 +411,46 @@ This document's edits ride on the commit made after those reads.
 
       The thirteen comparison banks are certs 06, 08, 13 and 15's, reused
       unchanged and re-pinned by digest.
+- [x] **Cert 20 banks.** 2026-09-02: the six exact 4-profiles at order 1676
+      — the decoded `(1,1)` record `H`, its Lemma-T `i = 2` rebuild `H′`,
+      and the orientation switch `H″`, each in both arithmetics —
+      producer-banked from `Hadamard-2060` under
+      `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC, before any
+      matrix it governs was built; Amendment 1 ~11:05 UTC re-priced the
+      campaign). Enumerated by the unchanged engine
+      `experiments/inequiv/exact_profile_big.py` on a rented
+      `c2d-highcpu-16` (`prof42-1`, `us-east1-b`), 16 threads,
+      2026-09-02 10:36Z–19:55Z; the `blas` legs took 2 638.7 s / 2 652.4 s
+      / 2 649.4 s at ≈ 762 MB peak and the `bits` legs 6 628.6 s /
+      6 642.9 s / 6 631.5 s at ≈ 104 MB. As for cert 15, the matrices were
+      built AND verified at the desk by
+      `experiments/pr0042/build_matrices.py` — every digest in its
+      `manifest.json`, each through this repository's `verify/verify.py`,
+      the two pinned ones reproducing their cert-01 and cert-02 pins — and
+      only then uploaded; the rented machine enumerated and nothing else.
+      Matrix canonical digests, all three re-derived in-run by
+      `certs/20-1676-three-classes/run.py`: `H₁₆₇₆` `8e919c2b…1cdb99`
+      (cert 01's pin), `H′₁₆₇₆` `6a493837…4907405` (cert 02's pin, seeds
+      re-derived here as the `ψ`-twist of the decoded seeds), `H″₁₆₇₆`
+      `16d1617c…6a84346` (formed in-run from `H`). Bank files (full digests
+      pinned in that `run.py` and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep1676-decoded-exact-blas.json` | `57b9a43caf5246de779ad3205a45642c98f7a211be47e4ed12d718fe098781c9` |
+      | `sep1676-decoded-exact-bits.json` | `469e0b0382d479a6d917316246807cadfa1f113bb2bfcd1429ec1712622e7b94` |
+      | `sep1676-twisted-exact-blas.json` | `328ed05c9614a223d95bd35583c83433a8700249c0b50872fbfc8d846e9b5a49` |
+      | `sep1676-twisted-exact-bits.json` | `311ef88606d0543967e2b0cf46aad4f3fb3f1353cc59b018c5369e447c0c2bb1` |
+      | `sep1676-orient-exact-blas.json` | `a83b239695a3bd820de222e829e65a10a5dd66a432858af57cc950eb4ff40be2` |
+      | `sep1676-orient-exact-bits.json` | `af198e51aecd165e8a2a22ee5ece8dfa73d8ddedf314fa94684ee367db14e9d5` |
+
+      All six are cert 20's own; it reuses no comparison bank from another
+      certificate, and the two shared parameter records
+      (`payload-records.json`, `twisted-i2-records.json`) are bound to it
+      by the canonical digests above rather than by a file pin. Cert 20's
+      `--full` has **not** been run in this repository — at this order one
+      leg is of order 6–7 h and the `blas` route wants ≈ 9.4 GB — so its
+      verdict is an audit of these banks and says so.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

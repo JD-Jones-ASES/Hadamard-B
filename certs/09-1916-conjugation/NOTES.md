@@ -176,10 +176,10 @@ the definition.
 ## What is NOT claimed
 
 * **Nothing about `ψ(ρ) = −1` in general.** The proposition's proof breaks
-  there, and at orders 668 and 716 that case provably **does** leave the
-  equivalence class (certs 06 and 08; cert 11). Whether it always does is
-  not claimed; 668 and 716 are the proven cases, and 1676, 1772 stay
-  unclaimed.
+  there, and at orders 668, 716 and 1676 that case provably **does** leave
+  the equivalence class (certs 06 and 08; cert 11; cert 20). Whether it
+  always does is not claimed; 668, 716 and 1676 are the proven cases, and
+  1772 stays unclaimed.
 * **This certificate does not, by itself, show there are no other non-house
   Grams.** What it does is exhibit the non-house instances that any
   forcedness statement must quotient out. That those are the *only* ones is

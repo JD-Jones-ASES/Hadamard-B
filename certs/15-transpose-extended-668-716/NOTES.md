@@ -336,8 +336,9 @@ numpy and therefore **finder-side only** — never in the trust chain, which is
 ## What is NOT claimed
 
 * **The default run recomputes nothing.** Only `--full` binds the new 668 bank
-  to the matrix by computation, and it has not yet been run here; the seven
-  other new profiles are audited, not recomputed, in this repository at all.
+  to the matrix by computation; its `blas` leg has been run here once (287 s,
+  *Runtimes*) and its `bits` leg has not; the seven other new profiles are
+  audited, not recomputed, in this repository.
 * **Nothing at 2060, 1676 or 1772.** The same registration governs orientation
   switches and transposed profiles at those orders; those legs were still
   running when this certificate was written. They will carry their own

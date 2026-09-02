@@ -205,8 +205,8 @@ repository, and none would have added anything.
 nothing — **does not apply**. The `i = 2` border is a genuinely different
 border, and the exact profile confirms the construction really does produce
 a new equivalence class here, as it does at 668. Whether it always does at
-`ψ(ρ) = −1` is still **not claimed**: there are now two proven instances and
-no general argument.
+`ψ(ρ) = −1` is still **not claimed**: there are now three proven instances
+(668, 716, 1676 — cert 20, 2026-09-02) and no general argument.
 
 ## Pinned digests
 
@@ -287,14 +287,16 @@ forced Sylvester profile at `n = 128`.
 * **Nothing about orders 1676 or 1772.** The same construction gives
   Lemma-T `i = 2` rebuilds there, and the corresponding exact computation
   costs roughly `98×` and `130×` the 668 run (the profile is `Θ(n⁵)` in the
-  pair-vector Gram). It has not been made, so nothing is said.
+  pair-vector Gram). The `1676` computation has since been made — cert 20,
+  2026-09-02, NOTE-B.md §3.7 — and nothing in this certificate depends on
+  it; `1772` has not been made, so nothing is said there.
 * **No claim of novelty of existence at 716**, and no priority claim of any
   kind. Order 716 is long settled by the publicly posted matrix; this
   certificate is about *how many classes* are on the table among the
   artifacts banked here.
 * **No claim that these are the only two classes** at order 716.
-* **No general statement about `ψ(ρ) = −1`.** Two orders now have it proven
-  (668, 716); that is two instances, not a theorem.
+* **No general statement about `ψ(ρ) = −1`.** Three orders now have it
+  proven (668, 716, 1676); that is three instances, not a theorem.
 * **Matching invariants prove nothing.** `dim W` agrees on this pair, as
   every cheap invariant did at 668. Read every "agrees" in this repository
   as "did not separate", never as "the same". Beyond `dim V`/`dim W`, no
