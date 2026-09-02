@@ -8,8 +8,9 @@ the cells are `(0,1)`, `(1,1)`, and `i = s+1` with `s` odd); and the
 complete resolution of the `s = 1` border system —
 together with the theorems that order 668 carries at least four
 Hadamard-equivalence classes and that order 716 carries at least
-three, pairwise separated by an exactly computed invariant (the
-fourth class at 668, and every statement at 716, row-side only);
+three, pairwise separated by an exactly computed invariant and
+holding with the transpose added to the group (only the order-2060
+statement is row-side only);
 plus the machine verification of twelve publicly posted matrices
 through the theorems' hypotheses and eight certified instance
 matrices.
@@ -62,10 +63,10 @@ every run, the default path **audits** the banked profile — the
 file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
-belongs to the optional `--full` paths of certs 06, 08 and 11, which
-recompute those profiles from the matrices rebuilt in the same run.
+belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14
+and 15, which recompute those profiles from the matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; the three `--full`
+standard library and nothing on the network; the `--full`
 recomputations use numpy on the finder side only.
 
 Reading the certificates is one route. Rebuilding from the

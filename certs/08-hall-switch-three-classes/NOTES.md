@@ -376,9 +376,10 @@ backfill added four checks to every path, so a fresh run reports four more.
 * **Nothing about orders 716, 1676 or 1772.** The same constructions exist
   there and the corresponding exact computation costs roughly `1.4×`, `98×`
   and `130×` the 668 run. *This* certificate says nothing about them. The
-  `716` computation has since been made and carries its own certificate —
-  cert 11, NOTE-B.md §3.6 (two classes, row side only); `1676` and `1772`
-  have not been made, so nothing is said there.
+  `716` computation has since been made and carries its own certificates —
+  certs 11, 14 and 15, NOTE-B.md §3.6 (three classes, and the statement holds
+  under the transpose-extended relation); `1676` and `1772` have not been
+  made, so nothing is said there.
 * **No claim of priority on "≥ 2 classes at 668."** That is the preprint's;
   see above.
 * **No claim of novelty of existence at 668.** Order 668 was settled by the

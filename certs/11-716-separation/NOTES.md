@@ -277,10 +277,13 @@ forced Sylvester profile at `n = 128`.
   a matrix by computation.
 * **Nothing about the transpose-extended relation at 716.** Unlike order
   668 — where cert 08 computes the transposed profiles and all six
-  comparisons separate — **the transposed profiles at 716 were not
-  computed**. Refuting `A ≈ B` under the transpose-extended relation needs
-  both `A ≁ B` and `A ≁ Bᵀ`, and only the first is in hand here. The
-  statement of this certificate is row-side only.
+  comparisons separate — **the transposed profiles at 716 had not been
+  computed when this certificate was written**. Refuting `A ≈ B` under the
+  transpose-extended relation needs both `A ≁ B` and `A ≁ Bᵀ`, and only the
+  first is in hand here; the statement of this certificate is row-side only.
+  The three transposes *have* since been computed and banked — cert 15,
+  2026-09-02 — and the transpose-extended statement at 716 now holds; this
+  certificate does not rest on it.
 * **Nothing about orders 1676 or 1772.** The same construction gives
   Lemma-T `i = 2` rebuilds there, and the corresponding exact computation
   costs roughly `98×` and `130×` the 668 run (the profile is `Θ(n⁵)` in the

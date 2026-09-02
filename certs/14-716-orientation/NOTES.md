@@ -25,9 +25,11 @@ All three profiles populate the same 87 bins; `H″`'s differs from `H`'s in
 separation. ∎
 
 **Consequence.** With cert 11 (`H ≁ H'`, 27 of 87 bins), **order 716 carries
-at least three Hadamard equivalence classes.** Row-side only: no transposed
-profile has been computed at 716 for any of the three matrices, so nothing is
-said under the transpose-extended relation at this order.
+at least three Hadamard equivalence classes.** Row-side only *in this
+certificate*: no transposed profile at 716 had been computed when it was
+written. The three *have* since been computed and banked — cert 15,
+2026-09-02 — and the three-class statement holds under the
+transpose-extended relation too; nothing here rests on that.
 
 ## What `H″` is, and what the theorem says about orientation
 
@@ -195,10 +197,13 @@ certificate's own, the other four are cert 11's, reused verbatim:
 
 * The default run recomputes nothing; only `--full` binds the `H″` bank to
   the matrix by computation.
-* **Row-side only.** No transposed profile has been computed at 716 for any
-  of the three matrices, so **nothing is claimed under the transpose-extended
-  relation** at this order — unlike 668, where cert 08 makes that statement
-  for the first three classes.
+* **Row-side only in this certificate.** No transposed profile at 716 had
+  been computed when this certificate was written, so **nothing is claimed
+  here under the transpose-extended relation** — unlike 668, where cert 08
+  makes that statement for the first three classes. The three 716 transposes
+  *have* since been computed and banked — cert 15, 2026-09-02 — and the
+  three-class statement holds under the transpose-extended relation too;
+  nothing in this certificate rests on that.
 * Nothing about the orientation switch at 1676 or 1772 — the same
   construction exists there and the same computation costs about 70× and 93×
   this one (the `n⁵` scaling cert 13 uses); not made, so not said.

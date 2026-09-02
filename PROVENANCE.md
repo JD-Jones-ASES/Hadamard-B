@@ -363,6 +363,33 @@ This document's edits ride on the commit made after those reads.
       Matrix `H″₇₁₆` canonical digest `a6b4f56e…885fcd`, rebuilt in-run from
       `payload-records.json`; the four comparison banks are cert 11's, reused
       unchanged and re-pinned by digest.
+- [x] **Cert 15 banks.** 2026-09-02: the eight transposed-matrix profiles at
+      716 and 668, producer-banked from `Hadamard-2060` under
+      `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC, before any
+      matrix it governs was built; enumerated on a rented `c2d-highcpu-16`,
+      16 threads, ~10:25–10:36 UTC). The matrices were built AND verified at
+      the desk by `experiments/pr0042/build_matrices.py` — every digest in
+      its `manifest.json`, each through this repository's `verify/verify.py`
+      — and only then uploaded; the rented machine enumerated and nothing
+      else. Transposed-matrix canonical digests, all four re-derived in-run
+      by `certs/15-transpose-extended-668-716/run.py`: `H₇₁₆ᵀ`
+      `e1c4a6fa…0be278`, `(H'₇₁₆)ᵀ` `41fe458a…21ea72`, `(H″₇₁₆)ᵀ`
+      `7445c760…9de3ef`, `(H″₆₆₈)ᵀ` `49f97ecf…8538d9`. Bank files
+      (full digests pinned in that `run.py` and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep716-decoded-T-exact-blas.json` | `b2bd98a8c5a3403273408e009f88030b66a3994d6822be0e9f008db04bc512e5` |
+      | `sep716-decoded-T-exact-bits.json` | `854e73fc748cb4b28113f267fc9266ede5a468105a3c32138978cafc4baaf040` |
+      | `sep716-twisted-T-exact-blas.json` | `135189d8fe4dd619d72ff8ea0ff3cc4b94c07334c1cde4e227f4e08c4cb91fcb` |
+      | `sep716-twisted-T-exact-bits.json` | `2c13fb2e980782b8298e0bf9a37d7bbde569f9a832c5886aa2ec7e4198c1a87b` |
+      | `sep716-orient-T-exact-blas.json` | `b287dfcb5a26e5cf47f8ac8ec445725253cc1a4a51da67eaa219431a8d2da062` |
+      | `sep716-orient-T-exact-bits.json` | `be270c974ce237f537cb39a550819169849805f691120976e71ecfc673b30704` |
+      | `sep668-orient-T-exact-blas.json` | `536e0c136d16b8271a3c7916529fd57c86f6738a8695c1d691f4fbf98455ec2d` |
+      | `sep668-orient-T-exact-bits.json` | `81fae9e0a4f23116067769bffc80451f2c1d834101f9b65f90a2cccf4aab70cf` |
+
+      The seventeen comparison banks are certs 06, 08, 11, 13 and 14's,
+      reused unchanged and re-pinned by digest.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

@@ -12,9 +12,10 @@ classifies the surviving parameters within that branch under
 `i = s+1` with `s` odd), resolves the `s = 1` border system
 completely, and verifies twelve publicly posted matrices through the
 theorem's hypotheses. Its third movement proves that order 668
-carries at least **four** Hadamard-equivalence classes, pairwise
-separated by an exactly computed invariant (the fourth class, and
-every statement at 716 and 2060, row-side only). Every computational
+carries at least **four** Hadamard-equivalence classes and order
+716 at least **three**, pairwise separated by an exactly computed
+invariant and holding with the transpose added to the group (only
+the order-2060 statement is row-side only). Every computational
 claim carries a certificate in `certs/`; the theorems are
 paper-grade proofs in the note, labelled as such. A default run
 rebuilds and verifies the
@@ -76,7 +77,8 @@ Goethals–Seidel orientation; cert 13, 2026-09-02) — pairwise
 separated by the exact 4-profile over all 8 222 179 035 row
 4-subsets, computed by independent implementations that agree bin
 for bin and hit the closed-form second moment to the unit (certs 06,
-08, 13; the fourth class row-side only).
+08, 13), and all four classes stay apart when the **transpose** is
+added to the group (cert 15, 2026-09-02).
 As far as this laboratory's search located, the preprint was the first published
 statement of an inequivalence at this order; the bounded priority
 statement is NOTE-B.md §3.4. **Order 716 carries at least three** —
@@ -87,8 +89,9 @@ separated in 27, 27 and 25 of the 87 bins of the same exact
 invariant over all 10 859 143 295 row 4-subsets (certs 11, 14), so
 the twist at `ψ(ρ) = −1` provably leaves the equivalence class at a
 second order, and the orientation switch leaves both classes at a
-second order too; both statements are row-side only, with no
-transpose-extended claim at 716. **Order 2060 carries at
+second order too; the three transposed profiles have since been
+computed, so the three-class statement holds under the
+transpose-extended relation as well (cert 15). **Order 2060 carries at
 least two** — the publicly posted matrix and the plain GS-array
 realisation of the same decoded seed, separated in 146 of the 147
 bins of the same exact invariant over all 748 155 697 135 row
@@ -114,14 +117,15 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The five optional `--full` flags —
-certs 06, 08, 11, 13 and 14's — are the only paths that use numpy, and
-they recompute the exact 4-profiles from the matrices rebuilt in the run
-rather than auditing the banks (finder-side only, never in the trust
-chain). The in-repo `--full` runs so far — certs 08, 06, 11 and 13's —
-covered the `blas` (float32) leg only; the `bits` recomputation has
-not been run in this repository for any of them; cert 14's `--full --impl blas`
-leg has been run here once (400 s, matching both banks). Each cert's `NOTES.md` records which legs
+Standard library only, no network. The six optional `--full` flags —
+certs 06, 08, 11, 13, 14 and 15's — are the only paths that use numpy,
+and they recompute the exact 4-profiles from the matrices rebuilt in the
+run rather than auditing the banks (finder-side only, never in the trust
+chain). The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14 and
+15's — covered the `blas` (float32) leg only; the `bits` recomputation has
+not been run in this repository for any of them. Cert 14's leg has been run
+here once (400 s) and cert 15's once (287 s), each matching both banked
+implementations bin for bin. Each cert's `NOTES.md` records which legs
 were run and when.
 
 ```
@@ -141,6 +145,7 @@ python certs/11-716-separation/run.py
 python certs/12-gram-rigidity/run.py
 python certs/13-668-orientation/run.py
 python certs/14-716-orientation/run.py
+python certs/15-transpose-extended-668-716/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

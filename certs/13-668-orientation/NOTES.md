@@ -26,8 +26,10 @@ differs is a separation. ∎
 
 **Consequence.** With certs 06 and 08 (`H`, `H'`, `H★` pairwise inequivalent),
 **order 668 carries at least four Hadamard equivalence classes.** Row-side
-only: the transposed profile of `H″` was not computed, so nothing is said
-under the transpose-extended relation for the fourth class.
+only in this certificate: the transposed profile of `H″` was not computed
+here. It *has* since been computed — cert 15, 2026-09-02 — and separates from
+`H`, `H'` and `H★` in 50, 50 and 49 of the 80 bins, so the fourth class holds
+under the transpose-extended relation too; nothing here rests on that.
 
 ## What `H″` is, and what the theorem says about orientation
 
