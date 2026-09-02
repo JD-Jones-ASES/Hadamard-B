@@ -67,12 +67,15 @@ hypothesis boundary `w = 2s` (cert 05). No novelty of existence is
 claimed at any of these orders.
 
 **III. Existence plus separation** (§3). **Order 668 carries at
-least three Hadamard-equivalence classes** — the decoded record, the
-Lemma-T rebuild constructed here, and the Hall-switch matrix of a
-public preprint (rebuilt and verified firsthand) — pairwise
+least four Hadamard-equivalence classes** — the decoded record, the
+Lemma-T rebuild constructed here, the Hall-switch matrix of a
+public preprint (rebuilt and verified firsthand), and the decoded
+record with its twelve off-diagonal core blocks negated (the other
+Goethals–Seidel orientation; cert 13, 2026-09-02) — pairwise
 separated by the exact 4-profile over all 8 222 179 035 row
 4-subsets, computed by independent implementations that agree bin
-for bin and hit the closed-form second moment to the unit (cert 06).
+for bin and hit the closed-form second moment to the unit (certs 06,
+08, 13; the fourth class row-side only).
 As far as this laboratory's search located, the preprint was the first published
 statement of an inequivalence at this order; the bounded priority
 statement is NOTE-B.md §3.4. **Order 716 carries at least two** —
@@ -130,6 +133,7 @@ python certs/09-1916-conjugation/run.py
 python certs/10-theorem-d-census/run.py
 python certs/11-716-separation/run.py
 python certs/12-gram-rigidity/run.py
+python certs/13-668-orientation/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

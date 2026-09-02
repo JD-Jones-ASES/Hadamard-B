@@ -347,6 +347,13 @@ This document's edits ride on the commit made after those reads.
       `sep2060-exact-bits-plain.json` `e6c3af94…92ca49`,
       `sep2060-exact-bits-gist.json` `9d8cc4b5…7f8a93` (full digests in
       `certs/07-2060-evidence/NOTES.md`).
+- [x] **Cert 13 banks.** 2026-09-02: the orientation-switch profiles at 668,
+      producer-banked from `Hadamard-2060` under
+      `experiments/inequiv/REGISTRATION-668-orientation.md`:
+      `sep668-orient-exact-blas.json` `5ad283be…06c6fd`,
+      `sep668-orient-exact-bits.json` `f0eeeb6c…45e726` (full digests pinned in
+      `certs/13-668-orientation/run.py`). Matrix `H″` canonical digest
+      `af1c285c…2953c7`, rebuilt in-run from `payload-records.json`.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

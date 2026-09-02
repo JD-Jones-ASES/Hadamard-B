@@ -15,7 +15,7 @@ This note is the mathematics of the repository, in three movements:
   re-verified through the theorem's hypotheses, and eight matrices
   constructed here, every one replayable from `certs/`.
 - **III. Existence plus separation** (§3) — a proof that order 668
-  carries at least **three** Hadamard equivalence classes and that
+  carries at least **four** Hadamard equivalence classes and that
   orders 716 and 2060 each carry at least **two**, separated by an
   exactly computed invariant; and the invariant theory that makes the
   separations honest, including two documented traps and one
@@ -938,6 +938,33 @@ each cert's `NOTES.md` records which legs ran and when.)*
 > transposes: 50, 49 and 50 bins; both transposed profiles computed
 > here populate 79 bins).
 
+> **Theorem (the fourth class, 2026-09-02; cert 13).** Let `H″` be
+> `H` with its **twelve off-diagonal core blocks negated** and the
+> border unchanged. Then `H″` is Hadamard, and it is inequivalent to
+> each of `H`, `H'`, `H★`: its exact 4-profile differs from theirs in
+> **27, 27 and 26** of the 80 bins (two arithmetics, bin for bin;
+> totals and second moment exact; run under the pre-registration
+> `REGISTRATION-668-orientation.md`, flushed first). **Order 668
+> therefore carries at least four Hadamard equivalence classes.**
+> Row-side only: the transposed profile of `H″` was not computed.
+
+*What `H″` is.* `S·H″·S`, with `S = diag(I₄, diag(1,−1,−1,−1)⊗I_n)`, is
+the same seeds and border assembled in the **alternate Goethals–Seidel
+orientation** (§1.0: the six transposed blocks negated) with the border
+strips signed by superblock (`P[a][J]·(−1)^[J≠0]`, `Q[I]·(−1)^[I≠0]`) —
+an identity of sign patterns, checked cell by cell in cert 13. And
+`D·H_t·D = H″` for `D = diag(I₄, I₄⊗diag(ψ(g)))` and `H_t` the (D-e)
+transport instance on the Lemma-T twisted seeds, so the twist and the
+orientation switch coincide *up to the border*; that they land in
+different classes (`H″ ≁ H'`) is exactly because `H'`'s border is a
+Hall-type strip switch of the decoded border (§3.4 below), not its
+transport. Two lessons the theorem states rather than suggests: the
+GS orientation, a "convention" in §1.0, is **not a gauge for Hadamard
+equivalence** at 668; and every bordered GS record found at any order
+comes with a second candidate class for free, by negating twelve
+blocks. Nothing is claimed about 716, 1676, 1772, nor that four is the
+count.
+
 **Priority, stated first.** An anonymous preprint (hosted at
 hadamard-668.vercel.app; its PDF `CreationDate` field reads
 2026-08-13 04:14 UTC+05:30, i.e. 2026-08-12 22:44 UTC — a
@@ -1337,7 +1364,7 @@ understood.
 | `i ≤ s+1` (Theorem C's D1) fails in the general branch: (H1)–(H4) instances exist at `(s,i) = (1,11)` and beyond, carrying the Gram `4i·P_trivial` as Theorem E predicts | **PROVEN-BY-CERTIFICATE** (eight general-branch witnesses at orders 1676 and 1772; cert 12). That they contain nothing new *in general* is **NOT CLAIMED** — the (D-a′) collapse at general `i` is open |
 | the two-valued Parseval law `Σ_q \|x̂_q(χ∘κ)\|² ∈ {4s, N}` (Corollary E2), generalising (D-d)'s `Σ_q δ_q² = 4` | **PROVEN** |
 | all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance, and the four Grams are the complete admissible list at that cell | **PROVEN-BY-CERTIFICATE** (cert 09) **+ PROVEN** (Corollary E1) **+ MEASURED** (banked set `=` census set; cert 12) |
-| **order 668 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 26/27/27 differing bins, two independent implementations per matrix; cert 06/08) |
+| **order 668 carries at least four equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H`, `H'`, `H★` pairwise 26/27/27 differing bins, cert 06/08; the orientation switch `H″` against them 27/27/26, cert 13; two independent implementations per matrix). The fourth class is row-side only |
 | the three-class theorem under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all six comparisons separate; cert 08) |
 | the vercel-668 preprint's `H★` and both its digests reproduce; its `Φ_M` is a valid invariant | **MEASURED** + **PROVEN-BY-CERTIFICATE** (rebuilt firsthand; its Lemma-3 uniqueness reproduced in cert 08 via the `660` bin) |
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
