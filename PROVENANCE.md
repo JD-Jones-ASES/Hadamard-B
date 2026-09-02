@@ -261,12 +261,14 @@ Palomar registry's CC0 feed). Each bullet carries its own read dates.
 ## What is this laboratory's own
 
 The theorems and their proofs (NOTE-B.md §1: the exact characterisation,
-the house form, the parameter classification, the twist lemmas, and the
-`s = 1, i = 2` resolution with its index-2 collapse); `verify/verify.py`
-and the bordered Goethals–Seidel assembler and checkers in `tools/`; the
-matrices constructed here (NOTE-B.md §2.2), which instantiate the
-theorems at orders where existence has long been settled and where no
-novelty is claimed; and the separation computation of NOTE-B.md §3 — the
+the house form, the parameter classification, the twist lemmas, the
+`s = 1, i = 2` resolution with its index-2 collapse, the Gram rigidity
+theorem and its `w > s` sharpening with the `w = s` boundary classified,
+and the border-kit structure theorem with the exhaustive `(3,4)`
+census); `verify/verify.py` and the bordered Goethals–Seidel assembler
+and checkers in `tools/`; the matrices constructed here (NOTE-B.md §2.2
+and §2.3), which instantiate the theorems at orders where existence has
+long been settled and where no novelty is claimed; and the separation computation of NOTE-B.md §3 — the
 exact 4-profile over all 8 222 179 035 row 4-subsets at order 668,
 computed by two independent implementations that agree bin for bin.
 Authorship and the division of labour are in
@@ -452,3 +454,46 @@ against `I₄ ⊗ M`. The file is SHA-256 pinned in that `run.py`.
 | file | sha256 |
 | --- | --- |
 | `gram34-witnesses.json` | `abaf4728e8ba5cd737024b9ab319640c8c634e497884a444b683fb5ee4b93307` |
+
+And one more, banked 2026-09-02 for cert 18: `data/cell24-records.json`,
+the four even-`s` `(2,4)` coset-border records — seeds, coset sums, S-part,
+the `8×8` halves `Q′` and `P′` of the column and row tables, the reflection
+`ρ` and its image in `Ḡ`, the corner, and the canonical digest of the
+assembled matrix. Everything in it except the seeds, `Q′`, `P′` and `ρ` is
+redundant and is **checked rather than trusted**: cert 18 recomputes the
+coset sums and the S-part from the seeds, recomputes the corner as
+`E = −(1/16)PĈᵀQ` from the compression lemma, assembles the matrix with its
+own assembler, and compares the digest three ways. The file's schema is
+documented in `certs/18-cell24-instances/NOTES.md`, and its SHA-256 is
+pinned in that certificate's `run.py`.
+
+| file | sha256 |
+| --- | --- |
+| `cell24-records.json` | `9727b392940d416d3f25dca5d51d2db71cd499bc73c3b8dc4efd22801180f179` |
+
+## Certificates 16, 17 and 18 — where the code came from (2026-09-02)
+
+Certificates `16-theorem-eprime-boundary`, `17-border-kits-34` and
+`18-cell24-instances` were first written in the source laboratory
+(`Hadamard-2060`, private) by a **Cursor cloud lane running Fable 5.1**, on
+**2026-09-02**, as the adversarial pass over that laboratory's fleet
+adjudication of 2026-09-01 — the lane's job was to try to break the claims
+before they entered this note, and it filed the three certificates as the
+part that survived. The desk replayed all three (default paths, and cert
+17's `--full`) before adopting them, and they were then **ported here** in
+this repository's house form: rebuilt against `verify/verify.py` and
+`data/`, with every read of a source-laboratory path removed, so that
+nothing in `certs/16`, `certs/17` or `certs/18` imports or opens anything
+outside this repository.
+
+Cert 17's full-census digest `d60b83d8…7f4d` first travelled as a pin — the
+one the source laboratory's run of the identical code recorded — and the
+default path of the port reproduced the *sample* digest `47d5d44e…e36c35`
+bit for bit. The 16 384-class run has since been made **in this repository**
+(2026-09-02, Python 3.14, one worker, 5 min 28 s; 2048 / 2048 on each of the
+eight `(group, κ(ρ))` sweeps, 16 384 / 16 384, the digest matching the pin),
+so that number is now a reproduction rather than a quotation. The four
+canonical matrix digests of cert 18 were first computed upstream; they are
+re-derived here from `data/cell24-records.json` at certificate run time, by
+`verify/verify.py`, on every run. As everywhere else in this repository,
+the source laboratory is **not** part of the trust chain.

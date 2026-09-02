@@ -9,11 +9,21 @@ This note is the mathematics of the repository, in three movements:
   `w > 2s`** (with `n ≥ 3` the surviving cells are `(0,1)`, `(1,1)`
   and `i = s+1` with `s` odd); the **Gram rigidity theorem**, which
   determines every admissible `M` — at `i = s+1` exactly the
-  real-character twists of the house form, and no others (§1.2.1);
-  and the complete resolution of the `s = 1` border system.
+  real-character twists of the house form, and no others (§1.2.1),
+  sharpened to `w > s` with the `w = s` boundary classified and its
+  escape realised by seeds (Theorem E′, §1.7); the structure theorem
+  for **border kits**, which reduces (H3) and (H4) to the single
+  condition `E ∈ {±1}` and makes a kit an order-independent object,
+  with the exhaustive `(3,4)` census that makes that cell
+  **one-layer** — at 2092 a seed quadruple *is* the matrix
+  (Theorem F, §1.8); and the complete resolution of the `s = 1`
+  border system.
 - **II. The instances** (§2) — twelve publicly posted matrices
-  re-verified through the theorem's hypotheses, and eight matrices
-  constructed here, every one replayable from `certs/`.
+  re-verified through the theorem's hypotheses, and twelve matrices
+  constructed here, every one replayable from `certs/`. Four of them
+  inhabit the **even-`s`** branch of the rigidity theorem, at the
+  cell `(s,i) = (2,4)` outside the house form (§2.3), where the
+  border layer is proved never to obstruct (§2.4).
 - **III. Existence plus separation** (§3) — a proof that order 668
   carries at least **four** Hadamard equivalence classes, that order
   716 carries at least **three**, and that order 2060 carries at
@@ -567,6 +577,27 @@ equivalence class** (§3.4, §3.6). Whether a twist with
 general; 668 and 716 are the proven cases, and the sibling orders
 1676 and 1772 remain unclaimed.
 
+**Remark (the twist and the orientation switch).** With `ψ² = 1`,
+`D = diag(ψ(g))` and `D₄ = I₄⊗D`, the conjugation above reads
+`D₄·C(x;ρ)·D₄ = C(ψx;ρ)` when `ψ(ρ) = 1`, and when `ψ(ρ) = −1` it
+produces instead `C^{sw}(ψx;ρ)` — the array with its twelve
+off-diagonal blocks negated. That array is exactly the object certs
+13 and 14 study. At 668 and 716 they build `H″`, the decoded record
+with its twelve off-diagonal core blocks negated and the border
+untouched, verify the sign-pattern identity `S·H″·S = H_alt` (the
+alternate Goethals–Seidel orientation with the border strips signed
+by superblock) cell by cell, and prove `H″` inequivalent to the
+decoded record, to the cert-02 twist `H′`, and — at 668 — to the Hall
+switch as well. So the orientation switch and the `ψ(ρ) = −1` twist
+share a core and differ in how the border is transported, and that
+difference is enough to change the equivalence class: one twisted
+core, two inequivalent bordered completions. (The identity
+`D̃·H_t·D̃ = H″` for the transport instance `H_t` — twisted seeds with
+the decoded border carried along `ψ` — is recorded in
+`certs/13-668-orientation/NOTES.md` as a source-laboratory
+computation. It is not re-derived in this repository, and nothing
+stated here rests on it.)
+
 ### 1.5 Theorem D (the `s = 1, i = 2` border system, resolved) — PROVEN
 
 Setting: `G` abelian of even order `n ≥ 4` (equivalently `w ≥ 2`;
@@ -754,6 +785,254 @@ trivial character's constraint is tight at `i = 1` while at `i = 2`
 the binding constraint is the character trivial on `K` but not on
 `G`, which contributes `Σ_q δ_q² = 4n − 4(s+1)w + 4s`.)
 
+### 1.7 Theorem E′ (Gram rigidity under `w > s`) and the boundary — PROVEN
+
+Theorem E (§1.2.1) pins the admissible Gram to `M = 4i·P_S` under
+`w > 2s`. The lock closes twice as early once one more integrality
+fact is used.
+
+**Lemma (mod 4).** For every `x : G → {±1}` and every `t ≠ 0`,
+`PAF_x(t) ≡ n (mod 4)`. Consequently, under (H2), `M(c) ∈ 4ℤ` for
+every `c ∈ Ḡ`.
+
+*Proof.* `PAF_x(t) = n − 2d(t)` with `d(t) = #{u : x(u) ≠ x(u+t)}`.
+The permutation `u ↦ u+t` of `G` splits into cycles, and along a
+cycle the number of sign changes of `x` is even — the product of the
+consecutive products `x(u)x(u+t)` around the cycle is `1`. So `d(t)`
+is even. Summing over the quadruple, `Σ_q PAF_q(t) ≡ 4n ≡ 0 (mod 4)`,
+and (H2) gives `M(κt) ∈ 4ℤ`; every `c ≠ 0` is some `κ(t)`, and
+`M(0) = 4s`. ∎
+
+**Theorem E′.** Assume (H1), (H2), `s ≥ 1` and **`w > s`**. Then
+`S := {χ ∈ Ĝ̄ : M̂(χ) ≠ 0}` has `|S| = s`, is closed under
+conjugation and under the Galois action `χ ↦ χ^k`, and
+
+```
+       M(c)  =  4 · Σ_{χ ∈ S} χ(c)          (c ∈ Ḡ),
+```
+
+i.e. `M = 4i·P_S`, with spectrum `{0^(i−s), (4i)^s}`. In particular
+every conclusion of Theorem E and of Corollaries E1 and E2 holds
+under `w > s`.
+
+*Proof.* Steps (L1), (L2) and (L4) of §1.2.1 are unchanged; the
+Parseval window `M̂(χ) ≤ N/w = 4i + 4s/w` of (L1) is what carries
+the weight. Two steps used `w > 2s` and are re-run with `w ≥ s+1`.
+(i) `s ≤ i`: otherwise `rank M ≤ i` and the trace bound
+`4si = trace M ≤ i·(4i + 4s/w)` gives `s(1 − 1/w) ≤ i`, while
+`s(1 − 1/w) ≥ s²/(s+1) > s − 1`; so `s − 1 < i`. (ii) `rank M = s`:
+with `r = rank M`, the same bound `4si ≤ r·(4i + 4s/w)` gives
+`r ≥ sn/(n+s) > s − 1`, because `n = wi ≥ (s+1)s > s(s−1)`; so
+`r = s`, `|S| = s`, and (L4) makes `S` Galois-stable. Now set
+`C := (M_S − M)/4` — note the `4`, where (L5) could only afford a
+`2`. `M_S(c) ∈ 4ℤ` exactly as in (L5), and `M(c) ∈ 4ℤ` by the mod-4
+lemma, so `C` is an **integer** matrix; it has zero diagonal, since
+`M_S(0) = 4s = M(0)`; and its eigenvalues are `0` off `S` and
+`(4i − M̂(χ))/4 ≥ −s/w > −1` on `S`, by the Parseval window. The
+interlacing step that closes (L5) — an integer symmetric matrix with
+zero diagonal and a nonzero off-diagonal entry has `λ_min ≤ −1` —
+now gives `C = 0`, so `M = M_S = 4i·P_S`. ∎
+
+*(That is the whole gain: the mod-4 lemma lets the integrality lock
+divide by 4 instead of 2, which halves the width the strict
+inequality `λ_min(C) > −1` needs.)*
+
+**Theorem E′ (boundary).** Let `w = s`, and let `M` satisfy the
+conditions that are necessary for any admissible Gram — `M(0) = 4s`,
+`M ∈ 4ℤ`, `|M(c)| ≤ 4s`, `M` PSD, `M̂(χ) ≤ N/w`, `rank M ≤ s`. Then
+exactly one of:
+
+- **(a)** `s < i`, and `M = 4i·P_S` — rigid, as above;
+- **(b)** `s = i`, and `M = 4i·I − 4C` where
+  `C(c) = ξ(c)·[c ∈ Ḡ₀∖{0}]` for a subgroup `Ḡ₀ ≤ Ḡ` and a real
+  character `ξ` of `Ḡ₀` (`Ḡ₀ = 0` is the rigid case, and every such
+  `M` does satisfy all the necessary conditions);
+- **(c)** `s = i+1`, and `M = 4s·I_i`;
+- **(d)** `s ≥ i+2` cannot occur.
+
+*Proof.* The trace bound gives `s ≤ i+1`. For `s ≤ i` the argument
+above runs as far as `λ_min(C) ≥ −s/w = −1`, where the interlacing
+step is now silent; then `C + I` is PSD with unit
+diagonal and integer entries — the Gram of unit vectors with inner
+products in `{0, ±1}` — so `±`-parallelism is an equivalence relation
+on `Ḡ`, its class of `0` is a subgroup `Ḡ₀` (by `Ḡ`-invariance), and
+`C(c) = ξ(c)` on `Ḡ₀∖0` with `ξ` multiplicative into `{±1}`. Then
+`Ĉ(χ) = |Ḡ₀|·[χ|_{Ḡ₀} = ξ] − 1`, which is never `0` when `Ḡ₀ ≠ 0`;
+since `Ĉ = 0` off `S`, a nonzero `C` forces `S = Ĝ̄`, i.e. `s = i` —
+that is (a) and (b). Conversely each `M` in (b) has
+`M̂(χ) = 4i + 4 − 4|Ḡ₀|·[χ|_{Ḡ₀} = ξ] ∈ [4, 4i+4] = [4, N/w]`. For
+`s = i+1` all `i` eigenvalues sit at the top of the window, so
+`M = 4s·I`. ∎
+
+**Sharpness — PROVEN-BY-CERTIFICATE (cert 16).** Case (b) is
+realised *by seeds*. On `G = ℤ₃²` with `K = {(0,b)}` and
+`(s,i,w) = (3,3,3)`, the quadruple
+
+```
+++-++-++- ,  ++-++-+-+ ,  ++-+-+-++ ,  ++--+++-+     (index (a,b) ↦ 3a+b)
+```
+
+has `Σ_q PAF_q = −12` on `K∖0` and `+4` off `K` — that is (H2) with
+`M = 16I₃ − 4J₃`, spectrum `{4,16,16}`, **not** a projector multiple
+— and a `12×12` `±1` matrix `Q` with `QQᵀ = I₄⊗M` exists. Cert 16
+rebuilds all of this from nothing: the seeds by a meet-in-the-middle
+over **all** 512 sequences per seed, with no prefilter, which finds
+**490 212** ordered solutions on `ℤ₃²` and **none** on `ℤ₉`; the `Q`
+by depth-first search, re-multiplied entry by entry. **So `w > s`
+cannot be weakened to `w ≥ s`.**
+
+**Exhaustion — PROVEN-BY-CERTIFICATE (cert 16).** The boundary
+classification is exhausted at small parameters by **two exact routes
+that share no code** — a `Fraction`-LDLᵀ sieve over every
+`Ḡ`-invariant `M : Ḡ → 4ℤ` obeying the necessary conditions, and the
+explicit construction of the list (a)/(b)/(c) from Ramanujan sums —
+which are required to produce the same set at every cell. The default
+run covers **22 boundary cells** (`w = s`), over every abelian `Ḡ` of
+order `i`, from 45 `(s,i,w)` triples with `s, i ≤ 6`; `--wide` adds
+`(7,8,7)` on `ℤ₈`, making 23. The same sweep confirms rigidity at
+**26** cells with `w > s` — **20** of them in the range
+`s < w ≤ 2s` that Theorem E did not reach — and records **11** cells
+below the boundary, where non-projector Grams pass every necessary
+condition.
+
+**What this changes here.** The `(1,2,2)`, `(1,4,2)`, `(3,4,6)` and
+`(5,6,10)` cells lie in the range `s < w ≤ 2s` and are now covered by
+the theorem rather than by measurement; cert 05's exhaustive
+`(1,2,2)` result is a corollary of it. Nothing changes at `v = 523`,
+where all four live cells have `w > 2s` and Theorem E already
+applied. Below the boundary (`w < s`) no rigidity theorem of this
+type exists — cert 16 exhibits the non-projector survivors there —
+and none is claimed. Nothing is said about (H3) or (H4) at
+`(3,3,3)`: there `w = 3 ≤ 2s`, so D3 does not apply and the corner
+need not be Hadamard.
+
+### 1.8 Theorem F (border kits) — PROVEN; the `(3,4)` census — PROVEN-BY-CERTIFICATE
+
+Setting: the house form at `i = s+1` (so `S = Ĝ̄∖{1}` and
+`M = (4s+4)I − 4J`), `w > 2s`, and a complete instance `(x, E, P, Q)`
+on `(G, K, ρ)`. Write `V_S ⊂ ℝ^i` for the span of the nontrivial
+characters — the sum-zero vectors — and `Σ̄ = N·I − w·M`.
+
+**Theorem F (structure).**
+
+- **(a)** `QᵀQ = 4i·I_{4s}`: the `4s` columns of `Q` are mutually
+  orthogonal and lie blockwise in `V_S` (each `i`-block of each
+  column sums to `0`).
+- **(b)** `P(I₄ ⊗ P_{S^c}) = 0` and `PᵀP = QQᵀ = I₄⊗M`: the rows of
+  `P` are likewise orthogonal and blockwise in `V_S`. In particular
+  `Pᵀ` is itself an admissible column table (*dual tables*), and the
+  four block-constant rows `h_J ⊗ 1_i`, `h ∈ H(4)`, complete `P` to
+  a Hadamard matrix of order `4i` (*forced completion*).
+- **(c)** `ĈᵀĈ = ĈĈᵀ = I₄⊗Σ̄`, and `Ĉ` commutes with `I₄ ⊗ P_S`.
+- **(d)** `E = −(1/4i)·P·Ĉᵀ·Q`.
+- **(e)** Conversely, given any `P, Q` with (a) and (b) and any table
+  `σ` whose compressed profile is `Σ̄`, the matrix
+  `E := −(1/4i)PĈᵀQ` satisfies `EEᵀ = 4s·I` **automatically**, and
+  (H3) then reads `4s + 4iw = N`, an identity. So **(H3) and (H4)
+  together reduce to the single condition `E ∈ {±1}^{4s×4s}`.**
+- **(f)** (H4) depends on `σ` only through the spectrum
+  `(σ̂_q(χ))_{q, χ∈S}` — the **S-part**. Its kernel in `σ` is
+  `{σ : σ̂_q(χ) = 0 ∀χ ∈ S}`, of dimension `4(i−s) = 4`: the per-seed
+  constants.
+- **(g)** (Transport.) A kit `(E,P,Q)` valid for `(G, K, ρ, x)` is
+  valid for every `(G′, K′, ρ′, x′)` with `G′/K′ ≅ G/K`,
+  `κ′(ρ′) = κ(ρ)` and the same S-part — **at any `w′`**, hence at any
+  order `N′ = 4(w′i + s)`. Only the parity `σ′_q(c) ≡ w′ (mod 2)` and
+  `Σ_q r′_q² = N′` constrain the row sums.
+
+*Proof.* (a) `QQᵀ = I₄⊗M` has nonzero spectrum `{(4i)^{4s}}` by
+Theorem E, and `rank Q = 4s`; `QᵀQ` is `4s×4s` with the same nonzero
+spectrum. The block balance is `Q_Iᵀ1 = 0`, from `1ᵀM1 = i·M̂(1) = 0`.
+(d) Right-multiply (H4) by `Q` and use (a). (c) `Ĉᵀ` is the standard
+array of the seeds `(σ₀∘(−), −σ₁, −σ₂, −σ₃)` at the same `κ(ρ)`, so
+Lemma 2 gives `ĈᵀĈ = I₄ ⊗ dev(Σ_q PAF_{σ_q}) = I₄⊗Σ̄`; developed
+blocks lie in the commutative group algebra and `R v_χ = χ(κρ)·v_χ̄`
+with `S` conjugation-closed, so `Ĉ` commutes with `I₄⊗P_S`.
+(e) and (b): `EEᵀ = (1/16i²)·PĈᵀ(I₄⊗M)ĈPᵀ =
+(1/4i)·P(I₄⊗P_S)ĈᵀĈPᵀ = (1/4i)·P(I₄⊗P_S)(I₄⊗Σ̄)Pᵀ`, and `Σ̄` acts on
+`V_S` as `N − 4iw = 4s`; hence `EEᵀ = (s/i)·P(I₄⊗P_S)Pᵀ`. Forward,
+(H3) with D3 gives `EEᵀ = 4sI` and `PPᵀ = 4iI`, so
+`P(I₄⊗P_S)Pᵀ = PPᵀ` and `P(I₄⊗P_{S^c}) = 0` (both sides PSD), whence
+`PᵀP = 4i·Π_{V_S} = I₄⊗M`. Conversely, with (b),
+`EEᵀ = (s/i)·4i·I = 4sI`. Forced completion: the vectors `h_J ⊗ 1_i`
+are orthogonal to each other and to every row of `P`, of squared
+norm `4i`. (f) `Ĉ` is linear in `σ`, and the `V_{S^c}`-component of
+`σ` yields blocks whose rows and columns are `S^c`-vectors,
+annihilated by `P`. (g) (a), (b) and (H1) do not mention `w`; (H3) is
+the identity of (e); (H4) sees `σ̂|_S` only. ∎
+
+*(At `(s,i) = (1,1)`, `S = {1}` is all of `Ĝ̄`, the kernel in (f) is
+`0`-dimensional, and the row sums enter (H4) directly — Theorem D's
+(D-e). Theorem F holds there with (f) read as vacuous.)*
+
+**MEASURED (cert 17 [D]).** Clauses (a)–(f) are re-multiplied entry
+by entry on the **seven** banked coset-border records with `s ≥ 1`
+and `w > 2s` — 668, 716, 1676, 1772 at `(1,1)`; 1916 at `(3,4)`;
+1388 at `(5,6)`; 1436 at `(7,8)` — **7 / 7**, together with the
+superblock balance of `P` and the (H4)-kernel at `i = s+1`.
+
+**Theorem F (the `(3,4)` census).** Let `(s,i) = (3,4)`,
+`Ḡ ∈ {ℤ₄, ℤ₂²}`, `w` even, and assume (H1),(H2) with the house Gram.
+Then:
+
+- **(i)** exactly one seed is coset-balanced (`σ_{q*}(c) = r_{q*}/4`,
+  with `r_{q*} ≡ 0 (mod 8)` at `w = 130`) and the other three have
+  `|σ̂_q(χ)| = 2` at every nontrivial `χ` — the **silent-seed lemma**;
+- **(ii)** there are exactly **2048** admissible S-parts per group;
+- **(iii)** **every** S-part admits a kit `(E,P,Q)` at **every**
+  `κ(ρ)`;
+- **(iv)** at `N = 2092` the coset-sum tables form a shell of
+  `4192 × 64 = 2048 × 131 = 268 288` tables per group.
+
+*Proof.* (i),(ii): Corollary E2 gives `Σ_q |σ̂_q(χ)|² = 4s = 12` at
+each nontrivial `χ`, with `σ̂_q(χ) ∈ 2ℤ` (or `2ℤ[i]`) because each
+coset has `w` elements; integrality and parity of `σ = (r + T)/4`
+force `T_q(c) (mod 8)` to be constant in `c`; the finite enumeration
+returns 2048 per group, all of the silent-seed shape (cert 17 [A],
+brute force over the spectra). (iii) is the exhaustive census
+(cert 17 [B]). (iv) is Jacobi's `r₄(523) = 4192`, with the mod-8
+shape forced by `523 ≡ 3 (mod 8)` — one coordinate `≡ 0 (8)`, three
+`≡ 2 (4)` — each shell vector compatible with exactly 64 S-parts and
+each S-part with exactly 131 shell vectors. ∎
+
+**Corollary (the `(3,4)` cell is one-layer) — PROVEN.** Let `G` be
+abelian of order `4w` with `w > 6`, let `K ≤ G` have index 4, let
+`ρ ∈ G`, and let `x₀,…,x₃ : G → {±1}` satisfy
+`Σ_q PAF_q = 4n·δ₀ − 12·[K∖0] + 4·[∉K]`. Then a Hadamard matrix of
+order `16w + 12` with the bordered-GS layout exists, and its border
+is computable from the 16 coset sums. At `N = 2092` (`w = 130`):
+**every** house-profile quadruple on `ℤ₈×ℤ₅×ℤ₁₃`, `ℤ₂×ℤ₄×ℤ₆₅` or
+`ℤ₂³×ℤ₆₅` with an index-4 subgroup **is** an `H(2092)` — the border
+is never the obstruction.
+
+**The census, and what it costs to believe.** Cert 17's engine is a
+second implementation: it fixes `Q` from a list of 301 candidate
+12-cliques, filters the 648 block-balanced sign representatives of
+`P`-rows against `V = (4Ĉ⁰)ᵀQ`, and cliques among the survivors —
+where the source laboratory's engine backtracks over `P` first and
+looks `Q` up. The default path censuses a fixed deterministic
+256-class sample (**256 / 256**), re-verifying each kit exactly at
+`w = 130` with a full `σ`; `--full` censuses all
+`2 × 4 × 2048 = 16 384` classes, and has been run in this
+repository — 2048 / 2048 on each of the eight `(group, κ(ρ))`
+sweeps, **16 384 / 16 384**, at the pinned digest, which
+`certs/17-border-kits-34/NOTES.md` records. Controls, all through
+`verify/verify.py`: four from-scratch `H(44)` at `w = 2`, whose seed
+quadruples are found by a full meet-in-the-middle over all 256
+sequences on `ℤ₈` and `ℤ₂×ℤ₄`
+(and on `ℤ₂³` with `|K| = 2`, which carries none); and `H(124)` at
+`w = 7` twice — once with the order-1916 record's kit transported
+verbatim, which is Theorem F(g) exercised across `w`, and once with
+this engine's own kit.
+
+**What is not claimed.** Nothing about the **seed layer**: no
+house-profile quadruple on a group of order 520 is known, and at 2092
+the corollary is an implication with an unmet hypothesis. Nothing
+about the *number* or *structure* of kits per S-part — existence
+only. Nothing at `w ≤ 2s` beyond the `H(44)` controls, which show
+that the same kit shape *works* there, not that every kit there has
+this shape.
+
 ---
 
 ## 2. Movement II — the instances
@@ -791,7 +1070,7 @@ digest — **12/12 green**. The records saturate the classification of
 (order 1916), `(5,6)` (order 1388), `(7,8)` (order 1436) — corners
 of sizes 12, 20, 28 respectively, as D3 forces.
 
-### 2.2 The matrices constructed here
+### 2.2 The matrices constructed here at `s ≤ 1` (certs 02–05)
 
 | cert | artifact(s) | what it instantiates |
 | --- | --- | --- |
@@ -806,6 +1085,143 @@ theorems; that is their entire role. (The four `i = 2` matrices of
 cert 02 can also be produced by Theorem D's transport (D-e); the two
 assemblies agree byte for byte.)
 
+### 2.3 The even-`s` branch: four `(2,4)` matrices — PROVEN-BY-CERTIFICATE
+
+Theorem E's **general branch** (§1.2.1) allows `Ḡ = ℤ₄` with
+`S = {χ, χ³}`, the two faithful characters, so `s = 2` and
+
+```
+M  =  4·(χ + χ³)  =  (8, 0, −8, 0).
+```
+
+`s` is **even**, so this cell lies outside the house branch that
+Theorem C classifies, and outside every cell instantiated in §2.1 and
+§2.2. (H2) reads
+`Σ_q PAF_q = 4n·δ₀ − 8·[K∖0] + 0·[odd cosets] + 8·[κ⁻¹(2)]`; seeds
+exist in quantity (exhaustively at `n = 12`, by local search at
+`n = 20`).
+
+Cert 18 rebuilds four instances from
+`data/cell24-records.json` — seeds, `Q′`, `P′`, `ρ` — recomputing the
+coset sums, the S-part and the corner `E = −(1/16)PĈᵀQ` from the
+seeds rather than reading them, checking (H1)–(H4) and the Σ̄-law
+literally, assembling through its own block-explicit assembler, and
+handing each matrix to `verify/verify.py`:
+
+| `n` | `w` | `ρ` | order | canonical SHA-256 |
+| --- | --- | --- | --- | --- |
+| 20 | 5 | 0 | **88** | `942b3f32fcd75e72a64f92d9c294b0d0cedbbd0965fe5a14213c30b8b66ffc8a` |
+| 20 | 5 | 1 | **88** | `4cae47d1c5054a86ca48154c5e9cd99845294be4d275dd8560bf6b05fe5f08e7` |
+| 12 | 3 | 0 | **56** | `ad67ee2c9d1f4d0343b250824dec301759e097d72d949f1b9c91f22cab026b85` |
+| 12 | 3 | 3 | **56** | `fa82808c8dbc0245f3d427312975183fb947438bdcafba56107ee2280d6e4aff` |
+
+**Two structural claims, each a finite exact check.** (i) None of the
+four is Hadamard-equivalent to `H(2) ⊗ H′` — the only Kronecker
+factorisation an order 88 or 56 admits. If `H = D₁Π₁(H₂⊗H′)Π₂D₂`
+then the pointwise product of two rows of `H` is `±` a column
+permutation of a pointwise product of two rows of `H₂⊗H′`, and in
+`H₂⊗H′` the rows `[h|h]` and `[h|−h]` pair off into `N/2` disjoint
+pairs with the *same* pointwise product; so anything equivalent to a
+Kronecker product has a sign-normalised pointwise-product class of
+size `≥ N/2`. These four have largest class **4**, against `N/2 = 44`
+and `28`. Controls in the same run: Sylvester `H(16)` gives 8 (the
+test passes a genuine Kronecker product), a scrambled equivalent copy
+of it gives 8 again (the statistic is an invariant), and Paley
+`H(12)` gives 1. (ii) The common kernel of `S` in `Ḡ = ℤ₄` is `{0}`,
+so `S` generates the dual and the instance is not a collapse of a
+smaller-index construction.
+
+These are the first coset-border Hadamard matrices with even `s`
+built anywhere in this repository, and they are not disguised
+`s ≤ 1` objects. **No novelty of existence is claimed at 56 or 88** —
+those orders were settled long ago. Nor is any *literature* claim
+made for the even-`s` construction type: §4.2's single hedged
+sentence bounds exactly the sources §4.1 enumerates, no search was
+added for it, and none is implied here.
+
+### 2.4 The `(2,4)` border, and Theorem 3 — PROVEN + PROVEN-BY-CERTIFICATE
+
+**Proposition (the `(2,4)` border).** Let `(s,i) = (2,4)`, `Ḡ = ℤ₄`,
+`M = (8,0,−8,0)`, and let `x` satisfy (H2).
+
+- **(a)** (H1) holds **iff** `Q[4I+c+2] = −Q[4I+c]` and the eight
+  rows `Q[4I+c]`, `c ∈ {0,1}`, form a Hadamard matrix `Q′ ∈ H(8)`.
+- **(b)** If `w > 2s = 4`, then in every complete instance the row
+  table is anti-periodic too — `P[r][4J+c+2] = −P[r][4J+c]`, with
+  `P′ ∈ H(8)` — and `E = −(1/16)PĈᵀQ ∈ H(8)`.
+- **(c)** For **every** admissible S-part
+  (`τ_q = (σ_q(0)−σ_q(2), σ_q(1)−σ_q(3))` with even entries and
+  `Σ_q |τ_q|² = 4s = 8` — there are 112 of them), **every** `κ(ρ)`
+  and **every** `Q′ ∈ H(8)`, an anti-periodic `P` with `E ∈ {±1}`
+  exists. **So the border is never the obstruction at `(2,4)`, at
+  any `w`.**
+
+*Proof.* (a) `M(2) = −8 = −4s` makes rows `c` and `c+2` antipodal;
+what remains of the Gram conditions on the eight rows `c ∈ {0,1}` is
+orthogonality. (b) Theorem F(b) with `S^c = {1, χ²}`: the rows of `P`
+lie blockwise in `V_S = {p₀+p₂ = 0, p₁+p₃ = 0}`, and `PPᵀ = 16I` is
+`P′P′ᵀ = 8I`; `E` is then Theorem F(d),(e). (c) is a census: the
+right-orbits of `H(8)` under signed column permutations number
+`151 200·2¹⁵/(8!·2⁸) = 480`, and `112 × 4 = 448` classes of
+`(S-part, κ(ρ))` give `215 040` classes in all; cert 18 [4] exhibits
+a kit for **215 040 / 215 040**. Every kit is `w`-free, since (H3)
+reads `8 + 16w = 4(4w+2)`, an identity in `w`. ∎
+
+*(Repair recorded, and it matters: (b) is a **necessity** statement
+and needs `w > 4`. The two `H(56)` instances of §2.3 have `w = 3`,
+where the anti-periodic kit is what they use and is sufficient — but
+is not shown forced.)*
+
+Cert 18's census is a second implementation of the border layer at
+this cell. It builds the 480 orbit representatives from the 30 affine
+`AG(3,2)` structures on eight labels times 16 plane-sign classes,
+cross-checks the count against an independent backtracking count of
+normalised `H(8)` (**151 200**), and checks that 3 000
+deterministically generated labelled `H(8)` all land in the
+representative set. The admissible anti-periodic rows for a given
+`Q′` are characterised exactly — `a(p) = 2·v·Q′ᵀ` for some
+`v ∈ {±1}⁸`, and then `E`'s row is `−v` — which is what makes an
+exhaustive 215 040-class census cost seconds of standard-library
+Python. Two hundred of the kits are then multiplied out in exact
+integers with a **full `σ`** (an arbitrary `S^c` part added) at
+`w = 5` and at `w = 130`.
+
+**Theorem 3.** Assume (H1), (H2), `s ≥ 1`, and `w > s` — so
+`M = 4i·P_S` by Theorem E′ (§1.7). If `S` contains **no real
+character**, then `4 | i`, `s` is even, and `N ≡ 0 (mod 8)`.
+Consequently, at `N ≡ 4 (mod 8)` — in particular at `N = 2092` —
+every realisable Gram has a live real character.
+
+*Proof.* Complex conjugation lies in the Galois group and fixes no
+element of `S`, so it pairs `S` off: `s` is even. `1 ∉ S` gives
+`M̂(1) = 0`, so `|Q_Iᵀ1|² = 1ᵀM1 = i·M̂(1) = 0`: every column of the
+block `Q_I` sums to zero over its `i` rows, so `i` is even. A group
+`Ḡ` of even order has a nontrivial real character `χ₀`, also `∉ S`,
+so `Q_Iᵀv_{χ₀} = 0` likewise; adding, `Q_Iᵀ(1 + v_{χ₀}) = 0` says
+every column of `Q_I` sums to zero over `ker χ₀`, a subgroup of order
+`i/2` — so `i/2` is even. Finally `N = 4(wi + s)` with `4 | i` and
+`s` even is `≡ 0 (mod 8)`. ∎
+
+**Small-case exhaustion (cert 18 [3]).** For every abelian `Ḡ` of
+order `i ≤ 16` and every Galois-stable `S` with no real character,
+`|S|` is even in every case; and where `4 ∤ i` and `s ≤ 2` — the
+budget for an exhaustive depth-first search over `{±1}^{i×4s}` — no
+block `Q₀` with `Q₀Q₀ᵀ = M_S` exists, in **9 / 9** cases
+(`i = 3, 6, 6, 9, 9, 9, 9, 9, 15`). At `i = 4`, where `4 | i` and the
+theorem forbids nothing, the same search finds one — the `(2,4)` cell
+of §2.3.
+
+**Remark (the general branch at 2092).** Theorem 3 does *not* say
+that at `N ≡ 4 (mod 8)` the general branch collapses onto the house
+branch. Cert 12 already exhibits general-branch cells outside the
+house identity at other orders, and the source laboratory records
+`(H1)`-realisable Grams at `N = 2092` itself — `(3,8)` on `ℤ₂³` and
+`ℤ₄×ℤ₂`, `(7,12)` on `ℤ₁₂`, `(11,16)` on `ℤ₁₆` — each with a
+Galois-stable `S` containing a real character and `w > 2s`. Those are
+not re-derived in this repository, so nothing is claimed for them
+here beyond the observation that Theorem 3 does not exclude them;
+their seed layers are untested in any case.
+
 ---
 
 ## 3. Movement III — existence plus separation
@@ -819,7 +1235,12 @@ transpose changes a verdict it is called out. The
 refuting it takes two refutations, since `A ~ Bᵀ ⟺ Aᵀ ~ B`.
 Transpose-extended statements are now made for all four classes at
 668 (§3.4, certs 08 and 15) and all three at 716 (§3.6, cert 15).
-Only order 2060 (§3.5) is row-side only, and it says so.
+Only order 2060 (§3.5) is row-side only, and it says so. No
+separation statement of any kind is made about the four `(2,4)`
+matrices of §2.3: they are existence witnesses for the even-`s`
+branch, and beyond cert 18's not-Kronecker test no invariant of
+theirs has been computed — not against each other, and not against
+the known `H(56)` and `H(88)`.
 
 ### 3.1 The invariants
 
@@ -1413,11 +1834,21 @@ understood.
 | Lemma T; the `ψ(ρ)=1` conjugation proposition | **PROVEN** |
 | the twelve public records satisfy every hypothesis | **MEASURED** (cert 01, 12/12) |
 | the twelve assembled matrices are Hadamard and match their pinned digests | **PROVEN-BY-CERTIFICATE** (cert 01) |
-| the eight matrices constructed here (certs 02–05) | **PROVEN-BY-CERTIFICATE** |
+| the twelve matrices constructed here — eight at `s ≤ 1` and in the `i = 2` frame (certs 02–05), and the four even-`s` `(2,4)` matrices of §2.3 (cert 18) | **PROVEN-BY-CERTIFICATE** |
 | at `(s,i) = (1,2)` the genuine branch's Gram is house (the alternative is the degenerate `i=1` rewriting) | **PROVEN** (Theorem D-a); that the degenerate branch really is the `i = 1` construction — same borders, same matrices — is (D-a′) |
 | **Theorem E** (Gram rigidity): under (H1)+(H2) with `s ≥ 1` and `w > 2s`, every admissible `M` is `4i·P_S` for a conjugation- and Galois-stable `S ⊆ Ĝ̄` of size `s`, so the spectrum is `{0^(i−s), (4i)^s}` at every cell | **PROVEN** (paper-grade; §1.2.1) |
 | at `i = s+1` under `w > 2s` the admissible Grams are exactly the real-character twists of the house form (Corollary E1) — this is the former "`M` house form forced for `s ≥ 2` (up to twist)", now with the twist family proved complete | **PROVEN** (paper-grade) **+ MEASURED** (the complete `(3,4)` classification, both groups of order 4, all six Grams `(H1)`-realizable; cert 12) |
 | `i ≤ s+1` (Theorem C's D1) fails in the general branch: (H1)–(H4) instances exist at `(s,i) = (1,11)` and beyond, carrying the Gram `4i·P_trivial` as Theorem E predicts | **PROVEN-BY-CERTIFICATE** (eight general-branch witnesses at orders 1676 and 1772; cert 12). That they contain nothing new *in general* is **NOT CLAIMED** — the (D-a′) collapse at general `i` is open |
+| **Theorem E′** (§1.7): the mod-4 lemma `PAF_x(t) ≡ n (mod 4)`; Gram rigidity under `w > s`, not merely `w > 2s`; and the classification (a)–(d) of the `w = s` boundary | **PROVEN** (paper-grade) **+ PROVEN-BY-CERTIFICATE** (the classification exhausted by two exact routes sharing no code at 22 boundary cells, rigidity confirmed at 26 cells with `w > s` — 20 of them in the range `s < w ≤ 2s` Theorem E did not reach — and 11 cells recorded below the boundary; cert 16) |
+| the `(3,3,3)` escape is realised by seeds, so `w > s` cannot be weakened to `w ≥ s` | **PROVEN-BY-CERTIFICATE** (seeds rebuilt by a full meet-in-the-middle over all 512 sequences per seed — 490 212 ordered solutions on `ℤ₃²`, none on `ℤ₉` — and `Q` by depth-first search; cert 16) |
+| **Theorem F** (§1.8) (a)–(g): the border-kit structure, `E = −(1/4i)PĈᵀQ`, (H3)+(H4) `⟺ E ∈ {±1}`, S-part dependence, transport across `w` | **PROVEN** (paper-grade) **+ MEASURED** (all of (a)–(f) re-multiplied on 7 / 7 banked coset-border records with `s ≥ 1`, `w > 2s`; cert 17 [D]) |
+| at `(3,4)`: exactly 2048 admissible S-parts per group, all of the silent-seed shape; the `N = 2092` shell `4192 × 64 = 2048 × 131 = 268 288` | **PROVEN-BY-CERTIFICATE** (exhaustive brute force over the spectra, a second implementation; cert 17 [A]) |
+| at `(3,4)`: every S-part admits a border kit at every `κ(ρ)` (16 384 classes) | **PROVEN-BY-CERTIFICATE** (a deterministic 256-class sample re-verified exactly at `w = 130` on the default path; the full 16 384-class census on `--full`, run in this repository at the pinned digest — cert 17) |
+| the `(3,4)` cell at 2092 is **one-layer**: a house-profile quadruple on a group of order 520 with an index-4 subgroup *is* an `H(2092)` | **PROVEN** (Theorem A + the census). The hypothesis is unmet: no such quadruple is known, and the seed layer is **OPEN** |
+| the four even-`s` `(2,4)` matrices — `H(88)` ×2, `H(56)` ×2 — are Hadamard, are not equivalent to `H(2) ⊗ H′`, and are not a collapse | **PROVEN-BY-CERTIFICATE** (cert 18; digests pinned three ways). No novelty of existence at 56 or 88 is claimed |
+| the `(2,4)` border proposition (a) and (b) — with (b), the necessity of the anti-periodic row table, holding only for `w > 2s = 4` | **PROVEN** (§2.4). At the `H(56)` instances (`w = 3`) the anti-periodic kit is sufficient, not shown forced |
+| the `(2,4)` border census: every `(S-part, κ(ρ), Q′)` class admits a kit, 215 040 / 215 040 | **PROVEN-BY-CERTIFICATE** (exhaustive on the default path, with the 480 `H(8)` right-orbits counted two ways; cert 18 [4]) |
+| **Theorem 3** (§2.4): if `S` contains no real character then `4 \| i`, `s` is even and `N ≡ 0 (mod 8)`; so at `N ≡ 4 (mod 8)` every realisable Gram has a live real character | **PROVEN** (paper-grade) **+ PROVEN-BY-CERTIFICATE** (the small-case exhaustion, 9 / 9 cases with `4 ∤ i`, `s ≤ 2` empty by exhaustive DFS; cert 18 [3]) |
 | the two-valued Parseval law `Σ_q \|x̂_q(χ∘κ)\|² ∈ {4s, N}` (Corollary E2), generalising (D-d)'s `Σ_q δ_q² = 4` | **PROVEN** |
 | all three nontrivial quotient-character twists at order 1916 are diagonally conjugate to the house instance, and the four Grams are the complete admissible list at that cell | **PROVEN-BY-CERTIFICATE** (cert 09) **+ PROVEN** (Corollary E1) **+ MEASURED** (banked set `=` census set; cert 12) |
 | **order 668 carries at least four equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H`, `H'`, `H★` pairwise 26/27/27 differing bins, cert 06/08; the orientation switch `H″` against them 27/27/26, cert 13; two independent implementations per matrix) |

@@ -12,8 +12,14 @@ three, pairwise separated by an exactly computed invariant and
 holding with the transpose added to the group (only the order-2060
 statement is row-side only);
 plus the machine verification of twelve publicly posted matrices
-through the theorems' hypotheses and eight certified instance
-matrices.
+through the theorems' hypotheses and twelve certified instance
+matrices. Added 2026-09-02: the rigidity theorem sharpened to
+`w > s` with its boundary classified; the border-kit structure
+theorem, whose exhaustive `(3,4)` census makes that cell one-layer
+— at order 2092 a seed quadruple *is* the matrix, the border never
+the obstruction; and the first four certified instances in the
+even-`s` branch, at the cell `(s,i) = (2,4)`, where a second
+exhaustive census shows the border never obstructs either.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -66,8 +72,12 @@ between two independent implementations — and the word *replay*
 belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14
 and 15, which recompute those profiles from the matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; the `--full`
-recomputations use numpy on the finder side only.
+standard library and nothing on the network; those six `--full`
+recomputations use numpy on the finder side only, and they are the
+only numpy anywhere in the repository. Cert 17's `--full` is
+standard-library like the rest of it, and has been run here: the
+16 384-class census reproduced on 2026-09-02 at the pinned digest,
+as its `NOTES.md` records.
 
 Reading the certificates is one route. Rebuilding from the
 definitions in the note is another, and it requires trusting none of

@@ -42,7 +42,21 @@ everything short of that is — every admissible Gram is `4i` times an
 orthogonal projector, and at `i = s+1` it is exactly one of the
 `|Ĝ̄[2]|` real-character twists of the house form, with no others
 (NOTE-B.md §1.2.1; the complete `(3,4)` classification and the
-general-branch cells are cert 12). Theorem D: at `s = 1` the
+general-branch cells are cert 12). Theorem E′ sharpens the
+hypothesis from `w > 2s` to `w > s`, classifies the `w = s`
+boundary, and exhibits a seed quadruple at `(s,i,w) = (3,3,3)` that
+escapes it — so the sharpened hypothesis is best possible
+(NOTE-B.md §1.7; cert 16). Theorem F is the structure theorem for
+the **border**: at `i = s+1` under `w > 2s` the corner is forced to
+`E = −(1/4i)PĈᵀQ`, (H3) becomes an identity, and (H3)+(H4) reduce
+to the single condition `E ∈ {±1}`; a border kit therefore depends
+only on the quotient, the reflection class and the S-part of the
+coset sums, not on the order. At `(s,i) = (3,4)` the census is
+exhaustive — 2048 admissible S-parts per group, every one of which
+admits a kit at every `κ(ρ)` — so **that cell is one-layer**: at
+order 2092 a seed quadruple *is* the matrix, and the border is
+never the obstruction (NOTE-B.md §1.8; cert 17).
+Theorem D: at `s = 1` the
 `i = 2` border system collapses onto the `i = 1` system (the Gram is
 forced, both tables are doubled 4×4 Hadamard matrices, and the
 coupling is the same 4×4 equation with the twisted coset-sum vector
@@ -64,9 +78,16 @@ against the banked replay). Constructed here: four matrices in the
 twisted `i = 2` frame at orders 668, 716, 1676, 1772 (cert 02); a
 from-scratch `H(52)` on a non-cyclic group gating Theorem D
 (cert 03); an `H(76)` on a non-cyclic group with a non-scalar
-multiplier subgroup (cert 04); and two `H(20)` instances at the
-hypothesis boundary `w = 2s` (cert 05). No novelty of existence is
-claimed at any of these orders.
+multiplier subgroup (cert 04); two `H(20)` instances at the
+hypothesis boundary `w = 2s` (cert 05); and four matrices in the
+**even-`s`** branch of the rigidity theorem — `H(88)` twice and
+`H(56)` twice, at the cell `(s,i) = (2,4)` with `Ḡ = ℤ₄`,
+`S = {χ, χ³}` and Gram `(8,0,−8,0)`, outside the house form none of
+the others leaves (cert 18). None of the four is equivalent to a
+Kronecker product with `H(2)`, and none collapses to a smaller
+index; at that cell the border layer is proved never to obstruct,
+by an exhaustive census of all 215 040 `(S-part, κ(ρ), Q′)` classes.
+No novelty of existence is claimed at any of these orders.
 
 **III. Existence plus separation** (§3). **Order 668 carries at
 least four Hadamard-equivalence classes** — the decoded record, the
@@ -117,11 +138,16 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The six optional `--full` flags —
-certs 06, 08, 11, 13, 14 and 15's — are the only paths that use numpy,
-and they recompute the exact 4-profiles from the matrices rebuilt in the
-run rather than auditing the banks (finder-side only, never in the trust
-chain). The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14 and
+Standard library only, no network. The six `--full` flags of certs 06,
+08, 11, 13, 14 and 15 are the only paths anywhere in the repository that
+use numpy, and they recompute the exact 4-profiles from the matrices
+rebuilt in the run rather than auditing the banks (finder-side only,
+never in the trust chain). Cert 16's `--wide` and cert 17's `--full`
+are wider runs of the same standard-library code, not a different
+arithmetic; cert 17's `--full` (the 16 384-class kit census) **has** been
+run in this repository — 2026-09-02, 5 min 28 s, 16 384 / 16 384, census
+digest matching the pin — and its `NOTES.md` records the run.
+The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14 and
 15's — covered the `blas` (float32) leg only; the `bits` recomputation has
 not been run in this repository for any of them. Cert 14's leg has been run
 here once (400 s) and cert 15's once (287 s), each matching both banked
@@ -146,6 +172,11 @@ python certs/12-gram-rigidity/run.py
 python certs/13-668-orientation/run.py
 python certs/14-716-orientation/run.py
 python certs/15-transpose-extended-668-716/run.py
+python certs/16-theorem-eprime-boundary/run.py
+python certs/16-theorem-eprime-boundary/run.py --wide
+python certs/17-border-kits-34/run.py
+python certs/17-border-kits-34/run.py --full
+python certs/18-cell24-instances/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

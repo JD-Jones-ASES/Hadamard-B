@@ -1,0 +1,411 @@
+{
+ "schema": "cell24-records/1",
+ "description": "The four even-s coset-border Goethals-Seidel records at cell (s,i) = (2,4): Gbar = G/K = Z4 with K = 4 Z_n, S = {chi, chi^3} (the two faithful characters), Gram M = 4 (chi + chi^3) = (8, 0, -8, 0).  One entry per matrix.  Fields: 'seeds' four +-1 sequences on G = Z_n, tape order g = 0..n-1; 'coset_sums' sigma_q(c) = sum over g == c (mod 4) of x_q(g), recomputed from 'seeds' by the certificate and required to agree; 'tau' the S-part (sigma_q(0)-sigma_q(2), sigma_q(1)-sigma_q(3)), likewise recomputed; 'col_table_8' Q' and 'row_table_8' P' the 8x8 Hadamard halves of the column and row tables, which the certificate doubles anti-periodically to Q (16x8) and P (8x16); 'corner' E as produced upstream, which the certificate does NOT trust -- it recomputes E = -(1/16) P Chat^T Q from the coset sums and requires equality; 'r_shift' the Goethals-Seidel reflection rho in G and 'rho_bar' its image in Gbar; 'canonical_sha256' the digest verify/verify.py reports for the assembled matrix.  Every field is redundant with 'seeds', 'row_table_8', 'col_table_8' and 'r_shift'; the rest is there to be checked, not believed.",
+ "generated": "2026-09-02",
+ "cell": {
+  "s": 2,
+  "i": 4,
+  "gbar": "Z4",
+  "S": "{chi, chi^3}",
+  "M": [
+   8,
+   0,
+   -8,
+   0
+  ]
+ },
+ "records": [
+  {
+   "name": "H88_cell24_n20_seed0_rho0",
+   "order": 88,
+   "group": [
+    20
+   ],
+   "s": 2,
+   "coset_divisors": [
+    4
+   ],
+   "w": 5,
+   "r_shift": [
+    0
+   ],
+   "rho_bar": 0,
+   "gs_variant": "standard",
+   "seeds": [
+    "+--++-+-++++-+++++--",
+    "-++----+-+-----+++-+",
+    "++-++-+--++----+-+-+",
+    "-----++++---+--+-+--"
+   ],
+   "coset_sums": [
+    [
+     3,
+     1,
+     1,
+     1
+    ],
+    [
+     -3,
+     1,
+     -3,
+     1
+    ],
+    [
+     -1,
+     1,
+     -1,
+     1
+    ],
+    [
+     -1,
+     -1,
+     -3,
+     -1
+    ]
+   ],
+   "tau": [
+    [
+     2,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "row_table_8": [
+    "++--++++",
+    "++++--++",
+    "+--++-+-",
+    "+-+--++-",
+    "++++++--",
+    "-+-+-++-",
+    "-++-+-+-",
+    "++------"
+   ],
+   "col_table_8": [
+    "++++++++",
+    "+-+-+-+-",
+    "++--++--",
+    "+--++--+",
+    "++++----",
+    "+-+--+-+",
+    "++----++",
+    "+--+-++-"
+   ],
+   "corner": [
+    "----+--+",
+    "-++-----",
+    "-----++-",
+    "+--+----",
+    "-+-+--++",
+    "-+-+++--",
+    "--++-+-+",
+    "++---+-+"
+   ],
+   "canonical_sha256": "942b3f32fcd75e72a64f92d9c294b0d0cedbbd0965fe5a14213c30b8b66ffc8a"
+  },
+  {
+   "name": "H88_cell24_n20_seed1_rho1",
+   "order": 88,
+   "group": [
+    20
+   ],
+   "s": 2,
+   "coset_divisors": [
+    4
+   ],
+   "w": 5,
+   "r_shift": [
+    1
+   ],
+   "rho_bar": 1,
+   "gs_variant": "standard",
+   "seeds": [
+    "++-+-+-+-+++--+-++++",
+    "----++-++-+--+----++",
+    "+-++-----++-+++++---",
+    "+-++---++-+-+++++++-"
+   ],
+   "coset_sums": [
+    [
+     -1,
+     3,
+     1,
+     3
+    ],
+    [
+     -1,
+     -1,
+     -1,
+     -1
+    ],
+    [
+     1,
+     -1,
+     1,
+     -1
+    ],
+    [
+     3,
+     -1,
+     3,
+     1
+    ]
+   ],
+   "tau": [
+    [
+     -2,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     -2
+    ]
+   ],
+   "row_table_8": [
+    "+++-+-++",
+    "++-+-+++",
+    "+-+++++-",
+    "+-----+-",
+    "+++--+--",
+    "-+--+++-",
+    "-+++--+-",
+    "++-++---"
+   ],
+   "col_table_8": [
+    "++++++++",
+    "+-+-+-+-",
+    "++--++--",
+    "+--++--+",
+    "++++----",
+    "+-+--+-+",
+    "++----++",
+    "+--+-++-"
+   ],
+   "corner": [
+    "++++-++-",
+    "+--+++++",
+    "+++++--+",
+    "-++-++++",
+    "+-+-++--",
+    "+-+---++",
+    "++--+-+-",
+    "--+++-+-"
+   ],
+   "canonical_sha256": "4cae47d1c5054a86ca48154c5e9cd99845294be4d275dd8560bf6b05fe5f08e7"
+  },
+  {
+   "name": "H56_cell24_n12_seed0_rho0",
+   "order": 56,
+   "group": [
+    12
+   ],
+   "s": 2,
+   "coset_divisors": [
+    4
+   ],
+   "w": 3,
+   "r_shift": [
+    0
+   ],
+   "rho_bar": 0,
+   "gs_variant": "standard",
+   "seeds": [
+    "+++++++++---",
+    "+++++-++-+--",
+    "++++--+-+---",
+    "++-++-+-+-+-"
+   ],
+   "coset_sums": [
+    [
+     3,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     1,
+     -1,
+     1,
+     -1
+    ],
+    [
+     3,
+     -1,
+     1,
+     -1
+    ]
+   ],
+   "tau": [
+    [
+     2,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     2,
+     0
+    ]
+   ],
+   "row_table_8": [
+    "++--++++",
+    "++++--++",
+    "+--++-+-",
+    "+-+--++-",
+    "++++++--",
+    "-+-+-++-",
+    "-++-+-+-",
+    "++------"
+   ],
+   "col_table_8": [
+    "++++++++",
+    "+-+-+-+-",
+    "++--++--",
+    "+--++--+",
+    "++++----",
+    "+-+--+-+",
+    "++----++",
+    "+--+-++-"
+   ],
+   "corner": [
+    "----+--+",
+    "-++-----",
+    "-----++-",
+    "+--+----",
+    "-+-+--++",
+    "-+-+++--",
+    "--++-+-+",
+    "++---+-+"
+   ],
+   "canonical_sha256": "ad67ee2c9d1f4d0343b250824dec301759e097d72d949f1b9c91f22cab026b85"
+  },
+  {
+   "name": "H56_cell24_n12_seed2_rho3",
+   "order": 56,
+   "group": [
+    12
+   ],
+   "s": 2,
+   "coset_divisors": [
+    4
+   ],
+   "w": 3,
+   "r_shift": [
+    3
+   ],
+   "rho_bar": 3,
+   "gs_variant": "standard",
+   "seeds": [
+    "++++++++-+--",
+    "+++++-++-+--",
+    "++++-+-+-+--",
+    "++++--+-+---"
+   ],
+   "coset_sums": [
+    [
+     1,
+     3,
+     1,
+     1
+    ],
+    [
+     1,
+     1,
+     1,
+     1
+    ],
+    [
+     -1,
+     3,
+     -1,
+     1
+    ],
+    [
+     1,
+     -1,
+     1,
+     -1
+    ]
+   ],
+   "tau": [
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     0
+    ],
+    [
+     0,
+     2
+    ],
+    [
+     0,
+     0
+    ]
+   ],
+   "row_table_8": [
+    "-++++++-",
+    "+++--+--",
+    "++-+-+++",
+    "-+++---+",
+    "---+-+--",
+    "--+--+++",
+    "-+--++-+",
+    "-+----+-"
+   ],
+   "col_table_8": [
+    "++++++++",
+    "+-+-+-+-",
+    "++--++--",
+    "+--++--+",
+    "++++----",
+    "+-+--+-+",
+    "++----++",
+    "+--+-++-"
+   ],
+   "corner": [
+    "+--+-+-+",
+    "----+--+",
+    "-----++-",
+    "--++----",
+    "-+-+--++",
+    "-+-+++--",
+    "-++--+-+",
+    "++------"
+   ],
+   "canonical_sha256": "fa82808c8dbc0245f3d427312975183fb947438bdcafba56107ee2280d6e4aff"
+  }
+ ]
+}
