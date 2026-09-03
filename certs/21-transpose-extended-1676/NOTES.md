@@ -395,8 +395,11 @@ record; certs 20 and 21 do not, and the word *replayed* is not used of them.
 * **Nothing at 1772 or 2060.** The same registration governs the orientation
   switches and transposed profiles at those orders; they are separate
   computations and will carry their own certificates or they will not be
-  claimed. Order 2060 is now the **only** order in `note/NOTE-B.md` whose
-  separation statement is row-side only.
+  claimed. Order 2060 is, as of this certificate, the **only** order in
+  `note/NOTE-B.md` whose separation statement is row-side only. *(Both
+  row-side statements have since been made — **cert 22** at 2060 and **cert
+  23** at 1772, both 2026-09-03 — so those two orders are now the row-side
+  pair; nothing here rests on either.)*
 * **No general theorem.** That the `ψ(ρ) = −1` twist and the orientation switch
   land in different classes — and stay apart with the transpose in the group —
   is now known at three orders (668, 716, 1676). Three orders are three orders.

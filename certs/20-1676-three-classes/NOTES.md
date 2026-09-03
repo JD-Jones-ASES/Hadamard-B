@@ -321,11 +321,16 @@ used of it.
 * **Nothing about orders 1772 or 2060.** The same three constructions exist
   at 1772 and the orientation switch exists at 2060; those legs are separate
   computations under the same registration. Not made here, so not said here.
+  *(Both have since been made under that registration — **cert 22** at 2060,
+  2026-09-03, and **cert 23** at 1772, 2026-09-03, each row-side only.
+  Nothing in this certificate rests on either.)*
 * **No general statement about `ψ(ρ) = −1`.** That the Lemma-T twist leaves
-  the class is now proven at 668, 716 and 1676. Three orders are three
-  orders; the general claim stays unclaimed.
+  the class is proven at 668, 716 and 1676 as of this certificate — four
+  orders since cert 23 added 1772. Four orders are four orders; the general
+  claim stays unclaimed.
 * **No general statement about orientation.** That the switch leaves both
-  known classes is now proven at three orders too. Same posture.
+  known classes is proven at those same orders, and since certs 22 and 23 at
+  2060 (unbordered) and 1772 as well. Same posture.
 * No novelty or priority claim of any kind at 1676: this counts classes
   among the artifacts banked here, and says nothing about who first
   exhibited a Hadamard matrix of this order. The decoded record is a public

@@ -7,11 +7,11 @@ branch and under `w > 2s`, of its surviving parameters (with `n ≥ 3`
 the cells are `(0,1)`, `(1,1)`, and `i = s+1` with `s` odd); and the
 complete resolution of the `s = 1` border system —
 together with the theorems that order 668 carries at least four
-Hadamard-equivalence classes and that orders 716, 1676 and 2060 each
-carry at least three, pairwise separated by an exactly computed
-invariant — the 668, 716 and 1676 statements holding with the
-transpose added to the group, only the 2060 statement row-side only
-and saying so;
+Hadamard-equivalence classes and that orders 716, 1676, 1772 and
+2060 each carry at least three, pairwise separated by an exactly
+computed invariant — the 668, 716 and 1676 statements holding with
+the transpose added to the group, the 1772 and 2060 statements
+row-side only and saying so;
 plus the machine verification of twelve publicly posted matrices
 through the theorems' hypotheses and twelve certified instance
 matrices. Added 2026-09-02: the rigidity theorem sharpened to
@@ -28,8 +28,9 @@ Hadamard equivalence, the transpose-extended count unchanged at
 four, which is the count this disclosure and the abstract quote; and
 the order-1676 three-class theorem carried across to the
 transpose-extended relation, each of its six transpose-related
-comparisons separating in 139 of 144 bins, so that order 2060 is now
-the only separation statement here that is row-side only. Added
+comparisons separating in 139 of 144 bins, so that order 2060 was
+then the only separation statement here that was row-side only (1772
+joined it the next day, below). Added
 2026-09-03: order 2060 raised from two classes to three, by the
 orientation switch of the plain Goethals–Seidel realisation — the
 twelve off-diagonal `515`-blocks negated, with no border to leave
@@ -38,7 +39,17 @@ the 145 bins they share and from the publicly posted matrix in 146 of
 147. That statement is row-side only and says so, the transposed
 2060 profiles being pending legs of the same campaign; and no
 priority or novelty of any kind is claimed at order 2060, which was
-settled by the publicly posted matrix.
+settled by the publicly posted matrix. Also 2026-09-03: order 1772
+raised from one class to three — the decoded `(1,1)` record, its
+Lemma-T `i = 2` rebuild and the orientation switch, separated in 57,
+58 and 53 of the 89 bins of the exact 4-profile over all
+409 422 905 815 row 4-subsets in both arithmetics — so the
+`ψ(ρ) = −1` twist provably leaves the equivalence class at a fourth
+order, which is every decoded `(1,1)` order here, and the
+orientation switch is a class of its own at a fifth. That statement
+is row-side only too, the transposed 1772 profiles being a pending
+leg of the same campaign, and no priority or novelty of any kind is
+claimed at order 1772, which is long settled.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -89,16 +100,18 @@ file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
 belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14,
-15, 19, 20, 21 and 22, which recompute those profiles from the
+15, 19, 20, 21, 22 and 23, which recompute those profiles from the
 matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; those ten `--full`
+standard library and nothing on the network; those eleven `--full`
 recomputations use numpy on the finder side only, and they are the
-only numpy anywhere in the repository. Certs 20's, 21's and 22's have
-not been run: at order 1676 one leg is of order 6–7 hours — 52× cert 14's
+only numpy anywhere in the repository. Certs 20's, 21's, 22's and 23's
+have not been run: at order 1676 one leg is of order 6–7 hours — 52× cert 14's
 716 leg on the source laboratory's measured sub-`n⁵` scaling, ≈ 7.8 h
 on the `Θ(n⁵)` law used elsewhere here — and the `blas` route wants
-about 9.4 GB; at order 2060 one leg is of order 15 hours (137× that
+about 9.4 GB; at order 1772 one leg is of order 7–8 hours (68× that
+same 716 leg, ≈ 10.3 h on the `Θ(n⁵)` law) and the `blas` route
+wants about 11.1 GB; at order 2060 one leg is of order 15 hours (137× that
 same 716 leg, ≈ 22 h on the `Θ(n⁵)` law) and the `blas` route wants
 about 17.5 GB, so those certificates' verdicts are audits and say so. Cert 17's `--full` is
 standard-library like the rest of it, and has been run here: the

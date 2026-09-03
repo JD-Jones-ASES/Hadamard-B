@@ -380,8 +380,10 @@ backfill added four checks to every path, so a fresh run reports four more.
   certs 11, 14 and 15, NOTE-B.md §3.6 (three classes, and the statement holds
   under the transpose-extended relation); the `1676` computation has since
   been made and carries certs 20 and 21 (three classes, and the statement
-  holds under the transpose-extended relation, NOTE-B.md §3.7); `1772` has
-  not been made, so nothing is said there.
+  holds under the transpose-extended relation, NOTE-B.md §3.7); and the
+  `1772` computation has since been made and carries cert 23 (three classes,
+  NOTE-B.md §3.8, 2026-09-03, row-side only). Nothing here depends on any of
+  them.
 * **No claim of priority on "≥ 2 classes at 668."** That is the preprint's;
   see above.
 * **No claim of novelty of existence at 668.** Order 668 was settled by the

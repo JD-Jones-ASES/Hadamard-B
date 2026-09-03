@@ -206,12 +206,14 @@ certificate's own, the other four are cert 11's, reused verbatim:
   nothing in this certificate rests on that.
 * Nothing about the orientation switch at 1772 — the same construction
   exists there and the same computation costs about 93× this one (the `n⁵`
-  scaling cert 13 uses); not made, so not said. The 1676 instance, priced
-  here at about 70× on that same `n⁵` law, has since been made — cert 20,
-  2026-09-02 — and nothing in this certificate rests on it.
+  scaling cert 13 uses). It has since been made — cert 23, 2026-09-03,
+  row-side only, and it quotes that same 93× price — as has the 1676
+  instance, priced here at about 70× on the same law (cert 20,
+  2026-09-02); nothing in this certificate rests on either.
 * No general statement about `ψ`. That the twist and the orientation switch
-  land in different classes is now proved at 668, at 716 and at 1676 (cert
-  20); three orders are three orders, and the general claim stays unclaimed.
+  land in different classes is now proved at 668, at 716, at 1676 (cert 20)
+  and at 1772 (cert 23); four orders are four orders, and the general claim
+  stays unclaimed.
 * No novelty or priority claim of any kind at 716: this counts classes among
   the artifacts banked here, and says nothing about who first exhibited a
   Hadamard matrix of this order.

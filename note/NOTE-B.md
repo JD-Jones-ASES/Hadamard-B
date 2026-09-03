@@ -1,4 +1,4 @@
-# NOTE-B — Bordered Goethals–Seidel arrays: theorems, instances, and separations at orders 668, 716, 1676 and 2060
+# NOTE-B — Bordered Goethals–Seidel arrays: theorems, instances, and separations at orders 668, 716, 1676, 1772 and 2060
 
 This note is the mathematics of the repository, in three movements:
 
@@ -26,7 +26,7 @@ This note is the mathematics of the repository, in three movements:
   border layer is proved never to obstruct (§2.4).
 - **III. Existence plus separation** (§3) — a proof that order 668
   carries at least **four** Hadamard equivalence classes and that
-  orders 716, 1676 and 2060 each carry at least **three**,
+  orders 716, 1676, 1772 and 2060 each carry at least **three**,
   separated by an exactly computed invariant; and the invariant theory that makes the
   separations honest, including two documented traps and one
   sound-but-blind published statistic.
@@ -568,20 +568,21 @@ however non-house its Gram. When `ψ(ρ) = −1` the argument breaks:
 the conjugation produces the array with all twelve off-diagonal
 blocks negated, and that sign pattern is not of rank one
 (`s_I s_J = −1` for all `I ≠ J` is impossible since
-`(s₁s₂)(s₁s₃)(s₂s₃) = (s₁s₂s₃)² = +1`). At orders 668, 716 and
-1676 — where `G = ℤ₁₆₆`, `ℤ₁₇₈` and `ℤ₄₁₈`, `ρ = −1` in each, and
-the unique `ψ` has `ψ(ρ) = −1` — the twisted matrix is in fact
-**provably a new equivalence class** (§3.4, §3.6, §3.7). Whether a
+`(s₁s₂)(s₁s₃)(s₂s₃) = (s₁s₂s₃)² = +1`). At orders 668, 716,
+1676 and 1772 — where `G = ℤ₁₆₆`, `ℤ₁₇₈`, `ℤ₄₁₈` and `ℤ₄₄₂`, `ρ = −1` in
+each, and the unique `ψ` has `ψ(ρ) = −1` — the twisted matrix is in fact
+**provably a new equivalence class** (§3.4, §3.6, §3.7, §3.8). Whether a
 twist with `ψ(ρ) = −1` always leaves the equivalence class is not
-claimed in general; 668, 716 and 1676 are the **three** proven
-instances, and the sibling order 1772 remains unclaimed.
+claimed in general; 668, 716, 1676 and 1772 are the **four** proven
+instances (§3.4, §3.6, §3.7, §3.8), which is every decoded `(1,1)`
+order in this repository and still not a theorem.
 
 **Remark (the twist and the orientation switch).** With `ψ² = 1`,
 `D = diag(ψ(g))` and `D₄ = I₄⊗D`, the conjugation above reads
 `D₄·C(x;ρ)·D₄ = C(ψx;ρ)` when `ψ(ρ) = 1`, and when `ψ(ρ) = −1` it
 produces instead `C^{sw}(ψx;ρ)` — the array with its twelve
 off-diagonal blocks negated. That array is exactly the object certs
-13, 14 and 20 study. At 668, 716 and 1676 they build `H″`, the
+13, 14, 20 and 23 study. At 668, 716, 1676 and 1772 they build `H″`, the
 decoded record with its twelve off-diagonal core blocks negated and
 the border untouched, verify the sign-pattern identity
 `S·H″·S = H_alt` (the alternate Goethals–Seidel orientation with the
@@ -1073,7 +1074,7 @@ of sizes 12, 20, 28 respectively, as D3 forces.
 
 | cert | artifact(s) | what it instantiates |
 | --- | --- | --- |
-| 02 | `H(668)`, `H(716)`, `H(1676)`, `H(1772)` in the `i = 2` frame | Lemma T (§1.4): the four `s=1` records twisted and re-bordered at `i = 2`; each verifies green and is a different artifact from the decoded one. At 668, 716 and 1676 the stronger statement is the theorem of §3.4, §3.6 and §3.7: the twisted matrix is a different equivalence class, not merely a different file. |
+| 02 | `H(668)`, `H(716)`, `H(1676)`, `H(1772)` in the `i = 2` frame | Lemma T (§1.4): the four `s=1` records twisted and re-bordered at `i = 2`; each verifies green and is a different artifact from the decoded one. At all four orders the stronger statement is the theorem of §3.4, §3.6, §3.7 and §3.8: the twisted matrix is a different equivalence class, not merely a different file. |
 | 03 | `H(52)` on `G = ℤ₂×ℤ₂×ℤ₃` | Theorem D's gate: a from-scratch `s=1, i=2` instance on a non-cyclic group, `ε = +1` branch. |
 | 04 | `H(76)` on a non-cyclic group | a bordered-GS instance on non-cyclic `G` whose seed quadruple is invariant under a **non-scalar multiplier subgroup `Γ ≤ Aut(G)`** (order 2, 12 orbits, re-derived from scratch in the cert) — built as a search gate. Its Theorem-A Gram is the house form; the lab record's name "M" for `Γ` is a letter collision with the Gram and is not used here. |
 | 05 | two `H(20)` instances | the hypothesis boundary `w = 2s`: D3's *hypothesis* fails, yet its *conclusion* holds — both corners are Hadamard, and the cert proves exhaustively that **no** non-Hadamard corner exists at `(s,i,w) = (1,2,2)`, so `w > 2s` is sufficient but not necessary there. The pair also exercises an arbitrary subgroup `K` (the diagonal of `ℤ₂×ℤ₂`, not a coordinate kernel) and both array orientations. |
@@ -1234,10 +1235,11 @@ transpose changes a verdict it is called out. The
 refuting it takes two refutations, since `A ~ Bᵀ ⟺ Aᵀ ~ B`.
 Transpose-extended statements are now made for all four classes at
 668 (§3.4, certs 08 and 15), all three at 716 (§3.6, cert 15) and
-all three at 1676 (§3.7, cert 21). Order 2060 (§3.5) is the **only**
-one that remains **row-side only**, and it says so — its three-class
-statement included: its transposed profiles are a separate leg of the
-same campaign. No
+all three at 1676 (§3.7, cert 21). Orders 2060 (§3.5) and 1772
+(§3.8) are the two that remain **row-side only**, and they say so —
+their three-class statements included: at each, the transposed
+profiles are a separate leg of the same campaign (at 1772 the `blas`
+legs are in and the `bits` legs still running). No
 separation statement of any kind is made about the four `(2,4)`
 matrices of §2.3: they are existence witnesses for the even-`s`
 branch, and beyond cert 18's not-Kronecker test no invariant of
@@ -1397,9 +1399,10 @@ transport. Two lessons the theorem states rather than suggests: the
 GS orientation, a "convention" in §1.0, is **not a gauge for Hadamard
 equivalence** at 668; and every bordered GS record found at any order
 comes with a second candidate class for free, by negating twelve
-blocks. Nothing is claimed about 1772, nor that four is the count;
-the same switch at 716 and at 1676 has since been computed and is
-§3.6 (cert 14) and §3.7 (cert 20), both 2026-09-02.
+blocks. Nothing is claimed here beyond 668, nor that four is the
+count; the same switch at 716, 1676, 2060 and 1772 has since been
+computed and is §3.6 (cert 14), §3.7 (cert 20), §3.5 (cert 22) and
+§3.8 (cert 23).
 
 **Priority, stated first.** An anonymous preprint (hosted at
 hadamard-668.vercel.app; its PDF `CreationDate` field reads
@@ -1514,8 +1517,10 @@ the transpose-extended relation too (cert 15). At **1676 the
 statement has since been made** — §3.7, cert 20, 2026-09-02: 68 of
 142 bins differ, two arithmetics — and since cert 21 that order's
 three-class statement holds under the transpose-extended relation
-too; nothing in this section rests on it; at 1772 it remains **not claimed** (≈130× the 668 run, not
-made). The `Φ_M` blindness above is recorded beside the two traps of
+too; nothing in this section rests on it. At **1772 the statement
+has since been made** too — §3.8, cert 23, 2026-09-03: 57 of 89 bins
+differ, two arithmetics — row-side, and nothing in this section
+rests on that either. The `Φ_M` blindness above is recorded beside the two traps of
 §3.1 as the working reason this repository pays for the full
 `Θ(n⁴)` invariant: every cheaper statistic tested — including a
 sound published one — fails to see at least one true separation at
@@ -1580,8 +1585,9 @@ element of the equivalence group on each side — so the theorem is
 about *orientation*, not about an arbitrary sign pattern. Hence, at
 the founding order too, the GS orientation is **not a gauge for
 Hadamard equivalence**: one seed quadruple, three classes, from two
-constructions plus the switch. That is **four orders with the same
-verdict and no general statement** (668, 716, 1676, 2060); nothing is
+constructions plus the switch. That is **five orders with the same
+verdict and no general statement** (668, 716, 1676, 2060, and 1772
+since §3.8); nothing is
 claimed about `ψ(ρ) = −1` at 2060, the `×104` twist above acting on
 the *column index* of each circulant (`data/sep2060-records.json`,
 `twist`) rather than on the seed values as Lemma T's `ψ`-twist does,
@@ -1592,11 +1598,11 @@ not support — while `G` lacks fourteen of them and populates two of
 its own, which is why the comparisons with `G` read *146 of 147*.
 `|T4| = 1108` is the one bin where all three agree, at 30 counts
 apiece. Two features distinguish `H″` vs `P` from the separations at
-the other three orders: the largest discrepancy is only `3 769 014` at
+the bordered orders: the largest discrepancy is only `3 769 014` at
 `|T4| = 12` (`3.7·10⁻⁵` of that bin, against `6.2·10⁸` and 0.6 % for
 the pair) — **invisible to any sample of practical size** — and the
 **extreme tail does separate**, the top bin `|T4| = 1236` reading 12
-against 6, where at 668, 716 and 1676 the tail always agreed. A
+against 6, where at 668, 716, 1676 and 1772 the tail always agreed. A
 36-bin band, every `|T4|` in `[868, 1180]`, agrees exactly; 106 of
 the 108 bins below `868` differ. Certificate: cert 22, whose two new
 banks (`data/sep2060-orient-exact-{blas,bits}.json`, schema
@@ -1647,8 +1653,9 @@ Label for §3.5: **PROVEN + PROVEN-BY-CERTIFICATE** (cert 07 in exact mode for t
 pair, cert 22 for the third class). **Row-side only: no
 transpose-extended statement is made at 2060** — the transposed
 profiles `H_2060-orient-T` and `H_2060-plain-T` are pending legs of
-the same campaign, and 2060 is the only order in this note whose
-separation statement is row-side. **Not claimed here:** anything
+the same campaign. Since 2026-09-03 §3.8 shares that posture at
+1772, and those two are the only orders in this note whose
+separation statements are row-side. **Not claimed here:** anything
 about any of the three matrices versus its own transpose (cert 19
 decides that question at 668 only); any general theorem about
 orientation; how many classes order 2060 has; and no priority or
@@ -1706,10 +1713,10 @@ patterns, checked cell by cell in cert 14, as at 668 (§3.4). So the
 GS orientation, a "convention" in §1.0, is **not a gauge for
 Hadamard equivalence** at 716 either, and the `ψ(ρ) = −1` twist and
 the orientation switch land in different classes here as they do at
-668. That is **three orders with the same verdict and no general
-statement** (668, 716 and — since 2026-09-02 — 1676, §3.7): nothing
-is claimed at 1772, and nothing to the effect that three is the
-count.
+668. That is **four orders with the same verdict and no general
+statement** (668, 716, and — since 2026-09-02 — 1676, §3.7, joined by
+1772 in §3.8 on 2026-09-03): nothing here rests on those, and
+nothing is said to the effect that three is the count at 716.
 
 The separating computation is the exact 4-profile over all
 `C(716,4) = 10 859 143 295` row 4-subsets, on each matrix, by two
@@ -1741,9 +1748,10 @@ Hadamard equivalence the six objects `H, H', H″` and their
 transposes are pairwise inequivalent (all fifteen comparisons
 separate, the closest pair by 25 bins), so three constructions
 exhibit six classes here; the count stated is the three that survive
-**either** convention. **Not claimed here:** anything at 1772
-(≈130× the 668 run, not made); nothing about how many classes order
-716 has. No priority or novelty claim is made at 716: this is a
+**either** convention. **Not claimed here:** nothing about how many
+classes order 716 has; the sibling order 1772 was a separate
+computation and now carries its own statement in §3.8 (cert 23), on
+which nothing here depends. No priority or novelty claim is made at 716: this is a
 statement about how many classes are on the table among the
 artifacts banked here, not about existence. The sibling order 1676
 has since been computed and is §3.7 (cert 20, 2026-09-02); nothing
@@ -1812,8 +1820,9 @@ patterns, checked cell by cell in cert 20, as at 668 (§3.4) and 716
 gauge for Hadamard equivalence** at 1676 either, and the
 `ψ(ρ) = −1` twist and the orientation switch land in different
 classes here as they do at 668 and 716. That is **three orders with
-the same verdict and no general statement**: nothing is claimed at
-1772, and nothing to the effect that three is the count.
+the same verdict and no general statement** — four, since §3.8 added
+1772 on 2026-09-03; nothing here rests on that, and nothing is said
+to the effect that three is the count at 1676.
 
 The separating computation is the exact 4-profile over all
 `C(1676,4) = 327 588 749 775` row 4-subsets, on each matrix, by two
@@ -1859,13 +1868,114 @@ survive **either** convention. Since `Hᵀ` was never profiled, that
 plain count is a lower bound from five matrices, not the analogue of
 §3.4's eight.
 
-**Not claimed here:** anything at 1772 (the same three
-constructions exist there and the legs are a separate computation);
-anything about `H` versus `Hᵀ` at 1676, whose profile was never
-computed; how many classes order 1676 has; and no priority or
-novelty claim of any kind — this is a statement about how many
-classes are on the table among the artifacts banked here, not about
-existence at 1676.
+**Not claimed here:** anything about `H` versus `Hᵀ` at 1676, whose
+profile was never computed; how many classes order 1676 has; and no
+priority or novelty claim of any kind — this is a statement about
+how many classes are on the table among the artifacts banked here,
+not about existence at 1676. The same three constructions exist at
+1772; that order was a separate computation and now carries its own
+statement in §3.8 (cert 23), on which nothing above depends.
+
+### 3.8 The theorem at order 1772 — PROVEN + PROVEN-BY-CERTIFICATE
+
+*(The same split as §3.4, §3.6 and §3.7: the invariance of the
+folded 4-profile and the implication "different profiles ⟹
+inequivalent" are paper proofs; the three exact profiles are
+certified machine computations — cert 23. Where they ran matters, so
+it is stated here: the three `C(1772,4)` enumerations were made in
+the source laboratory between 2026-09-02 23:33 UTC and 2026-09-03
+11:24 UTC, on a rented 16-thread machine, under
+`experiments/pr0042/REGISTRATION.md` — flushed 2026-09-02 10:17 UTC,
+before any matrix it governs was built, and naming these three
+objects and this decision rule in advance — and banked. The matrices
+were built and verified **at the desk**, each through
+`verify/verify.py`, before anything was uploaded; the rented machine
+enumerated and nothing else. A default run of cert 23 **audits**
+those banks. Like certs 20, 21 and 22 it has no **in-repo `--full`
+leg**: at this order one recomputation is of order 7–8 hours — 68×
+cert 14's 716 leg on the source laboratory's measured sub-`n⁵`
+scaling, 93× and ≈ 10.3 h on the `Θ(n⁵)` law §3.4 quotes — and the
+`blas` route wants about 11.1 GB, so the flag is offered and priced
+but has not been run. Its `NOTES.md` says so, and says which
+estimate it is using.)*
+
+> **Theorem (the twist, a fourth instance).** Order 1772 carries at
+> least **two** Hadamard equivalence classes, exhibited by the
+> decoded `(1,1)` record `H` and its Lemma-T `i = 2` rebuild `H′`
+> (cert 02): the two exact 4-profiles populate the **same 89 bins**
+> and **57 of the 89 bin counts differ**. So the Lemma-T
+> construction at `ψ(ρ) = −1` provably leaves the equivalence class
+> at a **fourth** order (§1.4) — and 1772 was the last of cert 02's
+> four decoded `(1,1)` orders left unclaimed.
+
+> **Theorem (the third class).** Let `H″` be `H` with its **twelve
+> off-diagonal core blocks negated** and the border unchanged. Then
+> `H″` is Hadamard, and it is inequivalent to each of `H` and `H′`:
+> its exact 4-profile differs from theirs in **58** and **53** of
+> the 89 bins (two arithmetics, bin for bin; totals and second
+> moment exact). **Order 1772 therefore carries at least three
+> Hadamard equivalence classes.**
+
+*What `H″` is.* `S·H″·S`, with `S = diag(I₄, diag(1,−1,−1,−1)⊗I_n)`
+and `n = 442`, is the same seeds and border assembled in the
+**alternate Goethals–Seidel orientation** (§1.0: the six transposed
+blocks negated) with the border strips signed by superblock
+(`P[a][J]·(−1)^[J≠0]`, `Q[I]·(−1)^[I≠0]`) — an identity of sign
+patterns, checked cell by cell in cert 23 over all `1772²` cells, as
+at 668 (§3.4), 716 (§3.6) and 1676 (§3.7). So the GS orientation, a
+"convention" in §1.0, is **not a gauge for Hadamard equivalence** at
+1772 either, and the `ψ(ρ) = −1` twist and the orientation switch
+land in different classes here as they do at the other three
+bordered orders. With §3.5's unbordered instance that is **five
+orders with the same verdict and no general statement**: nothing is
+claimed at any order not computed, and nothing to the effect that
+three is the count at 1772.
+
+The separating computation is the exact 4-profile over all
+`C(1772,4) = 409 422 905 815` row 4-subsets, on each matrix, by two
+independent implementations (a float32 BLAS Gram of the pair-vector
+matrix, and a packed-`uint64` popcount path) that agree bin for bin
+on each matrix. All three profiles total `C(1772,4)` exactly and hit
+the second-moment identity `726 727 740 809 840` to the unit; every
+difference vector sums to zero, and the first moments — which
+nothing forces — do not: `Σ |T4|·Δ = +55 798 800` (`H` vs `H′`),
+`+72 493 792` (`H` vs `H″`), `+16 694 992` (`H′` vs `H″`).
+
+| `\|T4\|` | 4 | 12 | 20 | 28 | 36 | 44 | 52 | 60 |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| `H` | 61 934 029 130 | 59 717 426 100 | 55 520 798 861 | 49 778 171 281 | 43 034 414 080 | 35 886 330 792 | 28 860 579 439 | 22 388 208 089 |
+| `H′` | 61 931 468 288 | 59 716 764 308 | 55 522 617 277 | 49 780 050 525 | 43 034 542 248 | 35 884 341 470 | 28 861 416 579 | 22 388 284 353 |
+| `H″` | 61 931 541 520 | 59 716 317 614 | 55 523 091 925 | 49 779 015 109 | 43 035 240 878 | 35 883 263 724 | 28 862 137 199 | 22 388 244 191 |
+
+As at 668, 716 and 1676, the **bulk** separates and the tail does
+not: every bin above `|T4| = 476` agrees on both comparisons with
+`H`, and every bin above `|T4| = 452` on `H′` vs `H″`. Below those
+tops the agreement is nearly empty — three bins, two bins and four
+bins respectively, which cert 23 enumerates and asserts. The largest
+discrepancies — `2 560 842`, `3 067 068` and `1 077 746` — are of
+order `10⁻⁵` of their bins, invisible to any sample of practical
+size. `dim V` reads 1770 / 1771 / 1770 across the three and is
+worthless; the invariant `dim W` is `1771` on all three (Trap 1,
+§3.1).
+
+**Row-side only.** The transposed profiles at 1772 — `(H′)ᵀ` and
+`(H″)ᵀ` — are separate legs of the same campaign: their `blas` legs
+are in, their `bits` legs were still running when cert 23 was
+written, and this repository certifies a profile only once the two
+arithmetics agree bin for bin, so they are **not banked** and
+**nothing at 1772 is claimed under the transpose-extended
+relation**. That is cert 20's caveat at 1676, which cert 21 later
+discharged there; a later certificate will do the same here. 1772
+and 2060 are now the only two row-side statements in this note.
+
+**Not claimed here:** anything about `H` versus `Hᵀ` at 1772, whose
+profile was never computed (cert 19 decides that question at 668 and
+at 668 only); how many classes order 1772 has; any general theorem
+about `ψ(ρ) = −1` or about orientation, four instances being four
+instances; and no priority or novelty claim of any kind — this is a
+statement about how many classes are on the table among the
+artifacts banked here, not about existence at 1772, which is long
+settled.
 
 ---
 
@@ -2079,6 +2189,7 @@ understood.
 | the three-class theorem at 716 under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all twelve transpose-related comparisons separate, 26–57 bins each, from the three transposed profiles banked 2026-09-02; cert 15). Under plain equivalence the six objects `H, H', H″` and their transposes are pairwise inequivalent — a remark, not the count |
 | **order 1676 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 68 of 142 differing bins — the `ψ(ρ) = −1` twist's **third** proven instance; the orientation switch `H″` against them 70 and 66; two independent implementations per matrix; cert 20). Cert 20 was **row-side only**; cert 21 discharges that caveat, below. Neither has an in-repo `--full` leg: at this order one is ≈ 6–7 h on the measured sub-`n⁵` scaling (≈ 7.8 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 9.4 GB |
 | the three-class theorem at 1676 under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all six transpose-related comparisons separate, 139 of the 144 bins of the union support each, from the two transposed profiles banked 2026-09-02; cert 21). Under plain equivalence the five profiled matrices `H, H', H″, (H')ᵀ, (H″)ᵀ` are pairwise inequivalent — at least five classes exhibited, a remark and not the count. `Hᵀ` was **not** profiled at 1676, so nothing is said about `H` versus its own transpose there |
+| **order 1772 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 57 of 89 differing bins — the `ψ(ρ) = −1` twist's **fourth** proven instance, and the last of cert 02's four decoded `(1,1)` orders; the orientation switch `H″` against them 58 and 53; two independent implementations per matrix; cert 23, 2026-09-03). **Row-side only**: the transposed 1772 profiles are a pending leg of the same campaign (`blas` in, `bits` still running), so nothing is claimed under the transpose-extended relation, and nothing about `H` versus `Hᵀ` there. Cert 23 has no in-repo `--full` leg: one is ≈ 7–8 h on the measured scaling (≈ 10.3 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 11.1 GB |
 | the order-2060 **pair** is inequivalent — the posted matrix against the plain GS realisation of the same seed — so **order 2060 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 146 of 147 differing bins, supports 145 vs 133, two independent implementations per matrix; cert 07 exact mode). Row-side only. The earlier sampled statistic remains recorded as COMPUTATIONAL-EVIDENCE |
-| **order 2060 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the orientation switch `H″` of the plain GS realisation — unbordered, `s = 0`, twelve `515`-blocks negated — against `P` in 107 of the 145 bins they share and against the posted `G` in 146 of 147; two independent implementations per matrix; cert 22, 2026-09-03). **Row-side only**, and 2060 is the only such statement here: the transposed 2060 profiles are pending legs of the same campaign, so nothing is claimed under the transpose-extended relation, and nothing about any of the three versus its own transpose. Cert 22 has no in-repo `--full` leg: one is ≈ 15 h on the measured scaling (≈ 22 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 17.5 GB |
+| **order 2060 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the orientation switch `H″` of the plain GS realisation — unbordered, `s = 0`, twelve `515`-blocks negated — against `P` in 107 of the 145 bins they share and against the posted `G` in 146 of 147; two independent implementations per matrix; cert 22, 2026-09-03). **Row-side only**, as §3.8's 1772 statement is; those two are the only such statements here: the transposed 2060 profiles are pending legs of the same campaign, so nothing is claimed under the transpose-extended relation, and nothing about any of the three versus its own transpose. Cert 22 has no in-repo `--full` leg: one is ≈ 15 h on the measured scaling (≈ 22 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 17.5 GB |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

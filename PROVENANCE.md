@@ -532,6 +532,60 @@ This document's edits ride on the commit made after those reads.
       these banks and says so. The 2060 transposes (`H_2060-orient-T`,
       `H_2060-plain-T`) are pending legs of the same campaign and are **not**
       banked, so that order's statement stays row-side.
+- [x] **Cert 23 banks.** 2026-09-03: the exact 4-profiles of
+      `H_1772-decoded`, `H_1772-twisted` and `H_1772-orient` — the decoded
+      `(s,i) = (1,1)` bordered-GS record at order 1772, its Lemma-T `i = 2`
+      rebuild, and that record with its twelve off-diagonal `442×442` core
+      blocks negated (the orientation switch; the `4`-wide border left
+      alone) — in both arithmetics, producer-banked from `Hadamard-2060`
+      under the same `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC
+      2026-09-02, before any matrix it governs was built; §2 registers all
+      three objects in as many words, and §4 fixes the decision rules
+      "`H ≁ H′` ⟹ the Lemma-T twist leaves the class at that order" and
+      "`H″ ≁ H` and `H″ ≁ H′` ⟹ the order carries at least THREE classes
+      (row-side)" in advance). Enumerated by the unchanged engine
+      `experiments/inequiv/exact_profile_big.py` on the rented
+      `c2d-highcpu-16` `prof42-1` (`us-east1-b`), 16 threads, between
+      23:33 UTC 2026-09-02 and 11:24 UTC 2026-09-03: the `blas` legs took
+      3 391.6 s (`H`), 3 398.6 s (`H′`) and 3 411.7 s (`H″`) at ≈ 788 MB
+      peak, the `bits` legs 8 544.6 s, 8 509.1 s and 8 586.5 s at ≈ 109 MB,
+      and each pair agrees bin for bin. As for certs 15, 20, 21 and 22, the
+      matrices were built AND verified at the desk by
+      `experiments/pr0042/build_matrices.py` — digests in its
+      `manifest.json`, each through this repository's `verify/verify.py`,
+      the two pinned ones reproducing their cert-01 and cert-02 pins — and
+      only then uploaded; the rented machine enumerated and nothing else.
+      Matrix canonical digests, all three re-derived in-run: `H`
+      `1852e951…77236ba2` (cert 01's pin), `H′` `82484769…4f609a113378`
+      (cert 02's pin), `H″` `7f1fae05…8ba607e53` (formed here from `H`).
+      Bank files (full digests pinned in that `run.py` and tabled in its
+      `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep1772-decoded-exact-blas.json` | `5985d5f9e1a7ceb54d12dc65e7d5179412eaffb78d94ac3ecf8366db5edbc0d4` |
+      | `sep1772-decoded-exact-bits.json` | `f4b2522d2b8d8ff06ed0195f72051ef28e1f47d7aa691d0afd425a1c84cf98e6` |
+      | `sep1772-twisted-exact-blas.json` | `3b010bf5406916977f060a033990427633bebff0891895b72a0e943afde0f76e` |
+      | `sep1772-twisted-exact-bits.json` | `481ba9f78be1c1d0d2072cfad67598d30c74423ec12e12702350dbba6fb72b35` |
+      | `sep1772-orient-exact-blas.json` | `f58bb4d7db1106950e6506899ffc1329787740cc35b4e0c48574b1d6f06bbea7` |
+      | `sep1772-orient-exact-bits.json` | `57ea8694738d3a6bffe5fa56bf7bab5c6e0d354425b7678f57f6b0d691472f5d` |
+
+      Banking was by the laboratory's `experiments/pr0042/bank.py` under
+      `--cert 23 --date 2026-09-03` (2026-09-03 UTC, the date the banks' own
+      `banked_note` carries), which adds only the seven header fields that
+      note names and nothing numeric. `data/payload-records.json` and
+      `data/twisted-i2-records.json` are not file-pinned by cert 23: they
+      are shared with certs 01 and 02, and the binding pin on each is the
+      canonical digest of the matrix it produces, checked in-run — and, for
+      the twisted record, reinforced by the `ψ`-twist re-derivation that
+      binds it to `payload-records.json` outright. Cert 23's `--full` has
+      **not** been run in this repository — at this order one leg is of
+      order 7–8 h and the `blas` route wants ≈ 11.1 GB — so its verdict is
+      an audit of these banks and says so. The 1772 transposes
+      (`H_1772-twisted-T`, `H_1772-orient-T`) are pending legs of the same
+      campaign — `blas` complete, `bits` still running when this
+      certificate was written — and are **not** banked, so that order's
+      statement stays row-side.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

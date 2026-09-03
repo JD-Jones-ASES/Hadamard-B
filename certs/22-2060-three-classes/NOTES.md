@@ -108,9 +108,10 @@ any of the three pairs.
 
 This is **exactly cert 20's caveat at 1676**, which cert 21 later discharged
 there once the two transposed profiles landed. Order 2060 was the only
-row-side statement in `note/NOTE-B.md` before this certificate and remains the
+row-side statement in `note/NOTE-B.md` before this certificate and remained the
 only one after it — the count changes from two to three; the caveat does not
-move. `run.py` asserts in clause [4] that no transposed 2060 profile is among
+move. *(Since cert 23, 2026-09-03, order 1772's statement is row-side too;
+nothing here rests on it.)* `run.py` asserts in clause [4] that no transposed 2060 profile is among
 the banks it reads, so the caveat cannot be quietly dropped by adding a file.
 
 Nor is anything claimed about `P` versus `Pᵀ`, or `G` versus `Gᵀ`, or `H″`
@@ -411,8 +412,9 @@ them.
 
 * **Nothing under the transpose-extended relation.** `H_2060-orient-T` and
   `H_2060-plain-T` are pending legs of the same campaign; neither is banked
-  here. Order 2060 remains the only row-side separation statement in
-  `note/NOTE-B.md`, exactly as cert 20 left 1676 before cert 21.
+  here. Order 2060 was, when this certificate was written, the only row-side
+  separation statement in `note/NOTE-B.md`, exactly as cert 20 left 1676
+  before cert 21 *(since cert 23, 1772's statement is row-side too)*.
 * **Nothing about any matrix versus its own transpose at 2060.** Cert 19
   decided that question at 668 and at 668 only.
 * **The default run recomputes nothing.** Only `--full` would bind a bank to a

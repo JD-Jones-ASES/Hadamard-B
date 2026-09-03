@@ -287,9 +287,9 @@ forced Sylvester profile at `n = 128`.
 * **Nothing about orders 1676 or 1772.** The same construction gives
   Lemma-T `i = 2` rebuilds there, and the corresponding exact computation
   costs roughly `98×` and `130×` the 668 run (the profile is `Θ(n⁵)` in the
-  pair-vector Gram). The `1676` computation has since been made — cert 20,
-  2026-09-02, NOTE-B.md §3.7 — and nothing in this certificate depends on
-  it; `1772` has not been made, so nothing is said there.
+  pair-vector Gram). Both computations have since been made — cert 20,
+  2026-09-02, NOTE-B.md §3.7, and cert 23, 2026-09-03, NOTE-B.md §3.8
+  (row-side only) — and nothing in this certificate depends on either.
 * **No claim of novelty of existence at 716**, and no priority claim of any
   kind. Order 716 is long settled by the publicly posted matrix; this
   certificate is about *how many classes* are on the table among the

@@ -13,10 +13,10 @@ classifies the surviving parameters within that branch under
 completely, and verifies twelve publicly posted matrices through the
 theorem's hypotheses. Its third movement proves that order 668
 carries at least **four** Hadamard-equivalence classes and orders
-716, 1676 and 2060 at least **three** each, pairwise separated by an
-exactly computed invariant; the 668, 716 and 1676 statements hold with
-the transpose added to the group, while the 2060 statement is
-row-side only and says so. Every computational
+716, 1676, 1772 and 2060 at least **three** each, pairwise separated
+by an exactly computed invariant; the 668, 716 and 1676 statements
+hold with the transpose added to the group, while the 1772 and 2060
+statements are row-side only and say so. Every computational
 claim carries a certificate in `certs/`; the theorems are
 paper-grade proofs in the note, labelled as such. A default run
 rebuilds and verifies the
@@ -132,7 +132,16 @@ switch have since been computed in both arithmetics, each differing
 from every original in 139 of 144 bins, so the three-class statement
 at 1676 holds under the **transpose-extended** relation as well
 (cert 21, 2026-09-02); `Hᵀ` at 1676 was not computed and nothing is
-claimed about it. **Order 2060 carries at
+claimed about it. **Order 1772 carries at least three** — the
+decoded `(1,1)` record, its Lemma-T `i = 2` rebuild and the
+orientation switch, separated in 57, 58 and 53 of the 89 bins of the
+same exact invariant over all 409 422 905 815 row 4-subsets, in two
+arithmetics that agree bin for bin (cert 23, 2026-09-03); so the
+twist leaves the class at a **fourth** order — every decoded `(1,1)`
+order in this repository — and the orientation switch leaves both
+classes there too. That statement is **row-side only**: the
+transposed 1772 profiles are a pending leg of the same campaign.
+**Order 2060 carries at
 least three** — the publicly posted matrix, the plain GS-array
 realisation of the same decoded seed, separated in 146 of the 147
 bins of the same exact invariant over all 748 155 697 135 row
@@ -143,10 +152,11 @@ bins of the same exact invariant over all 748 155 697 135 row
 which differs from the plain array in 107 of the 145 bins the two
 share and from the posted matrix in 146 of 147 (cert 22,
 2026-09-03). So the orientation switch is a class of its own at a
-**fourth** order. The 2060 statement is **row-side only** and is the
-only one here that is: the transposed 2060 profiles are pending legs
-of the same campaign, and nothing at that order is claimed under the
-transpose-extended relation. The sampled
+**fifth** order. The 2060 statement is **row-side only**, as the
+1772 one is, and those two are the only ones here that are: at each,
+the transposed profiles are pending legs of the same campaign, and
+nothing at either order is claimed under the transpose-extended
+relation. The sampled
 statistic that first suggested the pair stays in the record at its own
 label, computational evidence.
 
@@ -167,8 +177,8 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The ten `--full` flags of certs 06,
-08, 11, 13, 14, 15, 19, 20, 21 and 22 are the only paths anywhere in the
+Standard library only, no network. The eleven `--full` flags of certs 06,
+08, 11, 13, 14, 15, 19, 20, 21, 22 and 23 are the only paths anywhere in the
 repository that use numpy, and they recompute the exact 4-profiles from the matrices
 rebuilt in the run rather than auditing the banks (finder-side only,
 never in the trust chain). Cert 16's `--wide` and cert 17's `--full`
@@ -180,11 +190,14 @@ The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14, 15
 and 19's — covered the `blas` (float32) leg only; the `bits` recomputation
 has not been run in this repository for any of them. Cert 14's leg has been
 run here once (400 s), cert 15's once (287 s) and cert 19's once (282 s),
-each matching both banked implementations bin for bin. **Certs 20's, 21's and
-22's `--full` have not been run at all**: at order 1676 one leg is of order 6–7 hours
+each matching both banked implementations bin for bin. **Certs 20's, 21's,
+22's and 23's `--full` have not been run at all**: at order 1676 one leg is of order 6–7 hours
 (52× cert 14's 716 leg on the source laboratory's measured sub-`n⁵`
 scaling; 70× and ≈ 7.8 h on the `Θ(n⁵)` law used elsewhere here) and
-the `blas` route wants about 9.4 GB, and at order 2060 one leg is of order
+the `blas` route wants about 9.4 GB; at order 1772 one leg is of order 7–8
+hours (68× that same 716 leg on the measured scaling; 93× and ≈ 10.3 h on
+the `Θ(n⁵)` law) with a `blas` route wanting about 11.1 GB; and at order
+2060 one leg is of order
 15 hours (137× that same 716 leg on the measured scaling; 197× and ≈ 22 h on
 the `Θ(n⁵)` law) with a `blas` route wanting about 17.5 GB — so the flag is
 offered and priced and those certificates' verdicts are audits. Each cert's `NOTES.md` records
@@ -217,6 +230,7 @@ python certs/19-668-transpose-eight-classes/run.py
 python certs/20-1676-three-classes/run.py
 python certs/21-transpose-extended-1676/run.py
 python certs/22-2060-three-classes/run.py
+python certs/23-1772-three-classes/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only
