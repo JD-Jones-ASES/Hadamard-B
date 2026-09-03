@@ -8,7 +8,10 @@ order**. The trust boundary is the one certs 11, 13 and 14 draw, and is set
 out below. **Row-side only**: the transposed profiles at 1676 are a separate
 leg of the same campaign, not yet complete in both arithmetics when this
 certificate was written and therefore not banked here, so nothing at all is
-claimed under the transpose-extended relation at this order.
+claimed under the transpose-extended relation at this order. *(They have since
+been computed and banked — **see cert 21**, 2026-09-02, which discharges that
+caveat: the three classes hold under the transpose-extended relation too.
+Nothing in this certificate rests on it.)*
 
 ---
 
@@ -311,7 +314,10 @@ used of it.
   bin — so **nothing here is claimed under the transpose-extended
   relation**, unlike 668 (certs 08, 15, 19) and 716 (cert 15). Refuting
   `A ≈ B` needs both `A ≁ B` and `A ≁ Bᵀ`, and only the first is in hand at
-  this order.
+  this order. The two transposed profiles *have* since been computed and
+  banked — **see cert 21**, 2026-09-02: each of the six transpose-related
+  comparisons separates in 139 of 144 bins, so the three-class statement holds
+  under the transpose-extended relation too. Nothing here rests on that.
 * **Nothing about orders 1772 or 2060.** The same three constructions exist
   at 1772 and the orientation switch exists at 2060; those legs are separate
   computations under the same registration. Not made here, so not said here.

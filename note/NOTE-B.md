@@ -1234,10 +1234,10 @@ transpose changes a verdict it is called out. The
 **transpose-extended** relation is `A ≈ B` iff `A ~ B` or `A ~ Bᵀ`;
 refuting it takes two refutations, since `A ~ Bᵀ ⟺ Aᵀ ~ B`.
 Transpose-extended statements are now made for all four classes at
-668 (§3.4, certs 08 and 15) and all three at 716 (§3.6, cert 15).
-Orders 2060 (§3.5) and 1676 (§3.7) are **row-side only**, and both
-say so: at 1676 the transposed profiles are a separate leg of the
-same campaign, not computed when §3.7 was written. No
+668 (§3.4, certs 08 and 15), all three at 716 (§3.6, cert 15) and
+all three at 1676 (§3.7, cert 21). Order 2060 (§3.5) is the **only**
+one that remains **row-side only**, and it says so: its transposed
+profiles are a separate leg of the same campaign. No
 separation statement of any kind is made about the four `(2,4)`
 matrices of §2.3: they are existence witnesses for the even-`s`
 branch, and beyond cert 18's not-Kronecker test no invariant of
@@ -1512,8 +1512,9 @@ implementations, so the twist leaves the class at a second order,
 and since 2026-09-02 that order's three-class statement holds under
 the transpose-extended relation too (cert 15). At **1676 the
 statement has since been made** — §3.7, cert 20, 2026-09-02: 68 of
-142 bins differ, two arithmetics — and nothing in this section rests
-on it; at 1772 it remains **not claimed** (≈130× the 668 run, not
+142 bins differ, two arithmetics — and since cert 21 that order's
+three-class statement holds under the transpose-extended relation
+too; nothing in this section rests on it; at 1772 it remains **not claimed** (≈130× the 668 run, not
 made). The `Φ_M` blindness above is recorded beside the two traps of
 §3.1 as the working reason this repository pays for the full
 `Θ(n⁴)` invariant: every cheaper statistic tested — including a
@@ -1685,22 +1686,23 @@ in this section rests on it.
 
 *(The same split as §3.4 and §3.6: the invariance of the folded
 4-profile and the implication "different profiles ⟹ inequivalent"
-are paper proofs; the six exact profiles are certified machine
-computations — cert 20. Where they ran matters, so it is stated
-here: the three `C(1676,4)` enumerations were made in the source
-laboratory on 2026-09-02, on a rented 16-thread machine, under
-`experiments/pr0042/REGISTRATION.md` — flushed 10:17 UTC, before
-any matrix it governs was built — and banked. The matrices were
-built and verified **at the desk**, each through `verify/verify.py`,
-before anything was uploaded; the rented machine enumerated and
-nothing else. A default run of cert 20 **audits** those banks.
-Unlike certs 06, 08, 11, 13, 14, 15 and 19, cert 20 has **no
-in-repo `--full` leg**: at this order one recomputation is of order 6–7
+are paper proofs; the ten exact profiles are certified machine
+computations — certs 20 and 21. Where they ran matters, so it is
+stated here: the five `C(1676,4)` enumerations were made in the
+source laboratory on 2026-09-02, on a rented 16-thread machine,
+under `experiments/pr0042/REGISTRATION.md` — flushed 10:17 UTC,
+before any matrix it governs was built — and banked. The matrices
+were built and verified **at the desk**, each through
+`verify/verify.py`, before anything was uploaded; the rented machine
+enumerated and nothing else. A default run of cert 20 or 21
+**audits** those banks. Unlike certs 06, 08, 11, 13, 14, 15 and 19,
+neither has an **in-repo `--full` leg**: at this order one
+recomputation is of order 6–7
 hours — 52× cert 14's 716 leg on the source laboratory's measured
 sub-`n⁵` scaling, 70× and ≈ 7.8 h on the `Θ(n⁵)` law §3.4 quotes —
 and the `blas` route wants about 9.4 GB, so the flag is offered and
-priced but has not been run. Its `NOTES.md` says so, and says which
-estimate it is using.)*
+priced but has not been run. Their `NOTES.md` say so, and say which
+estimate they are using.)*
 
 > **Theorem (the twist, a third instance).** Order 1676 carries at
 > least **two** Hadamard equivalence classes, exhibited by the
@@ -1716,10 +1718,22 @@ estimate it is using.)*
 > its exact 4-profile differs from theirs in **70** and **66** of
 > the 142 bins (two arithmetics, bin for bin; totals and second
 > moment exact). **Order 1676 therefore carries at least three
-> Hadamard equivalence classes.** **Row-side only:** the transposed
-> profiles at 1676 are a separate leg of the same campaign and were
-> not computed when this section was written, so **no
-> transpose-extended statement is made at this order**.
+> Hadamard equivalence classes.**
+
+> **Theorem (transpose-extended, 2026-09-02; cert 21).** The
+> transposed profiles of `H′` and `H″` were computed under the same
+> `experiments/pr0042/REGISTRATION.md`. Each of the six
+> transpose-related comparisons separates in **139 of the 144** bins
+> of the union support, so every pair carries **both** refutations
+> the relation needs: `H` vs `(H′)ᵀ` 139 alongside `H` vs `H′` 68;
+> `H` vs `(H″)ᵀ` 139 alongside `H` vs `H″` 70; `H′` vs `(H″)ᵀ` 139
+> alongside `H′` vs `H″` 66, with `(H′)ᵀ` vs `H″` 139 as the second
+> route. **The three classes at 1676 therefore hold under the
+> transpose-extended relation** — the statement the two theorems
+> above withheld. `Hᵀ` was **not** profiled at this order, so
+> nothing is said about `H` versus its own transpose here (cert 19
+> decides that question at 668 only), and each pair whose `A` is `H`
+> is refuted by its `A` vs `Bᵀ` column alone.
 
 *What `H″` is.* `S·H″·S`, with `S = diag(I₄, diag(1,−1,−1,−1)⊗I_n)`
 and `n = 418`, is the same seeds and border assembled in the
@@ -1757,14 +1771,34 @@ discrepancies — `2 809 810`, `3 095 240` and `1 441 082`, all in the
 first three bins — are of order `10⁻⁵` of their bins, invisible to
 any sample of practical size. `dim V` differs across the pair here
 too (1674 vs 1675) and is worthless; the invariant `dim W` is
-`1675` on all three (Trap 1, §3.1).
+`1675` on all five objects §3.7 now profiles (Trap 1, §3.1).
+
+*The transposed profiles* (cert 21) populate 142 bins apiece too,
+but **not the same 142**: unlike 668 and 716, where each transpose
+drops one bin, at 1676 the two transposes **swap two** — `|T4| =
+948` and `964` are populated in every original (counts 30 and 40)
+and in neither transpose, and `|T4| = 1180` and `1204` in both
+transposes (30 and 30) and in no original. The union support is
+therefore **144** bins, which is why every original-versus-transpose
+comparison reads *139 of 144*. The bulk separates there too: the top
+differing bin is `|T4| = 1204` and the four bins above it agree, the
+largest discrepancies (`5.0`–`5.8·10⁶`, mostly at `|T4| = 36`) being
+of order `10⁻⁴` of their bins. A remark, recorded and not headlined:
+under **plain** Hadamard equivalence the five matrices profiled here
+— `H, H′, H″, (H′)ᵀ, (H″)ᵀ` — are pairwise inequivalent (all ten
+comparisons separate, the closest pair by 66 bins), so **at least
+five** classes are exhibited; the count stated is the three that
+survive **either** convention. Since `Hᵀ` was never profiled, that
+plain count is a lower bound from five matrices, not the analogue of
+§3.4's eight.
 
 **Not claimed here:** anything at 1772 (the same three
 constructions exist there and the legs are a separate computation);
-anything under the transpose-extended relation at 1676; how many
-classes order 1676 has; and no priority or novelty claim of any kind
-— this is a statement about how many classes are on the table among
-the artifacts banked here, not about existence at 1676.
+anything about `H` versus `Hᵀ` at 1676, whose profile was never
+computed; how many classes order 1676 has; and no priority or
+novelty claim of any kind — this is a statement about how many
+classes are on the table among the artifacts banked here, not about
+existence at 1676.
 
 ---
 
@@ -1976,6 +2010,7 @@ understood.
 | `Φ_M` is blind to the `H` vs `H'` separation | **MEASURED** (bin-for-bin identical on a proven-inequivalent pair) |
 | **order 716 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 27 of 87 differing bins, cert 11; the orientation switch `H″` against them 27 and 25, cert 14; two independent implementations per matrix) |
 | the three-class theorem at 716 under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all twelve transpose-related comparisons separate, 26–57 bins each, from the three transposed profiles banked 2026-09-02; cert 15). Under plain equivalence the six objects `H, H', H″` and their transposes are pairwise inequivalent — a remark, not the count |
-| **order 1676 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 68 of 142 differing bins — the `ψ(ρ) = −1` twist's **third** proven instance; the orientation switch `H″` against them 70 and 66; two independent implementations per matrix; cert 20). **Row-side only** — the transposed profiles at 1676 were not computed when cert 20 was written, so no transpose-extended statement is made at this order. Cert 20 has no in-repo `--full` leg: at this order one is ≈ 6–7 h on the measured sub-`n⁵` scaling (≈ 7.8 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 9.4 GB |
+| **order 1676 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles: `H` vs `H'` 68 of 142 differing bins — the `ψ(ρ) = −1` twist's **third** proven instance; the orientation switch `H″` against them 70 and 66; two independent implementations per matrix; cert 20). Cert 20 was **row-side only**; cert 21 discharges that caveat, below. Neither has an in-repo `--full` leg: at this order one is ≈ 6–7 h on the measured sub-`n⁵` scaling (≈ 7.8 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 9.4 GB |
+| the three-class theorem at 1676 under the transpose-extended relation | **PROVEN + PROVEN-BY-CERTIFICATE** (all six transpose-related comparisons separate, 139 of the 144 bins of the union support each, from the two transposed profiles banked 2026-09-02; cert 21). Under plain equivalence the five profiled matrices `H, H', H″, (H')ᵀ, (H″)ᵀ` are pairwise inequivalent — at least five classes exhibited, a remark and not the count. `Hᵀ` was **not** profiled at 1676, so nothing is said about `H` versus its own transpose there |
 | **order 2060 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 146 of 147 differing bins, supports 145 vs 133, two independent implementations per matrix; cert 07 exact mode). Row-side only. The earlier sampled statistic remains recorded as COMPUTATIONAL-EVIDENCE |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

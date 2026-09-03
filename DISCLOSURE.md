@@ -9,9 +9,9 @@ complete resolution of the `s = 1` border system —
 together with the theorems that order 668 carries at least four
 Hadamard-equivalence classes and that orders 716 and 1676 each
 carry at least three, pairwise separated by an exactly computed
-invariant — the 668 and 716 statements holding with the transpose
-added to the group, the 1676 and 2060 statements row-side only and
-saying so;
+invariant — the 668, 716 and 1676 statements holding with the
+transpose added to the group, only the 2060 statement row-side only
+and saying so;
 plus the machine verification of twelve publicly posted matrices
 through the theorems' hypotheses and twelve certified instance
 matrices. Added 2026-09-02: the rigidity theorem sharpened to
@@ -25,7 +25,11 @@ decoded 668 record proved inequivalent to its own transpose (49 of
 80 bins), so those four matrices and their four transposes are
 pairwise inequivalent — eight classes exhibited at 668 under plain
 Hadamard equivalence, the transpose-extended count unchanged at
-four, which is the count this disclosure and the abstract quote.
+four, which is the count this disclosure and the abstract quote; and
+the order-1676 three-class theorem carried across to the
+transpose-extended relation, each of its six transpose-related
+comparisons separating in 139 of 144 bins, so that order 2060 is now
+the only separation statement here that is row-side only.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -76,15 +80,15 @@ file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
 belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14,
-15, 19 and 20, which recompute those profiles from the matrices rebuilt in the same run.
+15, 19, 20 and 21, which recompute those profiles from the matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; those eight `--full`
+standard library and nothing on the network; those nine `--full`
 recomputations use numpy on the finder side only, and they are the
-only numpy anywhere in the repository. Cert 20's has not been run:
-at order 1676 one leg is of order 6–7 hours — 52× cert 14's 716 leg
-on the source laboratory's measured sub-`n⁵` scaling, ≈ 7.8 h on the
-`Θ(n⁵)` law used elsewhere here — and its `blas` route wants about
-9.4 GB, so that certificate's verdict is an audit and says so. Cert 17's `--full` is
+only numpy anywhere in the repository. Certs 20's and 21's have not
+been run: at order 1676 one leg is of order 6–7 hours — 52× cert 14's
+716 leg on the source laboratory's measured sub-`n⁵` scaling, ≈ 7.8 h
+on the `Θ(n⁵)` law used elsewhere here — and the `blas` route wants
+about 9.4 GB, so those certificates' verdicts are audits and say so. Cert 17's `--full` is
 standard-library like the rest of it, and has been run here: the
 16 384-class census reproduced on 2026-09-02 at the pinned digest,
 as its `NOTES.md` records.

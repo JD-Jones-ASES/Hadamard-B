@@ -451,6 +451,40 @@ This document's edits ride on the commit made after those reads.
       `--full` has **not** been run in this repository — at this order one
       leg is of order 6–7 h and the `blas` route wants ≈ 9.4 GB — so its
       verdict is an audit of these banks and says so.
+- [x] **Cert 21 banks.** 2026-09-02: the two remaining exact 4-profiles at
+      order 1676 — the transposes `(H′)ᵀ` and `(H″)ᵀ` of the Lemma-T rebuild
+      and of the orientation switch, each in both arithmetics —
+      producer-banked from `Hadamard-2060` under the same
+      `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC, before any
+      matrix it governs was built; §2 lists `H_1676-twisted-T` and
+      `H_1676-orient-T` and no third 1676 transpose, so **`Hᵀ` at 1676 was
+      never enumerated** and nothing is claimed about it). Enumerated by the
+      unchanged engine `experiments/inequiv/exact_profile_big.py` on the same
+      rented `c2d-highcpu-16` (`prof42-1`, `us-east1-b`), 16 threads,
+      2026-09-02: the `blas` legs took 2 650.8 s (`twisted-T`) and 2 665.8 s
+      (`orient-T`) at ≈ 762 MB peak, the `bits` legs 6 661.6 s and 6 660.6 s
+      at ≈ 104 MB. As for certs 15 and 20, the matrices were built AND
+      verified at the desk by `experiments/pr0042/build_matrices.py` — digests
+      in its `manifest.json`, each through this repository's
+      `verify/verify.py` — and only then uploaded; the rented machine
+      enumerated and nothing else. Matrix canonical digests, both re-derived
+      in-run by transposing the rows this repository rebuilds:
+      `(H′)ᵀ` `46f29432…4af261ce3`, `(H″)ᵀ` `ad870e1c…ea85303d`. Bank files
+      (full digests pinned in that `run.py` and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep1676-twisted-T-exact-blas.json` | `d951a78a0af94cb3979eec3878583d750ecb2c417946ab4c6159a3a7bfaaa040` |
+      | `sep1676-twisted-T-exact-bits.json` | `2a249d15e2d8c0aaa71d0fbeb503da43175aed7b9466c32dfaa77db1401bad6c` |
+      | `sep1676-orient-T-exact-blas.json` | `4d7506d93e35125d236432d92457d60321c1e1c4f014febc45e5ded0b06b820a` |
+      | `sep1676-orient-T-exact-bits.json` | `46750b71d6400a51ddfde19ec574cc6a8d92c345aabc521f5cd866ca3eb84e41` |
+
+      The six comparison banks are cert 20's, reused unchanged and re-pinned
+      by digest. Banking was by the laboratory's `experiments/pr0042/bank.py`
+      under `--cert 21`, which adds only the seven header fields each bank's
+      `banked_note` names and nothing numeric. Cert 21's `--full` has **not**
+      been run in this repository either, for cert 20's reasons and at cert
+      20's price, so its verdict is an audit of these banks and says so.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 
