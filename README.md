@@ -13,7 +13,7 @@ classifies the surviving parameters within that branch under
 completely, and verifies twelve publicly posted matrices through the
 theorem's hypotheses. Its third movement proves that order 668
 carries at least **four** Hadamard-equivalence classes and orders
-716 and 1676 at least **three** each, pairwise separated by an
+716, 1676 and 2060 at least **three** each, pairwise separated by an
 exactly computed invariant; the 668, 716 and 1676 statements hold with
 the transpose added to the group, while the 2060 statement is
 row-side only and says so. Every computational
@@ -133,12 +133,21 @@ from every original in 139 of 144 bins, so the three-class statement
 at 1676 holds under the **transpose-extended** relation as well
 (cert 21, 2026-09-02); `Hᵀ` at 1676 was not computed and nothing is
 claimed about it. **Order 2060 carries at
-least two** — the publicly posted matrix and the plain GS-array
+least three** — the publicly posted matrix, the plain GS-array
 realisation of the same decoded seed, separated in 146 of the 147
 bins of the same exact invariant over all 748 155 697 135 row
 4-subsets, with two independent arithmetics agreeing bin for bin
-(cert 07, exact mode, banked 2026-09-02); row-side only. The sampled
-statistic that first suggested it stays in the record at its own
+(cert 07, exact mode, banked 2026-09-02), and that realisation in the
+**other Goethals–Seidel orientation** — its twelve off-diagonal
+515-blocks negated, unbordered here since 2060 sits at `s = 0` —
+which differs from the plain array in 107 of the 145 bins the two
+share and from the posted matrix in 146 of 147 (cert 22,
+2026-09-03). So the orientation switch is a class of its own at a
+**fourth** order. The 2060 statement is **row-side only** and is the
+only one here that is: the transposed 2060 profiles are pending legs
+of the same campaign, and nothing at that order is claimed under the
+transpose-extended relation. The sampled
+statistic that first suggested the pair stays in the record at its own
 label, computational evidence.
 
 ## Priority posture
@@ -158,9 +167,9 @@ the exact list of sources it is bounded by, is NOTE-B.md §4.
 ## Replay
 
 Everything runs from the repository root on bare Python 3.9 or newer.
-Standard library only, no network. The nine `--full` flags of certs 06,
-08, 11, 13, 14, 15, 19, 20 and 21 are the only paths anywhere in the repository
-that use numpy, and they recompute the exact 4-profiles from the matrices
+Standard library only, no network. The ten `--full` flags of certs 06,
+08, 11, 13, 14, 15, 19, 20, 21 and 22 are the only paths anywhere in the
+repository that use numpy, and they recompute the exact 4-profiles from the matrices
 rebuilt in the run rather than auditing the banks (finder-side only,
 never in the trust chain). Cert 16's `--wide` and cert 17's `--full`
 are wider runs of the same standard-library code, not a different
@@ -171,12 +180,14 @@ The in-repo `--full` runs so far — certs 08, 06, 11, 13, 14, 15
 and 19's — covered the `blas` (float32) leg only; the `bits` recomputation
 has not been run in this repository for any of them. Cert 14's leg has been
 run here once (400 s), cert 15's once (287 s) and cert 19's once (282 s),
-each matching both banked implementations bin for bin. **Certs 20's and 21's
-`--full` have not been run at all**: at order 1676 one leg is of order 6–7 hours
+each matching both banked implementations bin for bin. **Certs 20's, 21's and
+22's `--full` have not been run at all**: at order 1676 one leg is of order 6–7 hours
 (52× cert 14's 716 leg on the source laboratory's measured sub-`n⁵`
 scaling; 70× and ≈ 7.8 h on the `Θ(n⁵)` law used elsewhere here) and
-the `blas` route wants about 9.4 GB, so the flag is offered and priced and
-those certificates' verdicts are audits. Each cert's `NOTES.md` records
+the `blas` route wants about 9.4 GB, and at order 2060 one leg is of order
+15 hours (137× that same 716 leg on the measured scaling; 197× and ≈ 22 h on
+the `Θ(n⁵)` law) with a `blas` route wanting about 17.5 GB — so the flag is
+offered and priced and those certificates' verdicts are audits. Each cert's `NOTES.md` records
 which legs were run and when.
 
 ```
@@ -205,6 +216,7 @@ python certs/18-cell24-instances/run.py
 python certs/19-668-transpose-eight-classes/run.py
 python certs/20-1676-three-classes/run.py
 python certs/21-transpose-extended-1676/run.py
+python certs/22-2060-three-classes/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

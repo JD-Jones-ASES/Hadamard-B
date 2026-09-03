@@ -7,7 +7,7 @@ branch and under `w > 2s`, of its surviving parameters (with `n ≥ 3`
 the cells are `(0,1)`, `(1,1)`, and `i = s+1` with `s` odd); and the
 complete resolution of the `s = 1` border system —
 together with the theorems that order 668 carries at least four
-Hadamard-equivalence classes and that orders 716 and 1676 each
+Hadamard-equivalence classes and that orders 716, 1676 and 2060 each
 carry at least three, pairwise separated by an exactly computed
 invariant — the 668, 716 and 1676 statements holding with the
 transpose added to the group, only the 2060 statement row-side only
@@ -29,7 +29,16 @@ four, which is the count this disclosure and the abstract quote; and
 the order-1676 three-class theorem carried across to the
 transpose-extended relation, each of its six transpose-related
 comparisons separating in 139 of 144 bins, so that order 2060 is now
-the only separation statement here that is row-side only.
+the only separation statement here that is row-side only. Added
+2026-09-03: order 2060 raised from two classes to three, by the
+orientation switch of the plain Goethals–Seidel realisation — the
+twelve off-diagonal `515`-blocks negated, with no border to leave
+alone at that order — which differs from the plain array in 107 of
+the 145 bins they share and from the publicly posted matrix in 146 of
+147. That statement is row-side only and says so, the transposed
+2060 profiles being pending legs of the same campaign; and no
+priority or novelty of any kind is claimed at order 2060, which was
+settled by the publicly posted matrix.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -80,15 +89,18 @@ file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
 belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14,
-15, 19, 20 and 21, which recompute those profiles from the matrices rebuilt in the same run.
+15, 19, 20, 21 and 22, which recompute those profiles from the
+matrices rebuilt in the same run.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; those nine `--full`
+standard library and nothing on the network; those ten `--full`
 recomputations use numpy on the finder side only, and they are the
-only numpy anywhere in the repository. Certs 20's and 21's have not
-been run: at order 1676 one leg is of order 6–7 hours — 52× cert 14's
+only numpy anywhere in the repository. Certs 20's, 21's and 22's have
+not been run: at order 1676 one leg is of order 6–7 hours — 52× cert 14's
 716 leg on the source laboratory's measured sub-`n⁵` scaling, ≈ 7.8 h
 on the `Θ(n⁵)` law used elsewhere here — and the `blas` route wants
-about 9.4 GB, so those certificates' verdicts are audits and say so. Cert 17's `--full` is
+about 9.4 GB; at order 2060 one leg is of order 15 hours (137× that
+same 716 leg, ≈ 22 h on the `Θ(n⁵)` law) and the `blas` route wants
+about 17.5 GB, so those certificates' verdicts are audits and say so. Cert 17's `--full` is
 standard-library like the rest of it, and has been run here: the
 16 384-class census reproduced on 2026-09-02 at the pinned digest,
 as its `NOTES.md` records.

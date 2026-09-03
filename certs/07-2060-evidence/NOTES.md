@@ -11,6 +11,21 @@ exact-bank acceptance controls, run entirely in memory.
 Standard library only — no numpy anywhere, on any path — about six seconds,
 exit 0.
 
+> **Forward pointer (2026-09-03).** Order 2060 now carries **at least
+> three** classes, not two: `certs/22-2060-three-classes` adds the
+> orientation switch of `2060-plain` — its twelve off-diagonal `515`-blocks
+> negated, *unbordered*, 2060 being the `s = 0` layer — and separates it
+> from `2060-plain` in **107 of the 145 bins they share** and from
+> `2060-gist` in **146 of 147**, in both arithmetics. Cert 22 rebuilds both
+> matrices below from `data/sep2060-records.json` in its own run and
+> re-pins this certificate's four bank files at exactly the digests
+> `EXACT_FILE_PINS` carries, so the two cannot drift apart. Nothing in
+> *this* certificate changes: the pair statement, its bank, its controls
+> and its sampled history stand as written. The order remains **row-side
+> only** — the transposed 2060 profiles are pending legs of the same
+> campaign — and cert 22 makes no priority or novelty claim either: the
+> disclosure language below binds it too.
+
 ---
 
 ## The claim, and its exact strength

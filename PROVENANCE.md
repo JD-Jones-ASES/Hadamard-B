@@ -485,6 +485,53 @@ This document's edits ride on the commit made after those reads.
       `banked_note` names and nothing numeric. Cert 21's `--full` has **not**
       been run in this repository either, for cert 20's reasons and at cert
       20's price, so its verdict is an audit of these banks and says so.
+- [x] **Cert 22 banks.** 2026-09-03: the exact 4-profile of `H_2060-orient`
+      — the plain Goethals–Seidel realisation at order 2060 with its twelve
+      off-diagonal `515×515` blocks negated, the orientation switch in its
+      **unbordered** form (2060 is the `s = 0` layer: no border, four
+      circulant blocks, `N = 4·515`) — in both arithmetics, producer-banked
+      from `Hadamard-2060` under the same
+      `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC 2026-09-02,
+      before any matrix it governs was built; §2 registers this object in as
+      many words, and §4 fixes the decision rule "`H″ ≁ plain` and
+      `H″ ≁ gist` ⟹ order 2060 carries at least THREE classes (row-side)"
+      in advance. Amendment 1, ~11:05 UTC, added the second instance for the
+      2060 legs and re-priced the campaign; both predate the leg).
+      Enumerated by the unchanged engine
+      `experiments/inequiv/exact_profile_big.py` on a second rented
+      `c2d-highcpu-16` (`prof42-2`, `us-east1-b`, created 18:14 UTC
+      2026-09-02), 16 threads: the `blas` leg landed 20:10 UTC 2026-09-02 in
+      6 631.0 s at 860.7 MB peak, the `bits` leg 01:00 UTC 2026-09-03 in
+      17 654.7 s at 131.9 MB, and they agree bin for bin. As for certs 15,
+      20 and 21, the matrix was built AND verified at the desk by
+      `experiments/pr0042/build_matrices.py` — digest in its
+      `manifest.json`, through this repository's `verify/verify.py`, with
+      the plain source re-verified against cert 07's pin first — and only
+      then uploaded; the rented machine enumerated and nothing else. Matrix
+      canonical digest, re-derived in-run by negating the twelve blocks of
+      the plain array this repository rebuilds: `H″₂₀₆₀`
+      `4e1891b0…0870b801`. Bank files (full digests pinned in that `run.py`
+      and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep2060-orient-exact-blas.json` | `38135aef205b4428760dc0439b29196b6776f215397fb34880156c66ee283f00` |
+      | `sep2060-orient-exact-bits.json` | `18dcf4c2e5d603324182eeef45c13e89ef80d5c0c0a5add3a7f90c333e4e5e87` |
+
+      The four comparison banks are cert 07's, reused unchanged and re-pinned
+      by digest at exactly the values cert 07's own `EXACT_FILE_PINS` carries,
+      so the two certificates cannot drift apart on the shared evidence.
+      Banking was by the laboratory's `experiments/pr0042/bank.py` under
+      `--cert 22 --date 2026-09-03` (2026-09-03 UTC, the date the banks' own
+      `banked_note` carries), which adds only the seven header fields that
+      note names and nothing numeric; the `description` field names the base
+      as the plain GS realisation (cert 07 pin) with its twelve off-diagonal
+      515×515 blocks negated, no border. Cert 22's `--full` has **not**
+      been run in this repository — at this order one leg is of order 15 h
+      and the `blas` route wants ≈ 17.5 GB — so its verdict is an audit of
+      these banks and says so. The 2060 transposes (`H_2060-orient-T`,
+      `H_2060-plain-T`) are pending legs of the same campaign and are **not**
+      banked, so that order's statement stays row-side.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 
