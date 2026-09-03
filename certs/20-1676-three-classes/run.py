@@ -17,11 +17,13 @@ orientation switch leaves both classes.
   CORE BLOCKS NEGATED and the 4-row/4-column border unchanged.  Then H''
   is a Hadamard matrix, and it is Hadamard-inequivalent to each of H and
   H'.  With Theorem 1, ORDER 1676 CARRIES AT LEAST THREE HADAMARD
-  EQUIVALENCE CLASSES.  ROW-SIDE ONLY: the transposed profiles at 1676
-  are a separate leg of the same campaign, not complete in both
-  arithmetics when this certificate was written and so not banked here,
-  and NOTHING is claimed under the transpose-extended relation at this
-  order.
+  EQUIVALENCE CLASSES.  ROW-SIDE ONLY (THIS CERTIFICATE): the transposed
+  profiles at 1676 were a separate leg of the same campaign, not complete
+  in both arithmetics when this certificate was written, so THIS
+  certificate banks neither and claims NOTHING under the
+  transpose-extended relation.  DISCHARGED by CERT 21 (2026-09-02), which
+  banks both and makes the transpose-extended statement at 1676; nothing
+  below depends on it.
 
   PROOF (finite, exact).  The multiset {|T4(i,j,k,l)|} over all
   C(1676,4) = 327 588 749 775 row 4-subsets, with
@@ -974,9 +976,10 @@ def _body(args, t_start):
         print("         16-thread machine, under a pre-registration flushed")
         print("         before the matrices were built.  `--full` would be")
         print("         the replay; it has NOT been run here at 1676.")
-    print("         ROW-SIDE ONLY: the transposed profiles at 1676 are a")
-    print("         separate, pending computation and nothing here is")
-    print("         claimed under the transpose-extended relation.  NOT")
+    print("         ROW-SIDE ONLY IN THIS CERTIFICATE: the transposed 1676")
+    print("         profiles were a pending computation when it was written,")
+    print("         so nothing HERE is claimed under the transpose-extended")
+    print("         relation.  DISCHARGED by CERT 21.  NOT")
     print("         claimed: anything at 1772 or 2060; any general theorem")
     print("         about psi(rho) = -1 or about orientation; that three is")
     print("         the number of classes at 1676; any novelty or priority.")

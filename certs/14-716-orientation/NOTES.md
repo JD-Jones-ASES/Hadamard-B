@@ -206,10 +206,12 @@ certificate's own, the other four are cert 11's, reused verbatim:
   nothing in this certificate rests on that.
 * Nothing about the orientation switch at 1772 — the same construction
   exists there and the same computation costs about 93× this one (the `n⁵`
-  scaling cert 13 uses). It has since been made — cert 23, 2026-09-03,
-  row-side only, and it quotes that same 93× price — as has the 1676
+  scaling cert 13 uses). It has since been made — cert 23, 2026-09-03, which
+  quotes that same 93× price, with cert 25 the same day carrying it to the
+  transpose-extended relation — as has the 1676
   instance, priced here at about 70× on the same law (cert 20,
-  2026-09-02); nothing in this certificate rests on either.
+  2026-09-02, with cert 21 for the transpose); nothing in this certificate
+  rests on any of them.
 * No general statement about `ψ`. That the twist and the orientation switch
   land in different classes is now proved at 668, at 716, at 1676 (cert 20)
   and at 1772 (cert 23); four orders are four orders, and the general claim

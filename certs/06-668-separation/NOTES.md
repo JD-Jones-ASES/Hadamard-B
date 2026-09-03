@@ -277,7 +277,8 @@ an in-flight artifact of another lane's run.
   nothing about them. All three computations have since been made and carry
   their own certificates — cert 11 (NOTE-B.md §3.6), cert 20 (NOTE-B.md
   §3.7; transpose-extended since cert 21) and cert 23 (NOTE-B.md §3.8,
-  2026-09-03; row-side only). Nothing here depends on any of them.
+  2026-09-03; transpose-extended since cert 25, the same day). Nothing here
+  depends on any of them.
 * **No claim of novelty of existence at 668.** Order 668 was settled by
   the publicly posted matrix; this certificate is about *how many classes*
   are on the table among the artifacts banked here, not about existence.

@@ -530,8 +530,10 @@ This document's edits ride on the commit made after those reads.
       been run in this repository — at this order one leg is of order 15 h
       and the `blas` route wants ≈ 17.5 GB — so its verdict is an audit of
       these banks and says so. The 2060 transposes (`H_2060-orient-T`,
-      `H_2060-plain-T`) are pending legs of the same campaign and are **not**
-      banked, so that order's statement stays row-side.
+      `H_2060-plain-T`) were pending legs of the same campaign when cert 22
+      was written and were **not** banked by it, so *its* statement is
+      row-side; they landed later the same day and are banked under cert 24
+      below, which discharges that caveat.
 - [x] **Cert 23 banks.** 2026-09-03: the exact 4-profiles of
       `H_1772-decoded`, `H_1772-twisted` and `H_1772-orient` — the decoded
       `(s,i) = (1,1)` bordered-GS record at order 1772, its Lemma-T `i = 2`
@@ -582,10 +584,112 @@ This document's edits ride on the commit made after those reads.
       **not** been run in this repository — at this order one leg is of
       order 7–8 h and the `blas` route wants ≈ 11.1 GB — so its verdict is
       an audit of these banks and says so. The 1772 transposes
-      (`H_1772-twisted-T`, `H_1772-orient-T`) are pending legs of the same
-      campaign — `blas` complete, `bits` still running when this
-      certificate was written — and are **not** banked, so that order's
-      statement stays row-side.
+      (`H_1772-twisted-T`, `H_1772-orient-T`) were pending legs of the same
+      campaign when cert 23 was written — `blas` complete, `bits` still
+      running — and were **not** banked by it, so *its* statement is
+      row-side; they landed later the same day and are banked under cert 25
+      below, which discharges that caveat.
+- [x] **Cert 24 banks.** 2026-09-03: the two remaining exact 4-profiles at
+      order 2060 — the transposes `Pᵀ` and `(H″)ᵀ` of the plain
+      Goethals–Seidel array (cert 07's pinned matrix) and of the unbordered
+      orientation switch (cert 22's), each in both arithmetics —
+      producer-banked from `Hadamard-2060` under the same
+      `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC 2026-09-02,
+      before any matrix it governs was built; §2 lists `H_2060-orient-T` and
+      `H_2060-plain-T` and no third 2060 transpose, so **`Gᵀ` was never
+      enumerated** and nothing is claimed about it. Amendment 1, ~11:05 UTC,
+      added the second instance for the 2060 legs and re-priced the
+      campaign; both predate the legs). Enumerated by the unchanged engine
+      `experiments/inequiv/exact_profile_big.py` on the rented
+      `c2d-highcpu-16` `prof42-2` (`us-east1-b`, created 18:14 UTC
+      2026-09-02), 16 threads: the `orient-T` `blas` leg landed ~02:50 UTC
+      2026-09-03 in 6 645.1 s at 860.4 MB peak and its `bits` leg 07:55 UTC
+      in 17 685.3 s at 131.9 MB; the `plain-T` `blas` leg 09:35 UTC in
+      6 650.4 s at 860.2 MB and its `bits` leg 14:32 UTC in 17 678.4 s at
+      131.7 MB, at which point that instance reached the end of its worklist
+      and self-deleted. Each pair agrees bin for bin. As for certs 15, 20,
+      21, 22 and 23, the matrices were built AND verified at the desk by
+      `experiments/pr0042/build_matrices.py` — digests in its
+      `manifest.json`, each through this repository's `verify/verify.py`,
+      the plain source re-verified against cert 07's pin first — and only
+      then uploaded; the rented machine enumerated and nothing else. Matrix
+      canonical digests, both re-derived in-run by transposing the rows this
+      repository rebuilds: `Pᵀ` `5a980e3a…1db1a2960`, `(H″)ᵀ`
+      `8558904d…01b34337`. Bank files (full digests pinned in that `run.py`
+      and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep2060-plain-T-exact-blas.json` | `1f8aa2469f22d3fee20ce3cf3618dbc275c81d4f0a6493271a0532eb77e9ae57` |
+      | `sep2060-plain-T-exact-bits.json` | `8a5389e0b74c0d27c5981ac1ca5605b834517f751e83a81b14d8759aa9e557d6` |
+      | `sep2060-orient-T-exact-blas.json` | `b21f217eaa70dfe01da599cac3c260f4cef9436d398833962bc46224298a771f` |
+      | `sep2060-orient-T-exact-bits.json` | `468386dab0c5b6c7c317cdc4f3694113f1a2d8cfac449f2a19ba618209c56694` |
+
+      The two `orient` comparison banks are cert 22's and the four
+      `plain`/`gist` banks cert 07's, all reused unchanged and re-pinned by
+      digest at exactly the values those certificates carry.
+      `data/sep2060-records.json` is not file-pinned by cert 24: it is
+      shared with certs 07 and 22, and the binding pin on it is the
+      canonical digest of each matrix it produces, checked in-run. Banking
+      was by the laboratory's `experiments/pr0042/bank.py` under
+      `--cert 24 --date 2026-09-03` (2026-09-03 UTC, the date the banks' own
+      `banked_note` carries), which adds only the seven header fields that
+      note names and nothing numeric. Cert 24's `--full` has **not** been
+      run in this repository — at this order one leg is of order 15 h and the
+      `blas` route wants ≈ 17.5 GB — so its verdict is an audit of these
+      banks and says so. With these two banks the 2060 statement is no
+      longer row-side.
+- [x] **Cert 25 banks.** 2026-09-03: the two remaining exact 4-profiles at
+      order 1772 — the transposes `(H′)ᵀ` and `(H″)ᵀ` of the Lemma-T `i = 2`
+      rebuild (cert 02's pinned matrix) and of the orientation switch
+      (cert 23's), each in both arithmetics — producer-banked from
+      `Hadamard-2060` under the same
+      `experiments/pr0042/REGISTRATION.md` (flushed 10:17 UTC 2026-09-02,
+      before any matrix it governs was built; §2 lists `H_1772-twisted-T`
+      and `H_1772-orient-T` and no third 1772 transpose, so **`Hᵀ` at 1772
+      was never enumerated** and nothing is claimed about it). Enumerated by
+      the unchanged engine `experiments/inequiv/exact_profile_big.py` on the
+      rented `c2d-highcpu-16` `prof42-1` (`us-east1-b`), 16 threads,
+      2026-09-03: the `orient-T` `blas` leg landed 03:20 UTC in 3 401.2 s at
+      788.0 MB peak and the `twisted-T` `blas` leg by 04:24 UTC in 3 405.4 s
+      at 787.9 MB; the `orient-T` `bits` leg 13:48 UTC in 8 511.5 s at
+      109.6 MB and the `twisted-T` `bits` leg 16:07 UTC in 8 501.5 s at
+      109.5 MB — the last of that instance's worklist, after which it
+      self-deleted. Each pair agrees bin for bin. As for certs 15, 20, 21,
+      22, 23 and 24, the matrices were built AND verified at the desk by
+      `experiments/pr0042/build_matrices.py` — digests in its
+      `manifest.json`, each through this repository's `verify/verify.py` —
+      and only then uploaded; the rented machine enumerated and nothing
+      else. Matrix canonical digests, both re-derived in-run by transposing
+      the rows this repository rebuilds: `(H′)ᵀ` `471f7051…78773238`,
+      `(H″)ᵀ` `0dffc98f…a2568864`. Bank files (full digests pinned in that
+      `run.py` and tabled in its `NOTES.md`):
+
+      | file | sha256 |
+      | --- | --- |
+      | `sep1772-twisted-T-exact-blas.json` | `20507070c8cf28702bc9093b2f5324e0736744959cfed3c7f44ea9900df3d101` |
+      | `sep1772-twisted-T-exact-bits.json` | `673d558086ac938e75ba28c2a2b240edf3737482a07714cdaa33aa419b1300dc` |
+      | `sep1772-orient-T-exact-blas.json` | `960c9a1893accfd9e29eb44febd19226340f4db612188090daaa5a50d222e0b7` |
+      | `sep1772-orient-T-exact-bits.json` | `e2901d9976067293c12794b6cf7cf004af9f044acd2b92d7f1abbad25374e94a` |
+
+      The six comparison banks are cert 23's, reused unchanged and re-pinned
+      by digest. `data/payload-records.json` and
+      `data/twisted-i2-records.json` are not file-pinned by cert 25 either,
+      for cert 23's reason: they are shared with certs 01, 02 and 23, and the
+      binding pin on each is the canonical digest of the matrix it produces,
+      checked in-run — reinforced, for the twisted record, by the `ψ`-twist
+      re-derivation that binds it to `payload-records.json` outright.
+      Banking was by the laboratory's `experiments/pr0042/bank.py` under
+      `--cert 25 --date 2026-09-03`, which adds only the seven header fields
+      each bank's `banked_note` names and nothing numeric. Cert 25's
+      `--full` has **not** been run in this repository — at this order one
+      leg is of order 7–8 h and the `blas` route wants ≈ 11.1 GB — so its
+      verdict is an audit of these banks and says so. With these two banks
+      the 1772 statement is no longer row-side, and **no separation
+      statement in this repository is row-side any longer**: 2060 and 1772
+      were the last two, and certs 24 and 25 settled them on the same day.
+      The PR-0042 campaign ends here — 34 legs, both rented instances
+      self-deleted, ≈ 50.1 instance-hours inside an 80-hour cap.
 - [x] **`CITATION.cff`.** 2026-09-01: `date-released` set to 2026-09-01, the
       flip date. Version left at 0.1.0.
 

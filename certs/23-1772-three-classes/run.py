@@ -17,14 +17,19 @@ orientation switch leaves both classes.
   CORE BLOCKS NEGATED and the 4-row/4-column border unchanged.  Then H''
   is a Hadamard matrix, and it is Hadamard-inequivalent to each of H and
   H'.  With Theorem 1, ORDER 1772 CARRIES AT LEAST THREE HADAMARD
-  EQUIVALENCE CLASSES.  ROW-SIDE ONLY: the transposed profiles at 1772
-  (H''^T, H'^T) are separate legs of the same campaign -- their blas legs
-  are in, their bits legs were still running when this certificate was
-  written, and this repository certifies a profile only once blas and
-  bits agree bin for bin -- so they are not banked here, and NOTHING is
-  claimed under the transpose-extended relation at this order.  This is
-  exactly cert 20's caveat at 1676, which cert 21 later discharged there;
-  a later certificate will do the same at 1772.
+  EQUIVALENCE CLASSES.  ROW-SIDE ONLY IN THIS CERTIFICATE: the transposed
+  profiles at 1772 (H''^T, H'^T) were separate legs of the same campaign
+  -- their blas legs in, their bits legs still running when this
+  certificate was written, and this repository certifies a profile only
+  once blas and bits agree bin for bin -- so THIS certificate banks
+  neither and claims NOTHING under the transpose-extended relation.  That
+  is exactly cert 20's caveat at 1676, which cert 21 discharged there.
+  DISCHARGED HERE TOO, 2026-09-03: the two bits legs landed later the same
+  day and CERT 25 carries this theorem across to the transpose-extended
+  relation (every original vs every transpose, 91 of 92 bins).  Nothing
+  below depends on cert 25, and cert 25 depends on the counts below; with
+  it and cert 24, no separation statement in note/NOTE-B.md is row-side
+  any longer.
 
   PROOF (finite, exact).  The multiset {|T4(i,j,k,l)|} over all
   C(1772,4) = 409 422 905 815 row 4-subsets, with
@@ -902,13 +907,13 @@ def _body(args, t_start):
     check("THEOREM 2: all %d pairs of the %d matrices are separated, so "
           "order 1772 carries AT LEAST THREE classes (row-side)"
           % (len(verdicts), len(classes)), all(verdicts.values()))
-    check("ROW-SIDE ONLY: no transposed 1772 profile is banked in this "
-          "repository, so nothing is claimed under the transpose-extended "
-          "relation here",
+    check("ROW-SIDE ONLY IN THIS CERTIFICATE: it opens no transposed 1772 "
+          "profile, so nothing HERE is claimed under the transpose-extended "
+          "relation",
           not any("-T" in os.path.basename(nm)
                   for (nm, _m) in PROFILES.values()),
-          "(H')^T and (H'')^T are separate legs of the same campaign, "
-          "their bits legs still running")
+          "(H')^T and (H'')^T landed in both arithmetics later on "
+          "2026-09-03; CERT 25 banks them and discharges this caveat")
 
     # ---------------------------------------------------------- clause 5
     print("\n[5] controls")
@@ -1109,10 +1114,13 @@ def _body(args, t_start):
         print("         16-thread machine, under a pre-registration flushed")
         print("         before the matrices were built.  `--full` would be")
         print("         the replay; it has NOT been run here at 1772.")
-    print("         ROW-SIDE ONLY: the transposed profiles at 1772 are a")
-    print("         separate, pending leg and nothing here is claimed under")
-    print("         the transpose-extended relation -- cert 20's caveat at")
-    print("         1676, which cert 21 discharged there.")
+    print("         ROW-SIDE ONLY IN THIS CERTIFICATE: the transposed 1772")
+    print("         profiles were a pending leg when it was written, so")
+    print("         nothing HERE is claimed under the transpose-extended")
+    print("         relation -- cert 20's caveat at 1676, which cert 21")
+    print("         discharged there.  DISCHARGED HERE TOO: both legs")
+    print("         landed in both arithmetics on 2026-09-03 and CERT 25")
+    print("         makes the transpose-extended statement at 1772.")
     print("         REMARK: the GS orientation is not a gauge for Hadamard")
     print("         equivalence at a FOURTH order.  Four instances; no")
     print("         general theorem.  NOT claimed: any general statement")

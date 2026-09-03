@@ -55,11 +55,12 @@ diagonal conjugation of the decoded instance.
 - At **1772**, likewise: the twisted and decoded matrices are proven
   Hadamard-**inequivalent** — the exact 4-profile over all
   `C(1772,4)` row 4-subsets, 57 of 89 bins differing (cert 23,
-  2026-09-03, NOTE-B.md §3.8), row-side only, the transposed 1772
-  profiles being a pending leg. A separate result with its own
+  2026-09-03, NOTE-B.md §3.8) and, since cert 25 the same day, under
+  the transpose-extended relation too. A separate result with its own
   certificate; *this* cert does not prove it and does not depend on
-  it, even though cert 23 rebuilds from this record. With that, all
-  four orders in this table are decided.
+  it, even though certs 23 and 25 rebuild from this record. With that,
+  all four orders in this table are decided, and all four with the
+  transpose in the group.
 - No novelty of existence is claimed at any of these four orders. They
   are long settled; the artifacts exist to instantiate Lemma T.
 

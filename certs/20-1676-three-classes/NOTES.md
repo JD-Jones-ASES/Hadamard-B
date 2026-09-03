@@ -321,9 +321,11 @@ used of it.
 * **Nothing about orders 1772 or 2060.** The same three constructions exist
   at 1772 and the orientation switch exists at 2060; those legs are separate
   computations under the same registration. Not made here, so not said here.
-  *(Both have since been made under that registration — **cert 22** at 2060,
-  2026-09-03, and **cert 23** at 1772, 2026-09-03, each row-side only.
-  Nothing in this certificate rests on either.)*
+  *(Both have since been made under that registration — **cert 22** at 2060
+  and **cert 23** at 1772, both 2026-09-03, each row-side, and both carried
+  across to the transpose-extended relation the same day by **certs 24** and
+  **25**, so that no separation statement in `note/NOTE-B.md` is row-side
+  any longer. Nothing in this certificate rests on any of it.)*
 * **No general statement about `ψ(ρ) = −1`.** That the Lemma-T twist leaves
   the class is proven at 668, 716 and 1676 as of this certificate — four
   orders since cert 23 added 1772. Four orders are four orders; the general

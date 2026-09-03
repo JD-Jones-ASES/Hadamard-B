@@ -346,8 +346,12 @@ and 287 s (cert 15) on the `blas` path; this certificate's, tabled above, took
 * **Nothing at 716, 1676, 1772 or 2060.** `Hᵀ` was computed at 716 for cert 15,
   where the analogous plain-equivalence remark is six matrices from three
   constructions; 1676 and 1772 were still running when this certificate was
-  written; 2060 remains row-side only. Each will carry its own certificate or
-  will not be claimed.
+  written, and 2060's transposes had not started. All have since landed and
+  carry their own certificates (21, 24, 25), and at each of those three
+  orders one transpose was **never** profiled — `Hᵀ` at 1676 and 1772, `Gᵀ`
+  at 2060 — so the eight-class plain-equivalence count below is 668's alone;
+  elsewhere the analogous remark is five matrices, not eight. Nothing here
+  depends on any of that.
 * **No general theorem about transposes.** That `H ≁ Hᵀ` at 668 and at 716 is
   two orders. The structure theorem that makes `Hᵀ` a member of the same family
   is the source laboratory's, cited above, and is not proved, ported or relied

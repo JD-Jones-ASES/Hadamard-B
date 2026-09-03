@@ -21,10 +21,18 @@ exit 0.
 > re-pins this certificate's four bank files at exactly the digests
 > `EXACT_FILE_PINS` carries, so the two cannot drift apart. Nothing in
 > *this* certificate changes: the pair statement, its bank, its controls
-> and its sampled history stand as written. The order remains **row-side
-> only** — the transposed 2060 profiles are pending legs of the same
-> campaign — and cert 22 makes no priority or novelty claim either: the
-> disclosure language below binds it too.
+> and its sampled history stand as written. Cert 22 makes no priority or
+> novelty claim either: the disclosure language below binds it too.
+>
+> **And (2026-09-03, later the same day): the transpose.**
+> `certs/24-transpose-extended-2060` banks `Pᵀ` and `(H″)ᵀ` in both
+> arithmetics and carries the three-class statement — this certificate's
+> pair included — across to the **transpose-extended** relation. The pair
+> `{P, G}` is refuted there by `P ≁ G` (this certificate's 146 of 147)
+> together with `Pᵀ ≁ G` (**134 of 134** — every bin of that union), so the
+> statement below is no longer row-side. `Gᵀ`, the posted matrix's own
+> transpose, was never profiled and nothing is claimed about it. Cert 24
+> re-pins these four bank files too, at the same digests.
 
 ---
 

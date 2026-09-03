@@ -12,6 +12,9 @@ This certificate adds no new matrix and no new construction. It adds **two
 exact 4-profiles** — the transposes of the Lemma-T rebuild and of the
 orientation switch at order 1676 — and with them the statement cert 20
 explicitly withheld: the **row-side only** caveat at this order is discharged.
+This was the **first** such discharge in the repository. Certs 24 (2060) and 25
+(1772) did the same on 2026-09-03, and with them **no separation statement in
+`note/NOTE-B.md` is row-side any longer**; nothing below depends on either.
 
 ---
 
@@ -394,12 +397,16 @@ record; certs 20 and 21 do not, and the word *replayed* is not used of them.
   it, and the plain-equivalence count is "at least five exhibited", not eight.
 * **Nothing at 1772 or 2060.** The same registration governs the orientation
   switches and transposed profiles at those orders; they are separate
-  computations and will carry their own certificates or they will not be
-  claimed. Order 2060 is, as of this certificate, the **only** order in
-  `note/NOTE-B.md` whose separation statement is row-side only. *(Both
-  row-side statements have since been made — **cert 22** at 2060 and **cert
-  23** at 1772, both 2026-09-03 — so those two orders are now the row-side
-  pair; nothing here rests on either.)*
+  computations and carry their own certificates. Order 2060 was, as of this
+  certificate, the **only** order in `note/NOTE-B.md` whose separation
+  statement was row-side only. *(All of that has since been settled, and
+  nothing here rests on any of it: **certs 22** at 2060 and **23** at 1772
+  made the row-side three-class statements on 2026-09-03, and **certs 24**
+  and **25** discharged both caveats the same day — 2060 by `Pᵀ` vs `G`
+  **134 of 134**, `P` vs `(H″)ᵀ` 145 of 146 and `G` vs `(H″)ᵀ` **134 of
+  134**; 1772 by **91 of 92** on every original-versus-transpose leg. So
+  **1676 was the first order where a row-side caveat was discharged — this
+  certificate — and since 2026-09-03 the note has none left.**)*
 * **No general theorem.** That the `ψ(ρ) = −1` twist and the orientation switch
   land in different classes — and stay apart with the transpose in the group —
   is now known at three orders (668, 716, 1676). Three orders are three orders.

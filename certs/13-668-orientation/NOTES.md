@@ -162,10 +162,11 @@ than the exact profile could have found this.
 * Nothing under the transpose-extended relation for `H″`.
 * Nothing about the orientation switch at 1772 — the same construction
   exists there and the same computation costs about 130× this one. (It has
-  since been made: cert 23, 2026-09-03, row-side only. So have the 716
-  instance, ≈1.4× this one, and the 1676 instance, ≈98× this one — cert 14
-  and cert 20, both 2026-09-02. Nothing in this certificate depends on any
-  of them.)
+  since been made: certs 23 and 25, 2026-09-03, the second carrying it to
+  the transpose-extended relation. So have the 716 instance, ≈1.4× this one,
+  and the 1676 instance, ≈98× this one — cert 14 and cert 20, both
+  2026-09-02, with certs 15 and 21 for the transpose. Nothing in this
+  certificate depends on any of them.)
 * No claim that four is the number of classes at 668, and no priority claim
   of any kind: order 668 is settled by the publicly posted matrix; this
   certificate counts classes among artifacts banked here.

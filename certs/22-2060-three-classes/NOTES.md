@@ -13,6 +13,13 @@ order: the orientation switch of the plain Goethals–Seidel realisation, in
 both arithmetics. With cert 07's pair it upgrades order 2060 from **two**
 classes to **three**.
 
+> **Superseded in scope, not in content, the same day: [cert
+> 24](../24-transpose-extended-2060/NOTES.md) (2026-09-03)** banks the two
+> transposed 2060 profiles and carries this three-class theorem across to the
+> **transpose-extended** relation. The row-side label below is this
+> certificate's own and stays; it is no longer a caveat on the note's 2060
+> statement.
+
 ---
 
 ## The theorem
@@ -94,28 +101,37 @@ orientation switch**. Four orders now carry that verdict (668, 716, 1676,
 2060). Four orders are four orders: **no general theorem** about orientation is
 claimed, here or anywhere in this repository.
 
-## Row-side only — the caveat this certificate keeps
+## Row-side only — the caveat this certificate keeps, and where it was discharged
 
 **Nothing here is claimed under the transpose-extended relation.** The
 transposed profiles at 2060 — `H_2060-orient-T` and `H_2060-plain-T`, both in
-the campaign's object list (`REGISTRATION.md` §2) — are **separate legs of the
+the campaign's object list (`REGISTRATION.md` §2) — were **separate legs of the
 same campaign, still running when this certificate was written**, and neither
 is banked here. Transpose is **not** in the equivalence group
 (`note/NOTE-B.md` §3), so a row-side separation says nothing about `A ≈ B` on
 its own; refuting `A ≈ B` needs `profile(A) ≠ profile(B)` **and**
-`profile(A) ≠ profile(Bᵀ)`, and the second refutation does not exist here for
-any of the three pairs.
+`profile(A) ≠ profile(Bᵀ)`, and the second refutation does not exist *in this
+certificate* for any of the three pairs.
 
-This is **exactly cert 20's caveat at 1676**, which cert 21 later discharged
-there once the two transposed profiles landed. Order 2060 was the only
-row-side statement in `note/NOTE-B.md` before this certificate and remained the
-only one after it — the count changes from two to three; the caveat does not
-move. *(Since cert 23, 2026-09-03, order 1772's statement is row-side too;
-nothing here rests on it.)* `run.py` asserts in clause [4] that no transposed 2060 profile is among
-the banks it reads, so the caveat cannot be quietly dropped by adding a file.
+This is **exactly cert 20's caveat at 1676**, which cert 21 discharged there
+once the two transposed profiles landed. `run.py` asserts in clause [4] that no
+transposed 2060 profile is among the banks **it** reads, so the caveat cannot
+be quietly dropped by adding a file.
 
-Nor is anything claimed about `P` versus `Pᵀ`, or `G` versus `Gᵀ`, or `H″`
-versus `(H″)ᵀ`: cert 19 decided the analogous question at **668 only**.
+> **Discharged, 2026-09-03 — cert 24.** Both 2060 transpose legs landed in both
+> arithmetics later the same day (`orient-T` 07:55 UTC, `plain-T` 14:32 UTC),
+> and **cert 24** carries this theorem across to the transpose-extended
+> relation: `Pᵀ ≁ G` **134 of 134** for the pair, `P ≁ (H″)ᵀ` 145 of 146 (with
+> `Pᵀ ≁ H″` 145 as the second route) for `{P, H″}`, and `G ≁ (H″)ᵀ` **134 of
+> 134** for `{G, H″}`. Nothing in this certificate depends on that one; cert 24
+> depends on the three counts established here. With cert 25 at 1772, published
+> the same day, **no separation statement in `note/NOTE-B.md` is row-side any
+> longer.**
+
+Nothing is claimed here or in cert 24 about `G` versus `Gᵀ`: the posted
+matrix's transpose was never profiled, and cert 19 decided the analogous
+question at **668 only**. Cert 24 does profile `Pᵀ` and `(H″)ᵀ`, and finds each
+of `P` and `H″` inequivalent to its own transpose (145 of 146 bins apiece).
 
 ## The trust boundary — what a default run does and does not establish
 
@@ -405,18 +421,23 @@ comparison: **6 631.0 s `blas` / 17 654.7 s `bits` on 16 rented threads** for
 `H″`, against cert 07's **15 691 s / 30 646 s on three desk threads** for `P` —
 so even the memory-aware canonical-split engine is 4–9 desk-hours per leg here.
 Certs 06, 08, 11, 13, 14, 15 and 19 each have an in-repo `--full` `blas` leg on
-the record; certs 20, 21 and 22 do not, and the word *replayed* is not used of
-them.
+the record; certs 20, 21, 22, 23, 24 and 25 do not, and the word *replayed* is
+not used of them.
 
 ## What is NOT claimed
 
 * **Nothing under the transpose-extended relation.** `H_2060-orient-T` and
-  `H_2060-plain-T` are pending legs of the same campaign; neither is banked
-  here. Order 2060 was, when this certificate was written, the only row-side
-  separation statement in `note/NOTE-B.md`, exactly as cert 20 left 1676
-  before cert 21 *(since cert 23, 1772's statement is row-side too)*.
+  `H_2060-plain-T` were pending legs of the same campaign when this
+  certificate was written; neither is banked here. Order 2060 was, at that
+  moment, the only row-side separation statement in `note/NOTE-B.md` — 1772's
+  became one later the same day with cert 23 — exactly as cert 20 left 1676
+  before cert 21. **Cert 24 discharged this one on 2026-09-03**, and cert 25
+  discharged 1772's the same day, so none is left; the statement made *here*
+  is still the row-side one, and cert 24 is where the other lives.
 * **Nothing about any matrix versus its own transpose at 2060.** Cert 19
-  decided that question at 668 and at 668 only.
+  decided that question at 668 and at 668 only. *(Cert 24 later profiled `Pᵀ`
+  and `(H″)ᵀ` and separated each from its original in 145 of 146 bins; `Gᵀ`
+  remains unprofiled and unclaimed.)*
 * **The default run recomputes nothing.** Only `--full` would bind a bank to a
   matrix by computation, and **no `--full` leg has been run in this repository
   at 2060** — nor, for the four cert-07 banks, has one ever been.

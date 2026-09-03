@@ -6,13 +6,23 @@ Standard library only, about six seconds, exit 0, 132 checks. That run
 **audits a banked exact computation**; `--full` is offered and priced below
 and **has not been run in this repository at this order**. The trust
 boundary is the one certs 11, 13, 14, 20 and 22 draw, and is set out below.
-**Row-side only**: the transposed profiles at 1772 are a separate leg of the
-same campaign — their `blas` legs are in, their `bits` legs were still
-running when this certificate was written, and this repository certifies a
-profile only once `blas` and `bits` agree bin for bin — so they are not
-banked here and **nothing at all is claimed under the transpose-extended
-relation at this order**. That is exactly cert 20's caveat at 1676, which
-cert 21 later discharged there; a later certificate will do the same here.
+**Row-side only, in this certificate**: the transposed profiles at 1772 were
+a separate leg of the same campaign — their `blas` legs in, their `bits`
+legs still running when this certificate was written, and this repository
+certifies a profile only once `blas` and `bits` agree bin for bin — so they
+are not banked here and **nothing at all is claimed here under the
+transpose-extended relation**. That is exactly cert 20's caveat at 1676,
+which cert 21 discharged there.
+
+> **Discharged the same day: [cert
+> 25](../25-transpose-extended-1772/NOTES.md) (2026-09-03)** banks `(H′)ᵀ`
+> and `(H″)ᵀ` in both arithmetics — the `bits` legs landed 13:48 and 16:07
+> UTC — and carries this three-class theorem across to the
+> **transpose-extended** relation: every original differs from every
+> transpose in **91 of the 92** bins of the union support. Nothing in this
+> certificate depends on that one; cert 25 depends on the three counts
+> established here. With cert 24 at 2060, published the same day, **no
+> separation statement in `note/NOTE-B.md` is row-side any longer.**
 
 ---
 
@@ -336,18 +346,21 @@ and this one do not, and the word *replayed* is not used of them.
 * The default run recomputes nothing; only `--full` would bind a bank to a
   matrix by computation, and **no `--full` leg has been run in this
   repository at 1772**.
-* **Row-side only.** The transposed profiles at 1772 **are not banked
-  here** — they are a separate leg of the same campaign, complete in `blas`
-  but not in `bits` when this certificate was written, and this repository
-  certifies a profile only once `blas` and `bits` agree bin for bin — so
-  **nothing here is claimed under the transpose-extended relation**, unlike
-  668 (certs 08, 15, 19), 716 (cert 15) and 1676 (cert 21). Refuting
-  `A ≈ B` needs both `A ≁ B` and `A ≁ Bᵀ`, and only the first is in hand at
-  this order. Nor is anything said about `H` versus `Hᵀ` at 1772: `Hᵀ` was
-  never profiled (cert 19 decides that question at 668 and at 668 only).
+* **Row-side only, here.** The transposed profiles at 1772 **are not banked
+  in this certificate** — they were a separate leg of the same campaign,
+  complete in `blas` but not in `bits` when it was written, and this
+  repository certifies a profile only once `blas` and `bits` agree bin for
+  bin — so **nothing here is claimed under the transpose-extended
+  relation**, unlike 668 (certs 08, 15, 19), 716 (cert 15) and 1676
+  (cert 21). Refuting `A ≈ B` needs both `A ≁ B` and `A ≁ Bᵀ`, and only the
+  first is in hand *here*. **Cert 25 supplies the second on 2026-09-03**
+  (91 of 92 bins on every original-versus-transpose leg), so the order's
+  statement is no longer row-side even though this certificate's is. Nothing
+  is said in either about `H` versus `Hᵀ` at 1772: `Hᵀ` was never profiled
+  (cert 19 decides that question at 668 and at 668 only).
 * **Nothing about order 2092**, and nothing about any order not computed.
-  Order 2060's own three-class statement is cert 22's, and is likewise
-  row-side.
+  Order 2060's own three-class statement is cert 22's, row-side like this
+  one, and cert 24's is its transpose-extended form.
 * **No general statement about `ψ(ρ) = −1`.** That the Lemma-T twist leaves
   the class is now proven at 668, 716, 1676 and 1772. Four orders are four
   orders; the general claim stays unclaimed.
