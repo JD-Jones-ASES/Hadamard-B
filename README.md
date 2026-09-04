@@ -242,7 +242,33 @@ python certs/22-2060-three-classes/run.py
 python certs/23-1772-three-classes/run.py
 python certs/24-transpose-extended-2060/run.py
 python certs/25-transpose-extended-1772/run.py
+python certs/30-general-branch-sigma/run.py
+python certs/31-s2-column-table/run.py
+python certs/32-good-product-theorem/run.py
 ```
+
+Certificates 30, 31 and 32 were added 2026-09-05 and carry the
+**general branch** and the **good-matrix product theorem**. Cert 30
+banks the six general-branch coset-sum tables at `N = 2092` — the
+`(11,16)`, `(7,12)` and `(3,8)` cells — re-deriving every `M`, `F`,
+aggregate PAF and Fourier budget from the spectral support alone, with
+the support enumerations proved complete and the `(3,8)` cell shown to
+coarsen onto the house `(3,4)` profile. Cert 31 computes the
+admissible block alphabet at `(7,12)` by two membership tests sharing
+no code, kills `(7,12)/S3` at **every** order `4(12w+7)`, verifies an
+admissible column table at `(7,12)/S2` and proves its per-superblock
+block multiset forced, and re-multiplies the row-factorisation lemma
+and its dual form (`note/NOTE-B.md` §1.12) on this repository's own
+kits. Cert 32 carries the small-order controls for the product theorem
+of §1.13 — 9 936 good quadruples at `n = 7…15` by complete
+meet-in-the-middle, 14 784 Williamson quadruples as the control that
+separates skew from symmetric, and the closure sign recomputed at
+`n = 7` and `n = 523`. All three are standard-library, exact-integer,
+complete on the default path, and run in about a second each; none has
+a `--full`, and **none of them says anything about `H(2092)`** —
+neither the σ-layer nor a column table nor a dead border tier is an
+existence statement, and no seed quadruple is known at any of these
+cells.
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only
 if the matrix is square, has every entry in {+1, −1}, and satisfies

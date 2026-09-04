@@ -795,3 +795,84 @@ canonical matrix digests of cert 18 were first computed upstream; they are
 re-derived here from `data/cell24-records.json` at certificate run time, by
 `verify/verify.py`, on every run. As everywhere else in this repository,
 the source laboratory is **not** part of the trust chain.
+
+## Certificates 30, 31 and 32 — where the mathematics and the artifacts came from (2026-09-05)
+
+The general branch entered this repository on **2026-09-05**, as a port of
+three results proved and certified in the source laboratory (`Hadamard-2060`,
+private) on **2026-09-04**. Each step below names the station that produced
+it, in the house's usual order: what a station *ran* is separable from what it
+*concluded*, and only artifacts that certify themselves crossed over.
+
+**The six general-branch σ-tables (cert 30, `data/general-branch-sigma-tables.json`).**
+Produced by the **Sol station**, an external reviewer, in a consult reply
+dated **2026-09-03**, together with a companion table file; both were relayed
+to the source laboratory and **banked there verbatim in the intake lane's
+first commit, before any checking code existed**. The source laboratory's own
+certificate re-derived every claim about them from the spectral support alone,
+and its desk replayed that certificate before adopting it. The port repeats
+the exercise independently: `certs/30-general-branch-sigma/run.py` recomputes
+`M_S` and `F` from `(S, i, w)`, computes every PAF and every character sum
+twice by paths that share no code, and reads the station's own `M` and `F`
+vectors **only to compare them against what it computed**. The support
+enumerations of §2.6, the `(3,8)` collapse and the transport onto the house
+`(3,4)` profile are this repository's own computations. No conclusion of the
+station's is an input to any statement here.
+
+**The `(7,12)/S2` column table (cert 31, `data/q-7_12-S2.json`).** Found in
+the source laboratory on **2026-09-04** by a desk search lane, *after* an
+earlier depth-first search there had failed to find one and had recorded the
+cell as OPEN under a **BOUNDED-NEGATIVE-SEARCH** label. The forced-multiset
+lemma is what made the second search complete, and it is re-derived here from
+scratch by exact `Fraction` elimination. Nothing about either search is
+trusted in this repository: a witness certifies itself, and the run recomputes
+the admissible block alphabet by two independent membership tests, re-checks
+every inner product of `QᵀQ` and `QQᵀ`, and re-solves the multiset system.
+The `(7,12)/S3` kill is likewise re-derived here from the alphabet, with three
+independent obstructions, and is a theorem about **every** order
+`4(12w + 7)` — the artifact is the alphabet, and it is recomputed on every
+run.
+
+**Theorem F in the general branch, the row-factorisation lemma, and the dual
+form (`note/NOTE-B.md` §1.12).** The general-branch reading of Theorem F and
+the row-factorisation lemma were proved by a **desk lane of the source
+laboratory** on 2026-09-04 and adopted there with a written proof and a desk
+replay. The **dual form** — `p` flat `⟺ Ĉp ∈ Q·{±1}^{4s}`, with
+`P = −(1/4s)·E·Qᵀ·Ĉ` — first appeared as a two-line remark in that
+laboratory's desk note of the same evening, labelled *"PROVEN modulo a lane
+re-derivation"*; it was **re-derived here** from the lemma before being
+stated, and the proof printed in §1.12 is this repository's. It is checked in
+cert 31 [F] against this repository's own kits, at `(2,4)` exhaustively over
+every admissible row.
+
+**The good-matrix product theorem (`note/NOTE-B.md` §1.13, cert 32).** The
+**statement** came from the **Sol station**, in the same 2026-09-03 consult
+reply, and it was **wrong as given**: the identity holds under that reply's
+normalisation `b₀ = c₀ = d₀ = +1` and is false without it. The general form,
+with the prefactor `−(b₀c₀d₀)`, and the group-ring proof printed in §1.13 —
+the reply supplied none — are the **source laboratory's**, found and machine
+checked by its intake lane on 2026-09-04 and adopted there with the correction
+recorded. The closure sign law and its arithmetic at `n = 7` and `n = 523`
+were re-derived in the **desk audit** of that laboratory's Cursor lane
+`PR-0051`; only that audit's own re-derivations are cited here, and cert 32
+recomputes all of it from the definition of `ℤ_n^*`. The small-order
+enumerations are re-run here from scratch: 9 936 good quadruples and 14 784
+Williamson quadruples, by meet-in-the-middle over **all** seeds with `b₀`
+free. One difference from the source laboratory's decision text is recorded
+for the reader: its Williamson control cites "48 of 960 at `n = 7`" for the
+doubling relation — that count belongs to the *unprefixed* variant
+`a_{2k} = −a_kb_kc_kd_k`, and the theorem's own prefixed form holds in **0**
+of all 14 784, at every order including `n = 7`. Cert 32 reports both.
+
+Also recorded, and not adopted: the source laboratory has an unaudited lane
+generalising the forced-multiset derivation to further supports at `(7,12)`
+and `(11,16)`. Nothing from it is banked here.
+
+As everywhere else in this repository, the source laboratory is **not** part
+of the trust chain, and neither is any external station. Every number in
+certs 30, 31 and 32 is recomputed from `data/` on every run.
+
+| file | sha256 |
+| --- | --- |
+| `general-branch-sigma-tables.json` | `d2c37aace3bf016dc245a26c3fe7a2bd4aa524aafc874ba717c7e562d98c4a97` |
+| `q-7_12-S2.json` | `e23e1ab73feffa2d948aa0e91777b2799f6a0c51b0b13e495dc25775b13caffb` |
