@@ -79,8 +79,9 @@ group of a hypothetical **cocyclic** `H(2092)` from twenty-four
 de Launey–Flannery–Horadam equivalence, which is cited, not
 re-derived, and claiming nothing about existence in either surviving
 group. **Lemma F** (NOTE-B.md §1.11; cert 29) forces a 16-block
-circulant array at `p = 523` — not "the Williamson array", and not a
-shape the Goethals–Seidel array has — and, applied to the per-row
+circulant array on any `H(2092)` admitting an automorphism of order
+`p = 523` — not "the Williamson array", and not a shape the
+Goethals–Seidel array has — and, applied to the per-row
 `|T4|` classes of the banked records, shows that **no odd prime acts
 on `H(668)`, `H′(668)`, `H″(668)` or `H(716)`**: their automorphism
 groups are 2-groups.

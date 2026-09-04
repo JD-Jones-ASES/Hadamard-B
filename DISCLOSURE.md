@@ -59,6 +59,25 @@ separation statement in this repository is row-side any longer.**
 Nothing is claimed at any order about a matrix versus its *own*
 transpose beyond 668, where it was decided: `Hᵀ` at 1676 and at 1772,
 and `Gᵀ` at 2060, were never profiled.
+Added 2026-09-05: **Theorem T**, that the coset-border family is
+closed under transposition — branch-free, at every cell and every
+`w` — together with remark R, which fixes exactly when the
+border-kept orientation switch is again Hadamard (**PROVEN** +
+**PROVEN-BY-CERTIFICATE**, cert 26); **Sylow-2 rigidity**, cutting
+the extension group of a hypothetical *cocyclic* `H(2092)` from
+twenty-four `(E, e*)` pairs to two (**PROVEN** +
+**PROVEN-BY-CERTIFICATE**, cert 27, conditional throughout on the
+cited de Launey–Flannery–Horadam equivalence); **Lemma F** and the
+records theorem — an automorphism of order `p = 523` would force a
+16-block circulant array on an `H(2092)`, and no automorphism of odd
+prime order acts on `H(668)`, `H′(668)`, `H″(668)` or `H(716)`, whose
+automorphism groups are therefore 2-groups (**PROVEN** +
+**PROVEN-BY-CERTIFICATE**, cert 29); and the `(2,4)` **existence
+theorem**, that the border is never the obstruction at that cell, at
+every `w` (**PROVEN** + **PROVEN-BY-CERTIFICATE**, cert 28). Both
+`H(2092)` statements are **conditional** — constraints on the shape
+such a matrix would have to have — and neither asserts, or bears on,
+existence at 2092.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
@@ -109,11 +128,18 @@ file digest, the matrix binding where the bank declares one, the
 forced congruence, the total, the second moment, and agreement
 between two independent implementations — and the word *replay*
 belongs to the optional `--full` paths of certs 06, 08, 11, 13, 14,
-15, 19, 20, 21, 22, 23, 24 and 25, which recompute those profiles from
-the matrices rebuilt in the same run.
+15, 19, 20, 21, 22, 23, 24, 25 and 29, which recompute those profiles
+from the matrices rebuilt in the same run. Cert 29 is the one
+exception to the shape of that audit: what its default path checks is
+not a banked profile in `data/` but a **pinned summary** — four lines
+— of a per-row `|T4|` class partition computed at the source
+laboratory, together with the four matrices rebuilt from `data/` at
+their pinned digests; the partition itself is in no file here, and
+cert 29's `--full` is what recomputes it.
 The default path of every certificate uses nothing outside the
-standard library and nothing on the network; those thirteen `--full`
-recomputations use numpy on the finder side only, and they are the
+standard library and nothing on the network; the first thirteen of
+those `--full` recomputations use numpy on the finder side only —
+cert 29's is standard-library, like the rest of it — and they are the
 only numpy anywhere in the repository. Certs 20's, 21's, 22's, 23's,
 24's and 25's
 have not been run: at order 1676 one leg is of order 6–7 hours — 52× cert 14's

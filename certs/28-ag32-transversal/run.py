@@ -523,8 +523,8 @@ def main():
     say("the 30 x 7 (structure, translation) relative positions of the census meet %d of the %d orbits" % (len(met), len(orbits)),
         len(met) == len(orbits))
 
-    print("\n(7) end to end: borders built by this construction for cert 0022's H(88) seed quadruples, verify.py")
-    # seeds as banked in certs/0022-cell24-instances/run.py (from cell24/common.py DESK_SEEDS_20)
+    print("\n(7) end to end: borders built by this construction for cert 18's H(88) seed quadruples, verify.py")
+    # seeds as banked in certs/18-cell24-instances/run.py (from cell24/common.py DESK_SEEDS_20)
     instances = [
         dict(name="H88_seed0_rho0", n=20, rho=0,
              seeds=["+--++-+-++++-+++++--", "-++----+-+-----+++-+", "++-++-+--++----+-+-+", "-----++++---+--+-+--"]),

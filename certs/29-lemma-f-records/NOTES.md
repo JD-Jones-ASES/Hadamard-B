@@ -46,8 +46,8 @@ no odd `|G|` has.
 `f ≡ N (mod p)` and `0 ≤ f ≤ N/p` exists (`f = 0` only when `p | N`). At 2092
 that leaves **22** odd primes and excludes **293**, among them 131 and 349. A
 constant-strip multi-block border with four fixed rows needs `4 | b`, since
-`|(AAᵀ)_{rr′}| ≤ 4 < m` forces `(BBᵀ)_{rr′} = 0` and makes `B` a `4×b` partial
-Hadamard matrix.
+`|(AAᵀ)_{rr′}| ≤ 4 < p` forces `(BBᵀ)_{rr′} = 0` (every odd prime but 3) and
+makes `B` a `4×b` partial Hadamard matrix.
 
 ## The records
 

@@ -1173,7 +1173,8 @@ off-diagonal part — which covers every `H″` this note names, the 668,
 716, 1676 and 1772 records — and it is **false in general**: at `(3,4)`
 the order-1916 record's `H″` fails `verify/verify.py`, and so do the
 `(5,6)` record at 1388 and the `(7,8)` record at 1436 (cert 26 [4],
-which evaluates the condition and the verdict on all seven records and
+which evaluates the condition and the verdict on all seven records —
+668, 716 and 1916 by default, the other four under `--full` — and
 asserts that they agree). The general orientation switch is
 `S̃₀₁·BGS(x₀, −x₁, x₂, x₃; ρ; E, PS′, S′Q)·S̃₀₁`, Hadamard only when the
 tables re-satisfy (H4). **Wherever `H″` or `(H″)ᵀ` is called a Hadamard
@@ -1221,10 +1222,12 @@ differ by a `±1` diagonal that changes no class and no profile.)
 census over eleven instances this repository can build — five
 Williamson-seeded `GS(4t)` at `t = 7, 9, 11, 13, 15`; the `(1,2)` gate
 instance at 52; the `(1,1)` non-scalar record at 76; and the four
-`(2,4)` matrices of §2.3 — each decided by the exact `|T4|` 4-profile of
-`H` against that of `Hᵀ`, which is an equivalence invariant (§3.1,
-**I5**). Seven are **proved** inequivalent to their own transpose; four
-are **undecided by the profile**, and are reported as undecided.
+`(2,4)` matrices of §2.3, the two `H(88)` of them under `--full` (the
+default path reports nine instances, five separated) — each decided by
+the exact `|T4|` 4-profile of `H` against that of `Hᵀ`, which is an
+equivalence invariant (§3.1, **I5**). Seven are **proved** inequivalent
+to their own transpose; four are **undecided by the profile**, and are
+reported as undecided.
 Agreement of an invariant is a failure to separate and never a proof of
 equivalence, and no isomorphism search is run in this repository. The
 source laboratory ran a wider 44-instance census whose equal-profile
@@ -1383,8 +1386,8 @@ this note could have; it is a constraint on a differently-shaped
 `f ≡ N (mod p)` and `0 ≤ f ≤ N/p` exists (`f = 0` only when `p | N`). At
 `N = 2092` that leaves **22** odd primes and excludes **293**, among
 them 131 and 349. A constant-strip multi-block border with four fixed
-rows needs `4 | b`: `|(AAᵀ)_{rr′}| ≤ 4 < m` forces `(BBᵀ)_{rr′} = 0`, so
-`B` is a `4×b` partial Hadamard matrix.
+rows needs `4 | b`: `|(AAᵀ)_{rr′}| ≤ 4 < p` forces `(BBᵀ)_{rr′} = 0`
+(every odd prime but 3), so `B` is a `4×b` partial Hadamard matrix.
 
 **The records.** For row `i` of a Hadamard matrix let `π(i)` be the
 multiset of `|T4(i,j,k,l)|` over 3-subsets of the other rows (§3.1). A
@@ -1691,11 +1694,15 @@ with both products in `{±1}` is a border. So a kit exists **iff** such a
 `W` exists.
 
 **(3) Admissible rows.** Column signed permutations of `Q′` do not
-change `(1/2)wQ′ ∈ {±1}`, so take `Q′` signed-Sylvester. Exhausting all
-256 sign functions on `𝔽₂³`: the Walsh spectrum is supported on exactly
-4 points with values `±4` **iff** the support is one of the 14 affine
-planes and the signing has an odd number of minus signs — `112 = 14 × 8`
-functions. So `supp(w)` is a plane of the affine structure `A(Q′)`, and
+change `(1/2)wQ′ ∈ {±1}`, so take `Q′` signed-Sylvester up to a
+relabelling of the eight columns of `Qᵀ` — i.e. identify the label set
+with `𝔽₂³` through `Q′`'s own affine structure `A(Q′)`, which is one of
+the 30 (§2.4); step (6) is uniform over all 105 matchings, so the choice
+of structure is immaterial. Exhausting all 256 sign functions on
+`𝔽₂³`: the Walsh spectrum is supported on exactly 4 points with values
+`±4` **iff** the support is one of the 14 affine planes and the signing
+has an odd number of minus signs — `112 = 14 × 8` functions. So
+`supp(w)` is a plane of the affine structure `A(Q′)`, and
 `w = d ∘ (±(1 − 2e_u))` for some `u` in that plane.
 
 **(4) Transversality.** `(1/2)WC* ∈ {±1}` iff each row support meets
@@ -2856,7 +2863,7 @@ understood.
 | **order 2060 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the orientation switch `H″` of the plain GS realisation — unbordered, `s = 0`, twelve `515`-blocks negated — against `P` in 107 of the 145 bins they share and against the posted `G` in 146 of 147; two independent implementations per matrix; cert 22, 2026-09-03). Cert 22 was **row-side only**; cert 24 discharges that caveat the same day, below. Neither has an in-repo `--full` leg: one is ≈ 15 h on the measured scaling (≈ 22 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 17.5 GB |
 | the three-class theorem at 2060 under the transpose-extended relation — **and with it, no separation statement in this note is row-side any longer** | **PROVEN + PROVEN-BY-CERTIFICATE** (all three pairs carry both refutations, from the two transposed profiles banked 2026-09-03; cert 24: `Pᵀ` vs `G` **134 of 134** — every bin of that union — for the pair, `P` vs `(H″)ᵀ` 145 of 146 and `Pᵀ` vs `H″` 145 for `{P, H″}`, and `G` vs `(H″)ᵀ` **134 of 134** for `{G, H″}`). Under plain equivalence the five profiled matrices `P, G, H″, Pᵀ, (H″)ᵀ` are pairwise inequivalent — at least five classes exhibited, a remark and not the count. `Gᵀ` was **not** profiled, so nothing is said about the posted matrix versus its own transpose, and the two pairs involving `G` each have exactly one of the two routes available |
 | **Theorem T** (§1.9): `Hᵀ = D̃·BGS(x₀∘(−), −x₁, x₂, x₃; ρ; Eᵀ, (S′Q)ᵀ, (PS′)ᵀ)·D̃`, so the coset-border family is closed under transposition — **branch-free**, at every `(s,i)` and every `w`, by the *only if* half of Theorem A; and `(H″)ᵀ = BGS(x₀∘(−), x₁, x₂, x₃; ρ; Eᵀ, Qᵀ, Pᵀ)` exactly | **PROVEN** (paper-grade) **+ PROVEN-BY-CERTIFICATE** (both identities checked entrywise on 30 cores over ten groups, on 12 arbitrary bordered shapes satisfying none of (H1)–(H4), and on the banked records at 668, 716, 1916 by default and 1388, 1436, 1676, 1772 under `--full`, which has been run in this repository; the three T-images through `verify/verify.py` at pinned digests; cert 26) |
-| **Remark R** (§1.9): the border-kept orientation switch `H″` is Hadamard **iff** `P` annihilates the off-diagonal part of `Ĉ` — automatic at `(1,1)`, false in general | **PROVEN** (subtract (H4) for `H″` from (H4) for `H`) **+ PROVEN-BY-CERTIFICATE** (the condition and `verify/verify.py`'s verdict on `H″` agree on all seven banked records: both true at 668, 716, 1676, 1772, both false at 1916, 1388, 1436; cert 26 [4]). Every `H″` named in §3 is at `(1,1)`, where the condition holds |
+| **Remark R** (§1.9): the border-kept orientation switch `H″` is Hadamard **iff** `P` annihilates the off-diagonal part of `Ĉ` — automatic at `(1,1)`, false in general | **PROVEN** (subtract (H4) for `H″` from (H4) for `H`) **+ PROVEN-BY-CERTIFICATE** (the condition and `verify/verify.py`'s verdict on `H″` agree on all seven banked records — 668, 716 and 1916 on the default path, the other four under `--full` — both true at 668, 716, 1676, 1772, both false at 1916, 1388, 1436; cert 26 [4]). Every `H″` named in §3 is at `(1,1)`, where the condition holds |
 | `H ~ Hᵀ` iff the class of `H` is a fixed point of the involution `T` (§1.9); no structural *sufficient* condition, and **all four seeds symmetric does not suffice** | **PROVEN** (the reduction, from Theorem T) **+ COMPUTATIONAL-EVIDENCE** (the small-order census, 11 instances built here: 7 proved inequivalent to their own transpose — including Williamson-seeded `GS(44)` and `GS(60)`, which refutes the sufficiency claim — and 4 undecided by the profile, reported as undecided; cert 26 [6]). The source laboratory's wider 44-instance census used a finder-side isomorphism search and is **cited, not replayed** |
 | **Sylow-2 rigidity** (§1.10): for `t` an odd prime `> 7`, the Sylow-2 of the extension group is not `ℤ₈` or `D₄`; `ℤ₂³` and `ℤ₄×ℤ₂` force `t` a square or a sum of two squares; at `t = 523` only `Q₈`, so `E ∈ {Q₈×ℤ₅₂₃, Q₄₁₈₄}` — two of the twenty-four `(E, e*)` pairs, and `\|E\| = 2N = 4184` | **PROVEN** (paper-grade; the projected row-sum system in `ℤ[P]`, the five cases, the 12-group / 24-pair census) **+ PROVEN-BY-CERTIFICATE** (two implementations of the projected system agreeing on every odd 4-tuple in the box; the rule against brute-force existence at every odd `t ≤ 201` and at 523, 1326 cells, with 8384 solutions at `Q₈`; cert 27) |
 | "RDS ⟺ cocyclic Hadamard matrix" (§1.10) | **CITED** (de Launey–Flannery–Horadam 2000, with Flannery 1997) — not re-derived, and every statement in §1.10 is conditional on it |
