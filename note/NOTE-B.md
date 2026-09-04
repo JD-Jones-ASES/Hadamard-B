@@ -16,14 +16,26 @@ This note is the mathematics of the repository, in three movements:
   condition `E ∈ {±1}` and makes a kit an order-independent object,
   with the exhaustive `(3,4)` census that makes that cell
   **one-layer** — at 2092 a seed quadruple *is* the matrix
-  (Theorem F, §1.8); and the complete resolution of the `s = 1`
-  border system.
+  (Theorem F, §1.8); the complete resolution of the `s = 1`
+  border system; and three theorems added 2026-09-05 — that the
+  family is **closed under transposition** on displayed data, at
+  every cell and every `w` (Theorem T, §1.9), so the transposed
+  matrices §3 profiles are records of the same family; a
+  **Sylow-2 rigidity** theorem that cuts the extension group of a
+  hypothetical *cocyclic* `H(2092)` from twenty-four `(E, e*)`
+  pairs to two (§1.10); and **Lemma F**, which forces a
+  16-block circulant array at `p = 523` and, on the banked
+  668 / 716 records, shows that **no odd prime acts** — their
+  automorphism groups are 2-groups (§1.11).
 - **II. The instances** (§2) — twelve publicly posted matrices
   re-verified through the theorem's hypotheses, and twelve matrices
   constructed here, every one replayable from `certs/`. Four of them
   inhabit the **even-`s`** branch of the rigidity theorem, at the
   cell `(s,i) = (2,4)` outside the house form (§2.3), where the
-  border layer is proved never to obstruct (§2.4).
+  border layer is proved never to obstruct — twice over, once by
+  an exhaustive 215 040-class census (§2.4) and once by a
+  structural theorem that reduces (H4) to a weighing matrix of
+  signed affine planes (§2.5).
 - **III. Existence plus separation** (§3) — a proof that order 668
   carries at least **four** Hadamard equivalence classes and that
   orders 716, 1676, 1772 and 2060 each carry at least **three**,
@@ -601,6 +613,19 @@ the decoded border carried along `ψ` — is recorded in
 computation. It is not re-derived in this repository, and nothing
 stated here rests on it.)
 
+**Forward pointer (§1.9).** The orientation switch and transposition
+turn out to be the same kind of move on the parameters: `Cᵀ` **is** the
+switched array on the reversed type-1 seed, and the whole family is
+closed under transposition (Theorem T, §1.9). Two consequences belong
+here. First, `(H″)ᵀ = BGS(x₀∘(−), x₁, x₂, x₃; ρ; Eᵀ, Qᵀ, Pᵀ)` exactly,
+with no conjugation — so the transposed orientation switches that §3
+profiles are records of this family too. Second, and it constrains this
+section: the border-kept switch `H″` is Hadamard **only when `P`
+annihilates the off-diagonal part of `Ĉ`** (remark R, §1.9). That is
+automatic at `(1,1)`, which is the cell of every `H″` named above, and
+false in general — at `(3,4)` the order-1916 record's `H″` fails
+`verify/verify.py`.
+
 ### 1.5 Theorem D (the `s = 1, i = 2` border system, resolved) — PROVEN
 
 Setting: `G` abelian of even order `n ≥ 4` (equivalently `w ≥ 2`;
@@ -1038,6 +1063,393 @@ this shape.
 
 ---
 
+### 1.9 Theorem T (closure under transposition) — PROVEN
+
+Everything so far has been row-side: the ansatz builds `H`, and the
+hypotheses (H1)–(H4) are conditions on the rows. Transposition is not in
+the Hadamard equivalence group (§3), so `Hᵀ` is a genuinely different
+matrix, and §3 spends real computation on its invariants. This section
+answers the structural question that sits underneath all of that:
+**`Hᵀ` is again a member of this family, on displayed data.**
+
+Write `BGS(x₀,x₁,x₂,x₃; ρ; E,P,Q)` for the standard-orientation bordered
+array of Theorem A (§1.1), and set
+
+```
+S′  = diag(−1,−1,+1,+1) ⊗ I_i     (on the table index iI + c)
+S₀₁ = diag(−1,−1,+1,+1) ⊗ I_n     (on the core, by superblock)
+D̃   = diag(I_{4s}, S₀₁)
+```
+
+`S′` and `S₀₁` agree on coset-constant strips, since `S₀₁ = S′ ⊗ I_w`.
+
+**Theorem T.** For `H = BGS(x₀,x₁,x₂,x₃; ρ; E, P, Q)`,
+
+```
+Hᵀ  =  D̃ · BGS(x₀∘(−), −x₁, x₂, x₃; ρ; Eᵀ, (S′Q)ᵀ, (PS′)ᵀ) · D̃.
+```
+
+The right-hand side is a standard-orientation member of the family. So
+**the coset-border Goethals–Seidel family is closed under
+transposition**: reverse the type-1 seed, negate one of `x₁,x₂,x₃` (an
+orientation gauge), transpose the corner, and transpose-and-swap the two
+tables with the `S′` signs. Moreover, **exactly and with no
+conjugation**,
+
+```
+(H″)ᵀ  =  BGS(x₀∘(−), x₁, x₂, x₃; ρ; Eᵀ, Qᵀ, Pᵀ),
+```
+
+where `H″` is the orientation switch of `H` — the twelve off-diagonal
+core blocks negated, the border left alone (§1.4, certs 13, 14, 20, 22,
+23).
+
+*Proof.* Three facts about the core, then the border.
+
+**(F1) The off-diagonal blocks are symmetric, and block `(J,I) = −`
+block `(I,J)`.** `(XR)[g,h] = x(ρ−g−h)` and `(XᵀR)[g,h] = x(g+h−ρ)`
+depend on `g+h` only, so every off-diagonal block of `C` is a symmetric
+matrix; the array of §1.0 has `(J,I)` the negative of `(I,J)` for
+`I ≠ J`. Hence `C − I₄⊗A` is skew-symmetric and
+
+```
+Cᵀ  =  I₄⊗Aᵀ − (C − I₄⊗A)  =  C^{sw}(x₀∘(−), x₁, x₂, x₃; ρ),
+```
+
+the array with its twelve off-diagonal blocks negated, on the seeds with
+`x₀` **reversed** and `x₁,x₂,x₃` **unchanged** — since
+`dev(x)ᵀ = dev(x∘(−))`, only the type-1 seed reverses.
+
+**(F2) The orientation switch is a seed negation up to diagonal
+conjugation.** Negating `x₁` flips the four `B`-blocks; conjugating by
+`S₀₁` flips the other eight off-diagonal blocks, namely those with
+exactly one index in `{0,1}`. Together, all twelve:
+
+```
+C^{sw}(y)  =  S₀₁ · C(y₀, −y₁, y₂, y₃) · S₀₁,
+```
+
+and likewise with `S₀₂, −y₂` or `S₀₃, −y₃`. (Also `C^{sw} = S·C^{alt}·S`
+with `S = diag(1,−1,−1,−1)⊗I_n` and `C^{alt}` the orientation of §1.0
+with the six transposed blocks negated, and
+`C^{alt}(y) = Π₍₂₃₎·C(y₀,y₁,y₃,y₂)·Π₍₂₃₎ᵀ`. So the two orientations are
+one family: switching = negating one of `x₁,x₂,x₃` = swapping `x₂,x₃`,
+each up to a signed superblock permutation.)
+
+**(F3) The border.** `Hᵀ = [Eᵀ  Q̃ᵀ ; P̃ᵀ  Cᵀ]`: the row table of `Hᵀ` is
+`Qᵀ` and its column table is `Pᵀ`, both still constant on `K`-cosets
+inside each superblock. Conjugating by `D̃`,
+
+```
+D̃ Hᵀ D̃  =  [ Eᵀ ,  Q̃ᵀS₀₁ ;  S₀₁P̃ᵀ ,  S₀₁CᵀS₀₁ ].
+```
+
+The core is `S₀₁ Cᵀ S₀₁ = C(x₀∘(−), −x₁, x₂, x₃)` by (F1) and (F2). The
+new top-right strip is `Q̃ᵀS₀₁`, whose entry at `(r, (I,g))` is
+`ε_I·Q[iI+κ(g)][r]` with `ε = (−1,−1,+1,+1)` — that is, the row table
+`(S′Q)ᵀ`. The new bottom-left strip is `S₀₁P̃ᵀ`, the column table
+`(PS′)ᵀ`. This is the displayed instance. ∎
+
+**The theorem is branch-free, and that is the whole point of proving it
+this way.** The new instance satisfies (H1)–(H4) with **no branch
+hypothesis**: the right-hand side *is* `D̃HᵀD̃`, `D̃` is a `±1` diagonal,
+so it is Hadamard exactly when `H` is; it is a standard-orientation
+member of the ansatz on the data displayed; and the *only if* half of
+**Theorem A** hands back (H1)–(H4) for it in one line. Nothing beyond
+`HHᵀ = N·I` is used — in particular **not** the route through
+`EEᵀ = 4s·I`, which holds only in the house branch under `w > 2s`
+(Theorem F(e), §1.8). So Theorem T holds at every `(s,i)` and every `w`,
+including the general-branch cells of Theorem E and the `w = s` boundary
+of Theorem E′.
+
+**Remark R (when `H″` is a Hadamard matrix).** The `(H″)ᵀ` identity is
+an identity of **signed arrays**, whether or not either side is
+Hadamard, and it must be read with the following restriction. The
+orientation switch *with the border unchanged* is Hadamard **only when
+`P` annihilates the off-diagonal part of `Ĉ`**. Subtracting (H4) for
+`H″` from (H4) for `H` gives exactly that condition. It is **automatic
+at `(1,1)`**, where the row sums are `(±2,0,0,0)` and `Ĉ = ±2I` has no
+off-diagonal part — which covers every `H″` this note names, the 668,
+716, 1676 and 1772 records — and it is **false in general**: at `(3,4)`
+the order-1916 record's `H″` fails `verify/verify.py`, and so do the
+`(5,6)` record at 1388 and the `(7,8)` record at 1436 (cert 26 [4],
+which evaluates the condition and the verdict on all seven records and
+asserts that they agree). The general orientation switch is
+`S̃₀₁·BGS(x₀, −x₁, x₂, x₃; ρ; E, PS′, S′Q)·S̃₀₁`, Hadamard only when the
+tables re-satisfy (H4). **Wherever `H″` or `(H″)ᵀ` is called a Hadamard
+matrix in this note, that condition is being used.**
+
+**Corollaries.** (i) `(H″)ᵀ` is the standard instance on the reversed
+`x₀` with the transposed border, Hadamard under remark R. (ii) With the
+multiplier `−1` (`g ↦ −g`, which reverses every seed and sends
+`ρ ↦ −ρ`), `Hᵀ ~ BGS(x₀, −(x₁∘(−)), x₂∘(−), x₃∘(−); −ρ; …)`. (iii) When
+`G` carries a character `ψ` of order 2 with `ψ(ρ) = −1`, the identity of
+§1.4's remark turns the switched core into a twisted one — the transpose
+analogue of `H_t`.
+
+**When is `H ~ Hᵀ`? — CONJECTURE.** By Theorem T, exactly when the class
+of `H` is a fixed point of the involution
+
+```
+T : (x₀,x₁,x₂,x₃; E,P,Q) ↦ (x₀∘(−), −x₁, x₂, x₃; Eᵀ, (S′Q)ᵀ, (PS′)ᵀ)
+```
+
+on the parameter set — an involution up to the family's gauge. **No
+structural sufficient condition is known.** In particular *all four
+seeds symmetric does not suffice*: cert 26 [6] proves `H ≁ Hᵀ` for the
+Williamson-seeded Goethals–Seidel arrays it builds at orders 44 and 60,
+where all four seeds are symmetric. The conjecture, stated as one: for
+the coset-border family with `w > 2s` and `n ≥ 10`, `H ~ Hᵀ` only for
+sporadic instances.
+
+**PROVEN-BY-CERTIFICATE (cert 26).** The identities above are additionally
+checked **entrywise**: the block facts (F1),(F2) on 30 deterministically
+generated cores over ten groups, cyclic and not, with arbitrary seeds;
+Theorem T and the `(H″)ᵀ` identity on **12 arbitrary bordered shapes**
+with random corners and random tables, satisfying none of (H1)–(H4) and
+with neither side Hadamard — the identities are table-free and seed-free
+— and on the banked coset-border records at 668, 716 and 1916 by
+default, and at 1388, 1436, 1676 and 1772 under `--full`, which has been
+run in this repository. Remark R is exercised in **both** directions
+through `verify/verify.py`, and the three T-images at 668, 716 and 1916
+are assembled from the right-hand side of the theorem, accepted by the
+trust chain, and pinned. (Those pins are `D̃MᵀD̃`, not `Mᵀ`; certs 15,
+19, 21, 24 and 25 bank `Mᵀ` itself, and the two families of digests
+differ by a `±1` diagonal that changes no class and no profile.)
+
+**COMPUTATIONAL-EVIDENCE (cert 26 [6]).** A small-order transposition
+census over eleven instances this repository can build — five
+Williamson-seeded `GS(4t)` at `t = 7, 9, 11, 13, 15`; the `(1,2)` gate
+instance at 52; the `(1,1)` non-scalar record at 76; and the four
+`(2,4)` matrices of §2.3 — each decided by the exact `|T4|` 4-profile of
+`H` against that of `Hᵀ`, which is an equivalence invariant (§3.1,
+**I5**). Seven are **proved** inequivalent to their own transpose; four
+are **undecided by the profile**, and are reported as undecided.
+Agreement of an invariant is a failure to separate and never a proof of
+equivalence, and no isomorphism search is run in this repository. The
+source laboratory ran a wider 44-instance census whose equal-profile
+cases were decided by a finder-side individualisation–refinement search
+— 16 equivalent, 28 inequivalent, and at orders `≥ 44` exactly one
+equivalent against 24 inequivalent. That search is finder-side, its
+negatives rest on the completeness of the refinement, and it is **not**
+replayed here; it is recorded as a source-laboratory measurement in
+`certs/26-theorem-t-structure/NOTES.md`, and nothing in this note rests
+on it.
+
+**Scope.** Theorem T is a closure statement about the family and says
+nothing about existence at any order, nothing about how many equivalence
+classes any order carries, and nothing about `H` versus `Hᵀ` for any
+particular matrix. The class counts of §3 — at 668, 716, 1676, 1772 and
+2060, under both the plain and the transpose-extended relation — are
+**profile separations**, and they are certs 08, 15, 19, 20, 21, 24 and
+25's; none of them uses Theorem T, and Theorem T does not strengthen any
+of them. What Theorem T supplies is the structural reason those
+transposes are still records of the same family.
+
+---
+
+### 1.10 Sylow-2 rigidity of a cocyclic `H(4t)` — PROVEN; the rule and the `t = 3` census — PROVEN-BY-CERTIFICATE
+
+This section is not about the coset-border construction. It is about a
+different shape a hypothetical `H(2092)` might have — the **cocyclic**
+one — and it is here because it narrows that shape to two groups out of
+twenty-four.
+
+**The setting, and what is CITED.** de Launey–Flannery–Horadam 2000
+(with Flannery 1997) proves that a Hadamard matrix of order `4t` is
+cocyclic over a group of order `4t` **iff** there is a
+`(4t, 2, 4t, 2t)` relative difference set `D` in a central extension `E`
+of `ℤ₂` by that group, relative to the forbidden subgroup
+`⟨e*⟩ = ` the central `ℤ₂`. That equivalence is **CITED**, not
+re-derived, and everything below is conditional on it. Note the order:
+the extension is **by `ℤ₂`**, so `|E| = 2N = 8t` — at `N = 2092` the
+extension group has order **4184**.
+
+**Theorem (Sylow-2 rigidity).** Let `t` be an odd prime `> 7` and let
+`E` be a group of order `8t` with a central involution `e*`, carrying a
+`(4t,2,4t,2t)`-RDS relative to `⟨e*⟩`. Then the Sylow-2 subgroup `P` of
+`E` is **not** `ℤ₈` and **not** `D₄`. `P = ℤ₂³`, or `ℤ₄×ℤ₂` with `e*` a
+non-square, forces `t` a **square**. `ℤ₄×ℤ₂` with `e*` the square forces
+`t` a **sum of two squares**. At `t = 523`: `P = Q₈`, and
+`E ∈ {Q₈×ℤ₅₂₃, Q₄₁₈₄}`.
+
+*Proof.* `n_t | 8` and `n_t ≡ 1 (mod t)` force the Sylow-`t` subgroup
+normal, so `E = ℤ_t ⋊ P` with `|P| = 8`; the action
+`P → Aut(ℤ_t) = ℤ_{t−1}` has image of order dividing `gcd(8, t−1)`, and
+at `t = 523`, `gcd(8, 522) = 2`, so the action is through `ℤ₂` at most.
+
+`D` is a transversal of `⟨e*⟩`. Set `g = D − De*`: then
+`g(xe*) = −g(x)` and `g g⁽⁻¹⁾ = 8t(1 − e*)` in `ℤ[E]`. Project along
+`ℤ_t`: `f(q) = Σ_{h ∈ ℤ_t} g(h,q)` is **odd-valued** (a sum of `t`
+signs), satisfies `f(qe*) = −f(q)`, and `f f⁽⁻¹⁾ = 8t(1 − e*)` in
+`ℤ[P]`, i.e.
+
+```
+Σ_q f(q)² = 8t,      Σ_q f(q) f(m⁻¹q) = 0   for m ∉ ⟨e*⟩.
+```
+
+With `a,b,c,d` the values on coset representatives of `⟨e*⟩` this is
+`a²+b²+c²+d² = 4t` together with cross conditions read off the
+**algebraic role** of the elements — labelling-free, which is what makes
+the following a classification rather than a computation:
+
+| `P` | `e*` | cross conditions | obstruction |
+| --- | --- | --- | --- |
+| `ℤ₈` | the unique central involution | `ab+bc+cd−da = 0` | impossible for odd values (`≡ 2 mod 4`) |
+| `D₄` | the unique central involution | `ac = bd`, `ad = −bc` | `cd(a²+b²) = 0` |
+| `ℤ₂³` | any of the 7 | `ab = −cd`, `ac = −bd`, `ad = −bc` | `a² = b² = c² = d²`, so `t` a square |
+| `ℤ₄×ℤ₂` | the square | `ac+bd = 0` | `a+bi = λi(c+di)` (`λ` rational) ⟹ `t` a sum of two squares |
+| `ℤ₄×ℤ₂` | a non-square | `(a₀+a₂)(a₁+a₃) = 0`, `a₀a₂+a₁a₃ = 0` | `4t = (a₁+a₃)²` on one branch and `4t = (a₀+a₂)²` on the other — `t` a square either way |
+| `Q₈` | the unique central involution | identities | only `a²+b²+c²+d² = 4t` |
+
+At `t = 523` — prime, `≡ 3 (mod 4)`, neither a square nor a sum of two
+squares — only `Q₈` survives.
+
+The groups of order `8t` with this action are 5 direct and 7 semidirect
+(the semidirect ones from the Aut-orbits of index-2 subgroups of the
+five groups of order 8, with orbit counts `1, 2, 1, 2, 1`) — **12**
+groups. The central involutions of `E` are the central involutions of
+`P` lying in the kernel of the action, giving
+`1+1+3+1+3+7+3+1+1+1+1+1 = 24` pairs `(E, e*)`. Exactly two of them
+have `P = Q₈`. ∎
+
+**PROVEN-BY-CERTIFICATE (cert 27).** Two implementations of the
+projected system — a brute expansion of `Σ_q f(q)f(m⁻¹q)` in the group
+table, and the five hand-derived cross conditions — agree on all 4096
+odd 4-tuples in `[−7,7]⁴` (all in `[−9,9]⁴` under `--full`) for every
+`(P, e*)` pair. Existence of an odd solution equals the rule at **every
+odd `t ≤ 201`** and at `t = 523`, 1326 cells; at `t = 523` only `Q₈`
+admits solutions — **8384** of them, exactly the ordered odd four-square
+representations of 2092. The certificate also runs the complete
+`(12,2,12,6)`-RDS census at `t = 3` — all 12 groups of order 24 with a
+normal `ℤ₃`, every central involution, all `2¹²` transversals, under two
+predicates (the difference-count definition, and `gg⁽⁻¹⁾ = 8t(1−e*)` in
+`ℤ[E]`) — finding RDS only in `Q₈×ℤ₃` (192) and `Q₂₄` (576), each of
+which develops into a `12×12` Hadamard matrix. **`t = 3` is outside the
+theorem's range** (`t` an odd prime `> 7`) and is not offered as an
+instance of it: that census is a **consistency control on the
+machinery**, exhibiting the objects the projected system is about and
+showing that the two predicates agree where the objects exist.
+
+**What is not claimed.** Nothing about the **existence** of a cocyclic
+`H(2092)`: the two surviving groups are open doors, and this section
+shuts the other ten. Nothing about the Goethals–Seidel array, which is a
+different shape — §1.11 records separately that the GS array is not of
+the 16-block circulant form a `p = 523` automorphism would force. And
+the DLFH equivalence is cited, not re-derived, so every statement here
+is conditional on it.
+
+---
+
+### 1.11 Lemma F, and the automorphisms of the records — PROVEN + PROVEN-BY-CERTIFICATE
+
+**Lemma F.** Let `H` be Hadamard of **order `N`** (throughout this
+section `N` is the order and `n = |G|`, as §1.0 fixes them) and let
+`(P, Q)` be an automorphism — signed permutation matrices with
+`P H Qᵀ = H` — of odd prime order `p`. Then
+
+- **(i)** the signs are removable by diagonal conjugation: on a
+  `p`-cycle the product of the signs is `+1` because `P^p = I`, so a
+  diagonal makes that cycle unsigned; on a fixed point the sign `e`
+  satisfies `e^p = e = 1`;
+- **(ii)** `#`fixed rows `= #`fixed columns, since `P = H Q Hᵀ / N`
+  gives `tr P = tr Q`;
+- **(iii)** if `(P,Q) ≠ (I,I)` then `f := #`fixed rows `≤ N/p`; and if
+  `f ≤ m := (N−f)/p` then `f ≤ N/(p+1)`;
+- **(iv)** the `m` orbits give `p×p` circulant blocks between orbits,
+  the fixed rows are constant on column orbits, and
+  `AAᵀ + p·BBᵀ = N·I_f`.
+
+*Proof.* (i) and (ii) are the displayed identities. (iii): if `f > m`
+then `rank(BBᵀ) ≤ m < f`, so `N·I − AAᵀ` is singular and `AAᵀ` has
+eigenvalue `N` with multiplicity `≥ f−m`; `tr(AAᵀ) = f²` then gives
+`p f² − N(p+1) f + N² ≥ 0`, whose roots are `N/p` and `N`, and `f = N`
+is the identity. (iv) is the block structure of a `p`-cycle action on
+rows and columns. ∎
+
+**At `N = 2092`, `p = 523`.** `523 | 2092`, so `f ≡ 0 (mod 523)`, and
+(iii) gives `f ≤ 4`: hence `f = 0` and `m = 4` — a **16-block circulant
+array**. That is all Lemma F forces, and the distinction is worth
+stating because it is easy to overstate: *"the all-type-1 Williamson
+array"* is a **4-seed subfamily** of that shape, not the shape itself.
+The Goethals–Seidel array of §1.0 is **not** of this shape — its
+off-diagonal blocks are back-circulants, not circulants — and its
+translation automorphisms would require `2a = 0`, which no odd `|G|`
+has. So a `p = 523` automorphism is not a property the constructions of
+this note could have; it is a constraint on a differently-shaped
+`H(2092)`.
+
+**Admissible primes.** An odd `p` acts only if some `f` with
+`f ≡ N (mod p)` and `0 ≤ f ≤ N/p` exists (`f = 0` only when `p | N`). At
+`N = 2092` that leaves **22** odd primes and excludes **293**, among
+them 131 and 349. A constant-strip multi-block border with four fixed
+rows needs `4 | b`: `|(AAᵀ)_{rr′}| ≤ 4 < m` forces `(BBᵀ)_{rr′} = 0`, so
+`B` is a `4×b` partial Hadamard matrix.
+
+**The records.** For row `i` of a Hadamard matrix let `π(i)` be the
+multiset of `|T4(i,j,k,l)|` over 3-subsets of the other rows (§3.1). A
+signed row/column permutation preserves `π`, so the `π`-classes are an
+invariant partition of the rows. If an automorphism of odd prime order
+`p` exists, every class is a union of `p`-cycles and fixed rows, hence
+contributes at least `|C| mod p` fixed rows, while (iii) caps the total
+at `N/p`. Therefore
+
+```
+Σ_C (|C| mod p)  >  N/p     ⟹     no automorphism of order p.
+```
+
+(`|T3|` is **not** invariant under column signs and is not used.)
+
+On the banked records the per-row `|T4|` classes are:
+
+| matrix | canonical SHA-256 | classes | sizes |
+| --- | --- | --- | --- |
+| `H(668)` | `bdeb5059…a387b0` | 336 | 4 singletons + 332 `τ`-pairs |
+| `H′(668)` | `600849b0…2008a3` | 336 | 4 + 332 |
+| `H″(668)` | `af1c285c…2953c7` | 336 | 4 + 332 |
+| `H(716)` | `3adcb1bb…664ee6` | 360 | 4 + 356 |
+
+The four singletons are the **border rows**; `τ` — the shift by `n/2` on
+every superblock, `n = |G|`, so 83 at 668 and 89 at 716 — is an
+automorphism, with border sign `+1` on the `(1,1)` records and `−1` on
+`H′`, and it pairs the rest. Every class has size 1 or 2, so the forced
+fixed-row count is `N` itself, which exceeds `N/p` for every odd `p`.
+
+> **Theorem (the records).** No automorphism of odd prime order acts on
+> `H(668)`, `H′(668)`, `H″(668)` or `H(716)`. `Aut` is a **2-group** at
+> each of the four; every automorphism fixes the four border rows up to
+> sign and acts within `τ`-pairs.
+
+**PROVEN-BY-CERTIFICATE (cert 29), and exactly which claim.** The
+*implication* — those class sizes ⟹ no odd prime acts — is **PROVEN**
+above, and cert 29 applies it to the pinned sizes on every run, having
+first rebuilt all four matrices from `data/payload-records.json` and
+`data/twisted-i2-records.json` at their pinned canonical digests and
+exhibited `τ` on each. What needed a second implementation is the
+implication's **input**: the per-row `|T4|` class partition at the record
+orders. It has been computed **twice, both times in the source
+laboratory** — first by a numpy pair-histogram finder (2026-09-02), then
+by cert 29's own standard-library route B under `--full`, run on all four
+records on 2026-09-03/04 with `ALL CHECKS PASS` in 9 044.0 s, 9 062.2 s,
+9 049.1 s and 11 273.6 s on one core apiece. That second run is the
+independent implementation, and it is why this claim carries
+**PROVEN-BY-CERTIFICATE** rather than COMPUTATIONAL-EVIDENCE, which is
+what it carried while only the finder had run. Neither leg has been run
+**in this repository**: cert 29's `--full` is offered and priced at
+about 10.7 core-hours for the four, and its default path **audits** —
+`certs/29-lemma-f-records/NOTES.md` sets the boundary out in full, as
+certs 20–25 do for their own heavy legs.
+
+**What is not claimed.** The **2-part** of `Aut` is not computed:
+`Aut = ⟨−I, τ⟩` is consistent with the row classes at all four records
+and is **not proved**. `H′(716)` and `H″(716)` were never run, so the
+statement covers the four records named and no others. And nothing is
+said about `Aut` of a hypothetical `H(2092)` — Lemma F constrains what an
+odd-prime automorphism of one would have to look like, and asserts no
+existence.
+
+---
+
 ## 2. Movement II — the instances
 
 Everything in this section is replayed in the strict sense — nothing
@@ -1142,6 +1554,14 @@ made for the even-`s` construction type: §4.2's single hedged
 sentence bounds exactly the sources §4.1 enumerates, no search was
 added for it, and none is implied here.
 
+The **border** layer at this cell is settled twice over: §2.4(c)
+enumerates all 215 040 classes and exhibits a kit in each, and §2.5
+proves the same statement structurally, by classifying the weighing
+matrices that (H4) asks for. So nothing about these four matrices, or
+about any other instance at `(2,4)`, is limited by the border; what is
+open at this cell is the seed layer, as it is everywhere else in this
+note.
+
 ### 2.4 The `(2,4)` border, and Theorem 3 — PROVEN + PROVEN-BY-CERTIFICATE
 
 **Proposition (the `(2,4)` border).** Let `(s,i) = (2,4)`, `Ḡ = ℤ₄`,
@@ -1169,6 +1589,12 @@ right-orbits of `H(8)` under signed column permutations number
 `(S-part, κ(ρ))` give `215 040` classes in all; cert 18 [4] exhibits
 a kit for **215 040 / 215 040**. Every kit is `w`-free, since (H3)
 reads `8 + 16w = 4(4w+2)`, an identity in `w`. ∎
+
+*(§2.5 proves (c) again, and differently: (H4) at this cell is
+equivalent to the existence of a `W(8,4)` of odd-signed affine planes
+transversal to a matching read off `C*`, and every matching admits one.
+The census below is a count; §2.5 is the reason. Cert 18 [4] and
+cert 28 are therefore two independent proofs of the same statement.)*
 
 *(Repair recorded, and it matters: (b) is a **necessity** statement
 and needs `w > 4`. The two `H(56)` instances of §2.3 have `w = 3`,
@@ -1227,13 +1653,130 @@ their seed layers are untested in any case.
 
 ---
 
+### 2.5 The `(2,4)` existence theorem — PROVEN + PROVEN-BY-CERTIFICATE
+
+§2.4(c) is a **count**: 215 040 classes, each exhibited with a kit
+(cert 18 [4]). This section proves the same statement, by classifying
+the objects instead of enumerating them — and the proof, unlike the
+census, explains *why* the border never obstructs at this cell.
+
+**Theorem ((2,4) existence).** Let `(s,i) = (2,4)`, `Ḡ = ℤ₄`,
+`S = {χ, χ³}`, `M = (8,0,−8,0)`. For every `Q′ ∈ H(8)`, every admissible
+S-part (`τ_q = (σ_q(0)−σ_q(2), σ_q(1)−σ_q(3))` with even entries and
+`Σ_q |τ_q|² = 8` — 112 of them) and every `κ(ρ)`, an anti-periodic
+border kit exists. Equivalently: **(H4) holds iff there is a weighing
+matrix `W(8,4)` whose rows are odd-signed affine planes of `Q′`'s
+`AG(3,2)` structure, each transversal to the perfect matching `Π` read
+off `C*`.** Every perfect matching of the eight labels admits
+`2^{3−rk D}` transversal parallel classes, `D` its set of four
+pair-differences. **Hence the border is never the obstruction at
+`(2,4)`, at every `w`.**
+
+*Proof.* **(1) Reduction to `8×8`.** Write the anti-periodic doubling as
+`P[r,(J,c)] = (−1)^{[c≥2]} P′[r,(J, c mod 2)]` and set
+
+```
+C*[(I,c),(J,c″)]  =  Σ_{c′ ≡ c″ (mod 2)} (−1)^{[c′≥2]} Ĉ[(I,c),(J,c′)]
+```
+
+for `c, c″ ∈ {0,1}`. Both sides of (H4) are then anti-periodic in the
+column index, and (H4) reduces to `E Q′ᵀ + P′ C*ᵀ = 0`. From the actual
+`Ĉ`: `C* C*ᵀ = 8I`, with exactly two entries `±2` in each row and each
+column.
+
+**(2) The weighing matrix.** `W := (1/4) P′ C*ᵀ` is an integer matrix
+(each entry is `(1/4)(±2 ± 2)`) with `WWᵀ = (1/16)P′(8I)P′ᵀ = 4I` — a
+`W(8,4)` — and `E = −(1/2)WQ′`, `P′ = (1/2)WC*`. Conversely any `W(8,4)`
+with both products in `{±1}` is a border. So a kit exists **iff** such a
+`W` exists.
+
+**(3) Admissible rows.** Column signed permutations of `Q′` do not
+change `(1/2)wQ′ ∈ {±1}`, so take `Q′` signed-Sylvester. Exhausting all
+256 sign functions on `𝔽₂³`: the Walsh spectrum is supported on exactly
+4 points with values `±4` **iff** the support is one of the 14 affine
+planes and the signing has an odd number of minus signs — `112 = 14 × 8`
+functions. So `supp(w)` is a plane of the affine structure `A(Q′)`, and
+`w = d ∘ (±(1 − 2e_u))` for some `u` in that plane.
+
+**(4) Transversality.** `(1/2)WC* ∈ {±1}` iff each row support meets
+each pair of the matching `Π` — the column supports of `C*` — exactly
+once. For every S-part type, `Π` is a **translation** `k ↦ k ⊕ v` of the
+label space.
+
+**(5) Orthogonality.** Two signed planes are orthogonal iff they are
+disjoint, or equal with distinct `u`, or meet in a line carrying exactly
+one of the two `u`.
+
+**(6) The transversal argument.** Let `Π = {{a_i, b_i}}` be any perfect
+matching of the eight points and `D = {a_i + b_i}` its four
+pair-differences. A parallel class `{ℓ = 0, ℓ = 1}` is transversal iff
+`ℓ(d) = 1` for every `d ∈ D`. Such an `ℓ` exists because **no odd subset
+of `D` sums to zero**: the four differences sum to zero, so three
+summing to zero would force the fourth to be zero, and a single zero
+difference is impossible. There are `2^{3−rk D}` such parallel classes
+(ranks 1, 2, 3 ↔ `AGL(3,2)`-orbits of sizes 7, 42, 56 ↔ 4, 2, 1
+classes), hence `2·2^{3−rk D}` = 8, 4, 2 transversal planes — two per
+class, `ℓ = 0` and `ℓ = 1`. A transversal plane and its complement, each
+taken with all four sign origins `u`, are eight admissible, transversal,
+pairwise orthogonal rows: a `W(8,4)`. ∎
+
+**Only the rank-1 case is used.** Of the 105 perfect matchings, only the
+**7 rank-1** ones — the translations of step (4) — actually occur as
+`Π`. The rank-2 and rank-3 orbits are surplus generality; cert 28
+settles them because a uniform statement over all 105 matchings is
+cheaper to certify than a case distinction, not because the border needs
+them.
+
+**Which inputs are the certificate's, and why the label is a compound.**
+The `W(8,4)` reformulation, the Walsh classification of the 112 signed
+rows, the orthogonality rule and the `2^{3−rk D}` count are **PROVEN**
+above. Two inputs are finite computations that this note does not
+re-derive on paper and takes from **cert 28**: the **448-type table of
+the true `Ĉ`**, from which `C*C*ᵀ = 8I` and the two `±2` per row and
+column of step (1) are read, and the step "**`Π` is always a
+translation**" of (4), verified type by type. Hence
+**PROVEN + PROVEN-BY-CERTIFICATE**, the same compound §2.4's header
+already carries.
+
+**PROVEN-BY-CERTIFICATE (cert 28).** The 448 types from the true `Ĉ`;
+the 256-function Walsh exhaustion; `|AGL(3,2)| = 1344` and its orbits
+`7 / 42 / 56` on the 105 matchings, matching ranks `1 / 2 / 3`; the
+census by **two constructions of `W`** — a clique search per orbit, and
+the uniform closed form on all 105 matchings with the rank formula
+asserted matching by matching; the closed form for translation by `e₃`;
+and, end to end, **fresh borders of this construction** for cert 18's two
+`H(88)` seed quadruples with a randomly drawn `Q′`, assembled and
+accepted by `verify/verify.py`. Those digests are cert 28's own, not
+cert 18's pins: the borders differ, so the matrices do. **Cert 18 [4]'s
+215 040-class census is an independent second proof** of the same
+existence statement, by enumeration where this one argues by structure;
+it is not re-run in cert 28.
+
+**Scope.** Nothing about `H(2092)` — the `(2,4)` cell does not land at
+2092. Nothing about the **seed layer** at this cell: the theorem says the
+border never obstructs, not that any particular quadruple exists.
+§2.4(b)'s repair stands — anti-periodicity of `P` is *forced* only for
+`w > 4`, while existence of an anti-periodic kit is proved here for
+**every** `w`, which is what the two `H(56)` instances at `w = 3` use.
+The corresponding statement for all anti-periodic cells is a sketch in
+the source laboratory and is **not** a theorem of this note. And the
+four `(2,4)` matrices remain §2.3's and cert 18's: cited here, never
+re-banked.
+
+---
+
 ## 3. Movement III — existence plus separation
 
 **Definition.** `H ~ H'` iff `H' = D_r P_r H P_c D_c` with `P`
 permutation matrices and `D` diagonal `±1`. Transpose is **not** in
 the group; the invariants below are computed on both sides (rows and
 columns) wherever a transpose-extended statement is made, and where
-transpose changes a verdict it is called out. The
+transpose changes a verdict it is called out. That every transposed
+matrix profiled below is itself a record of the bordered
+Goethals–Seidel family — on displayed data, at every `(s,i)` and every
+`w` — is **Theorem T, §1.9**; none of the separations uses it, and it
+strengthens none of them, but it is why the objects on the transpose
+side are the same kind of object as the objects on the row side. The
 **transpose-extended** relation is `A ≈ B` iff `A ~ B` or `A ~ Bᵀ`;
 refuting it takes two refutations, since `A ~ B ⟹ Aᵀ ~ Bᵀ` (transpose the
 defining `B = D_r P_r A P_c D_c`) gives `A ~ Bᵀ ⟺ Aᵀ ~ B`.
@@ -1506,10 +2049,13 @@ classes at 668, and four transposes are not four constructions: the
 eight matrices come from four objects and one involution. What makes
 the comparison a real question rather than a restatement is that the
 transpose is **not** in the equivalence group, so `profile(Hᵀ)` is the
-same invariant computed on a different matrix; that the bordered GS
+same invariant computed on a different matrix. That the bordered GS
 family is closed under transposition — so `Hᵀ` is another record of
-the same family — is source-laboratory intel, cited in cert 19's notes
-and neither proved nor relied on here. Nothing general follows: a
+the same family, on displayed data — was source-laboratory intel when
+cert 19 was written, cited in its notes and neither proved nor relied
+on there; it is now **Theorem T (§1.9)**, proved here and checked
+entrywise on this very record by cert 26. Nothing in this section rests
+on it either way: the separation is a profile comparison. Nothing general follows: a
 Sylvester matrix is symmetric, and cert 19 measures Paley `H(20)`'s
 profile agreeing with its transpose's — agreement being a failure to
 separate, never a proof of equivalence. What is settled is one matrix
@@ -1534,6 +2080,17 @@ relation as well; nothing in this section rests on that either. The `Φ_M` blind
 `Θ(n⁴)` invariant: every cheaper statistic tested — including a
 sound published one — fails to see at least one true separation at
 this order.
+
+**The automorphisms (§1.11).** The same per-row `|T4|` data that
+separates these matrices also constrains their symmetry. At 668 the
+row classes of `H`, `H′` and `H″` are the four border rows as
+singletons and 332 `τ`-pairs `{g, g+83}`, and by Lemma F(iii) a class
+partition of that shape admits **no automorphism of odd prime order**:
+`Aut` is a **2-group** at each of the three, every automorphism fixing
+the border rows up to sign and acting within `τ`-pairs (§1.11,
+cert 29). The 2-part is not computed, and `Aut = ⟨−I, τ⟩` is a
+consistent guess and not a theorem. Nothing in the separation above
+uses this.
 
 ### 3.5 The theorem at order 2060 — PROVEN + PROVEN-BY-CERTIFICATE
 
@@ -1808,7 +2365,12 @@ exhibit six classes here; the count stated is the three that survive
 **either** convention. **Not claimed here:** nothing about how many
 classes order 716 has; the sibling order 1772 was a separate
 computation and now carries its own statement in §3.8 (cert 23), on
-which nothing here depends. No priority or novelty claim is made at 716: this is a
+which nothing here depends. **The automorphisms
+(§1.11):** the per-row `|T4|` classes of the decoded record here are the
+four border rows as singletons and 356 `τ`-pairs `{g, g+89}`, so by
+Lemma F(iii) no automorphism of odd prime order acts and `Aut` is a
+2-group (cert 29); the 2-part is not computed, and the twist and the
+orientation switch at this order were not run. No priority or novelty claim is made at 716: this is a
 statement about how many classes are on the table among the
 artifacts banked here, not about existence. The sibling order 1676
 has since been computed and is §3.7 (cert 20, 2026-09-02); nothing
@@ -2293,4 +2855,13 @@ understood.
 | the order-2060 **pair** is inequivalent — the posted matrix against the plain GS realisation of the same seed — so **order 2060 carries at least two equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the exact profiles, 146 of 147 differing bins, supports 145 vs 133, two independent implementations per matrix; cert 07 exact mode). Cert 07's own leg was row-side; cert 24 carries the pair across to the transpose-extended relation, below. The earlier sampled statistic remains recorded as COMPUTATIONAL-EVIDENCE |
 | **order 2060 carries at least three equivalence classes** | **PROVEN** (profile invariance + separation implication) **+ PROVEN-BY-CERTIFICATE** (the orientation switch `H″` of the plain GS realisation — unbordered, `s = 0`, twelve `515`-blocks negated — against `P` in 107 of the 145 bins they share and against the posted `G` in 146 of 147; two independent implementations per matrix; cert 22, 2026-09-03). Cert 22 was **row-side only**; cert 24 discharges that caveat the same day, below. Neither has an in-repo `--full` leg: one is ≈ 15 h on the measured scaling (≈ 22 h on the `Θ(n⁵)` law) and the `blas` route wants ≈ 17.5 GB |
 | the three-class theorem at 2060 under the transpose-extended relation — **and with it, no separation statement in this note is row-side any longer** | **PROVEN + PROVEN-BY-CERTIFICATE** (all three pairs carry both refutations, from the two transposed profiles banked 2026-09-03; cert 24: `Pᵀ` vs `G` **134 of 134** — every bin of that union — for the pair, `P` vs `(H″)ᵀ` 145 of 146 and `Pᵀ` vs `H″` 145 for `{P, H″}`, and `G` vs `(H″)ᵀ` **134 of 134** for `{G, H″}`). Under plain equivalence the five profiled matrices `P, G, H″, Pᵀ, (H″)ᵀ` are pairwise inequivalent — at least five classes exhibited, a remark and not the count. `Gᵀ` was **not** profiled, so nothing is said about the posted matrix versus its own transpose, and the two pairs involving `G` each have exactly one of the two routes available |
+| **Theorem T** (§1.9): `Hᵀ = D̃·BGS(x₀∘(−), −x₁, x₂, x₃; ρ; Eᵀ, (S′Q)ᵀ, (PS′)ᵀ)·D̃`, so the coset-border family is closed under transposition — **branch-free**, at every `(s,i)` and every `w`, by the *only if* half of Theorem A; and `(H″)ᵀ = BGS(x₀∘(−), x₁, x₂, x₃; ρ; Eᵀ, Qᵀ, Pᵀ)` exactly | **PROVEN** (paper-grade) **+ PROVEN-BY-CERTIFICATE** (both identities checked entrywise on 30 cores over ten groups, on 12 arbitrary bordered shapes satisfying none of (H1)–(H4), and on the banked records at 668, 716, 1916 by default and 1388, 1436, 1676, 1772 under `--full`, which has been run in this repository; the three T-images through `verify/verify.py` at pinned digests; cert 26) |
+| **Remark R** (§1.9): the border-kept orientation switch `H″` is Hadamard **iff** `P` annihilates the off-diagonal part of `Ĉ` — automatic at `(1,1)`, false in general | **PROVEN** (subtract (H4) for `H″` from (H4) for `H`) **+ PROVEN-BY-CERTIFICATE** (the condition and `verify/verify.py`'s verdict on `H″` agree on all seven banked records: both true at 668, 716, 1676, 1772, both false at 1916, 1388, 1436; cert 26 [4]). Every `H″` named in §3 is at `(1,1)`, where the condition holds |
+| `H ~ Hᵀ` iff the class of `H` is a fixed point of the involution `T` (§1.9); no structural *sufficient* condition, and **all four seeds symmetric does not suffice** | **PROVEN** (the reduction, from Theorem T) **+ COMPUTATIONAL-EVIDENCE** (the small-order census, 11 instances built here: 7 proved inequivalent to their own transpose — including Williamson-seeded `GS(44)` and `GS(60)`, which refutes the sufficiency claim — and 4 undecided by the profile, reported as undecided; cert 26 [6]). The source laboratory's wider 44-instance census used a finder-side isomorphism search and is **cited, not replayed** |
+| **Sylow-2 rigidity** (§1.10): for `t` an odd prime `> 7`, the Sylow-2 of the extension group is not `ℤ₈` or `D₄`; `ℤ₂³` and `ℤ₄×ℤ₂` force `t` a square or a sum of two squares; at `t = 523` only `Q₈`, so `E ∈ {Q₈×ℤ₅₂₃, Q₄₁₈₄}` — two of the twenty-four `(E, e*)` pairs, and `\|E\| = 2N = 4184` | **PROVEN** (paper-grade; the projected row-sum system in `ℤ[P]`, the five cases, the 12-group / 24-pair census) **+ PROVEN-BY-CERTIFICATE** (two implementations of the projected system agreeing on every odd 4-tuple in the box; the rule against brute-force existence at every odd `t ≤ 201` and at 523, 1326 cells, with 8384 solutions at `Q₈`; cert 27) |
+| "RDS ⟺ cocyclic Hadamard matrix" (§1.10) | **CITED** (de Launey–Flannery–Horadam 2000, with Flannery 1997) — not re-derived, and every statement in §1.10 is conditional on it |
+| the `(12,2,12,6)`-RDS census at `t = 3` (§1.10) | **PROVEN-BY-CERTIFICATE** (all 12 groups of order 24 with a normal `ℤ₃`, every central involution, all `2¹²` transversals, two predicates; RDS only in `Q₈×ℤ₃` (192) and `Q₂₄` (576), each developing to an `H(12)`; cert 27 [D]). **`t = 3` is outside the theorem's range** and is a **consistency control on the machinery**, not an instance |
+| the **`(2,4)` existence theorem** (§2.5): (H4) at this cell holds iff a `W(8,4)` of odd-signed affine planes transversal to the matching read off `C*` exists, and every perfect matching admits `2^{3−rk D}` transversal parallel classes — so the border is never the obstruction at `(2,4)`, at **every** `w` | **PROVEN** (paper-grade: the `W(8,4)` reformulation, the Walsh classification of the 112 signed rows, the orthogonality rule, the rank count) **+ PROVEN-BY-CERTIFICATE** (the two finite inputs the proof takes from the certificate — the 448-type table of the true `Ĉ`, and "`Π` is always a translation" — and the transversal census by two constructions of `W`, with fresh borders for cert 18's two `H(88)` through `verify/verify.py`; cert 28). Cert 18 [4]'s 215 040-class census is an **independent second proof** of the same statement |
+| **Lemma F** (§1.11) (i)–(iv), the `f ≤ N/p` trace bound, the 22 admissible / 293 excluded odd primes at 2092, and `p = 523 ⟹ f = 0, m = 4` — a **16-block circulant array**, which is *not* "the Williamson array" and which the Goethals–Seidel array is not | **PROVEN** (paper-grade) **+ PROVEN-BY-CERTIFICATE** ((i)–(iv) exercised on Sylvester `H(8)` and Paley `H(12)`; the prime lists; `4 \| b` for the constant-strip border; cert 29 [A]) |
+| **no automorphism of odd prime order** acts on `H(668)`, `H′(668)`, `H″(668)` or `H(716)` — `Aut` is a **2-group** at each, fixing the four border rows up to sign and acting within `τ`-pairs | **PROVEN** (the implication: class sizes `{1:4, 2:(N−4)/2}` ⟹ `Σ_C (\|C\| mod p) > N/p` for every odd `p`) **+ PROVEN-BY-CERTIFICATE** (cert 29). The implication's input — the per-row `\|T4\|` class partition at the record orders — was computed **twice in the source laboratory**: a numpy pair-histogram finder (2026-09-02), then cert 29's own stdlib route B under `--full` on all four records (2026-09-03/04, 9 044.0 / 9 062.2 / 9 049.1 / 11 273.6 s). **Neither leg has been run in this repository**; cert 29's default path audits and its `--full` is priced at ≈ 10.7 core-hours. The **2-part** of `Aut` is **NOT COMPUTED**: `Aut = ⟨−I, τ⟩` is consistent and unproved |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

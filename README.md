@@ -22,7 +22,12 @@ paper-grade proofs in the note, labelled as such. A default run
 rebuilds and verifies the
 matrices and **audits** the banked exact profiles against the
 identities and digests that bind them; the profile **recomputations**
-are the `--full` paths. The few measurements made in the source
+are the `--full` paths. Since 2026-09-05 the first movement also
+carries **Theorem T** — the family is closed under transposition, at
+every cell and every `w` — together with a **Sylow-2 rigidity**
+theorem and **Lemma F**, which between them narrow the shape a
+hypothetical `H(2092)` could have and show that the automorphism
+groups of the banked 668 and 716 records are 2-groups. The few measurements made in the source
 laboratory rather than replayed here are labelled as such where they
 appear.
 
@@ -57,6 +62,28 @@ exhaustive — 2048 admissible S-parts per group, every one of which
 admits a kit at every `κ(ρ)` — so **that cell is one-layer**: at
 order 2092 a seed quadruple *is* the matrix, and the border is
 never the obstruction (NOTE-B.md §1.8; cert 17).
+**Theorem T** (added 2026-09-05) proves the family **closed under
+transposition**: `Hᵀ` is again a standard-orientation member, on the
+reversed type-1 seed with one seed negated, the corner transposed and
+the two tables transposed and swapped — branch-free, at every `(s,i)`
+and every `w`, because the *only if* half of Theorem A hands back
+(H1)–(H4) in one line. So every transposed matrix the third movement
+profiles is a record of the same family (NOTE-B.md §1.9; cert 26,
+which also carries remark R: the border-kept orientation switch is
+Hadamard only when `P` annihilates the off-diagonal part of `Ĉ` —
+automatic at `(1,1)`, false at `(3,4)`, `(5,6)` and `(7,8)`).
+Two theorems about a *differently shaped* `H(2092)` sit beside them.
+**Sylow-2 rigidity** (NOTE-B.md §1.10; cert 27) cuts the extension
+group of a hypothetical **cocyclic** `H(2092)` from twenty-four
+`(E, e*)` pairs to **two**, `Q₈×ℤ₅₂₃` and `Q₄₁₈₄` — conditional on the
+de Launey–Flannery–Horadam equivalence, which is cited, not
+re-derived, and claiming nothing about existence in either surviving
+group. **Lemma F** (NOTE-B.md §1.11; cert 29) forces a 16-block
+circulant array at `p = 523` — not "the Williamson array", and not a
+shape the Goethals–Seidel array has — and, applied to the per-row
+`|T4|` classes of the banked records, shows that **no odd prime acts
+on `H(668)`, `H′(668)`, `H″(668)` or `H(716)`**: their automorphism
+groups are 2-groups.
 Theorem D: at `s = 1` the
 `i = 2` border system collapses onto the `i = 1` system (the Gram is
 forced, both tables are doubled 4×4 Hadamard matrices, and the
@@ -87,7 +114,12 @@ hypothesis boundary `w = 2s` (cert 05); and four matrices in the
 the others leaves (cert 18). None of the four is equivalent to a
 Kronecker product with `H(2)`, and none collapses to a smaller
 index; at that cell the border layer is proved never to obstruct,
-by an exhaustive census of all 215 040 `(S-part, κ(ρ), Q′)` classes.
+**twice over** — by an exhaustive census of all 215 040
+`(S-part, κ(ρ), Q′)` classes (cert 18), and, since 2026-09-05, by a
+**structural theorem**: (H4) at `(2,4)` holds iff there is a weighing
+matrix `W(8,4)` of odd-signed affine planes transversal to a matching
+read off `C*`, and every perfect matching of the eight labels admits
+`2^{3−rk D}` transversal parallel classes (NOTE-B.md §2.5; cert 28).
 No novelty of existence is claimed at any of these orders.
 
 **III. Existence plus separation** (§3). **Order 668 carries at
@@ -212,6 +244,19 @@ the `Θ(n⁵)` law) with a `blas` route wanting about 17.5 GB — so the flag is
 offered and priced and those certificates' verdicts are audits. Each cert's `NOTES.md` records
 which legs were run and when.
 
+Certs 26, 27 and 29 add three further `--full` flags, and **none of
+them touches numpy**: they are wider runs of the same standard-library
+code, as cert 16's `--wide` and cert 17's `--full` are. Cert 26's has
+been run here (45.4 s, 64 checks) and cert 27's too (13.9 s); **cert
+29's has not**, and at that one the price is real — the per-row `|T4|`
+recomputation is about 2.5 h per 668 record and 3.1 h at 716 on one
+core, ≈ 10.7 core-hours for the four. It has been run at the source
+laboratory on all four records (2026-09-03/04), which is what makes
+§1.11's records claim PROVEN-BY-CERTIFICATE; in this repository cert
+29's default path **audits**, and its `NOTES.md` draws the boundary.
+Cert 28 offers no `--full` at all: its census is exhaustive on the
+default path.
+
 ```
 python verify/verify.py --selftest
 python certs/01-payload-theorem/run.py
@@ -242,6 +287,12 @@ python certs/22-2060-three-classes/run.py
 python certs/23-1772-three-classes/run.py
 python certs/24-transpose-extended-2060/run.py
 python certs/25-transpose-extended-1772/run.py
+python certs/26-theorem-t-structure/run.py
+python certs/26-theorem-t-structure/run.py --full
+python certs/27-sylow2-rigidity/run.py
+python certs/27-sylow2-rigidity/run.py --full
+python certs/28-ag32-transversal/run.py
+python certs/29-lemma-f-records/run.py
 ```
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only

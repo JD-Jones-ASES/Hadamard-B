@@ -795,3 +795,106 @@ canonical matrix digests of cert 18 were first computed upstream; they are
 re-derived here from `data/cell24-records.json` at certificate run time, by
 `verify/verify.py`, on every run. As everywhere else in this repository,
 the source laboratory is **not** part of the trust chain.
+
+## Certificates 26, 27, 28 and 29 — where the theorems and the code came from (2026-09-05)
+
+`note/NOTE-B.md` §§1.9, 1.10, 1.11 and 2.5, and the four certificates
+`26-theorem-t-structure`, `27-sylow2-rigidity`, `28-ag32-transversal` and
+`29-lemma-f-records`, were ported into this repository on **2026-09-05** from
+the source laboratory (`Hadamard-2060`, private). The chain, station by
+station:
+
+* **Skeptic pass II** (a Cursor cloud lane, 2026-09-02) proved **Theorem T**
+  and the sign bookkeeping under it, re-proved the **Sylow-2 rigidity**
+  theorem via the projected row-sum system in `ℤ[P]`, re-proved **Lemma F**
+  including the `f ≤ N/p` trace bound, and turned the `(2,4)` existence
+  *step* into a **theorem**. That pass is the source laboratory's decision
+  **D-062**, adopted there after a desk replay of all ten of its scripts.
+* **Skeptic pass III** (a Cursor cloud lane, 2026-09-03) wrote the four
+  statements up in this note's voice and filed three certificates for them —
+  the laboratory's `certs/0026`, `0027`, `0028`. That is the laboratory's
+  decision **D-068**, **adopted with repairs** after a desk replay and an
+  independent audit whose mandate was to refute the work.
+* **The audit's findings, and the desk's repairs, are what this port
+  carries** — not the first draft. Four of them are visible in the text
+  above: Theorem T's attribution through `EEᵀ = 4s·I` (which holds only in
+  the house branch under `w > 2s`) was **replaced by the Theorem-A *iff*
+  argument**, making §1.9 branch-free; **remark R**, which had been dropped
+  from the draft, was **restored**, and §1.9 now states it with both its
+  failures; the draft's use of `n` for the order was **aligned with §1.0's
+  `n = |G|`, `N = 4v`** throughout §1.11; and the records claim was labelled
+  **COMPUTATIONAL-EVIDENCE** rather than PROVEN-BY-CERTIFICATE, because its
+  input rested on one implementation and the draft had called the numpy
+  finder "the second implementation already run" — inverted.
+* **The `--full` run that lifted that label** was made at the source
+  laboratory's desk on **2026-09-03/04**: cert `0028`'s standard-library
+  route B recomputed the per-row `|T4|` class partition on all four records
+  as detached single-core processes, `ALL CHECKS PASS` in 9 044.0 s
+  (`H(668)`), 9 062.2 s (`H′(668)`), 9 049.1 s (`H″(668)`) and 11 273.6 s
+  (`H(716)`). That is the second implementation **D-008** asks for, and it is
+  why §1.11's records claim is **PROVEN-BY-CERTIFICATE** here. The run is
+  recorded in that certificate's own `NOTES.md` replay record and in a dated
+  desk note appended to the laboratory's draft; **it has not been repeated in
+  this repository**, and cert 29's `NOTES.md` says so in as many words.
+
+**What changed in transit.** Certs 27 and 28 carry the laboratory's code with
+its mathematics unaltered; what was rewritten is the house framing — the
+docstring, the check count, the verdict block, the `NOTES.md` — and, in
+cert 28, the scratch directory, which is now a private temporary directory
+rather than a path inside the repository. Cert 29 needed more: the
+laboratory's version read three lab-only inputs, and all three were rewired.
+The decoded records now come from `data/payload-records.json` and the twisted
+`i = 2` instance from `data/twisted-i2-records.json` — both **SHA-256
+file-pinned**, and the `ψ`-twist **re-derived in the run** and required to
+match rather than trusted — while the third input, a text audit of the
+finder's own committed log files, was **dropped**: a certificate in this
+repository does not rest on reading a finder's log. In its place the ported
+certificate checks the twisted record's assembled digest against the
+`pinned_sha256` the data file itself carries, and checks the pinned partition
+for internal consistency, on top of the implication it already proved.
+
+**Cert 26 was written here**, not ported. The laboratory's
+`transpose_structure.py` and `transpose_smallorders.py` are finder-side
+scripts that read the laboratory's own `experiments/` tree and a shared
+support library; neither could be made self-contained in this repository
+without banking laboratory data. So cert 26 re-derives Theorem T's identities
+from the block array with its own assembler, checks them entrywise on 30
+cores, 12 arbitrary bordered shapes and every banked coset-border record, and
+builds its own small-order transposition census out of instances this
+repository can construct — five Williamson-seeded Goethals–Seidel arrays
+found by exhaustive search here, and four records already in `data/`. It
+shares no code with the laboratory. The laboratory's wider **44-instance**
+census decided its equal-profile cases with a finder-side
+individualisation–refinement search; that search is **not** in this
+repository's trust chain, is **not** replayed, and is recorded as a
+source-laboratory measurement in `certs/26-theorem-t-structure/NOTES.md`.
+Nothing in the note rests on it.
+
+**A corroboration worth recording.** The laboratory noted the canonical
+digests of the T-images at 668, 716 and 1916 to eight hex digits —
+`6396100a…`, `1bff41d8…`, `2cfb31f5…`. Cert 26 assembles those three matrices
+from the right-hand side of Theorem T, using this repository's own records
+and its own assembler, and **all three prefixes reproduce**. The full digests
+are pinned in `certs/26-theorem-t-structure/run.py` and in its `NOTES.md`.
+They are digests of `D̃MᵀD̃`, the house instance, and not of `Mᵀ` itself, which
+is what certs 15, 19, 21, 24 and 25 bank; the two differ by a `±1` diagonal
+that changes neither the equivalence class nor the `|T4|` profile.
+
+**Credit is to stations, as everywhere in this file:** the theorems and the
+three ported certificates are the source laboratory's, produced by its skeptic
+passes and repaired by its desk audit; the entrywise re-derivation, the census
+of clause [6], the rewiring and the note sections are this repository's. As
+everywhere else here, **the source laboratory is not part of the trust chain**:
+every certificate above runs from a fresh clone of this repository, on the
+standard library alone, reading only `verify/`, `data/` and its own directory.
+
+| file | sha256 |
+| --- | --- |
+| `payload-records.json` | `9afbf60efed82e97ffe229e0059f06dfa7849a2ac2434c52a6ada09559738afb` |
+| `twisted-i2-records.json` | `aafa83e070d2dc59da80aec1bcb6457b6bfcb8d7bcc758f20d9344047bfcb079` |
+| `h52-gate.json` | `ef60c4ff9f245eec5ba7f035e5968152836207fcd9235a0b1851150d2fb1d170` |
+| `h76-nonscalar.json` | `500ba1d22787407183d91cc303a80cfc14d250a5fe2f2d5c0d665553ffc7b8bf` |
+
+*(The first two are the files certs 26 and 29 pin; the last two are cert 26's
+own additional pins. `cell24-records.json`'s digest is tabled above, under
+certificates 16–18, and cert 26 pins the same value.)*
