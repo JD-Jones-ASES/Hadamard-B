@@ -1,0 +1,46 @@
+{
+  "H(668)": {
+    "digest": "bdeb5059d77e2703211082627b60441b8c888c928a55cc6f295e011941a387b0",
+    "N": 668,
+    "n_classes": 336,
+    "class_sizes": {
+      "1": 4,
+      "2": 332
+    },
+    "border_singletons": 4,
+    "source": "class partition computed twice in the source laboratory (Hadamard-2060): first by the numpy pair-histogram finder skeptic-pass/c9b_lemma_f_records.py, 2026-09-02; then by this script's stdlib route B under --full, 2026-09-03/04, ALL CHECKS PASS in 9044.0 s on one core (certs/0028-lemma-f-records/replay-2026-09-03/)"
+  },
+  "H'(668)": {
+    "digest": "600849b038e7588d15b64e02794517dd6d95e5d62d505aa7d3d77078392008a3",
+    "N": 668,
+    "n_classes": 336,
+    "class_sizes": {
+      "1": 4,
+      "2": 332
+    },
+    "border_singletons": 4,
+    "source": "class partition computed twice in the source laboratory (Hadamard-2060): first by the numpy pair-histogram finder skeptic-pass/c9b_lemma_f_records.py, 2026-09-02; then by this script's stdlib route B under --full, 2026-09-03/04, ALL CHECKS PASS in 9062.2 s on one core (certs/0028-lemma-f-records/replay-2026-09-03/)"
+  },
+  "H''(668)": {
+    "digest": "af1c285cbe2def88427381ab3002a267321b282a9fa78ca37e72830b602953c7",
+    "N": 668,
+    "n_classes": 336,
+    "class_sizes": {
+      "1": 4,
+      "2": 332
+    },
+    "border_singletons": 4,
+    "source": "class partition computed twice in the source laboratory (Hadamard-2060): first by the numpy pair-histogram finder skeptic-pass/c9b_lemma_f_records.py, 2026-09-02; then by this script's stdlib route B under --full, 2026-09-03/04, ALL CHECKS PASS in 9049.1 s on one core (certs/0028-lemma-f-records/replay-2026-09-03/)"
+  },
+  "H(716)": {
+    "digest": "3adcb1bb2884467d9e34069a3b32950728adabcdb8b35a4503d20c3312664ee6",
+    "N": 716,
+    "n_classes": 360,
+    "class_sizes": {
+      "1": 4,
+      "2": 356
+    },
+    "border_singletons": 4,
+    "source": "class partition computed twice in the source laboratory (Hadamard-2060): first by the numpy pair-histogram finder skeptic-pass/c9b_lemma_f_records.py, 2026-09-02; then by this script's stdlib route B under --full, 2026-09-03/04, ALL CHECKS PASS in 11273.6 s on one core (certs/0028-lemma-f-records/replay-2026-09-03/)"
+  }
+}
