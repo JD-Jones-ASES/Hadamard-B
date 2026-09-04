@@ -1040,8 +1040,8 @@ this shape.
 
 ### 1.12 Theorem F in the general branch, and the row-factorisation lemma — PROVEN; the `(7,12)/S3` kill — PROVEN-BY-CERTIFICATE
 
-§1.8 stated Theorem F at `i = s+1` in the house form. Nothing in its
-proof needs either. This section restates it in the **general
+§1.8 stated Theorem F at `i = s+1` in the house form. Neither
+hypothesis is used in its proof. This section restates it in the **general
 branch** — any Galois-stable support `S ⊆ Ĝ̄` of size `s`, with
 `M = M_S = 4·Σ_{χ∈S} χ = 4i·P_S`, which by Theorem E′ (§1.7) is the
 *only* admissible Gram once `w > s` — adds the lemma that makes the
@@ -1155,8 +1155,10 @@ Let `Ḡ = ℤ₁₂`, `s = 7`, and let
 character order 1, 6 and 12. Then **no `Q ∈ {±1}^{48×28}` satisfies
 (H1)**: at any `σ`, any `w`, any `κ(ρ)`, and therefore at **every**
 order `N = 4(12w + 7)`, not merely at 2092. The `χ₆`-twin support
-`{1,4,5,6,8,11}` dies with it by the Lemma-T twist (§1.4), the block
-alphabet being twist-equivariant.
+`6 + S3 = {1,4,5,6,7,8,11}` dies with it by the Lemma-T twist (§1.4):
+`v ↦ χ₆·v` is a bijection of `{±1}^{12}` carrying `V_{S3}` onto
+`V_{6+S3}`, so that alphabet is the two *alternating* vectors and the
+same three obstructions apply — checked in cert 31 [B], not asserted.
 
 *Proof.* By (a) each `12`-block of each column of `Q` is a `±1`
 vector in `V_{S3}`. Cert 31 enumerates those over all `2¹²` sign
@@ -1196,8 +1198,9 @@ A *good quadruple* on `ℤ_n`, `n` odd, is a Goethals–Seidel quadruple
 — `Σ_q PAF_q(t) = 0` for every `t ≠ 0`, so `GS(A,B,C,D; ρ)` is a
 Hadamard matrix of order `4n` at every `ρ` (Lemma 2) — in which `A`
 is of **skew type** (`a₀ = +1`, `a_{−k} = −a_k`) and `B, C, D` are
-**symmetric**. Good matrices are classical (§4); the identity below
-relates their entries at `k` and at `2k`.
+**symmetric**. Good matrices are a classical object; the credit chain
+for the skew Goethals–Seidel setting they belong to is §4. The
+identity below relates their entries at `k` and at `2k`.
 
 **Theorem G.** For every good quadruple on `ℤ_n` with `n` odd,
 

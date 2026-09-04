@@ -43,7 +43,10 @@ row-factorisation lemma with its dual form.
       Hence (H1) has NO solution at (7,12)/S3 -- at any sigma, any w, any
       kappa(rho), and therefore at EVERY order N = 4(12w + 7).  This is a
       DEAD-BY-CERTIFICATE verdict for the named tier, and the chi_6 twin
-      support {1,4,5,6,8,11} dies with it by the Lemma-T twist (S1.4).
+      support 6 + S3 = {1,4,5,6,7,8,11} dies with it by the Lemma-T twist
+      (S1.4) -- checked here, not asserted: v -> chi_6 . v is a bijection
+      of {+-1}^12 carrying V_S3 onto V_{6+S3}, so that alphabet is the two
+      ALTERNATING vectors and the same three obstructions apply.
 
   [C] THE ARTIFACT AT S2.  data/q-7_12-S2.json holds a 4 x 28 x 12 array of
       +-1 blocks.  Every block is required to lie in the alphabet computed in
@@ -362,9 +365,23 @@ def clause_b(alpha):
           "antipodal, so their inner product is +-28, while (H1) demands "
           "M_S3(c) for c != 0, whose values are %s" % off,
           all(abs(v) != 4 * 7 for v in off), off)
+    # the chi_6 twin, checked rather than asserted
+    twin = sorted((k + 6) % I12 for k in S_PARTS["S3"])
+    tw_cyc, tw_proj, tw_M = alphabet(twin, I12)
+    alt = tuple((-1) ** c for c in range(I12))
+    twisted = sorted(tuple(v[c] * alt[c] for c in range(I12)) for v in B)
+    check("the chi_6 twin support 6 + S3 = %s is Galois-stable, and its "
+          "alphabet is the image of S3's under the twist v -> chi_6 . v -- "
+          "%d blocks, the two alternating vectors -- so the same three "
+          "obstructions apply and it dies with S3 (Lemma-T twist, "
+          "note/NOTE-B.md S1.4)" % (twin, len(tw_cyc)),
+          tw_cyc == tw_proj and len(tw_cyc) == 2
+          and sorted(tw_cyc) == twisted
+          and all(tw_M[c] == (-1) ** c * M[c] for c in range(I12))
+          and all(abs(tw_M[c]) != 4 * 7 for c in range(1, I12)),
+          twin)
     check("so (7,12)/S3 is DEAD-BY-CERTIFICATE at the column layer, at every "
-          "order; its chi_6 twin {1,4,5,6,8,11} dies with it by the Lemma-T "
-          "twist", True)
+          "order N = 4(12w + 7)", True)
 
 
 # ======================================================================

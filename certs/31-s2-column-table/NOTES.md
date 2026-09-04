@@ -3,7 +3,7 @@
 **Label: PROVEN-BY-CERTIFICATE.** Default run:
 `python certs/31-s2-column-table/run.py` from the repository root. Standard
 library only, exact integers and `Fraction`s only, **no floats anywhere**, no
-network, nothing imported or opened outside this repository. **1.1 s, 49
+network, nothing imported or opened outside this repository. **1.1 s, 50
 checks, exit 0.** There is no `--full`: every enumeration here is exhaustive
 on the default path.
 
@@ -70,9 +70,12 @@ suffices:
 
 So **(H1) has no solution at `(7,12)/S3`**: at any `σ`, any `w`, any
 `κ(ρ)`, and therefore at **every** order `N = 4(12w + 7)`, not only at 2092.
-The `χ₆`-twin support `{1,4,5,6,8,11}` dies with it by the Lemma-T twist
-(§1.4), the block alphabet being twist-equivariant. This is the first
-general-branch border kill in this repository.
+The `χ₆`-twin support `6 + S3 = {1,4,5,6,7,8,11}` dies with it by the
+Lemma-T twist (§1.4) — **checked here, not asserted**: `v ↦ χ₆·v` is a
+bijection of `{±1}¹²` carrying `V_{S3}` onto `V_{6+S3}`, so that alphabet is
+the two *alternating* vectors, `M_{6+S3}(c) = (−1)^c·M_{S3}(c)` takes no
+value `±28` off zero, and the same three obstructions apply. This is the
+first general-branch border kill in this repository.
 
 **[C] the artifact at `S2`.** `data/q-7_12-S2.json` holds a `4 × 28 × 12`
 array of `±1` blocks. Every block is required to lie in the alphabet computed
@@ -124,9 +127,12 @@ Checked
   every one; and on the four kits themselves, `Ĉp = −Qe` with `e` the corner
   row, together with `P = −(1/4s)EQᵀĈ`;
 * at `(3,4)` on kits found by this certificate's own engine — a fixed
-  deterministic list of 40 candidate `Q`s and three S-parts at two `κ(ρ)`
-  each — where `E ∈ H(12)`, (H4) holds, and both dual identities hold on
-  every kit found.
+  deterministic list of 40 candidate `Q`s, three S-parts at two `κ(ρ)` each —
+  where `E ∈ H(12)`, `E ∈ {±1}`, (H4) holds, and both dual identities hold on
+  every kit found. **5 of the 6 points yield a kit**; the sixth is a miss of
+  the candidate list, not a statement about that point — this clause is a
+  check on the identities, not a census, and cert 17 is where the `(3,4)` kit
+  census lives.
 
 ## What is **not** claimed
 
@@ -172,7 +178,7 @@ certificate to a search order rather than to a statement.
 
 | step | cost |
 | --- | --- |
-| **`run.py`** | **1.07 s** (49 checks, exit 0; measured here 2026-09-05, Python 3.14, one worker) |
+| **`run.py`** | **1.07 s** (50 checks, exit 0; measured here 2026-09-05, Python 3.14, one worker) |
 | [A], the four alphabets over `2¹²` vectors, twice each | 0.2 s |
 | [E], the twelve `κ(ρ)` at `48 × 48` | 0.4 s |
 | [F], the `(2,4)` records and the `(3,4)` kit search | 0.4 s |
