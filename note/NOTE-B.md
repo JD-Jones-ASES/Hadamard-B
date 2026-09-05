@@ -17,16 +17,21 @@ This note is the mathematics of the repository, in three movements:
   with the exhaustive `(3,4)` census that makes that cell
   **one-layer** — at 2092 a seed quadruple *is* the matrix
   (Theorem F, §1.8); the complete resolution of the `s = 1`
-  border system; and three theorems added 2026-09-05 — that the
+  border system; and five theorems added 2026-09-05 — that the
   family is **closed under transposition** on displayed data, at
   every cell and every `w` (Theorem T, §1.9), so the transposed
   matrices §3 profiles are records of the same family; a
   **Sylow-2 rigidity** theorem that cuts the extension group of a
   hypothetical *cocyclic* `H(2092)` from twenty-four `(E, e*)`
-  pairs to two (§1.10); and **Lemma F**, which forces a
-  16-block circulant array at `p = 523` and, on the banked
-  668 / 716 records, shows that **no odd prime acts** — their
-  automorphism groups are 2-groups (§1.11).
+  pairs to two (§1.10); **Lemma F**, which forces a 16-block
+  circulant array on an `H(2092)` admitting an automorphism of
+  order `p = 523` and, on the banked 668 / 716 records, shows
+  that **no odd prime acts** — their automorphism groups are
+  2-groups (§1.11); **Theorem F again in the general branch**,
+  with the row-factorisation lemma that makes a border-side
+  negative complete in `P` and the first border kill in this
+  note (§1.12); and the **good-matrix product theorem** and its
+  closure sign law (§1.13).
 - **II. The instances** (§2) — twelve publicly posted matrices
   re-verified through the theorem's hypotheses, and twelve matrices
   constructed here, every one replayable from `certs/`. Four of them
@@ -35,7 +40,9 @@ This note is the mathematics of the repository, in three movements:
   border layer is proved never to obstruct — twice over, once by
   an exhaustive 215 040-class census (§2.4) and once by a
   structural theorem that reduces (H4) to a weighing matrix of
-  signed affine planes (§2.5).
+  signed affine planes (§2.5); and the general-branch σ-layer at
+  `N = 2092`, with the `(7,12)` column tables and the first dead
+  border tier (§2.6).
 - **III. Existence plus separation** (§3) — a proof that order 668
   carries at least **four** Hadamard equivalence classes and that
   orders 716, 1676, 1772 and 2060 each carry at least **three**,
@@ -1453,6 +1460,290 @@ existence.
 
 ---
 
+### 1.12 Theorem F in the general branch, and the row-factorisation lemma — PROVEN; the `(7,12)/S3` kill — PROVEN-BY-CERTIFICATE
+
+§1.8 stated Theorem F at `i = s+1` in the house form. Neither
+hypothesis is used in its proof. This section restates it in the **general
+branch** — any Galois-stable support `S ⊆ Ĝ̄` of size `s`, with
+`M = M_S = 4·Σ_{χ∈S} χ = 4i·P_S`, which by Theorem E′ (§1.7) is the
+*only* admissible Gram once `w > s` — adds the lemma that makes the
+border layer factorise by row, and draws the first border kill in
+this note.
+
+Setting: `Ḡ` abelian of order `i`, `K ≤ G` of index `i`, `w = |K|`,
+`s ≥ 1`, `N = 4(wi + s)`, `S` Galois-stable of size `s` (hence
+conjugation-closed), `M = 4i·P_S`. `V_S = span{v_χ : χ ∈ S} ⊂ ℝ^i`.
+`Ĉ = GS(σ₀,…,σ₃; κρ)` is the `4i × 4i` array of the coset sums, and
+`F = Σ_q PAF_{σ_q}`, so that the compressed (H2) reads
+`F = N·δ₀ − w·M`.
+
+**One clause has to be reread.** In the house branch `S = Ĝ̄∖{1}`,
+so `V_S` is the sum-zero hyperplane and "blockwise in `V_S`" means
+"each block sums to zero". In the general branch `V_S` is whatever
+the support says, and when `χ₀ ∈ S` the constant vector is **in**
+`V_S`. Everything else is verbatim.
+
+**Theorem F (general branch).** Clauses (a)–(g) of §1.8 hold as
+stated, with `M = 4i·P_S` and no use of `i = s+1`:
+
+- **(a)** `QᵀQ = 4i·I_{4s}`, and `col(Q) = ℝ⁴ ⊗ V_S` **exactly**;
+  in particular every `i`-block of every column of `Q` lies in `V_S`.
+- **(b)** dually `PPᵀ = 4i·I`, the rows of `P` blockwise in `V_S`,
+  and `PᵀP = QQᵀ = I₄⊗M`, so `Pᵀ` is itself an admissible column
+  table.
+- **(c)** `ĈᵀĈ = ĈĈᵀ = I₄ ⊗ dev(F)`, and `Ĉ` commutes with
+  `I₄ ⊗ P_S`.
+- **(d)** `E = −(1/4i)·P·Ĉᵀ·Q`.
+- **(e)** for **any** `P, Q` with (a),(b) and any `σ` with compressed
+  profile `F`, `EEᵀ = 4s·I` **automatically**, (H3) collapses to the
+  identity `4s + 4iw = N`, and **(H3)+(H4) reduce to the single
+  condition `E ∈ {±1}^{4s×4s}`** — so a kit's corner is a Hadamard
+  matrix of order `4s`.
+- **(f)** `E` sees `σ` only through the S-part `(σ̂_q(χ))_{q, χ∈S}`.
+- **(g)** transport across `w`, hence across orders, is unchanged.
+
+*Proof.* (a): `QQᵀ = I₄⊗M` has nonzero spectrum `{(4i)^{4s}}`
+because `M = 4i·P_S` and `rank P_S = s`; `QᵀQ` is `4s×4s` with the
+same nonzero spectrum, and a symmetric matrix with one eigenvalue is
+that multiple of `I`. Then `QQᵀ/4i` is the orthogonal projector onto
+`col(Q)` and equals `I₄⊗P_S`, the projector onto `ℝ⁴⊗V_S`; equal
+projectors have equal images. (c): `Ĉᵀ` is the standard array of
+`(σ₀∘(−), −σ₁, −σ₂, −σ₃)` at the same `κ(ρ)`, so Lemma 2 gives
+`ĈᵀĈ = I₄⊗dev(F)`; developed blocks lie in the commutative group
+algebra and `R v_χ = χ(κρ)·v_χ̄` with `S` conjugation-closed — which
+is all the commutation needs, and is exactly what Galois stability
+supplies. (d),(f),(g): the computations of §1.8 verbatim.
+
+**(b) and (e).** §1.8 reaches `PPᵀ = 4i·I` through D3 (§1.3), whose
+hypothesis is `w > 2s`; no such hypothesis is available here, and
+none is needed. Write `Π = I₄⊗P_S`, `A = PΠPᵀ` and
+`B = PΠ^⊥Pᵀ ⪰ 0`, so `PPᵀ = A + B`. From (d) and (c),
+`EEᵀ = (1/16i²)·PĈᵀ(I₄⊗M)ĈPᵀ = (1/4i)·PΠĈᵀĈPᵀ = (s/i)·A`.
+Taking traces in (H3) `EEᵀ + w·PPᵀ = N·I_{4s}`, and using
+`tr(PPᵀ) = 16is` because `P ∈ {±1}^{4s×4i}`,
+
+```
+   (s/i)·tr A + 16isw = 4s·N = 16swi + 16s²   ⟹   tr A = 16is = tr(PPᵀ),
+```
+
+so `tr B = 0`; `B ⪰ 0` forces `B = 0`, i.e. `PΠ^⊥ = 0` — the rows of
+`P` are blockwise in `V_S` — and `PPᵀ = A`. Now (H3) reads
+`(s/i + w)·PPᵀ = N·I`, i.e. `PPᵀ = 4i·I`, and the `4s` rows of `P`
+are an orthogonal basis of `ℝ⁴⊗V_S`, so `PᵀP = 4i·Π = I₄⊗M`.
+Conversely, given (a) and (b), `EEᵀ = (s/i)·4i·I = 4s·I`
+automatically, (H3) becomes the identity `4s + 4iw = N`, and
+`EQᵀ = −(1/4i)PĈᵀ(I₄⊗M) = −PΠĈᵀ = −PĈᵀ` is (H4); so (H3)+(H4)
+reduce to `E ∈ {±1}^{4s×4s}`. **No hypothesis on `w` is used
+anywhere above.** The one substantive step throughout is that
+`dev(F)` acts on `V_χ` for `χ ∈ S` as
+`F̂(χ) = N − w·M̂(χ) = N − 4iw = 4s`, which is where the house form
+was used in §1.8 and where `M = 4i·P_S` suffices here. ∎
+
+**Lemma (the border layer factorises by row) — PROVEN.** Put
+`W := Ĉᵀ Q`, a `4i × 4s` matrix. Then
+
+```
+   W Wᵀ = Ĉᵀ(QQᵀ)Ĉ = 4i·Ĉᵀ(I₄⊗P_S)Ĉ = 4i·(I₄⊗P_S)ĈᵀĈ
+        = 4i · 4s · (I₄ ⊗ P_S).
+```
+
+Hence for **any** admissible row `p` — `±1`, length `4i`, every
+`i`-block in `V_S`, so `‖p‖² = 4i` and `(I₄⊗P_S)p = p` —
+`Σ_b ⟨p, W[:,b]⟩² = pᵀWWᵀp = (4i)²·4s`, i.e. **the corresponding row
+`e` of `E` has `‖e‖² = 4s` exactly, whatever `p` is**. A vector of
+`4s` reals of squared norm `4s` lies in `{±1}^{4s}` iff every entry
+is `±1`. Therefore
+
+> a kit exists for a fixed `(Q, κ(ρ), σ)` **iff** the set of
+> *flat* rows — admissible `p` with `⟨p, W[:,b]⟩ ∈ {±4i}` for every
+> `b` — contains `4s` mutually orthogonal elements.
+
+Flatness is a condition on `p` **alone**. That is what makes a
+row-side negative *complete in `P`*: bounded, if at all, only in
+`(Q, κ(ρ), σ)`. ∎
+
+**Corollary (the dual form) — PROVEN.** For an admissible row `p`,
+
+> **`p` is flat ⟺ `Ĉp ∈ Q·{±1}^{4s}`**,
+
+and a kit is a Hadamard matrix `E` of order `4s` together with
+`P = −(1/4s)·E·Qᵀ·Ĉ ∈ {±1}^{4s×4i}` — the dual of (d).
+
+*Proof.* By (c), `(I₄⊗P_S)Ĉp = Ĉ(I₄⊗P_S)p = Ĉp`, so
+`Ĉp ∈ ℝ⁴⊗V_S = col(Q)` by (a). The columns `q_b` of `Q` are
+orthogonal of squared norm `4i`, so
+`Ĉp = Σ_b (⟨Ĉp, q_b⟩/4i)·q_b`; and `e_b = −(1/4i)·⟨Ĉp, q_b⟩` is
+(d). That is `Ĉp = −Qe`, and flatness is `e ∈ {±1}^{4s}`, which is
+the stated membership (`−{±1}^{4s} = {±1}^{4s}`). Applying it to
+every row of `P` gives `PĈᵀ = −EQᵀ`; multiplying on the right by `Ĉ`
+and using `P·ĈᵀĈ = 4s·P` — the rows of `P` are blockwise in `V_S` by
+(b), where `dev(F)` acts as `4s` — gives `4s·P = −EQᵀĈ`. ∎
+
+*(So the flat set is the preimage, under the fixed linear map `Ĉ`, of
+the `2^{4s}`-point set `Q·{±1}^{4s}` inside the row alphabet: a
+lattice-coincidence question on a shell of squared norm `16is`.
+Nothing in this note rests on that reading; it is recorded because it
+is what the two identities say.)*
+
+**MEASURED (cert 31 [E],[F]).** The lemma is re-multiplied entry by
+entry at `(7,12)/S2` — `ĈᵀĈ = ĈĈᵀ = I₄⊗dev(F)`, the commutation, and
+`WWᵀ = 4i·4s·(I₄⊗P_S)` — at **every** `κ(ρ) ∈ ℤ₁₂`, on the general-
+branch coset-sum table of cert 30. The dual form is checked at
+`(2,4)` on all four banked records of cert 18, **exhaustively over
+all 256 admissible rows**, and at `(3,4)` on kits found by cert 31's
+own engine.
+
+**The `(7,12)` border kill — PROVEN-BY-CERTIFICATE (cert 31 [A],[B]).**
+Let `Ḡ = ℤ₁₂`, `s = 7`, and let
+`S3 = {0,1,2,5,7,10,11}` — the union of the Galois orbits of
+character order 1, 6 and 12. Then **no `Q ∈ {±1}^{48×28}` satisfies
+(H1) with `M = M_{S3}`** — the `S3` tier admits no column table: at
+any `σ`, any `w`, any `κ(ρ)`, and therefore at **every** order
+`N = 4(12w + 7)`, not merely at 2092. The `χ₆`-twin support
+`6 + S3 = {1,4,5,6,7,8,11}` dies with it by the Lemma-T twist (§1.4):
+`v ↦ χ₆·v` is a bijection of `{±1}^{12}` carrying `V_{S3}` onto
+`V_{6+S3}`, so that alphabet is the two *alternating* vectors and the
+same three obstructions apply — checked in cert 31 [B], not asserted.
+
+*Proof.* By (a) each `12`-block of each column of `Q` is a `±1`
+vector in `V_{S3}`. Cert 31 enumerates those over all `2¹²` sign
+vectors by **two membership tests that share no code** — cyclotomic
+divisibility, `Φ_d(x) | v(x)` for every character order `d` outside
+`S3` (here `d ∈ {2,3,4}`), and the projector fixed point
+`circ(M_{S3}/4)·v = 12·v` — and the two agree: the admissible blocks
+are the **two constants** `±𝟙`. Every column of `Q` is therefore
+`(ε₀𝟙, ε₁𝟙, ε₂𝟙, ε₃𝟙)`; at most `2⁴ = 16` such vectors exist and
+they span a space of dimension `4`, while (a) requires `4s = 28`
+mutually orthogonal ones. Independently: inside one superblock any
+two rows of `Q` are then equal or antipodal, so their inner product
+is `±28`, while (H1) demands `M_{S3}(c)` for `c ≠ 0`, whose values
+are `{−8, −4, 8}`. ∎
+
+**Scope, exactly.** This section is about the **column and border
+layers** and nothing else.
+
+* **No kit is known in the general branch at 2092.** At `(11,16)` and
+  at `(7,12)/S1` and `/S4` the source laboratory decided tens of
+  thousands of `(Q, κ(ρ), σ)` points, complete in `P` at each, and
+  found **zero** flat rows; that is a bounded negative search, not a
+  theorem, and it is not certified here. The `(3,4)` corollary *"the
+  border is never the obstruction"* (§1.8) has **no general-branch
+  analogue in evidence**.
+* **The `Q` quantifier is open.** An admissible column table exists at
+  `(7,12)/S2` (cert 31 [C]); how many there are, and how many up to
+  equivalence, is not known here, and the corresponding question at
+  `S1` and `S4` is not addressed. Only at `S3` is the quantifier
+  settled, and there it is empty.
+* **Nothing about `H(2092)`**, in either direction, follows from any
+  of this. A dead border tier is a dead border tier.
+
+### 1.13 The good-matrix product theorem — PROVEN
+
+A *good quadruple* on `ℤ_n`, `n` odd, is a Goethals–Seidel quadruple
+— `Σ_q PAF_q(t) = 0` for every `t ≠ 0`, so `GS(A,B,C,D; ρ)` is a
+Hadamard matrix of order `4n` at every `ρ` (Lemma 2) — in which `A`
+is of **skew type** (`a₀ = +1`, `a_{−k} = −a_k`) and `B, C, D` are
+**symmetric**. Good matrices are a classical object; the credit chain
+for the skew Goethals–Seidel setting they belong to is §4. The
+identity below relates their entries at `k` and at `2k`.
+
+**Theorem G.** For every good quadruple on `ℤ_n` with `n` odd,
+
+> **`a_{2k} = −(b₀ c₀ d₀)·a_k b_k c_k d_k`**  for every `k ≠ 0`.
+
+Under the normalisation `b₀ = c₀ = d₀ = +1` this reads
+`a_{2k} = −a_k b_k c_k d_k`. **The prefactor is not decoration**: each
+unprefixed variant holds on exactly the half of the solution set
+where `b₀c₀d₀` has the matching sign, and on no more (cert 32 [A]).
+
+*Proof (group ring).* Work in `ℤ[ℤ_n]`, writing `J = Σ_k x^k` and
+`e = x⁰`, and put `X = J − 2U` for the `{0,1}` indicator `U` of the
+`−1` positions of a seed `x`. Then `XX* = (n − 4|U|)J + 4UU*`, and
+summing the four seeds against `Σ_q X_qX_q* = 4n·e` gives the exact
+integer identity
+
+```
+   Σ_q U_q U_q* = n·e + (σ − n)·J ,      σ = Σ_q |U_q| .
+```
+
+Now reduce **mod 2**, in `𝔽₂[ℤ_n]`. For a *symmetric* seed `V* = V`,
+so `VV* = V²`, whose `x^j` coefficient over `𝔽₂` is `v_{2^{-1}j}`
+(`2` is invertible, `n` odd) — write `V^{[2]}`, so
+`(V^{[2]})_{2a} = v_a`. For the *skew-type* seed `u₀ = 0` and
+`u_{−k} = 1 + u_k`, so `U* = U + J + e` and
+`UU* = U^{[2]} + |U|·J + U`. Squaring is additive in characteristic
+2, so with `T = U + V + W + Z` the identity becomes
+
+```
+   T^{[2]} + U = e + ε·J ,     ε = 1 + |V| + |W| + |Z|  (mod 2),
+```
+
+`n` being odd. Read off the coefficient at `x^{2k}`, `k ≠ 0`:
+`t_k + u_{2k} = ε`, i.e. `u_{2k} = ε + t_k`. Translating back to
+signs, `(−1)^{t_k} = a_k b_k c_k d_k`, and `(−1)^{|V|} = Π_k v_k =
+v₀ = b₀` for a symmetric seed — the nonzero indices pair off — so
+`(−1)^ε = −b₀c₀d₀`. ∎
+
+**Corollary (the closure sign law) — PROVEN.** Doubling permutes
+`ℤ_n ∖ {0}`, and along one of its cycles Theorem G determines `A`
+from a single entry; consistency around the cycle is therefore
+exactly **one** parity condition. In the multiplier setting —
+`M₀ ≤ ℤ_n^*` of odd order, the seeds constant on the orbits of
+`⟨M₀, −1⟩`, and `2` reaching `⟨M₀,−1⟩` in `L` steps, so that doubling
+is a single `L`-cycle on those orbits — that condition is
+
+```
+   Π_j π_j = closure · (−(b₀c₀d₀))^L ,   π_j = b_{2^j} c_{2^j} d_{2^j},
+   closure = +1  if 2^L ∈ M₀ ,   −1  if 2^L ∈ −M₀ .
+```
+
+*Proof.* `a_{2^{j+1}} = ε·a_{2^j}·π_j` with `ε = −(b₀c₀d₀)`, so
+`a_{2^L} = ε^L·(Π_j π_j)·a₁`; and `a_{2^L} = closure·a₁` because `a`
+is constant on `M₀`-orbits and `a_{−k} = −a_k`. ∎
+
+**The sign is computed, never assumed.** At `n = 7` with `M₀ = {1}`:
+`⟨M₀,−1⟩` has 3 orbits on `ℤ₇∖{0}`, `L = 3`, and `2³ = 1 ∈ M₀`, so
+`closure = +1` and `Π_j π_j = −1` under the normalisation. At
+`n = 523` with `M₀` the unique subgroup of order 3 of `ℤ_523^*`
+(`|ℤ_523^*| = 522 = 2·3²·29`): `⟨M₀,−1⟩` has order 6 and **87**
+orbits, all of size 6; `2` has order exactly `87` in
+`ℤ_523^*/⟨M₀,−1⟩`, so doubling is a **single 87-cycle**; and
+`2⁸⁷ = 463` with `−463 = 60 ∈ M₀`, so `2⁸⁷ ∈ −M₀`, `closure = −1`,
+and `Π_j π_j = +1`. **One** parity condition, not 87. Both
+computations are redone from the definition of `ℤ_n^*` in cert 32
+[D], and the `n = 7` prediction is then checked against all 528
+enumerated good quadruples there.
+
+**COMPUTATIONAL-EVIDENCE (cert 32 [A],[B],[C]).** Complete
+meet-in-the-middle enumeration over **all** skew and **all** symmetric
+seeds with `b₀` free, at `n = 7, 9, 11, 13, 15`:
+**528 / 288 / 1440 / 3456 / 4224 = 9 936** good quadruples, and
+Theorem G holds in **every one**; the group-ring identity it is read
+off from is re-checked coefficient by coefficient on all 9 936, and
+fails — as it must — on quadruples that are not good. **The control
+that could fail, and does, where it should:** with **four symmetric**
+seeds (the Williamson setting) `U* = U` throughout, the same lemma
+gives `T^{[2]} = e + (σ+1)J`, and the conclusion is the
+*constant-product* corollary `a_k b_k c_k d_k = −(a₀b₀c₀d₀)` off zero
+and **not** the doubling relation: verified in **all 14 784**
+Williamson quadruples at those five orders, while the doubling
+relation holds in **none** of them. Skewness of `A` is load-bearing.
+One assembled array per order is handed to `verify/verify.py` and is
+Hadamard of order `4n`.
+
+**What is not claimed.** No novelty: a product-type relationship for
+good matrices is reported in print — arXiv:1811.05094 announces "a
+new relationship between the entries of good matrices" without
+giving its form in the abstract. That paper is read **only in the
+abstract** here, so what it states is **NOT CLAIMED** either way and
+no comparison is made — the declaration is §4.1's last paragraph.
+Nothing about `n = 523` beyond the group arithmetic above: **no good
+quadruple is known at `n = 523`**, the closure condition is
+*necessary* for a hypothetical one, and no existence statement
+follows — in particular none about `H(2092)`. Nothing at `n > 15`.
+
+---
+
 ## 2. Movement II — the instances
 
 Everything in this section is replayed in the strict sense — nothing
@@ -1653,8 +1944,9 @@ Galois-stable `S` containing a real character and `w > 2s`. Those are
 not re-derived in this repository, so nothing is claimed for them
 here beyond the observation that Theorem 3 does not exclude them;
 their seed layers are untested in any case.
-
----
+*(Forward pointer, 2026-09-05: the σ-layer of all three is now
+re-derived here — §2.6, cert 30 — and the `(7,12)` column layer with
+it, §1.12 and cert 31. The seed layers remain untested.)*
 
 ### 2.5 The `(2,4)` existence theorem — PROVEN + PROVEN-BY-CERTIFICATE
 
@@ -1769,6 +2061,88 @@ The corresponding statement for all anti-periodic cells is a sketch in
 the source laboratory and is **not** a theorem of this note. And the
 four `(2,4)` matrices remain §2.3's and cert 18's: cited here, never
 re-banked.
+
+---
+
+### 2.6 The general-branch σ-layer and the `(7,12)/S2` column table — PROVEN-BY-CERTIFICATE
+
+Two certificates carry the general branch at `N = 2092 = 4·523` as
+far as this repository takes it. Both are exact-integer,
+standard-library, and complete on their default paths; neither says
+anything about seeds, and neither says anything about `H(2092)`.
+
+**Cert 30 — the σ-layer.** For a general-branch cell `(s,i,w)` with
+`N = 4(wi + s)` and a Galois-stable support `S ⊆ Ĝ̄` of size `s`,
+Theorem E′ forces `M = M_S = 4i·P_S` (every cell here has
+`w > 2s`), and the *compressed* form of (H2) reads
+`Σ_q PAF_{σ_q} = F := N·δ₀ − w·M_S`. The **σ-layer** of the cell is
+the set of integral coset-sum tables meeting that, the parity
+`σ_q(c) ≡ w (mod 2)` and box `|σ_q(c)| ≤ w` that make each entry a
+sum of `w` signs, `Σ_{q,c} σ_q(c)² = F(0)`, and the row-sum shell
+`Σ_q r_q² = 4s`. Cert 30 establishes:
+
+- **the σ-layer of every advertised general branch at 2092 is
+  non-empty**, by explicit artifact — one table at `(11,16,32)` on
+  `ℤ₁₆`, four at `(7,12,43)` on `ℤ₁₂` (one per rational branch), one
+  at `(3,8,65)` on `𝔽₂³` — with Fourier budgets `4s` on `S` and `N`
+  off it, the two-valued Parseval law of Corollary E2 at general
+  cells;
+- **the support enumerations are complete**: exactly one Galois-stable
+  size-11 subset of `Ẑ₁₆` contains `χ₀`, and exactly four size-7
+  subsets of `Ẑ₁₂` do, so `(7,12)` is populated on *every* one of its
+  rational branches and not on a lucky one;
+- **the `(3,8)` cell is not an independent door**: all 56 size-3
+  subsets of `𝔽̂₂³` and all 12 Galois-stable size-3 subsets of
+  `Ẑ₄ × Ẑ₂` are real-character twists of `W ∖ {1}` for a subgroup `W`
+  of order 4, so every such cell coarsens onto a house `(3,4)`
+  profile — exhibited, by twisting the `(3,8)` table and compressing
+  it onto the house `(3,4)` profile `[4w+12, 4w, 4w, 4w]` at
+  `w = 130`, the width of 2092 in that cell (§1.8).
+
+Every `M` and every `F` is re-derived from `(S, i, w)` alone; the
+banked vectors are read only to be compared. Each PAF is computed
+twice (direct double sum; row 0 of `GGᵀ` for the group matrix), each
+`M_S` twice (root-of-unity sums reduced mod `Φ_i`, versus Ramanujan
+sums over the order-classes — or, on `𝔽₂³`, a character sum versus a
+Walsh butterfly), and four perturbed tables must be **rejected** by
+the same acceptance path.
+
+**Cert 31 — the `(7,12)` column layer.** At `Ḡ = ℤ₁₂`, `s = 7`, the
+admissible block alphabet `B_S = {±1}¹² ∩ V_S` is computed over all
+`2¹²` sign vectors by two membership tests that share no code, and it
+is small: **66, 32, 2, 24** vectors at `S1, S2, S3, S4`, of span rank
+`7, 7, 1, 7`. Consequently
+
+- **`(7,12)/S3` admits no column table at any order** —
+  **PROVEN-BY-CERTIFICATE** (§1.12): with
+  only the two constants admissible, (H1) is unsatisfiable at any
+  `σ`, `w` and `κ(ρ)`, hence at every `N = 4(12w + 7)`;
+- **`(7,12)/S2` has an admissible column table**: the banked artifact
+  `data/q-7_12-S2.json`, whose 112 blocks are required to lie in the
+  alphabet computed in the same run, and whose `QᵀQ = 48I₂₈` and
+  `QQᵀ = I₄⊗M_{S2}` are re-multiplied entry by entry;
+- **the per-superblock block multiset is forced**: `R_IR_Iᵀ = circ(M)`
+  reads `Σ_j m_j b_jb_jᵀ = circ(M)` over the 16 negation classes,
+  whose outer products are linearly independent, so with
+  `Σ_j m_j = 28` the system has a unique rational solution — integral
+  and nonnegative: the constant class once, each type-A class once,
+  each type-B class twice. A search that fixes superblock 0
+  canonically is therefore **exhaustive**, which is what turns a
+  negative at this cell into a theorem rather than a search failure.
+
+Cert 31 also carries the finite side of §1.12: the row-factorisation
+lemma re-multiplied at all twelve `κ(ρ)` on cert 30's `(7,12)` table,
+and the dual form checked at `(2,4)` on all four records of §2.3
+exhaustively over the 256 admissible rows, and at `(3,4)` on kits
+found by its own engine.
+
+**What the two certificates do not say.** Nothing about **seeds** at
+any general-branch cell — a compressed σ-table is a necessary shadow
+of a seed quadruple, never a sufficient one, and no seed quadruple is
+known at any of these cells. Nothing about a **border kit**: (H1) is
+the column layer only, and no kit is known anywhere in the general
+branch at 2092 (§1.12). Nothing about the *number* of σ-tables or of
+column tables. And nothing whatever about `H(2092)`.
 
 ---
 
@@ -2774,6 +3148,13 @@ border tracking an eight-block doubled core, entries constant on the
 whole group) are different devices, named here so they are not
 mistaken for the object below.
 
+**One source read only in the abstract.** arXiv:1811.05094 announces
+"a new relationship between the entries of good matrices" and does
+not give its form in the abstract; the paper itself was not obtained,
+so what it states is unknown here and **no comparison** is made with
+Theorem G (§1.13) in either direction — neither agreement nor
+novelty is claimed against it.
+
 ### 4.2 What is claimed, and the one hedged sentence
 
 Ours are: the border whose **strips are constant on the cosets of a
@@ -2795,9 +3176,12 @@ did not locate the coset-constant border form with `i ≥ 2`, the
 if-and-only-if characterisation, or the width-against-index
 classification; this closes those sources and nothing more.** The
 nearest prior objects located — Wallis–Street–Wallis Lemma 7.8 and
-Momihara–Yamada Theorem 4.1 — are distinguished above. One named
-source could not be obtained and stays outside the enumeration: the
-Craigen–Kharaghani Handbook chapter (V.1, 2007).
+Momihara–Yamada Theorem 4.1 — are distinguished above. Two named
+sources stay outside that enumeration: the Craigen–Kharaghani
+Handbook chapter (V.1, 2007), which could not be obtained, and
+arXiv:1811.05094, read only in its abstract — it concerns good
+matrices (§1.13), not the border, and nothing here is measured
+against it.
 
 ### 4.3 The public record around the instances
 
@@ -2871,4 +3255,9 @@ understood.
 | the **`(2,4)` existence theorem** (§2.5): (H4) at this cell holds iff a `W(8,4)` of odd-signed affine planes transversal to the matching read off `C*` exists, and every perfect matching admits `2^{3−rk D}` transversal parallel classes — so the border is never the obstruction at `(2,4)`, at **every** `w` | **PROVEN** (paper-grade: the `W(8,4)` reformulation, the Walsh classification of the 112 signed rows, the orthogonality rule, the rank count) **+ PROVEN-BY-CERTIFICATE** (the two finite inputs the proof takes from the certificate — the 448-type table of the true `Ĉ`, and "`Π` is always a translation" — and the transversal census by two constructions of `W`, with fresh borders for cert 18's two `H(88)` through `verify/verify.py`; cert 28). Cert 18 [4]'s 215 040-class census is an **independent second proof** of the same statement |
 | **Lemma F** (§1.11) (i)–(iv), the `f ≤ N/p` trace bound, the 22 admissible / 293 excluded odd primes at 2092, and `p = 523 ⟹ f = 0, m = 4` — a **16-block circulant array**, which is *not* "the Williamson array" and which the Goethals–Seidel array is not | **PROVEN** (paper-grade) **+ PROVEN-BY-CERTIFICATE** ((i)–(iv) exercised on Sylvester `H(8)` and Paley `H(12)`; the prime lists; `4 \| b` for the constant-strip border; cert 29 [A]) |
 | **no automorphism of odd prime order** acts on `H(668)`, `H′(668)`, `H″(668)` or `H(716)` — `Aut` is a **2-group** at each, fixing the four border rows up to sign and acting within `τ`-pairs | **PROVEN** (the implication: class sizes `{1:4, 2:(N−4)/2}` ⟹ `Σ_C (\|C\| mod p) > N/p` for every odd `p`) **+ PROVEN-BY-CERTIFICATE** (cert 29). The implication's input — the per-row `\|T4\|` class partition at the record orders — was computed **twice in the source laboratory**: a numpy pair-histogram finder (2026-09-02), then cert 29's own stdlib route B under `--full` on all four records (2026-09-03/04, 9 044.0 / 9 062.2 / 9 049.1 / 11 273.6 s). **Neither leg has been run in this repository**; cert 29's default path audits and its `--full` is priced at ≈ 10.7 core-hours. The **2-part** of `Aut` is **NOT COMPUTED**: `Aut = ⟨−I, τ⟩` is consistent and unproved |
+| **Theorem F in the general branch** (§1.12) (a)–(g) with `M = 4i·P_S` and no use of `i = s+1`; the **row-factorisation lemma** `WWᵀ = 4i·4s·(I₄⊗P_S)`, so every admissible row's corner row has squared norm exactly `4s` and a kit is `4s` mutually orthogonal *flat* rows; and the **dual form** `p` flat `⟺ Ĉp ∈ Q·{±1}^{4s}`, with `P = −(1/4s)·E·Qᵀ·Ĉ` | **PROVEN** (paper-grade; §1.12) **+ MEASURED** (the lemma re-multiplied at all twelve `κ(ρ)` at `(7,12)/S2` on cert 30's table; the dual form on all four `(2,4)` records of §2.3 exhaustively over their 256 admissible rows, and on `(3,4)` kits built in the run — cert 31 [E],[F]) |
+| **`(7,12)/S3` admits no column table at all**: (H1) is unsatisfiable at `Ḡ = ℤ₁₂`, `S3 = {0,1,2,5,7,10,11}`, at any `σ`, any `w`, any `κ(ρ)` — hence at **every** order `N = 4(12w + 7)`, and for its `χ₆`-twin with it. The first general-branch border kill in this note | **PROVEN** (§1.12) **+ PROVEN-BY-CERTIFICATE** (the alphabet is the two constants, by two membership tests sharing no code over all `2¹²` sign vectors; three independent obstructions follow — counting, rank, and the superblock Gram; cert 31 [A],[B]). It is a statement about the **column** table: `S3`'s σ-table is valid and is banked in cert 30 |
+| the **σ-layer** of every advertised general branch at `N = 2092` is non-empty — `(11,16,32)` on `ℤ₁₆`, `(7,12,43)` on `ℤ₁₂` on all four rational branches, `(3,8,65)` on `𝔽₂³` — with Fourier budgets `4s` on `S` and `2092` off it; the support enumerations are complete; and the `(3,8)` cell coarsens onto the house `(3,4)` profile | **PROVEN-BY-CERTIFICATE** (every `M` and `F` re-derived from `(S,i,w)` alone, each PAF and each character sum decided twice by paths sharing no code, four perturbed tables rejected; cert 30). **NOT claimed**: anything about **seeds** — no seed quadruple is known at any of these cells and a compressed table is a necessary shadow, never sufficient — the number of tables in any σ-layer, or anything about `H(2092)` |
+| `(7,12)/S2` **has** an admissible column table `Q ∈ {±1}^{48×28}`, and the per-superblock block multiset of *every* admissible `Q` there is **forced** (the constant class once, each type-A class once, each type-B class twice) | **PROVEN-BY-CERTIFICATE** (the artifact re-checked against an alphabet computed in the same run, `QᵀQ = 48I` and `QQᵀ = I₄⊗M` entry by entry; the multiset by exact `Fraction` elimination on 16 linearly independent outer products; cert 31 [C],[D]). **NOT claimed**: any border **kit** at `(7,12)` — none is known anywhere in the general branch at 2092 — nor the number of admissible `Q` at any support |
+| **Theorem G** (§1.13), the good-matrix product theorem: `a_{2k} = −(b₀c₀d₀)·a_k b_k c_k d_k` off zero for a Goethals–Seidel quadruple on `ℤ_n`, `n` odd, with `A` skew-type and `B, C, D` symmetric; and the **closure sign law** `Π_j π_j = closure·(−(b₀c₀d₀))^L` | **PROVEN** (paper-grade, by a group-ring reduction mod 2; §1.13) **+ COMPUTATIONAL-EVIDENCE** (9 936 good quadruples at `n = 7,9,11,13,15` by complete meet-in-the-middle with `b₀` free — the identity in every one, each unprefixed variant in exactly half; the group-ring identity re-checked coefficient by coefficient and failing on quadruples that are not good; the Williamson control — 14 784 quadruples, the constant-product corollary in all and the doubling relation in **none**; the closure sign recomputed at `n = 7` and `n = 523`; cert 32). **NOT claimed**: novelty (a product-type relationship for good matrices is reported in print; that paper is read only in the abstract here, so its form is **NOT CLAIMED** either way — §4.1), any existence statement at `n = 523`, or anything at `n > 15` |
 | the `s ≥ 2` coset-border novelty statement | **BOUNDED-NEGATIVE-SEARCH** (§4; closes exactly the enumerated sources) |

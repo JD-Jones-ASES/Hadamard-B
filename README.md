@@ -98,6 +98,18 @@ problem** a character-twist reparametrization of the `i = 1` seed
 problem over any group with a unique index-2 subgroup — a bijection
 of search problems, not of matrices (at order 668 the two assembled
 matrices are provably inequivalent).
+Added 2026-09-05 alongside these: **Theorem F in the general
+branch** — the same border structure theorem with the house Gram
+replaced by any Galois-stable support — together with the
+**row-factorisation lemma**, which fixes `‖e‖² = 4s` for every
+admissible row and so makes a border-side negative complete in `P`,
+and the first **border kill** in the note: the `(7,12)/S3` tier
+admits no column table at any order `4(12w+7)`, its `χ₆` twin with
+it (NOTE-B.md §1.12; certs 30, 31). And the **good-matrix product
+theorem** `a_{2k} = −(b₀c₀d₀)·a_k b_k c_k d_k` for a good quadruple
+on `ℤ_n`, with the closure sign law it implies and the small-order
+censuses and Williamson control that check both (NOTE-B.md §1.13;
+cert 32). None of these says anything about existence at 2092.
 
 **II. The instances** (§2). The twelve public records at orders 668,
 716, 892, 1132, 1244, 1388, 1436, 1676, 1772, 1916, 1948, 1964
@@ -294,7 +306,33 @@ python certs/27-sylow2-rigidity/run.py
 python certs/27-sylow2-rigidity/run.py --full
 python certs/28-ag32-transversal/run.py
 python certs/29-lemma-f-records/run.py
+python certs/30-general-branch-sigma/run.py
+python certs/31-s2-column-table/run.py
+python certs/32-good-product-theorem/run.py
 ```
+
+Certificates 30, 31 and 32 were added 2026-09-05 and carry the
+**general branch** and the **good-matrix product theorem**. Cert 30
+banks the six general-branch coset-sum tables at `N = 2092` — the
+`(11,16)`, `(7,12)` and `(3,8)` cells — re-deriving every `M`, `F`,
+aggregate PAF and Fourier budget from the spectral support alone, with
+the support enumerations proved complete and the `(3,8)` cell shown to
+coarsen onto the house `(3,4)` profile. Cert 31 computes the
+admissible block alphabet at `(7,12)` by two membership tests sharing
+no code, kills `(7,12)/S3` at **every** order `4(12w+7)`, verifies an
+admissible column table at `(7,12)/S2` and proves its per-superblock
+block multiset forced, and re-multiplies the row-factorisation lemma
+and its dual form (`note/NOTE-B.md` §1.12) on this repository's own
+kits. Cert 32 carries the small-order controls for the product theorem
+of §1.13 — 9 936 good quadruples at `n = 7…15` by complete
+meet-in-the-middle, 14 784 Williamson quadruples as the control that
+separates skew from symmetric, and the closure sign recomputed at
+`n = 7` and `n = 523`. All three are standard-library, exact-integer,
+complete on the default path, and run in about a second each; none has
+a `--full`, and **none of them says anything about `H(2092)`** —
+neither the σ-layer nor a column table nor a dead border tier is an
+existence statement, and no seed quadruple is known at any of these
+cells.
 
 `verify/verify.py` is the trust chain. It accepts a matrix file only
 if the matrix is square, has every entry in {+1, −1}, and satisfies
