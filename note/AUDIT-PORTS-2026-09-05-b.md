@@ -322,7 +322,7 @@ forward pointer plus §2.6, five §5 rows), `README.md` (three replay lines plus
 a paragraph, both at the end of their blocks) and `PROVENANCE.md` (a dated
 paragraph at the end). Every hunk read.
 
-**Names.** `grep -riE "jones|jd-|jdj|\bJD\b"` over the whole worktree returns
+**Names.** `a case-insensitive grep for the owner's surname and initials` over the whole worktree returns
 only the pre-existing GitHub URLs in `README.md` and `PROVENANCE.md`; **no
 added line contains a person's name**, and no mathematical text anywhere does.
 Crediting in the new PROVENANCE paragraph is by station throughout — "the Sol
