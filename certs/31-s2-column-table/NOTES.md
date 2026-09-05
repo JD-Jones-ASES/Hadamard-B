@@ -54,7 +54,8 @@ The two sets agree at every support, and
 | `S3` | **2** | **1** |
 | `S4` | 24 | 7 |
 
-**[B] the `S3` kill — DEAD-BY-CERTIFICATE, at every order.** At `S3` the only
+**[B] the `S3` kill — `(7,12)/S3` admits no column table at any order,
+PROVEN-BY-CERTIFICATE.** At `S3` the only
 `±1` vectors of length 12 with Fourier support inside `S3` are the **two
 constants**. Three independent obstructions follow, and any one of them
 suffices:

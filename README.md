@@ -70,6 +70,18 @@ problem** a character-twist reparametrization of the `i = 1` seed
 problem over any group with a unique index-2 subgroup — a bijection
 of search problems, not of matrices (at order 668 the two assembled
 matrices are provably inequivalent).
+Added 2026-09-05 alongside these: **Theorem F in the general
+branch** — the same border structure theorem with the house Gram
+replaced by any Galois-stable support — together with the
+**row-factorisation lemma**, which fixes `‖e‖² = 4s` for every
+admissible row and so makes a border-side negative complete in `P`,
+and the first **border kill** in the note: the `(7,12)/S3` tier
+admits no column table at any order `4(12w+7)`, its `χ₆` twin with
+it (NOTE-B.md §1.12; certs 30, 31). And the **good-matrix product
+theorem** `a_{2k} = −(b₀c₀d₀)·a_k b_k c_k d_k` for a good quadruple
+on `ℤ_n`, with the closure sign law it implies and the small-order
+censuses and Williamson control that check both (NOTE-B.md §1.13;
+cert 32). None of these says anything about existence at 2092.
 
 **II. The instances** (§2). The twelve public records at orders 668,
 716, 892, 1132, 1244, 1388, 1436, 1676, 1772, 1916, 1948, 1964

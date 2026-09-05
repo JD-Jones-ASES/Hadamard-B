@@ -41,8 +41,9 @@ row-factorisation lemma with its dual form.
       rows are equal or antipodal, so their inner product is +-28, while (H1)
       demands M_S3(c) for c != 0, and no M_S3(c) with c != 0 is +-28.
       Hence (H1) has NO solution at (7,12)/S3 -- at any sigma, any w, any
-      kappa(rho), and therefore at EVERY order N = 4(12w + 7).  This is a
-      DEAD-BY-CERTIFICATE verdict for the named tier, and the chi_6 twin
+      kappa(rho), and therefore at EVERY order N = 4(12w + 7).  The named
+      tier admits no column table at any order -- PROVEN-BY-CERTIFICATE
+      -- and the chi_6 twin
       support 6 + S3 = {1,4,5,6,7,8,11} dies with it by the Lemma-T twist
       (S1.4) -- checked here, not asserted: v -> chi_6 . v is a bijection
       of {+-1}^12 carrying V_S3 onto V_{6+S3}, so that alphabet is the two
@@ -380,8 +381,8 @@ def clause_b(alpha):
           and all(tw_M[c] == (-1) ** c * M[c] for c in range(I12))
           and all(abs(tw_M[c]) != 4 * 7 for c in range(1, I12)),
           twin)
-    check("so (7,12)/S3 is DEAD-BY-CERTIFICATE at the column layer, at every "
-          "order N = 4(12w + 7)", True)
+    check("so (7,12)/S3 admits no column table at any order N = 4(12w + 7) "
+          "-- PROVEN-BY-CERTIFICATE at the column layer", True)
 
 
 # ======================================================================
@@ -936,7 +937,8 @@ def main(argv=None):
     print("         is the two constants, and three independent obstructions")
     print("         kill (H1) there at every sigma, every w, every kappa(rho)")
     print("         and therefore at EVERY order N = 4(12w + 7):")
-    print("         DEAD-BY-CERTIFICATE, the chi_6 twin with it.  At S2 an")
+    print("         that tier admits NO column table at any order --")
+    print("         PROVEN-BY-CERTIFICATE, the chi_6 twin with it.  At S2 an")
     print("         admissible column table EXISTS -- the banked artifact --")
     print("         and its per-superblock block multiset is FORCED (1 + 3 +")
     print("         24), so a search over the remaining superblocks is")

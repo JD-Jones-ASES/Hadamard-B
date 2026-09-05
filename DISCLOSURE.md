@@ -59,6 +59,38 @@ separation statement in this repository is row-side any longer.**
 Nothing is claimed at any order about a matrix versus its *own*
 transpose beyond 668, where it was decided: `Hᵀ` at 1676 and at 1772,
 and `Gᵀ` at 2060, were never profiled.
+Added 2026-09-05, in two lanes. **Theorem T**: the coset-border
+family is closed under transposition — branch-free, at every cell
+and every `w` — with remark R fixing exactly when the border-kept
+orientation switch is again Hadamard (**PROVEN** +
+**PROVEN-BY-CERTIFICATE**, cert 26). **Sylow-2 rigidity**: the
+extension group of a hypothetical *cocyclic* `H(2092)` is cut from
+twenty-four `(E, e*)` pairs to two, conditional throughout on the
+cited de Launey–Flannery–Horadam equivalence (**PROVEN** +
+**PROVEN-BY-CERTIFICATE**, cert 27). **Lemma F** and the records
+theorem: an automorphism of order `p = 523` would force a 16-block
+circulant array on an `H(2092)`, and no automorphism of odd prime
+order acts on `H(668)`, `H′(668)`, `H″(668)` or `H(716)`, whose
+automorphism groups are therefore 2-groups (**PROVEN** +
+**PROVEN-BY-CERTIFICATE**, cert 29). The `(2,4)` **existence
+theorem**: at that cell the border is never the obstruction, at
+every `w` — proved by classification where cert 18's census proved
+it by enumeration (**PROVEN** + **PROVEN-BY-CERTIFICATE**,
+cert 28). **Theorem F in the general branch**, with the
+row-factorisation lemma and its dual form, which make a border-side
+negative complete in the row table; the first border kill in the
+note — the `(7,12)/S3` tier admits no column table at any order
+`4(12w+7)`, and its `χ₆` twin dies with it — and a banked
+`(7,12)/S2` column table (**PROVEN** + **PROVEN-BY-CERTIFICATE**,
+certs 30 and 31). And the **good-matrix product theorem**
+`a_{2k} = −(b₀c₀d₀)·a_k b_k c_k d_k` with its closure sign law
+(**PROVEN**, with small-order censuses and a Williamson control as
+**COMPUTATIONAL-EVIDENCE**, cert 32). Every statement here about
+`H(2092)` is **conditional** — a constraint on the shape such a
+matrix would have to have, or on one layer of one construction —
+and **none asserts existence**, at 2092 or anywhere else: a dead
+border tier is a dead border tier, and no good quadruple is known
+at `n = 523`.
 
 AI-generated results with a human managing the workflow. Produced by
 Claude Code (Fable 5, Anthropic); external reviews at earlier stages
